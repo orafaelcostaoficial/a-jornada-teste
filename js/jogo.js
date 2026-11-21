@@ -2,17 +2,18 @@
 import { ERAS, LIVROS } from '../data/plano.js';
 import * as E1 from '../data/era-principio.js';
 import * as E2 from '../data/era-moises.js';
+import * as E3 from '../data/era-juizes.js';
 import { DESAFIOS } from '../data/desafios.js';
 import { hoje, somarDias, diasEntre } from './store.js';
 
 // Quando escrever novas eras, importar aqui e somar nas listas.
-export const SESSOES = [...E1.SESSOES, ...E2.SESSOES];
-export const PERSONAGENS = { ...E1.PERSONAGENS, ...E2.PERSONAGENS };
-export const MARCOS = [...E1.MARCOS.map((m) => ({ ...m, era: 'principio' })), ...E2.MARCOS.map((m) => ({ ...m, era: 'moises' }))];
-export const INTRODUCOES = { ...E1.INTRODUCOES, ...E2.INTRODUCOES };
-export const CARTAS = { ...E1.CARTAS, ...E2.CARTAS };
-export const CRIANCAS = { ...E1.CRIANCAS, ...E2.CRIANCAS };
-export const SELOS = { ...E1.SELOS, ...E2.SELOS };
+export const SESSOES = [...E1.SESSOES, ...E2.SESSOES, ...E3.SESSOES];
+export const PERSONAGENS = { ...E1.PERSONAGENS, ...E2.PERSONAGENS, ...E3.PERSONAGENS };
+export const MARCOS = [...E1.MARCOS.map((m) => ({ ...m, era: 'principio' })), ...E2.MARCOS.map((m) => ({ ...m, era: 'moises' })), ...E3.MARCOS.map((m) => ({ ...m, era: 'juizes' }))];
+export const INTRODUCOES = { ...E1.INTRODUCOES, ...E2.INTRODUCOES, ...E3.INTRODUCOES };
+export const CARTAS = { ...E1.CARTAS, ...E2.CARTAS, ...E3.CARTAS };
+export const CRIANCAS = { ...E1.CRIANCAS, ...E2.CRIANCAS, ...E3.CRIANCAS };
+export const SELOS = { ...E1.SELOS, ...E2.SELOS, ...E3.SELOS };
 export const selosDaSessao = (id) => Object.keys(SELOS).filter((k) => SELOS[k].sessao === id);
 
 export const XP = { sessao: 10, aplicacao: 4, revisao: 8, acerto: 3, livro: 40, era: 100, semana: 25 };
@@ -238,7 +239,7 @@ export const CONQUISTAS = [
 
 // Uma conquista por era e por livro. Os ids antigos (era1, era2, gn, jo) ficam iguais para não perder o que já foi ganho.
 const ID_ERA = { principio: 'era1', moises: 'era2' };
-const NOME_ERA = { principio: 'Era dos Patriarcas', moises: 'Pelo deserto' };
+const NOME_ERA = { principio: 'Era dos Patriarcas', moises: 'Pelo deserto', juizes: 'Na terra prometida' };
 // Ícone próprio de cada era (desenhado em js/icones.js, ligado ao texto bíblico do emblema).
 export const ICONE_ERA = Object.fromEntries(['principio', 'moises', 'juizes', 'reino-unido', 'reino-dividido', 'exilio', 'pos-exilio', 'jesus', 'igreja', 'fim-seculo'].map((id) => [id, `era-${id}`]));
 const NOME_LIVRO = { gn: 'No princípio', jo: 'Meus olhos te veem' };

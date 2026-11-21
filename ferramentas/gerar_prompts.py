@@ -112,6 +112,27 @@ CARTAS = [
     ('balaao', 'Balaão', 'montado numa jumenta que vira a cabeça para ele e fala, Balaão espantado', 'homem de meia-idade, adivinho, com manto', 'caminho estreito entre vinhas e muros de pedra', 'Nm 22:23-28'),
     ('fineias', 'Fineias', 'de pé diante da tenda, sereno, com luz suave sobre ele', 'homem jovem, sacerdote, com túnica branca e cinto azul', 'acampamento no deserto ao entardecer; sem armas', 'Nm 25:11-13'),
     ('filhas-zelofeade', 'Filhas de Zelofeade', 'cinco irmãs de pé lado a lado, firmes e respeitosas, diante de um ancião', 'cinco moças jovens com véus de cores diferentes', 'entrada da tenda do encontro', 'Nm 27:1-7'),
+    # ── Era 3: Josué e Juízes ──
+    ('raabe', 'Raabe', 'à janela de uma casa construída no muro da cidade, amarrando um cordão vermelho no parapeito', 'mulher adulta, de olhar decidido', 'muro de pedra de Jericó ao entardecer, com palmeiras ao longe', 'Js 2:15,18,21'),
+    ('aca', 'Acã', 'ajoelhado dentro de uma tenda, cobrindo às pressas com terra uma capa bordada e um brilho de ouro, olhando por cima do ombro', 'homem adulto, apreensivo', 'interior de uma tenda à luz fraca', 'Js 7:21'),
+    ('acsa', 'Acsa', 'descendo de um jumento e apontando para uma fonte de água que brota entre as pedras', 'mulher jovem, com véu', 'terra seca com uma fonte e um fio de verde ao redor', 'Js 15:18-19'),
+    ('otniel', 'Otniel', 'de pé com escudo e espada, olhando para o horizonte, com uma luz suave descendo sobre ele', 'guerreiro jovem e forte', 'colinas de Judá ao amanhecer', 'Jz 3:9-10'),
+    ('eude', 'Eúde', 'segurando com a mão esquerda uma espada curta de dois gumes, a mão direita vazia', 'homem adulto, canhoto, de expressão concentrada', 'estrada de terra diante de um palácio de pedra', 'Jz 3:15-16'),
+    ('debora', 'Débora', 'sentada debaixo de uma palmeira, com a mão erguida enquanto fala a pessoas que esperam diante dela', 'mulher madura, de olhar sábio e firme', 'monte de Efraim com colinas e céu claro', 'Jz 4:4-5'),
+    ('baraque', 'Baraque', 'descendo a encosta de um monte à frente de soldados, com a espada erguida', 'guerreiro adulto', 'monte Tabor arredondado e um vale com um ribeiro', 'Jz 4:14'),
+    ('jael', 'Jael', 'de pé à entrada de uma tenda de pele, segurando uma tigela de leite, olhar firme', 'mulher adulta', 'acampamento de tendas no fim da tarde', 'Jz 4:17-19; 5:24-25'),
+    ('gideao', 'Gideão', 'erguendo uma tocha que sai de dentro de um cântaro de barro quebrado, com uma trombeta de chifre na outra mão', 'homem jovem, de expressão corajosa', 'acampamento inimigo à noite no vale, com tendas ao longe', 'Jz 7:16,20'),
+    ('abimeleque-jz', 'Abimeleque', 'de pé com uma coroa simples na cabeça, ao lado de um espinheiro', 'homem adulto, de olhar ambicioso', 'cidade de Siquém entre dois montes', 'Jz 9:6,14-15'),
+    ('jotao', 'Jotão', 'no alto de um monte, falando em voz alta e apontando para árvores: oliveira, figueira, videira e um espinheiro', 'homem jovem', 'cume do monte Gerizim com a cidade lá embaixo', 'Jz 9:7-15'),
+    ('jefte', 'Jefté', 'de pé com as roupas rasgadas no peito, as mãos na cabeça, voltando para casa', 'guerreiro adulto, de expressão abalada', 'porta de uma casa de pedra em Mispá', 'Jz 11:34-35'),
+    ('filha-jefte', 'Filha de Jefté', 'saindo pela porta de casa dançando com um tamborim nas mãos', 'moça jovem, alegre', 'pátio de uma casa de pedra com flores', 'Jz 11:34'),
+    ('manoa', 'Manoá e sua mulher', 'ajoelhados lado a lado diante de um altar de pedra de onde sobe uma chama alta para o céu', 'casal adulto', 'campo aberto ao entardecer', 'Jz 13:19-20'),
+    ('sansao', 'Sansão', 'empurrando com os braços abertos duas colunas grandes de pedra', 'homem jovem e muito forte, cabelo longo em tranças', 'interior de um grande salão de pedra', 'Jz 16:17,29-30'),
+    ('dalila', 'Dalila', 'sentada, olhando de lado para uma bolsa de moedas de prata no colo', 'mulher jovem', 'interior de uma casa com cortinas, à luz de lamparina', 'Jz 16:4-5,18'),
+    ('mica', 'Mica', 'de pé diante de um pequeno santuário dentro de casa, com uma imagem de metal sobre uma prateleira', 'homem adulto', 'cômodo de uma casa nos montes de Efraim', 'Jz 17:4-5'),
+    ('noemi', 'Noemi', 'segurando um bebê no colo, com o rosto cheio de alegria', 'mulher idosa', 'pátio de uma casa em Belém com mulheres ao redor, só contornos', 'Rt 4:16-17'),
+    ('rute', 'Rute', 'recolhendo espigas de cevada no campo, com um feixe nos braços', 'mulher jovem moabita, com véu simples', 'campo dourado de cevada com ceifeiros ao longe', 'Rt 2:2-3'),
+    ('boaz', 'Boaz', 'na porta da cidade, entregando uma sandália a outro homem diante de anciãos sentados', 'homem maduro, de aparência próspera', 'porta da cidade de Belém, de pedra', 'Rt 4:1-2,7-9'),
 ]
 
 # ─────────────────────────── SELOS (objetos e palavras-chave) ───────────────────────────
@@ -142,6 +163,18 @@ SELOS = [
     ('vara', 'Vara que floresceu', 'uma vara de madeira com brotos, flores brancas e amêndoas', 'Nm 17:8'),
     ('serpente', 'Serpente de bronze', 'uma serpente feita de METAL (bronze polido, cor cobre-esverdeada com reflexos), como uma estátua rígida, enrolada no alto de uma haste de madeira comprida e reta, fincada na areia do deserto. A haste é UM pau só, vertical, SEM travessa: NÃO desenhar cruz. A serpente NÃO é um bicho vivo nem fofo: sem olhos expressivos, sem sorriso, sem cara de desenho animado; é um objeto de metal moldado (Nm 21:8-9)', 'Nm 21:8-9'),
     ('nebo', 'Monte Nebo', 'um monte com o cume iluminado e, ao longe, um vale verde com um rio', 'Dt 34:1-4'),
+    # ── Era 3: Josué e Juízes ──
+    ('cordao', 'Cordão vermelho', 'um cordão de fio vermelho-escarlate enrolado, com a ponta solta', 'Js 2:18,21'),
+    ('pedras', 'Doze pedras', 'um monte de pedras de rio lisas e arredondadas, empilhadas com cuidado', 'Js 4:3-8,20'),
+    ('muralha', 'Muro de Jericó', 'um trecho de muralha de pedra e tijolos desmoronando, com pedras caindo', 'Js 6:20'),
+    ('sol', 'Sol parado', 'um sol dourado brilhante parado no alto, com uma lua pálida ao lado', 'Js 10:12-13'),
+    ('hebrom', 'Monte de Calebe', 'um monte rochoso com uma cidade de pedra no alto', 'Js 14:12-13'),
+    ('testemunho', 'Pedra do testemunho', 'uma grande pedra em pé debaixo de um carvalho', 'Js 24:26-27'),
+    ('palmeira', 'Palmeira de Débora', 'uma palmeira alta e frondosa, com um banco de pedra junto ao tronco', 'Jz 4:5'),
+    ('la', 'Lã de Gideão', 'um velo de lã branca estendido no chão, coberto de gotas de orvalho brilhando', 'Jz 6:37-38'),
+    ('cantaro', 'Cântaro e tocha', 'um cântaro de barro quebrado com uma tocha acesa saindo de dentro', 'Jz 7:16,20'),
+    ('favo', 'Mel no leão', 'um favo de mel dourado escorrendo, com algumas abelhas ao redor', 'Jz 14:8-9'),
+    ('cevada', 'Cevada de Boaz', 'um feixe de espigas de cevada douradas amarrado com um laço de palha', 'Rt 2:15-17; 3:15'),
 ]
 
 

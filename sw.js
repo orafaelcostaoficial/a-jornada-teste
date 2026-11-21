@@ -1,6 +1,6 @@
 // Offline: rede primeiro (pega atualizações quando há internet), cache como reserva.
 // Ao mudar a lista de arquivos, suba a versão.
-const VERSAO = 'v34';
+const VERSAO = 'v35';
 const PREFIXO = 'ajornada:' + self.registration.scope + ':';
 const CACHE = PREFIXO + VERSAO;
 const ARQUIVOS = [
@@ -10,7 +10,7 @@ const ARQUIVOS = [
   './data/biblia/blivre/1.json', './data/biblia/blivre/18.json', './data/biblia/blivre/2.json', './data/biblia/blivre/3.json', './data/biblia/blivre/4.json', './data/biblia/blivre/5.json',
   './fonts/fraunces-latin-500-normal.woff2', './fonts/fraunces-latin-600-normal.woff2', './fonts/fraunces-latin-700-normal.woff2',
   './fonts/nunito-latin-400-normal.woff2', './fonts/nunito-latin-600-normal.woff2', './fonts/nunito-latin-700-normal.woff2', './fonts/nunito-latin-800-normal.woff2',
-  './data/plano.js', './data/era-principio.js', './data/era-moises.js', './data/desafios.js', './data/imagens.js', './data/avatares.js',
+  './data/plano.js', './data/era-principio.js', './data/era-moises.js', './data/era-juizes.js', './data/desafios.js', './data/imagens.js', './data/avatares.js',
   './icons/icon-192.png', './icons/icon-512.png',
 ];
 

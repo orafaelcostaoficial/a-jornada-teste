@@ -1,6 +1,6 @@
 # A Jornada — Roadmap
 
-Atualizado em 20/11/2026. É o ponto de partida de cada conversa nova: onde estamos e o que vem a seguir.
+Atualizado em 21/11/2026. É o ponto de partida de cada conversa nova: onde estamos e o que vem a seguir.
 As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras de trabalho e de conteúdo ficam no `CLAUDE.md`.
 
 ---
@@ -16,6 +16,7 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
 - **Conteúdo:**
   - **Era 1, Princípio e Patriarcas:** Gênesis e Jó, 35 sessões.
   - **Era 2, Moisés:** Êxodo a Deuteronômio, 32 sessões.
+  - **Era 3, Josué e Juízes:** Josué, Juízes e Rute, 11 sessões (v35, **só no teste** até o "pode publicar"). 20 cartas e 11 selos novos, ainda sem imagem; prompts já em `PROMPTS-CARTAS.md` e `PROMPTS-SELOS.md`.
   - Leitura na Bíblia Livre dentro do app.
 - **Método:** Contexto → Leitura → O que entendi → Aplicação, com o "como foi?" voltando em 3 dias. Revisão em quiz (Leitner). Meta semanal de 5 dias.
 - **Personagem:**
@@ -72,7 +73,7 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
 | 1 | **Imagens das cartas** | 58 cartas do Álbum, hoje só com ícone. Os prompts estão em `PROMPTS-CARTAS.md`: o Rafael gera no Gemini, o Claude revisa, recorta, instala em `img/cartas/` e lista em `COM_IMAGEM`. Começar pelas 8 lendárias. | Médio, aos poucos |
 | 2 | **Objetos ilustrados do mapa** | Trocar os desenhos simples ao lado do caminho (tenda, poço, palmeira…) por ilustrações do Gemini, cerca de 30 nas eras 1 e 2. | Médio |
 | 3 | **Fase 1 do PLANO** | Trava de leitura (fim do texto + tempo mínimo), quadros Constância e XP da semana, teto de 3 sessões por dia no ranking, regra da graça. Ver PLANO §2–4. | Médio, só app |
-| 4 | **Era 3: Josué e Juízes** | 11 sessões em `data/era-juizes.js`, no mesmo formato. Seguir o roteiro de era nova do `CLAUDE.md`. Fica urgente quando alguém da família se aproximar do fim de Deuteronômio. | Grande (conteúdo) |
+| 4 | ~~Era 3: Josué e Juízes~~ | Escrita em 21/11/2026 (`data/era-juizes.js`, 11 sessões). Falta: imagens das 20 cartas e 11 selos; publicar no oficial. Próxima era: **O Reino Unido** (67 sessões). | — |
 | 5 | **Reencontro dos desafios** | No ciclo 2 (2031), mostrar o que a pessoa escreveu no mesmo desafio 5 anos antes. Depende da sincronização na nuvem estar firme. | Médio |
 
 ---

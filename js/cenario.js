@@ -24,6 +24,22 @@ export const CENAS = {
     fundo: { tipo: 'montanha', ceu: ['#4b3f9e', '#b9a8f0'], longe: '#7a68c2', meio: '#5b4796', chao: ['#cf9f6a', '#b9844e'], textura: 'pedra' } },
   moabe:      { quando: '40º ano depois da saída (Dt 1:3)', nome: 'As planícies de Moabe', enfeites: ['palmeira', 'tenda', 'rio', 'palmeira', 'duna'],
     fundo: { tipo: 'colinas', ceu: ['#58bdf5', '#dff4ff'], longe: '#b7b06a', meio: '#9fc457', chao: ['#b4d65e', '#93bf47'], textura: 'grama', astro: 'sol', rio: true } },
+  jordao:     { quando: '10º dia do 1º mês (Js 4:19)', nome: 'A travessia do Jordão', enfeites: ['pedras', 'palmeira', 'rio', 'tenda', 'pedras'],
+    fundo: { tipo: 'colinas', ceu: ['#4fb6f2', '#d8f2ff'], longe: '#9fbf66', meio: '#7fb84f', chao: ['#9cd060', '#7cb544'], textura: 'grama', astro: 'sol', rio: true } },
+  jerico:     { quando: 'Logo depois da Páscoa em Gilgal (Js 5:10)', nome: 'Jericó', enfeites: ['muralha', 'palmeira', 'tenda', 'muralha', 'palmeira'],
+    fundo: { tipo: 'muralha', ceu: ['#ff9a52', '#ffe2a6'], longe: '#d99a58', meio: '#c9844a', chao: ['#e8b56a', '#d69a4e'], textura: 'areia', astro: 'sol' } },
+  conquista:  { quando: 'O texto não dá a data', nome: 'Gibeom e a conquista', enfeites: ['sol', 'oliveira', 'tenda', 'nuvem', 'oliveira'],
+    fundo: { tipo: 'colinas', ceu: ['#ffb43c', '#fff0b8'], longe: '#b9a160', meio: '#9fae55', chao: ['#b8c45e', '#9aae47'], textura: 'grama', astro: 'sol' } },
+  canaa:      { quando: 'Josué já velho (Js 13:1)', nome: 'A terra repartida', enfeites: ['oliveira', 'espiga', 'tenda', 'oliveira', 'pedras'],
+    fundo: { tipo: 'colinas', ceu: ['#5bbdf5', '#e2f5ff'], longe: '#8fbf6a', meio: '#6fb055', chao: ['#8fcf5c', '#6eb345'], textura: 'grama', astro: 'sol' } },
+  juizes:     { quando: 'Depois da morte de Josué (Jz 2:8-10)', nome: 'O tempo dos juízes', enfeites: ['palmeira', 'cantaro', 'oliveira', 'tenda', 'cantaro'],
+    fundo: { tipo: 'colinas', ceu: ['#5a6fc4', '#f7b97a'], longe: '#8a7fb0', meio: '#7d9a5a', chao: ['#a2b863', '#86a04c'], textura: 'grama', astro: 'sol' } },
+  filisteus:  { quando: '20 anos de Sansão (Jz 16:31)', nome: 'A terra dos filisteus', enfeites: ['palmeira', 'duna', 'palmeira', 'duna'],
+    fundo: { tipo: 'mar', ceu: ['#46a8e8', '#cdeeff'], longe: '#2f8fd6', meio: '#2a7fc4', chao: ['#e9c27a', '#d6a75a'], textura: 'areia', astro: 'sol' } },
+  'sem-rei':  { quando: 'Fineias ainda servia (Jz 20:28)', nome: 'Sem rei em Israel', enfeites: ['nuvem', 'tenda', 'oliveira', 'nuvem'],
+    fundo: { tipo: 'colinas', ceu: ['#3d3a6e', '#c78a7a'], longe: '#6b5a7a', meio: '#5f6f4e', chao: ['#8a9a5a', '#6f8045'], textura: 'grama', astro: 'lua', estrelas: true } },
+  belem:      { quando: 'No tempo dos juízes (Rt 1:1)', nome: 'Os campos de Belém', enfeites: ['espiga', 'oliveira', 'espiga', 'tenda', 'espiga'],
+    fundo: { tipo: 'colinas', ceu: ['#ffb259', '#fff1c2'], longe: '#d9b45c', meio: '#e6c062', chao: ['#f0cf6a', '#dcb24c'], textura: 'trigo', astro: 'sol' } },
   uz:         { quando: 'Sem data no texto', nome: 'A terra de Uz', enfeites: ['nuvem', 'raio', 'nuvem', 'sol'],
     fundo: { tipo: 'colinas', ceu: ['#5f73b8', '#c9d4f2'], longe: '#8c9ac4', meio: '#7fa66a', chao: ['#9cc26a', '#7fa851'], textura: 'grama', chuva: true } },
 };
@@ -59,6 +75,10 @@ const CAMADAS = {
     <path d="M130 132L170 88L210 132Z" fill="${f.meio}"/><path d="M170 88L210 132H188Z" fill="#000" opacity=".12"/>
     <path d="M250 136L280 104L310 136Z" fill="${f.meio}"/>
     <path d="M0 150C90 136 200 156 300 142S380 140 400 146V${H}H0Z" fill="${f.chao[0]}"/>`,
+  muralha: (f) => `<path d="M0 126C80 112 160 124 240 114S350 110 400 120V${H}H0Z" fill="${f.longe}"/>
+    <path d="M70 140V96h18v-8h10v8h40v-8h10v8h40v-8h10v8h40v-8h10v8h40v-8h10v8h18v44Z" fill="${f.meio}"/>
+    <path d="M70 108h258M70 122h258" stroke="#000" stroke-opacity=".12" stroke-width="2"/><path d="M190 140v-20a10 10 0 0 1 20 0v20Z" fill="#000" opacity=".22"/>
+    <path d="M0 152C100 140 200 158 300 146S380 144 400 150V${H}H0Z" fill="${f.chao[0]}"/>`,
   montanha: (f) => `<path d="M0 118L50 86L95 108L150 70L205 104L265 80L325 112L400 88V${H}H0Z" fill="${f.longe}"/>
     <path d="M90 ${H}L230 34L250 46L268 30L400 140V${H}Z" fill="${f.meio}"/><path d="M230 34L250 46L268 30L300 70L260 62L240 74Z" fill="#fff" opacity=".2"/>
     <g fill="#3d3566" opacity=".9"><circle cx="232" cy="30" r="16"/><circle cx="256" cy="22" r="20"/><circle cx="282" cy="30" r="15"/><rect x="220" y="28" width="76" height="14" rx="7"/></g>
@@ -73,6 +93,7 @@ const TEX = {
   grama: '<svg xmlns="http://www.w3.org/2000/svg" width="70" height="56"><g stroke="rgba(10,90,20,.35)" stroke-width="2.2" stroke-linecap="round" fill="none"><path d="M12 34l-3-7M12 34l1-8M12 34l5-6"/><path d="M50 14l-3-6M50 14l1-7M50 14l4-5"/></g><circle cx="34" cy="48" r="2" fill="rgba(255,255,255,.35)"/></svg>',
   areia: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="40"><g fill="rgba(140,80,10,.22)"><circle cx="8" cy="10" r="1.6"/><circle cx="30" cy="26" r="1.3"/><circle cx="40" cy="6" r="1"/></g><g fill="rgba(255,255,255,.35)"><circle cx="20" cy="34" r="1.3"/><circle cx="44" cy="20" r="1"/></g><path d="M14 20q5-3 10 0" stroke="rgba(140,80,10,.18)" stroke-width="1.5" fill="none"/></svg>',
   agua: '<svg xmlns="http://www.w3.org/2000/svg" width="80" height="44"><g stroke="rgba(255,255,255,.4)" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M6 14q8-6 16 0t16 0"/><path d="M44 34q8-6 16 0t16 0"/></g></svg>',
+  trigo: '<svg xmlns="http://www.w3.org/2000/svg" width="56" height="48"><g stroke="rgba(150,95,10,.4)" stroke-width="2" stroke-linecap="round" fill="none"><path d="M10 40V24M10 28l-3-4M10 28l3-4M10 33l-3-4M10 33l3-4"/><path d="M40 22V6M40 10l-3-4M40 10l3-4M40 15l-3-4M40 15l3-4"/></g><circle cx="28" cy="40" r="1.6" fill="rgba(255,255,255,.4)"/></svg>',
   pedra: '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="50"><g fill="rgba(90,55,25,.25)"><ellipse cx="12" cy="14" rx="5" ry="3"/><ellipse cx="42" cy="36" rx="4" ry="2.5"/></g><g fill="rgba(255,255,255,.3)"><circle cx="30" cy="10" r="1.5"/><circle cx="52" cy="18" r="1.2"/></g></svg>',
 };
 export function estiloCena(cenaId) {
@@ -83,6 +104,9 @@ export function estiloCena(cenaId) {
 export function cenaDaSessao(id) {
   const [l, n] = [id.slice(0, 2), Number(id.slice(3))];
   if (l === 'jo') return 'uz';
+  if (l === 'js') return ['jordao', 'jerico', 'conquista'][n - 1] || 'canaa';
+  if (l === 'jz') return n <= 3 ? 'juizes' : n === 4 ? 'filisteus' : 'sem-rei';
+  if (l === 'rt') return 'belem';
   if (l === 'ex') return n <= 5 ? 'exodo' : n === 6 ? 'mar' : n === 7 ? 'deserto' : 'sinai';
   if (l === 'lv') return 'sinai';
   if (l === 'nm') return n <= 2 ? 'sinai' : n <= 6 ? 'deserto' : 'moabe';
@@ -113,6 +137,10 @@ export const ENFEITES = {
   espiga: '<g transform="translate(35 70)"><path d="M0 0v-44" stroke="#c99a35" stroke-width="3"/>' + [-38, -30, -22, -14].map((y) => `<ellipse cx="-5" cy="${y}" rx="4" ry="7" transform="rotate(-25 -5 ${y})" fill="#e3b445"/><ellipse cx="5" cy="${y}" rx="4" ry="7" transform="rotate(25 5 ${y})" fill="#e3b445"/>`).join('') + '</g>',
   nuvem: '<g fill="#7b8396"><circle cx="25" cy="40" r="14"/><circle cx="42" cy="34" r="17"/><circle cx="58" cy="42" r="12"/><rect x="20" y="40" width="44" height="14" rx="7"/></g>',
   raio: '<path d="M42 10L24 44h14l-8 26 24-38H40z" fill="#f6c945"/>',
+  muralha: '<ellipse cx="40" cy="70" rx="32" ry="4" fill="#000" opacity=".1"/><path d="M8 68V36h8v-6h7v6h10v-6h7v6h10v-6h7v6h8v32Z" fill="#c9955a"/><path d="M8 46h64M8 57h64M24 36v10M48 36v10M36 46v11M60 46v11M20 57v11M52 57v11" stroke="#9a6a38" stroke-width="1.5"/><path d="M34 68V58a6 6 0 0 1 12 0v10Z" fill="#5a3a1c"/>',
+  pedras: '<ellipse cx="40" cy="70" rx="28" ry="4" fill="#000" opacity=".1"/><g fill="#b3a693" stroke="#8a7d6b" stroke-width="1.5"><ellipse cx="26" cy="62" rx="12" ry="7"/><ellipse cx="54" cy="62" rx="12" ry="7"/><ellipse cx="40" cy="50" rx="11" ry="7"/><ellipse cx="40" cy="38" rx="8" ry="6"/></g>',
+  oliveira: '<ellipse cx="40" cy="70" rx="18" ry="4" fill="#000" opacity=".1"/><path d="M38 70c1-10-4-14-2-24M42 70c0-8 6-12 4-22" stroke="#7a5a3a" stroke-width="5" fill="none" stroke-linecap="round"/><g fill="#8fa86a"><circle cx="30" cy="34" r="12"/><circle cx="48" cy="30" r="13"/><circle cx="40" cy="22" r="10"/></g><g fill="#6f8a50"><circle cx="34" cy="38" r="7"/><circle cx="52" cy="36" r="6"/></g>',
+  cantaro: '<ellipse cx="40" cy="70" rx="16" ry="3.5" fill="#000" opacity=".1"/><path d="M30 34h20l-2 4c8 4 10 12 8 20-2 8-8 12-16 12s-14-4-16-12c-2-8 0-16 8-20Z" fill="#c2733f"/><path d="M28 50h24" stroke="#9a5228" stroke-width="2"/><path d="M40 34c-6-6-3-14 0-20 3 6 6 14 0 20Z" fill="#ffb02e"/><path d="M40 32c-3-4-1-8 0-11 1 3 3 7 0 11Z" fill="#ffe36b"/>',
   sol: '<circle cx="40" cy="40" r="14" fill="#ffc84a"/>' + Array.from({ length: 8 }, (_, i) => `<path d="M40 16v-8" stroke="#ffc84a" stroke-width="4" stroke-linecap="round" transform="rotate(${i * 45} 40 40)"/>`).join(''),
 };
 
