@@ -12,7 +12,7 @@ import { bannerNatal, ARTE_SELO } from './tema.js';
 import { DESAFIOS } from '../data/desafios.js';
 
 const NOME_APP = 'A Jornada';
-const VERSAO_APP = 'v33';
+const VERSAO_APP = 'v34';
 let RAIZ = store.carregar();
 const P = () => RAIZ.perfis[RAIZ.ativo];
 const perfis = () => Object.values(RAIZ.perfis);
@@ -904,7 +904,7 @@ function telaPerfil() {
     <p class="dica">Os dados de todos os viajantes ficam neste aparelho. Exporte de vez em quando e guarde o arquivo, ou use para passar o progresso para outro celular.</p>
     <div class="linha-btns"><button class="btn sec" data-acao="exportar">${ico('download')} Exportar</button>
     <label class="btn sec">${ico('upload')} Importar<input type="file" accept="application/json" id="importar" hidden></label></div></section>
-  <p class="rodape">Texto bíblico: NAA © Sociedade Bíblica do Brasil, aberto no site oficial. Conteúdo de estudo próprio, com referências para conferir. Ícones: Lucide (ISC).<br>Versão ${VERSAO_APP}${CANAL_TESTE ? ' · canal de teste' : ` · <a href="https://orafaelcostaoficial.github.io/a-jornada-teste/#/hoje">abrir o canal de teste</a>`}</p>`;
+  <p class="rodape">Texto bíblico: NAA © Sociedade Bíblica do Brasil, aberto no site oficial. Conteúdo de estudo próprio, com referências para conferir. Ícones: Lucide (ISC).<br>Versão ${VERSAO_APP}${CANAL_TESTE ? ' · canal de teste' : ''}</p>`;
 }
 
 // ─── Rascunho da sessão ───
