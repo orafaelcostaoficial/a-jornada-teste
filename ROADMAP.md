@@ -58,7 +58,9 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
 
 ## 2. Pendente agora (pequeno)
 
-1. **Teste separado do oficial (feito em 21/11/2026).** O teste agora é outro app, em outro endereço: o repositório `a-jornada-teste`, publicado por `ferramentas/publicar_teste.sh`. O endereço antigo `/a-jornada/teste/` redireciona para o novo. No celular: desinstalar o teste antigo, se ainda existir, e instalar o novo pelo botão.
+1. **Teste separado do oficial (em andamento, 21/11/2026).** O teste virou outro app, em outro endereço: o repositório `a-jornada-teste`, publicado por `ferramentas/publicar_teste.sh`. O conteúdo já foi enviado.
+   - **Falta:** (a) ligar o Pages no `a-jornada-teste` (Settings → Pages → Deploy from a branch → `main` / root), o que o Rafael faz pelo celular; (b) com o "pode publicar", levar a v32 da `teste` para a `main`, com o redirecionamento de `/a-jornada/teste/`, o link do rodapé e o cartão "já instalado".
+   - **No celular:** desinstalar o teste antigo, se ainda existir, e instalar o novo pelo botão.
 2. **Conferir os slugs da NAA** de Êxodo, Levítico, Números e Deuteronômio no site da SBB (`ex`, `lv`, `nm`, `dt`).
 
 ---
