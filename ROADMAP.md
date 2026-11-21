@@ -29,7 +29,7 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
   - Ponto atual com o personagem dentro e a etiqueta "Começar".
   - Linha do tempo com datas aproximadas.
 - **Álbum:**
-  - Cartas de pessoas: 58 cartas, **ainda sem imagem**.
+  - Cartas de pessoas: 58 cartas, **ainda sem imagem**. Desde a v35 a carta é **conquistada por questionário** (3 perguntas sobre o personagem; banco de 375 perguntas das eras 1 e 2).
   - Selos da Palavra: 24, todos com imagem.
   - Aba Eventos com os selos especiais.
 - **Conquistas:**
@@ -73,7 +73,7 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
 | 1 | **Imagens das cartas** | 58 cartas do Álbum, hoje só com ícone. Os prompts estão em `PROMPTS-CARTAS.md`: o Rafael gera no Gemini, o Claude revisa, recorta, instala em `img/cartas/` e lista em `COM_IMAGEM`. Começar pelas 8 lendárias. | Médio, aos poucos |
 | 2 | **Objetos ilustrados do mapa** | Trocar os desenhos simples ao lado do caminho (tenda, poço, palmeira…) por ilustrações do Gemini, cerca de 30 nas eras 1 e 2. | Médio |
 | 3 | **Fase 1 do PLANO** | Trava de leitura (fim do texto + tempo mínimo), quadros Constância e XP da semana, teto de 3 sessões por dia no ranking, regra da graça. Ver PLANO §2–4. | Médio, só app |
-| 4 | ~~Era 3: Josué e Juízes~~ | Escrita em 21/11/2026 (`data/era-juizes.js`, 11 sessões). Falta: imagens das 20 cartas e 11 selos; publicar no oficial. Próxima era: **O Reino Unido** (67 sessões). | — |
+| 4 | ~~Era 3: Josué e Juízes~~ | Escrita em 21/11/2026 (`data/era-juizes.js`, 11 sessões), com o banco de perguntas das cartas (`data/quiz-cartas-juizes.js`). Falta: imagens das 20 cartas e 11 selos; publicar no oficial. Próxima era: **O Reino Unido** (67 sessões), já com o banco de perguntas. | — |
 | 5 | **Reencontro dos desafios** | No ciclo 2 (2031), mostrar o que a pessoa escreveu no mesmo desafio 5 anos antes. Depende da sincronização na nuvem estar firme. | Médio |
 
 ---

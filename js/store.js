@@ -18,6 +18,8 @@ export function progressoVazio() {
     xp: 0,
     log: [],         // { data, tipo, xp, ref }
     conquistas: {},  // id -> data
+    cartas: {},      // personagem -> { data, modo: 'quiz' | 'leitura' }
+    cartaQuiz: {},   // personagem -> { tentativas, usadas, atual: { q, r }, volta }
     vistas: {},      // cartas já reveladas (animação de abertura)
   };
 }
@@ -66,6 +68,9 @@ export function mesclarPerfil(a, b) {
   r.log.sort((x, y) => (x.data < y.data ? -1 : x.data > y.data ? 1 : 0));
   r.xp = r.log.reduce((t, l) => t + l.xp, 0);
   r.conquistas = { ...b.conquistas, ...a.conquistas };
+  if (a.cartas || b.cartas) r.cartas = { ...(b.cartas || {}), ...(a.cartas || {}) };
+  r.cartaQuiz = { ...((novo === a ? b : a).cartaQuiz || {}), ...(novo.cartaQuiz || {}) };
+  for (const k of Object.keys(r.cartas || {})) delete r.cartaQuiz[k];
   r.vistas = { ...b.vistas, ...a.vistas };
   return r;
 }

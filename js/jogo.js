@@ -4,6 +4,9 @@ import * as E1 from '../data/era-principio.js';
 import * as E2 from '../data/era-moises.js';
 import * as E3 from '../data/era-juizes.js';
 import { DESAFIOS } from '../data/desafios.js';
+import { QUIZ_CARTAS as QC1 } from '../data/quiz-cartas-principio.js';
+import { QUIZ_CARTAS as QC2 } from '../data/quiz-cartas-moises.js';
+import { QUIZ_CARTAS as QC3 } from '../data/quiz-cartas-juizes.js';
 import { hoje, somarDias, diasEntre } from './store.js';
 
 // Quando escrever novas eras, importar aqui e somar nas listas.
@@ -14,9 +17,11 @@ export const INTRODUCOES = { ...E1.INTRODUCOES, ...E2.INTRODUCOES, ...E3.INTRODU
 export const CARTAS = { ...E1.CARTAS, ...E2.CARTAS, ...E3.CARTAS };
 export const CRIANCAS = { ...E1.CRIANCAS, ...E2.CRIANCAS, ...E3.CRIANCAS };
 export const SELOS = { ...E1.SELOS, ...E2.SELOS, ...E3.SELOS };
+// Banco de perguntas das cartas: { personagem: [{ q, op, a, ref }] }. Ver "Cartas por questionário" abaixo.
+export const QUIZ_CARTAS = { ...QC1, ...QC2, ...QC3 };
 export const selosDaSessao = (id) => Object.keys(SELOS).filter((k) => SELOS[k].sessao === id);
 
-export const XP = { sessao: 10, aplicacao: 4, revisao: 8, acerto: 3, livro: 40, era: 100, semana: 25 };
+export const XP = { sessao: 10, aplicacao: 4, revisao: 8, acerto: 3, carta: 5, livro: 40, era: 100, semana: 25 };
 
 // Bônus da semana (segunda a domingo), por dias com sessão concluída.
 export const FAIXAS_SEMANA = [
@@ -85,10 +90,68 @@ export const concluidas = (e) => SESSOES.filter((s) => concluida(e, s.id));
 export const proxima = (e) => SESSOES.find((s) => !concluida(e, s.id)) || null;
 export const liberada = (e, s) => concluida(e, s.id) || proxima(e)?.id === s.id;
 
-export function personagensLiberados(e) {
+// ─── Cartas por questionário ───
+// O personagem é "apresentado" quando a sessão em que ele aparece é concluída. A carta, porém, só é ganha
+// respondendo 3 perguntas sobre ele (sorteadas do banco): criança precisa acertar 2, adulto 3.
+// São 3 tentativas; errando as 3, o questionário volta em 7 dias, com perguntas ainda não usadas.
+// Personagem sem banco de perguntas (eras futuras) entra direto, como antes.
+export const TENTATIVAS_CARTA = 3;
+export const ESPERA_CARTA = 7;
+export function apresentados(e) {
   const set = new Set();
   for (const s of concluidas(e)) s.personagens.forEach((p) => set.add(p));
   return set;
+}
+// Quem já tinha cartas pelo sistema antigo (só por ler) fica com todas.
+export function migrarCartas(e) {
+  if (e.cartas) return false;
+  e.cartas = {}; e.cartaQuiz = {};
+  for (const id of apresentados(e)) e.cartas[id] = { data: hoje(), modo: 'leitura' };
+  return true;
+}
+export const temBancoCarta = (id) => (QUIZ_CARTAS[id]?.length || 0) >= 3;
+export function personagensLiberados(e) {
+  const set = new Set(Object.keys(e.cartas || {}));
+  for (const id of apresentados(e)) if (!e.cartas || !temBancoCarta(id)) set.add(id);
+  return set;
+}
+export const cartasAConquistar = (e) => { const lib = personagensLiberados(e); return [...apresentados(e)].filter((id) => !lib.has(id)); };
+export const acertosParaCarta = (e) => (e.tipo === 'crianca' ? 2 : 3);
+export function estadoCarta(e, id) {
+  const st = e.cartaQuiz?.[id] || {};
+  return { tentativas: st.tentativas || 0, restantes: TENTATIVAS_CARTA - (st.tentativas || 0), volta: st.volta && st.volta > hoje() ? st.volta : null, emCurso: !!st.atual };
+}
+export const cartasDisponiveis = (e) => cartasAConquistar(e).filter((id) => !estadoCarta(e, id).volta);
+// Começa (ou retoma) uma tentativa. As respostas ficam gravadas uma a uma: sair no meio não dá uma tentativa nova.
+export function tentativaCarta(e, id) {
+  if (!temBancoCarta(id) || personagensLiberados(e).has(id) || estadoCarta(e, id).volta) return null;
+  e.cartaQuiz ||= {};
+  const st = (e.cartaQuiz[id] ||= { tentativas: 0, usadas: [] });
+  if (!st.atual) {
+    const banco = QUIZ_CARTAS[id]; const usadas = new Set(st.usadas || []);
+    let pool = banco.map((_, i) => i).filter((i) => !usadas.has(i));
+    if (pool.length < 3) pool = banco.map((_, i) => i);
+    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    const q = pool.slice(0, 3);
+    st.usadas = [...new Set([...(st.usadas || []), ...q])];
+    st.atual = { q, r: [] };
+  }
+  return { perguntas: st.atual.q.map((i) => QUIZ_CARTAS[id][i]), respostas: st.atual.r, tentativa: st.tentativas + 1 };
+}
+export function responderCarta(e, id, opcao) {
+  const st = e.cartaQuiz?.[id]; if (!st?.atual) return null;
+  const q = QUIZ_CARTAS[id][st.atual.q[st.atual.r.length]];
+  const certo = opcao === q.a; st.atual.r.push(certo);
+  if (st.atual.r.length < 3) return { certo, ref: q.ref, fim: false };
+  const acertos = st.atual.r.filter(Boolean).length; const precisa = acertosParaCarta(e);
+  if (acertos >= precisa) {
+    e.cartas ||= {}; e.cartas[id] = { data: hoje(), modo: 'quiz' }; delete e.cartaQuiz[id];
+    ganhar(e, 'carta', XP.carta, id);
+    return { certo, ref: q.ref, fim: true, ganhou: true, acertos, precisa, novasC: verificarConquistas(e) };
+  }
+  st.atual = null; st.tentativas = (st.tentativas || 0) + 1;
+  if (st.tentativas >= TENTATIVAS_CARTA) { st.tentativas = 0; st.usadas = []; st.volta = somarDias(hoje(), ESPERA_CARTA); }
+  return { certo, ref: q.ref, fim: true, ganhou: false, acertos, precisa, restantes: st.volta ? 0 : TENTATIVAS_CARTA - st.tentativas, volta: st.volta || null };
 }
 
 export function selosLiberados(e) {
@@ -175,11 +238,12 @@ export function concluirSessao(e, s, dados) {
     ganhar(e, 'era', XP.era, era); ganhos.push(['Era concluída', XP.era]);
   }
   const novosP = [...personagensLiberados(e)].filter((p) => !antesP.has(p));
+  const novosQ = s.personagens.filter((p) => cartasAConquistar(e).includes(p));
   const novosS = selosDaSessao(s.id);
   const novosM = [...marcosLiberados(e)].filter((m) => !antesM.has(m));
   const novasC = verificarConquistas(e);
   const nivelDepois = nivel(e.xp).n;
-  return { ganhos, novosP, novosS, novosM, novasC, subiu: nivelDepois > nivelAntes ? nivelDepois : null };
+  return { ganhos, novosP, novosQ, novosS, novosM, novasC, subiu: nivelDepois > nivelAntes ? nivelDepois : null };
 }
 
 // ─── Desafios sazonais (em paralelo à jornada) ───

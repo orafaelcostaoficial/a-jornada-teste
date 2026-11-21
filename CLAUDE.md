@@ -62,6 +62,11 @@ Nova era: criar `data/era-<id>.js` no mesmo formato, importar em `js/jogo.js`, m
   Imagens do Gemini vêm com fundo branco: `python3 ferramentas/recortar.py entrada.png img/avatares/<id>.webp`.
 - XP para subir do nível n ao n+1 = 40 + 10·n^1,5 (50, 68, 92 … 356 no nível 10 … 934 no 20).
 - Cartas: imagens do Gemini (prompts em `PROMPTS-CARTAS.md`) em `img/cartas/<id>.webp`, listadas em `data/imagens.js`.
+- **Cartas por questionário** (decidido em 21/11/2026): ler a sessão só *apresenta* o personagem; a carta é ganha respondendo
+  3 perguntas sorteadas do banco `data/quiz-cartas-<era>.js` (criança acerta 2, adulto 3; 3 tentativas; falhou → volta em 7 dias
+  com perguntas novas; +5 XP). Banco por raridade: comum 5, rara 6, épica 8, lendária 9, só com o que já foi lido até a sessão
+  do personagem, com referência e na redação da Bíblia Livre. Cartas ganhas antes da regra foram mantidas (`modo: 'leitura'`).
+  **Nova era: escrever o banco de perguntas junto com os personagens** (sem banco, a carta entra direto, como antes).
 - Mapa estilo Duolingo com cenários por trecho (`js/cenario.js`) e amigos/família no ponto onde estão.
 - Selos da Palavra (`SELOS` na era): objetos/palavras-chave ganhos na sessão em que aparecem; Álbum tem abas Pessoas/Selos.
 - Desafios sazonais (`data/desafios.js`): ciclo de 5 anos por época (`serie` + `ciclo`), trilha escolhida pelo ano do
