@@ -21,7 +21,9 @@ ESTILO_CARTA = ("a arte de uma carta colecionável de um app bíblico para famí
                 "cores ricas e quentes, personagens bonitos e expressivos, com proporções naturais levemente estilizadas; "
                 "nem cartoon plano nem fotografia")
 EVITE_CARTA = ("texto, letras, números, assinatura, moldura, borda, marca d'água, cenas de luta ou violência, sangue, "
-               "arma apontada para alguém, nudez, rostos assustadores, estilo cartoon plano, fotorrealismo")
+               "arma apontada para alguém, nudez, rostos assustadores, estilo cartoon plano, fotorrealismo, "
+               "personagem com cara da imagem tradicional de Jesus (túnica branca, cabelo longo solto e barba, braços abertos "
+               "sob raios de luz): o personagem tem visual próprio")
 # A raridade aparece na própria arte: cada degrau abre mais a cena e aumenta o impacto.
 COMPOSICAO = {
     'comum': ("CENA (carta comum, simples e calma): retrato da cintura para cima, personagem ligeiramente fora do centro, "
@@ -252,8 +254,9 @@ CENA_LOTE1 = {
              'jovem pastor de ovelhas, rosto gentil e cheio de gratidão',
              'colinas verdes ao amanhecer com ovelhas pastando; um feixe de luz dourada atravessa as nuvens e ilumina Abel e o altar',
              'Gn 4:2,4'),
-    'sete': ('de pé num campo aberto, rosto e mãos erguidos para o céu, invocando o nome do Senhor, com a família pequena atrás dele',
-             'homem jovem de expressão serena',
+    'sete': ('de pé num campo aberto, rosto erguido e uma das mãos sobre o peito, invocando o nome do Senhor, com a família pequena atrás dele',
+             'homem jovem de cabelo curto e encaracolado, barba curta, expressão serena, túnica de lã verde-oliva com manto marrom-escuro '
+             '(nada de branco)',
              'campo ao nascer do sol, com raios de luz rompendo as nuvens sobre ele', 'Gn 4:25-26'),
     'enoque': ('caminhando sozinho e em paz por uma trilha longa no alto das colinas, em direção a um horizonte imenso e luminoso',
                'homem idoso de barba, com cajado',
@@ -283,7 +286,7 @@ CENA_LOTE1 = {
                'deserto à noite sob um céu imenso repleto de estrelas e da Via Láctea, tenda iluminada por dentro atrás dele, '
                'luz dourada e prateada sobre o rosto', 'Gn 15:5; 17:5'),
 }
-JA_GERADAS = {'adao', 'eva', 'caim', 'tera', 'abel', 'noe'}
+JA_GERADAS = {'adao', 'eva', 'caim', 'sete', 'tera', 'abel', 'noe'}
 
 
 def prompt_carta(c):
