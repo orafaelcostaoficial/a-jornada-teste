@@ -19,7 +19,7 @@ Para o traço não variar: uma conversa do Gemini por lote, anexando uma carta j
 | Abel | rara | ✅ pronta (no app) |
 | Sete | rara | ✅ pronta (no app) |
 | Enoque | épica | ✅ pronta (no app) |
-| Matusalém | rara | a gerar |
+| Matusalém | rara | ✅ pronta (no app) |
 | Noé | lendária | ✅ pronta (no app) |
 | Sem | comum | a gerar |
 | Ninrode | comum | a gerar |
