@@ -632,8 +632,8 @@ function telaResultado(res) {
     <ul class="ganhos">${res.ganhos.map(([t, x]) => `<li><span>${esc(t)}</span><b>+${x}</b></li>`).join('')}</ul>
     ${res.juntos?.length ? `<p class="dica">Também concluíram: ${res.juntos.map(esc).join(', ')}</p>` : ''}
     ${res.abertas ? `<a class="btn grande sec" href="#/cartas">${ico('layers')} Ver no álbum</a>` : res.novosP.length + (res.novosS?.length || 0) ? `<button class="btn grande ouro pacote" data-acao="abrir-cartas">${ico('layers')} Abrir ${[res.novosP.length ? `${res.novosP.length} carta${res.novosP.length > 1 ? 's' : ''}` : '', res.novosS?.length ? `${res.novosS.length} selo${res.novosS.length > 1 ? 's' : ''}` : ''].filter(Boolean).join(' e ')}</button>` : ''}
-    ${res.novosQ?.length ? `<section class="bloco conquistar-res"><div class="rot">Carta da vez</div>
-      <p class="dica">Responda 3 perguntas para ganhar a carta. Pode ser agora ou depois, pelo Álbum.${res.naFila ? ` Os outros personagens esperam a vez: sai uma carta por sessão (${res.naFila} na fila).` : ''}</p>
+    ${res.novosQ?.length ? `<section class="bloco conquistar-res"><div class="rot">Carta${res.novosQ.length > 1 ? 's' : ''} a conquistar</div>
+      <p class="dica">Responda 3 perguntas para ganhar a carta. Pode ser agora ou depois, pelo Álbum.</p>
       <div class="grade-cartas mini">${res.novosQ.map((id) => carta(id, { estado: 'conquistar' })).join('')}</div></section>` : ''}
     ${res.novosM.length ? `<section class="bloco"><div class="rot">Na linha do tempo</div>${res.novosM.map((m) => `<p>${ico('flag')} ${esc(J.MARCOS.find((x) => x.id === m).titulo)}</p>`).join('')}</section>` : ''}
     ${res.novasC.length ? (res.conqVistas ? `<section class="bloco"><div class="rot">Conquistas</div>${res.novasC.map((c) => `<p>${ico('trophy')} <b>${esc(c.nome)}</b> — ${esc(c.desc)}</p>`).join('')}</section>` : `<button class="btn grande ouro pacote" data-acao="ver-conquistas">${ico('trophy')} Receber ${res.novasC.length > 1 ? `${res.novasC.length} conquistas` : 'conquista'}</button>`) : ''}
@@ -1011,7 +1011,6 @@ function telaCartas(aba = 'pessoas') {
   return `${topo()}<h1 class="tit-tela">Álbum</h1>${abas}<p class="sub">${lib.size} de ${ordem.length} cartas nesta era</p>
   <div class="raridades">${porRar.map(([r, a, t]) => `<span class="r-${r}"><i></i>${RARIDADE[r].nome} ${a}/${t}</span>`).join('')}</div>
   ${aConq.length ? `<p class="dica conquistar-dica">${ico('layers')} ${aConq.length} carta${aConq.length > 1 ? 's' : ''} a conquistar: responda 3 perguntas sobre o personagem.</p>` : ''}
-  ${J.cartasNaFila(p).length ? `<p class="dica">${ico('hourglass')} ${J.cartasNaFila(p).length} personage${J.cartasNaFila(p).length > 1 ? 'ns' : 'm'} esperando a vez: sai uma carta por sessão concluída.</p>` : ''}
   <div class="grade-cartas">${ordem.map((id) => (aConq.includes(id) ? carta(id, { estado: 'conquistar' }) : carta(id, { aberta: lib.has(id) }))).join('')}</div>`;
 }
 

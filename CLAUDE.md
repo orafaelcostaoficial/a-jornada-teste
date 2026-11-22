@@ -68,7 +68,7 @@ Nova era: criar `data/era-<id>.js` no mesmo formato, importar em `js/jogo.js`, m
   do personagem, com referência e na redação da Bíblia Livre. Cartas ganhas antes da regra foram mantidas (`modo: 'leitura'`).
   **Nova era: escrever o banco de perguntas junto com os personagens** (sem banco, a carta entra direto, como antes).
   **Uma carta por sessão** (22/11/2026, v40): ao concluir a sessão sai para conquistar o 1º personagem novo dela ("o da vez");
-  os outros vão para a fila e saem um por sessão sem personagem novo (`fila()` em `jogo.js`, calculado das sessões concluídas).
+  + 1 da fila (o mais antigo); os outros novos vão para a fila; sessão sem personagem novo solta 1 da fila; a fila não aparece para o usuário (`fila()` em `jogo.js`, calculado das sessões concluídas).
   No questionário, "Abrir a Bíblia para pesquisar" abre o texto da sessão por cima (`abrirBiblia`). A sincronização não
   redesenha telas de quiz (`sessao`, `conquistar`, `revisao`, `dsessao`) nem com janela aberta: era o que fazia a tela piscar.
 - Mapa estilo Duolingo com cenários por trecho (`js/cenario.js`) e amigos/família no ponto onde estão.

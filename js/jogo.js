@@ -115,15 +115,20 @@ export function personagensLiberados(e) {
   for (const id of apresentados(e)) if (!e.cartas || !temBancoCarta(id)) set.add(id);
   return set;
 }
-// Uma carta por sessão (decidido em 22/11/2026): ao concluir uma sessão, fica disponível para conquistar o primeiro
-// personagem novo dela ("o da vez"); os outros entram na fila. Sessão sem personagem novo solta o próximo da fila.
+// Cartas por sessão (decidido em 22/11/2026): ao concluir uma sessão, fica disponível para conquistar o primeiro
+// personagem novo dela ("o da vez") + 1 da fila; os outros novos entram na fila. Sessão sem personagem novo solta 1 da fila.
+// A fila não aparece para o usuário.
 // Calculado a partir das sessões concluídas (em ordem), sem estado guardado. Quem já começou o questionário continua.
 export function fila(e) {
   const soltas = new Set(); const espera = []; const vistos = new Set();
   for (const s of concluidas(e)) {
     const novos = s.personagens.filter((p) => !vistos.has(p));
     novos.forEach((p) => vistos.add(p));
-    if (novos.length) { soltas.add(novos[0]); espera.push(...novos.slice(1)); } else if (espera.length) soltas.add(espera.shift());
+    if (novos.length) {
+      soltas.add(novos[0]);
+      if (espera.length) soltas.add(espera.shift()); // + 1 da fila (o mais antigo)
+      espera.push(...novos.slice(1));
+    } else if (espera.length) soltas.add(espera.shift());
   }
   return { soltas, espera };
 }
