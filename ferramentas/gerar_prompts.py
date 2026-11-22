@@ -283,7 +283,7 @@ CENA_LOTE1 = {
                'deserto à noite sob um céu imenso repleto de estrelas e da Via Láctea, tenda iluminada por dentro atrás dele, '
                'luz dourada e prateada sobre o rosto', 'Gn 15:5; 17:5'),
 }
-JA_GERADAS = {'adao', 'tera', 'abel', 'noe'}
+JA_GERADAS = {'adao', 'eva', 'tera', 'abel', 'noe'}
 
 
 def prompt_carta(c):
