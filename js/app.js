@@ -15,6 +15,8 @@ const NOME_APP = 'A Jornada';
 const VERSAO_APP = 'v36';
 let RAIZ = store.carregar();
 const P = () => RAIZ.perfis[RAIZ.ativo];
+// Canal de teste: a cada carta nova com imagem, o perfil ativo avança até ela (ver avancarTeste em jogo.js).
+if (CANAL_TESTE && P() && J.avancarTeste(P(), COM_IMAGEM)) store.salvar(RAIZ);
 const perfis = () => Object.values(RAIZ.perfis);
 const $app = document.getElementById('app');
 

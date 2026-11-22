@@ -109,6 +109,17 @@ export function migrarCartas(e) {
   for (const id of apresentados(e)) e.cartas[id] = { data: hoje(), modo: 'leitura' };
   return true;
 }
+// Canal de teste: conclui as sessões até a última carta que já tem imagem e entrega essas cartas,
+// para o Rafael conferir cada imagem nova no app sem precisar jogar até lá. Nunca roda no oficial.
+export function avancarTeste(e, ids) {
+  let ultima = -1;
+  for (const id of ids) { const i = SESSOES.findIndex((s) => s.personagens.includes(id)); if (i > ultima) ultima = i; }
+  let mudou = false;
+  SESSOES.slice(0, ultima + 1).forEach((s) => { if (!concluida(e, s.id)) { e.sessoes[s.id] = { data: hoje(), teste: true }; mudou = true; } });
+  e.cartas ||= {};
+  for (const id of ids) if (!e.cartas[id]) { e.cartas[id] = { data: hoje(), modo: 'teste' }; mudou = true; }
+  return mudou;
+}
 export const temBancoCarta = (id) => (QUIZ_CARTAS[id]?.length || 0) >= 3;
 export function personagensLiberados(e) {
   const set = new Set(Object.keys(e.cartas || {}));

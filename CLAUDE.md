@@ -61,7 +61,9 @@ Nova era: criar `data/era-<id>.js` no mesmo formato, importar em `js/jogo.js`, m
   personagem: `<id>` (níveis 1–7), `<id>-meio` (8–19), `<id>-final` (20+), sobre cenário que muda por estágio (`FUNDOS`).
   Imagens do Gemini vêm com fundo branco: `python3 ferramentas/recortar.py entrada.png img/avatares/<id>.webp`.
 - XP para subir do nível n ao n+1 = 40 + 10·n^1,5 (50, 68, 92 … 356 no nível 10 … 934 no 20).
-- Cartas: imagens do Gemini (prompts em `PROMPTS-CARTAS.md`) em `img/cartas/<id>.webp`, listadas em `data/imagens.js`.
+- Cartas: imagens do Gemini (prompts em `PROMPTS-CARTAS.md`) em `img/cartas/<id>.webp` (600×800, original em JPG q95 no Drive), listadas em `data/imagens.js`.
+  Moldura v42 (placas, joias, cantos; estilo A, raridade na cena). Carta a conquistar mostra "???" no nome.
+  No canal de teste, `avancarTeste` (jogo.js) avança o perfil ativo até a última carta com imagem e entrega essas cartas.
 - **Cartas por questionário** (decidido em 21/11/2026): ler a sessão só *apresenta* o personagem; a carta é ganha respondendo
   3 perguntas sorteadas do banco `data/quiz-cartas-<era>.js` (criança acerta 2, adulto 3; 3 tentativas; falhou → volta em 7 dias
   com perguntas novas; +5 XP). Banco por raridade: comum 5, rara 6, épica 8, lendária 9, só com o que já foi lido até a sessão
