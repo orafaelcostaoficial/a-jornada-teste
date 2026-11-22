@@ -799,3 +799,7 @@ body.tema-natal { background: linear-gradient(#f6ece6, #f3efe6 420px); }
 .cq-fim h3 { font-family: var(--display); font-size: 1.4rem; margin: 0; }
 .cq-fim .btn { width: 100%; }
 .conquistar-res .grade-cartas { margin-top: 8px; }
+.trocar-fam { margin-top: 14px; }
+.trocar-fam summary { font-weight: 700; color: var(--tx-2); cursor: pointer; padding: 6px 0; }
+.trocar-fam[open] summary { margin-bottom: 6px; }
+.confirma .dica { text-align: left; margin-bottom: 10px; }

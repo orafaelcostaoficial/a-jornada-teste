@@ -37,7 +37,11 @@ export async function criarFamilia(nome) {
   return infoFamilia(data);
 }
 
+// Código de amigo = 6 caracteres sem hífen; convite = abc123-def456.
+export const pareceCodigoAmigo = (txt) => /^[a-z0-9]{6}$/i.test((txt || '').trim());
+
 export async function entrarFamilia(convite) {
+  if (pareceCodigoAmigo(convite)) throw Object.assign(new Error('codigo-amigo'), { codigoAmigo: true });
   const c = await cliente();
   const { data, error } = await c.rpc('entrar_familia', { p_convite: convite });
   if (error) throw new Error(erroLegivel(error));

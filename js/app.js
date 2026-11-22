@@ -56,6 +56,23 @@ async function sincronizar() {
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') agendarSync(300); });
 setInterval(() => document.visibilityState === 'visible' && agendarSync(0), 90000);
 
+function avisoCodigoAmigo() {
+  overlay(`<div class="confirma"><p><b>Isso é um código de amigo</b>, não o convite da família.</p>
+    <p class="dica">• <b>Mora na mesma casa?</b> Peça o <b>convite</b> (formato abc123-def456). Ele fica em Amigos → Outros celulares da casa → Mostrar.</p>
+    <p class="dica">• <b>É de outra família?</b> Crie a sua família aqui primeiro. Depois coloque o código em Amigos → Código do amigo.</p>
+    <button class="btn grande ouro" data-fechar>Entendi</button></div>`);
+}
+
+function entrarFamilia(b, convite) {
+  if (!convite.trim()) return;
+  b.disabled = true;
+  N.entrarFamilia(convite).then((info) => {
+    if (RAIZ.nuvem?.familiaId === info.familiaId) { toast('Este celular já está nessa família'); return; }
+    RAIZ = { ...store.renovarIds(RAIZ), nuvem: info }; store.salvar(RAIZ); AMIGOS = [];
+    toast(`Você entrou na família ${esc(info.familiaNome)}`); return sincronizar();
+  }).catch((e) => { if (e.codigoAmigo) avisoCodigoAmigo(); else toast(esc(e.message)); b.disabled = false; }).finally(render);
+}
+
 function confirmar(msg, sim, aoSim) {
   const o = overlay(`<div class="confirma"><p>${msg}</p><button class="btn grande perigo" data-sim>${sim}</button><button class="btn" data-fechar>Cancelar</button></div>`);
   o.querySelector('[data-sim]').addEventListener('click', () => { o.remove(); aoSim(); });
@@ -736,7 +753,7 @@ function telaAmigos() {
     <section class="bloco"><div class="bloco-tit"><span>Já criou em outro celular?</span></div>
       <label class="rot" for="convite">Convite da família</label><input id="convite" class="campo" placeholder="ex.: a1b2c3-d4e5f6" autocapitalize="off">
       <button class="btn grande" data-acao="entrar-familia" style="margin-top:12px">Entrar na família</button>
-      <p class="dica">O convite aparece no celular que criou a família, nesta mesma tela.</p></section>`;
+      <p class="dica">O convite aparece no celular que criou a família, nesta mesma tela, e tem o formato <b>abc123-def456</b>. O código de amigo (6 letras) não serve aqui.</p></section>`;
   }
   const n = RAIZ.nuvem;
   const st = { sincronizando: 'Sincronizando…', ok: `Sincronizado ${SYNC.em ? SYNC.em.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : ''}`, erro: `Erro: ${esc(SYNC.erro || '')}`, pronto: 'Pronto' }[SYNC.status] || '';
@@ -753,7 +770,11 @@ function telaAmigos() {
     ${Object.entries(familias).map(([fid, f]) => `<div class="fam-amiga"><div><b>${esc(f.nome)}</b><small>${f.membros.map((m) => esc(m.nome)).join(', ')}</small></div><button class="mini" data-acao="rem-amigo" data-f="${fid}" data-n="${esc(f.nome)}">Remover</button></div>`).join('')}</section>` : ''}
   <section class="bloco"><div class="bloco-tit"><span>Outros celulares da casa</span></div>
     <p class="dica">No outro celular, abra o app, vá em Amigos → "Entrar na família" e use o convite. Ele é secreto: dá acesso às anotações da família.</p>
-    <div class="codigo secreto"><small>Convite</small><b id="convite-val" data-v="${esc(n.convite)}">••••••-••••••</b><button class="btn sec" data-acao="ver-convite">Mostrar</button></div></section>`;
+    <div class="codigo secreto"><small>Convite</small><b id="convite-val" data-v="${esc(n.convite)}">••••••-••••••</b><button class="btn sec" data-acao="ver-convite">Mostrar</button></div>
+    <details class="trocar-fam"><summary>Este celular está na família errada?</summary>
+      <p class="dica">Se você criou uma família sozinho e queria entrar em outra, use o convite dela. Os viajantes deste celular vão junto, com todo o progresso.</p>
+      <label class="rot" for="convite-troca">Convite da outra família</label><input id="convite-troca" class="campo" placeholder="ex.: a1b2c3-d4e5f6" autocapitalize="off">
+      <button class="btn grande" data-acao="trocar-familia" style="margin-top:12px">Entrar na outra família</button></details></section>`;
 }
 
 function linhaRanking(pos, a, eu) {
@@ -1078,11 +1099,17 @@ document.body.addEventListener('click', (ev) => {
   if (acao === 'instalar') instalar();
   if (acao === 'fechar-instalar') { sessionStorage.setItem('ajornada-instalar-fechado', '1'); render(); }
   if (acao === 'cap') { const r = rascunho(id); r.cap = Number(b.dataset.c); render(); }
-  if (acao === 'criar-familia' || acao === 'entrar-familia') {
+  if (acao === 'criar-familia') {
     b.disabled = true;
-    const fn = acao === 'criar-familia' ? N.criarFamilia(document.getElementById('fam-nome').value) : N.entrarFamilia(document.getElementById('convite').value);
-    fn.then((info) => { RAIZ.nuvem = info; store.salvar(RAIZ); toast(acao === 'criar-familia' ? 'Família criada' : 'Você entrou na família'); return sincronizar(); })
+    N.criarFamilia(document.getElementById('fam-nome').value)
+      .then((info) => { RAIZ.nuvem = info; store.salvar(RAIZ); toast('Família criada'); return sincronizar(); })
       .catch((e) => { toast(esc(e.message)); b.disabled = false; }).finally(render);
+  }
+  if (acao === 'entrar-familia') entrarFamilia(b, document.getElementById('convite').value);
+  if (acao === 'trocar-familia') {
+    const v = document.getElementById('convite-troca').value; if (!v.trim()) return;
+    if (N.pareceCodigoAmigo(v)) { avisoCodigoAmigo(); return; }
+    confirmar(`Sair de <b>${esc(RAIZ.nuvem.familiaNome)}</b> e entrar na família do convite? Os viajantes deste celular vão junto.`, 'Entrar', () => entrarFamilia(b, v));
   }
   if (acao === 'sync') sincronizar().then(render);
   if (acao === 'add-amigo') {
@@ -1093,6 +1120,8 @@ document.body.addEventListener('click', (ev) => {
   if (acao === 'ver-convite') { const el = document.getElementById('convite-val'); el.textContent = el.dataset.v; }
   if (acao === 'compartilhar') {
     const txt = `Vamos estudar a Bíblia juntos n'A Jornada! Meu código de amigo: ${RAIZ.nuvem.codigoAmigo}
+Para me adicionar: abra o app, vá em Amigos, crie a sua família e coloque esse código em "Código do amigo".
+(É para outra família. Quem mora comigo entra com o convite da família.)
 ${location.origin}${location.pathname}`;
     if (navigator.share) navigator.share({ text: txt }).catch(() => {}); else navigator.clipboard?.writeText(txt).then(() => toast('Copiado'));
   }

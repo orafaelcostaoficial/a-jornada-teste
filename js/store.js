@@ -35,6 +35,18 @@ export function raizVazia() {
   return { v: 2, ativo: null, perfis: {}, nuvem: null, removidos: [] };
 }
 
+// Dá ids novos aos perfis deste aparelho. Usado ao entrar numa família: os ids antigos podem
+// já estar no banco ligados a outra família, e reaproveitá-los faria a sincronização falhar.
+export function renovarIds(raiz) {
+  const perfis = {}; let ativo = null;
+  for (const [idVelho, p] of Object.entries(raiz.perfis || {})) {
+    const id = novoPerfil('').id + Object.keys(perfis).length;
+    perfis[id] = { ...p, id };
+    if (raiz.ativo === idVelho) ativo = id;
+  }
+  return { ...raiz, perfis, ativo: ativo || Object.keys(perfis)[0] || null, removidos: [] };
+}
+
 // Junta duas versões do mesmo perfil (aparelhos diferentes) sem perder progresso.
 export function mesclarPerfil(a, b) {
   if (!a) return b; if (!b) return a;
