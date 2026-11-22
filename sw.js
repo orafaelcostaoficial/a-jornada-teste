@@ -1,6 +1,6 @@
 // Offline: rede primeiro (pega atualizações quando há internet), cache como reserva.
 // Ao mudar a lista de arquivos, suba a versão.
-const VERSAO = 'v41';
+const VERSAO = 'v42';
 const PREFIXO = 'ajornada:' + self.registration.scope + ':';
 const CACHE = PREFIXO + VERSAO;
 const ARQUIVOS = [

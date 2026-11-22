@@ -15,6 +15,28 @@ EVITE = ("texto, letras, números, assinatura, moldura, marca d'água, cenas de 
          "arma apontada para alguém, nudez, "
          "estilo fotográfico realista, rostos assustadores")
 
+# Cartas colecionáveis (estilo A, aprovado em 22/11/2026): arte mais elaborada que a dos avatares.
+ESTILO_CARTA = ("a arte de uma carta colecionável de um app bíblico para famílias (crianças a partir de 8 anos). "
+                "ESTILO: pintura digital de livro ilustrado premium, pinceladas visíveis e textura suave de tinta, luz cinematográfica, "
+                "cores ricas e quentes, personagens bonitos e expressivos, com proporções naturais levemente estilizadas; "
+                "nem cartoon plano nem fotografia")
+EVITE_CARTA = ("texto, letras, números, assinatura, moldura, borda, marca d'água, cenas de luta ou violência, sangue, "
+               "arma apontada para alguém, nudez, rostos assustadores, estilo cartoon plano, fotorrealismo")
+# A raridade aparece na própria arte: cada degrau abre mais a cena e aumenta o impacto.
+COMPOSICAO = {
+    'comum': ("CENA (carta comum, simples e calma): retrato da cintura para cima, personagem ligeiramente fora do centro, "
+              "rosto no terço superior, cenário simples com profundidade e fundo levemente desfocado"),
+    'rara': ("CENA (carta rara, ação e luz marcante): o personagem fazendo algo, de corpo inteiro ou da cintura para cima, "
+             "rosto no terço superior, com uma luz marcante (feixe de luz entre nuvens ou contraluz recortando a silhueta)"),
+    'epica': ("CENA (carta épica, ampla e dramática): PLANO ABERTO, personagem de corpo inteiro ocupando no máximo um terço da "
+              "altura da imagem; a paisagem e o céu dominam a cena, com nuvens enormes e luz dramática; o rosto continua legível"),
+    'lendaria': ("CENA (carta lendária, o momento mais marcante da vida do personagem): personagem em primeiro plano, rosto no "
+                 "terço superior, cena grandiosa ao fundo, luz dourada intensa descendo do céu, atmosfera majestosa e reverente; "
+                 "construções, barcos e objetos em proporções reais e imponentes, nada com aparência de brinquedo"),
+}
+FAIXAS = ("Deixe o topo (10% da altura) e a faixa de baixo (25% da altura) com menos detalhes, sem rosto nem elementos "
+          "importantes, porque ali entram o nome e o título da carta")
+
 # ─────────────────────────── AVATARES (o viajante) ───────────────────────────
 # (arquivo, personagem, momento, cena detalhada, expressão, cores, referência)
 AVATARES = [
@@ -194,13 +216,119 @@ def prompt_avatar(a):
             f"EVITE: {EVITE}. FORMATO: quadrado 1:1, alta resolução.")
 
 
+def raridades():
+    """Lê a raridade de cada carta direto de data/era-*.js (fonte única)."""
+    import glob, re
+    rar = {}
+    for f in sorted(glob.glob('data/era-*.js')):
+        txt = open(f, encoding='utf-8').read()
+        bloco_cartas = txt[txt.index('export const CARTAS'):]
+        bloco_cartas = bloco_cartas[:bloco_cartas.index('};')]
+        for m in re.finditer(r"^\s*'?([\w-]+)'?:\s*\['[^']*',\s*'(\w+)'", bloco_cartas, re.M):
+            rar[m.group(1)] = m.group(2)
+    return rar
+
+
+RARIDADE = raridades()
+NOME_RAR = {'comum': 'comum', 'rara': 'rara', 'epica': 'épica', 'lendaria': 'lendária'}
+
+# Lote 1 (as 12 primeiras do Álbum), com a cena reescrita para a escala de raridade.
+# (cena, aparência, cenário, referência) — substitui a tupla de CARTAS.
+CENA_LOTE1 = {
+    'adao': ('de pé no centro do jardim, com a mão estendida, dando nome aos animais que se aproximam em paz ao redor dele: '
+             'um leão deitado, ovelhas, um cervo, pássaros coloridos pousando e um elefante ao fundo',
+             'homem adulto, forte e sereno, vestido com uma túnica simples de pele',
+             'o jardim do Éden exuberante, com árvores frutíferas enormes e um rio de águas cristalinas', 'Gn 2:15,19-20; 3:21'),
+    'eva': ('segurando com ternura um bebê recém-nascido envolto em pano, de pé no alto de uma colina, olhar esperançoso',
+            'mulher adulta de cabelos longos ao vento, vestida com uma túnica simples de pele',
+            'imensa paisagem abaixo dela com rios serpenteando e, bem distante no horizonte, um jardim exuberante brilhando; '
+            'céu enorme ao nascer do sol, com nuvens iluminadas em dourado e rosa', 'Gn 3:20-21; 4:1'),
+    'caim': ('segurando nos braços feixes de grãos e frutos do campo como oferta',
+             'homem adulto, lavrador, de mãos fortes, com roupas de trabalho no campo',
+             'campo cultivado ao entardecer, com sulcos de terra arada e trigo maduro', 'Gn 4:2-3'),
+    'abel': ('caminhando em direção a um altar de pedras levando nos braços um cordeiro branco, o melhor do seu rebanho; '
+             'a fumaça do altar sobe reta para o céu',
+             'jovem pastor de ovelhas, rosto gentil e cheio de gratidão',
+             'colinas verdes ao amanhecer com ovelhas pastando; um feixe de luz dourada atravessa as nuvens e ilumina Abel e o altar',
+             'Gn 4:2,4'),
+    'sete': ('de pé num campo aberto, rosto e mãos erguidos para o céu, invocando o nome do Senhor, com a família pequena atrás dele',
+             'homem jovem de expressão serena',
+             'campo ao nascer do sol, com raios de luz rompendo as nuvens sobre ele', 'Gn 4:25-26'),
+    'enoque': ('caminhando sozinho e em paz por uma trilha longa no alto das colinas, em direção a um horizonte imenso e luminoso',
+               'homem idoso de barba, com cajado',
+               'colinas sem fim e um céu gigantesco dourado ao amanhecer, com uma luz suave e forte no fim do caminho',
+               'Gn 5:22-24'),
+    'matusalem': ('caminhando devagar, apoiado num cajado, entre os filhos e filhas da família, que o acompanham com carinho',
+                  'homem muito, muito idoso, de barba branca longuíssima',
+                  'acampamento de tendas ao pôr do sol, com a luz quente recortando a silhueta dele', 'Gn 5:25-27'),
+    'noe': ('braços levemente abertos e rosto erguido para o céu em gratidão, ao lado de um altar de pedras com fumaça subindo; '
+            'atrás dele a arca, enorme, de madeira, encalhada, com a porta aberta, e os animais descendo aos pares '
+            '(elefantes, leões, girafas, ovelhas, pássaros voando); a família de Noé pequena ao fundo',
+            'homem idoso de barba branca longa',
+            'o alto dos montes de Ararate logo depois da chuva, com um enorme arco-íris cruzando o céu de ponta a ponta',
+            'Gn 8:4,18-20; 9:12-16'),
+    'sem': ('de pé, olhar tranquilo, com a mão sobre o peito em gratidão',
+            'homem adulto de barba escura, filho de Noé',
+            'encosta de montanha verde depois da chuva, com a arca pequena e distante ao fundo', 'Gn 6:10; 9:18,26'),
+    'ninrode': ('de pé, confiante, segurando um grande arco de madeira, com uma aljava de flechas nas costas',
+                'homem forte e imponente, caçador',
+                'planície com as muralhas de uma cidade antiga ao longe', 'Gn 10:8-10'),
+    'tera': ('apoiado num cajado de madeira, olhando para o horizonte, pronto para partir em viagem',
+             'homem idoso de barba branca longa, rosto sereno e determinado',
+             'fim de tarde nos arredores de Ur dos caldeus, com o zigurate de tijolos ao longe, palmeiras e alguns jumentos '
+             'carregados ao fundo', 'Gn 11:31'),
+    'abraao': ('do lado de fora da tenda, à noite, com o rosto erguido e uma das mãos apontando para o céu, contando as estrelas',
+               'homem idoso de barba branca longa',
+               'deserto à noite sob um céu imenso repleto de estrelas e da Via Láctea, tenda iluminada por dentro atrás dele, '
+               'luz dourada e prateada sobre o rosto', 'Gn 15:5; 17:5'),
+}
+JA_GERADAS = {'tera': 'piloto-a-tera.png', 'abel': 'piloto-a-abel.png', 'noe': 'piloto-a-noe.png'}
+
+
 def prompt_carta(c):
-    arq, nome, cena, aparencia, cenario, ref = c
-    return (f"Crie uma {ESTILO}, para a arte de uma carta colecionável. PERSONAGEM: {nome}, {aparencia}, {cena}. "
-            f"{TRAJES.capitalize()}. CENÁRIO: {cenario}, com profundidade e luz quente dourada. "
-            "COMPOSIÇÃO: uma figura central, da cintura para cima ou de corpo inteiro, bem enquadrada, com o rosto no terço superior; "
-            "cena completa, com fundo ilustrado. Deus nunca aparece como figura humana; quando houver presença divina, só luz. "
-            f"EVITE: {EVITE}. FORMATO: quadrado 1:1, alta resolução.")
+    arq = c[0]
+    nome = c[1]
+    cena, aparencia, cenario, ref = CENA_LOTE1.get(arq, c[2:6])
+    rar = RARIDADE.get(arq, 'comum')
+    return (f"Crie {ESTILO_CARTA}. PERSONAGEM: {nome}, {aparencia}, {cena}. {TRAJES.capitalize()}. "
+            f"CENÁRIO: {cenario}. {COMPOSICAO[rar]}. {FAIXAS}. "
+            "Deus nunca aparece como figura humana; quando houver presença divina, só luz. "
+            f"EVITE: {EVITE_CARTA}. FORMATO: vertical 3:4, alta resolução.")
+
+
+def escrever_cartas():
+    intro = ("Uma carta para cada pessoa que aparece nas sessões. Estilo A (pintura de livro ilustrado premium), "
+             "formato vertical 3:4. A raridade aparece na própria arte: **comum** é retrato calmo, **rara** tem ação e luz "
+             "marcante, **épica** é plano aberto com céu dramático e **lendária** é o momento mais marcante do personagem.")
+    out = f"""# Prompts das cartas (pessoas da Bíblia) — A Jornada
+
+{intro}
+
+**Como usar:** copie um bloco inteiro e cole no Gemini. Se a imagem vier quadrada, peça: *"refaça no formato vertical 3:4"*.
+Salve com o nome exato do título (ex.: `adao.png`) em **Projetos/A_Jornada/01_Imagens/Cartas**.
+Para o traço não variar: uma conversa do Gemini por lote, anexando uma carta já aprovada (ex.: `noe.png`) e pedindo
+*"mesmo estilo desta imagem"*. **Conferir** mostra onde a cena está no texto bíblico.
+
+---
+
+## Lote 1 — as 12 primeiras do Álbum
+
+"""
+    lote = [c for c in CARTAS if c[0] in CENA_LOTE1]
+    resto = [c for c in CARTAS if c[0] not in CENA_LOTE1]
+    out += "| Carta | Raridade | Situação |\n|---|---|---|\n"
+    for c in lote:
+        sit = f"✅ já gerada no piloto (renomear `{JA_GERADAS[c[0]]}` → `{c[0]}.png`)" if c[0] in JA_GERADAS else "a gerar"
+        out += f"| {c[1]} | {NOME_RAR[RARIDADE.get(c[0], 'comum')]} | {sit} |\n"
+    out += "\n"
+    for c in lote:
+        ref = CENA_LOTE1[c[0]][3]
+        out += bloco(c[0] + '.png', f"{c[1]} ({NOME_RAR[RARIDADE.get(c[0], 'comum')]})", ref, prompt_carta(c)) + "\n"
+    out += "---\n\n## Demais cartas (próximos lotes; as cenas ainda serão revisadas lote a lote)\n\n"
+    for c in resto:
+        out += bloco(c[0] + '.png', f"{c[1]} ({NOME_RAR[RARIDADE.get(c[0], 'comum')]})", c[5], prompt_carta(c)) + "\n"
+    open('PROMPTS-CARTAS.md', 'w', encoding='utf-8').write(out)
+    print('PROMPTS-CARTAS.md', len(CARTAS))
 
 
 def prompt_selo(s):
@@ -254,9 +382,7 @@ if __name__ == '__main__':
           f"FUNDO: branco liso e puro (#FFFFFF), sem chão e sem sombra no chão. EVITE: {EVITE}, bebê, criança. FORMATO: quadrado 1:1, alta resolução.")
     with open('PROMPTS-AVATARES.md', 'a', encoding='utf-8') as f:
         f.write("---\n\n## Opcional: o começo da jornada\n\n" + bloco('po.png', 'Pó da terra (todos começam assim)', 'Gn 2:7', po))
-    escrever('PROMPTS-CARTAS.md', 'Prompts das cartas (pessoas da Bíblia)',
-             'Uma carta para cada pessoa que aparece nas sessões (eras 1 e 2). A arte é a cena completa, com fundo ilustrado.',
-             'noe.png', 'Cartas', CARTAS, prompt_carta, lambda c: c[1])
+    escrever_cartas()
     escrever('PROMPTS-SELOS.md', 'Prompts dos Selos da Palavra',
              'Os selos são objetos e palavras-chave do texto. A imagem é só o objeto, em fundo branco; '
              'o app coloca sobre uma medalha dourada.', 'luz.png', 'Selos', SELOS, prompt_selo, lambda s: s[1])

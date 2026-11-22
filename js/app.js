@@ -292,27 +292,41 @@ function abrirXP() {
     <button class="btn grande" data-fechar>Fechar</button></div>`);
 }
 
+// Moldura da carta (v42): arte ocupando a carta inteira, placas no material da moldura,
+// joias nas laterais (rara, épica, lendária) e cantos ornamentados (épica, lendária).
+const ORNAMENTO = `<svg viewBox="0 0 60 60" aria-hidden="true"><path class="o1" d="M6 58 V18 Q6 6 18 6 H58"/><path class="o2" d="M6 58 V18 Q6 6 18 6 H58"/>
+<path class="o2" d="M18 6 Q10 14 6 18"/><circle class="o3" cx="14" cy="14" r="7"/><circle class="o4" cx="14" cy="14" r="2.6"/><path class="o5" d="M6 30 L10 36 L6 42 L2 36Z M30 6 L36 10 L42 6 L36 2Z"/></svg>`;
+function enfeites(rar) {
+  let h = '';
+  if (rar === 'epica' || rar === 'lendaria') h += [1, 2, 3, 4].map((i) => `<i class="canto c${i}">${ORNAMENTO}</i>`).join('');
+  if (rar !== 'comum') h += '<i class="joia j-e"></i><i class="joia j-d"></i>';
+  if (rar === 'lendaria') h += [[12, 30], [80, 22], [88, 55], [20, 62], [70, 40], [45, 18], [30, 45]].map(([x, y]) => `<i class="brilho" style="left:${x}%;top:${y}%"></i>`).join('');
+  return h;
+}
+
 function carta(id, { aberta = true, nova = false, verso = false, estado = null } = {}) {
   const c = J.PERSONAGENS[id]; const [sim, rar, tit] = J.CARTAS[id] || ['star', 'comum', ''];
   const s = J.SESSOES.find((x) => x.personagens.includes(id));
   const era = s ? eraDe(s) : 'principio';
+  const gemas = '◆'.repeat(RARIDADE[rar].gemas);
+  const tam = c.nome.length > 12 ? 'nome-mlongo' : c.nome.length > 8 ? 'nome-longo' : '';
+  const nomeEl = `<div class="placa placa-nome ${tam}"><span class="carta-nome">${esc(c.nome)}</span><span class="gemas">${gemas}</span></div>`;
   if (estado === 'conquistar' || estado === 'espera') {
     const st = J.estadoCarta(P(), id);
-    return `<a class="carta conquistar r-${rar}" href="#/conquistar/${id}" style="--c:${COR_ERA[era]}"><div class="carta-in">
-      <div class="carta-cab"><span class="carta-nome">${esc(c.nome)}</span><span class="gemas">${'◆'.repeat(RARIDADE[rar].gemas)}</span></div>
-      <div class="carta-arte"><span class="simbolo">${ico(sim)}</span><span class="interroga">?</span></div>
-      <div class="carta-tit">${st.volta ? `Volta em ${fmtData(st.volta)}` : 'A conquistar'}</div>
-      <div class="carta-pe"><span>${st.volta ? 'Aguarde' : 'Responder'}</span>${ico(st.volta ? 'hourglass' : 'chevron-right')}</div>
+    return `<a class="carta conquistar r-${rar}" href="#/conquistar/${id}" style="--c:${COR_ERA[era]}"><div class="corpo">${enfeites(rar)}
+      <div class="carta-in"><div class="carta-arte"><span class="simbolo">${ico(sim)}</span><span class="interroga">?</span></div></div>
+      ${nomeEl}
+      <div class="placa placa-tit"><div class="carta-tit">${st.volta ? `Volta em ${fmtData(st.volta)}` : 'A conquistar'}</div>
+      <div class="carta-pe"><span>${st.volta ? 'Aguarde' : 'Responder'}</span>${ico(st.volta ? 'hourglass' : 'chevron-right')}</div></div>
     </div></a>`;
   }
   if (!aberta) return `<div class="carta bloq"><div class="carta-in"><div class="carta-arte">${ico('lock-keyhole', 'g')}</div><div class="carta-nome">???</div></div></div>`;
-  const gemas = '◆'.repeat(RARIDADE[rar].gemas);
-  return `<a class="carta r-${rar} ${nova ? 'nova' : ''}" href="#/carta/${id}" style="--c:${COR_ERA[era]}">
-    <div class="carta-in">
-      <div class="carta-cab"><span class="carta-nome">${esc(c.nome)}</span><span class="gemas">${gemas}</span></div>
-      <div class="carta-arte"><span class="simbolo">${ico(sim)}</span>${COM_IMAGEM.has(id) ? `<img src="img/cartas/${id}.webp" alt="" loading="lazy">` : ''}</div>
-      <div class="carta-tit">${esc(tit)}</div>
-      <div class="carta-pe"><span>${esc(RARIDADE[rar].nome)}</span><span class="era-nome">${esc(ERAS.find((e) => e.id === era).nome)}</span></div>
+  const img = COM_IMAGEM.has(id);
+  return `<a class="carta r-${rar} ${img ? 'com-arte' : ''} ${nova ? 'nova' : ''}" href="#/carta/${id}" style="--c:${COR_ERA[era]}"><div class="corpo">${enfeites(rar)}
+      <div class="carta-in"><div class="carta-arte"><span class="simbolo">${ico(sim)}</span>${img ? `<img src="img/cartas/${id}.webp" alt="" loading="lazy">` : ''}</div></div>
+      ${nomeEl}
+      <div class="placa placa-tit"><div class="carta-tit">${esc(tit)}</div>
+      <div class="carta-pe"><span>${esc(RARIDADE[rar].nome)}</span><span class="era-nome">${esc(ERAS.find((e) => e.id === era).nome)}</span></div></div>
     </div></a>`;
 }
 
