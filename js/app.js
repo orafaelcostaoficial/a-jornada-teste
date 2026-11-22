@@ -32,11 +32,14 @@ const esc = (t = '') => String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<
 const salvar = () => { store.salvar(RAIZ); agendarSync(); };
 
 // ─── Nuvem ───
-let AMIGOS = []; let SYNC = { status: N.ligada() ? 'pronto' : 'desligada', erro: null };
+let AMIGOS = []; let FAMILIAS = []; let GERAL = {}; let SYNC = { status: N.ligada() ? 'pronto' : 'desligada', erro: null };
 function resumo(p) {
   const s = J.semanaAtual(p); const prox = J.proxima(p);
   const xpSemana = p.log.filter((l) => s.dias.includes(l.data)).reduce((t, l) => t + l.xp, 0);
-  return { xpSemana, semana: s.dias[0], sessaoAtual: prox ? prox.id : 'fim', era: prox ? LIVROS[prox.livro].era : null };
+  const mes = store.hoje().slice(0, 7);
+  const xpMes = p.log.filter((l) => l.data.startsWith(mes)).reduce((t, l) => t + l.xp, 0);
+  const capitulos = J.concluidas(p).reduce((t, x) => t + x.caps[1] - x.caps[0] + 1, 0);
+  return { xpSemana, semana: s.dias[0], sessaoAtual: prox ? prox.id : 'fim', era: prox ? LIVROS[prox.livro].era : null, xpMes, mes, capitulos };
 }
 let timerSync = null;
 function agendarSync(ms = 2500) {
@@ -48,7 +51,7 @@ async function sincronizar() {
   SYNC = { status: 'sincronizando', erro: null };
   try {
     RAIZ = await N.sincronizar(RAIZ, resumo); store.salvar(RAIZ);
-    AMIGOS = await N.amigos();
+    [AMIGOS, FAMILIAS] = await Promise.all([N.rankingFamilia(), N.minhasFamilias()]);
     SYNC = { status: 'ok', erro: null, em: new Date() };
     if (!document.querySelector('textarea:focus, input:focus') && !location.hash.startsWith('#/sessao')) render();
   } catch (e) { SYNC = { status: 'erro', erro: e.message }; }
@@ -57,9 +60,9 @@ document.addEventListener('visibilitychange', () => { if (document.visibilitySta
 setInterval(() => document.visibilityState === 'visible' && agendarSync(0), 90000);
 
 function avisoCodigoAmigo() {
-  overlay(`<div class="confirma"><p><b>Isso é um código de amigo</b>, não o convite da família.</p>
-    <p class="dica">• <b>Mora na mesma casa?</b> Peça o <b>convite</b> (formato abc123-def456). Ele fica em Amigos → Outros celulares da casa → Mostrar.</p>
-    <p class="dica">• <b>É de outra família?</b> Crie a sua família aqui primeiro. Depois coloque o código em Amigos → Código do amigo.</p>
+  overlay(`<div class="confirma"><p><b>Isso é um código de família</b>, não o convite da casa.</p>
+    <p class="dica">• <b>Mora na mesma casa?</b> Peça o <b>convite da casa</b> (formato abc123-def456). Ele fica em Grupos → Família → Minha casa → Mostrar.</p>
+    <p class="dica">• <b>É de outra casa?</b> Crie a sua casa aqui primeiro. Depois coloque o código em Grupos → Família → Código da família.</p>
     <button class="btn grande ouro" data-fechar>Entendi</button></div>`);
 }
 
@@ -67,9 +70,9 @@ function entrarFamilia(b, convite) {
   if (!convite.trim()) return;
   b.disabled = true;
   N.entrarFamilia(convite).then((info) => {
-    if (RAIZ.nuvem?.familiaId === info.familiaId) { toast('Este celular já está nessa família'); return; }
-    RAIZ = { ...store.renovarIds(RAIZ), nuvem: info }; store.salvar(RAIZ); AMIGOS = [];
-    toast(`Você entrou na família ${esc(info.familiaNome)}`); return sincronizar();
+    if (RAIZ.nuvem?.familiaId === info.familiaId) { toast('Este celular já está nessa casa'); return; }
+    RAIZ = { ...store.renovarIds(RAIZ), nuvem: info }; store.salvar(RAIZ); AMIGOS = []; FAMILIAS = []; GERAL = {};
+    toast(`Você entrou na casa ${esc(info.familiaNome)}`); return sincronizar();
   }).catch((e) => { if (e.codigoAmigo) avisoCodigoAmigo(); else toast(esc(e.message)); b.disabled = false; }).finally(render);
 }
 
@@ -282,9 +285,15 @@ function galeriaPersonagens(atual) {
   return `<div class="galeria-av">${AVATARES.map((a) => `<button class="op-av ${atual === a.id ? 'on' : ''}" data-acao="f-personagem" data-v="${a.id}">${avatarHTML({ personagem: a.id }, [], 64)}<span>${esc(a.nome)}</span></button>`).join('')}</div>`;
 }
 
+function capturarForm() {
+  if (!FORM) return;
+  FORM.nome = document.getElementById('nome')?.value ?? FORM.nome;
+  FORM.apelido = document.getElementById('apelido')?.value ?? FORM.apelido;
+}
+
 function telaPerfilForm(editId) {
   const p = editId ? RAIZ.perfis[editId] : null;
-  const f = FORM ||= { nome: p?.nome || '', tipo: p?.tipo || (perfis().length ? 'crianca' : 'adulto'), avatar: { ...(p?.avatar || { personagem: null }) } };
+  const f = FORM ||= { nome: p?.nome || '', apelido: p?.apelido || '', tipo: p?.tipo || (perfis().length ? 'crianca' : 'adulto'), avatar: { ...(p?.avatar || { personagem: null }) } };
   const itens = J.itensAte(p ? J.nivel(p.xp).n : 1);
   const esc1 = f.avatar.personagem ? AVATARES.find((a) => a.id === f.avatar.personagem) : null;
   return `<header class="topo-sec"><a class="voltar" href="${perfis().length ? '#/perfil' : '#/hoje'}">${ico('chevron-left')}</a><h2>${p ? 'Editar viajante' : 'Novo viajante'}</h2></header>
@@ -294,6 +303,9 @@ function telaPerfilForm(editId) {
         : `<div class="esc-info"><b>Pó da terra</b><small>Toda jornada começa aqui. Ao concluir a primeira sessão, você recebe o fôlego de vida e escolhe o personagem que vai te acompanhar. <i>Gn 2:7</i></small></div>`}</div>
     <label class="rot" for="nome">Nome</label>
     <input id="nome" class="campo" value="${esc(f.nome)}" placeholder="Como chamar este viajante?" maxlength="20">
+    <label class="rot" for="apelido">Apelido no ranking geral</label>
+    <input id="apelido" class="campo" value="${esc(f.apelido || '')}" placeholder="Ex.: Leão de Judá" maxlength="20">
+    <p class="dica">É o único nome que pessoas de fora da família veem. Sem apelido, aparece o nome do personagem. Evite usar o nome real.</p>
     <div class="rot">Perfil</div>
     <div class="seg">${[['adulto', 'Adulto'], ['crianca', 'Criança']].map(([v, t]) => `<button class="${f.tipo === v ? 'on' : ''}" data-acao="f-tipo" data-v="${v}">${t}</button>`).join('')}</div>
     ${p?.avatar?.personagem ? `<div class="rot">Trocar de personagem</div>${galeriaPersonagens(f.avatar.personagem)}` : ''}
@@ -737,44 +749,112 @@ function telaJornada() {
   }).join('')}`;
 }
 
+function abasGrupos(atual) {
+  return `<div class="seg abas-topo"><a class="${atual === 'familia' ? 'on' : ''}" href="#/amigos">${ico('users-round')} Família</a><a class="${atual === 'geral' ? 'on' : ''}" href="#/geral">${ico('trophy')} Geral</a></div>`;
+}
+
+function blocoMinhaCasa(n) {
+  return `<section class="bloco"><div class="bloco-tit"><span>Minha casa · ${esc(n.familiaNome)}</span></div>
+    <p class="dica">Outro celular da mesma casa: abra o app, vá em Grupos → Família → "Entrar na casa" e use o convite. Ele é secreto: dá acesso às anotações da casa.</p>
+    <div class="codigo secreto"><small>Convite da casa</small><b id="convite-val" data-v="${esc(n.convite)}">••••••-••••••</b><button class="btn sec" data-acao="ver-convite">Mostrar</button></div>
+    <details class="trocar-fam"><summary>Este celular está na casa errada?</summary>
+      <p class="dica">Se você criou uma casa sozinho e queria entrar em outra, use o convite dela. Os viajantes deste celular vão junto, com todo o progresso.</p>
+      <label class="rot" for="convite-troca">Convite da outra casa</label><input id="convite-troca" class="campo" placeholder="ex.: a1b2c3-d4e5f6" autocapitalize="off">
+      <button class="btn grande" data-acao="trocar-familia" style="margin-top:12px">Entrar na outra casa</button></details></section>`;
+}
+
+function blocoFamilia() {
+  const f = FAMILIAS[0];
+  if (!f) {
+    return `<section class="bloco"><div class="bloco-tit"><span>Família</span></div>
+      <p class="dica">Junte a sua casa com outras casas (avós, tios, primos) numa família. Cada casa guarda as próprias anotações; a família vê o ranking da semana e onde cada um está no mapa.</p>
+      <label class="rot" for="cod-familia">Código da família</label>
+      <div class="linha-btns"><input id="cod-familia" class="campo" placeholder="ABC123" maxlength="6" autocapitalize="characters"><button class="btn ouro" data-acao="entrar-grupo">Entrar</button></div>
+      <details class="trocar-fam"><summary>Ninguém criou ainda? Criar uma família</summary>
+        <label class="rot" for="nome-familia">Nome da família</label><input id="nome-familia" class="campo" placeholder="Ex.: Família Costa" maxlength="30">
+        <button class="btn grande ouro" data-acao="criar-grupo" style="margin-top:12px">Criar família</button></details></section>`;
+  }
+  return `<section class="bloco"><div class="bloco-tit"><span>Família · ${esc(f.nome)}</span></div>
+    <p class="dica">Casas: ${f.casas.map(esc).join(', ')}</p>
+    <div class="codigo"><small>Código da família</small><b>${esc(f.codigo)}</b><button class="btn sec" data-acao="compartilhar">${ico('upload')} Enviar</button></div>
+    <button class="mini" data-acao="sair-grupo" data-f="${f.id}" data-n="${esc(f.nome)}">Tirar minha casa da família</button></section>`;
+}
+
 function telaAmigos() {
   const p = P();
   if (!N.ligada()) {
-    return `${topo()}<h1 class="tit-tela">Amigos</h1>
+    return `${topo()}<h1 class="tit-tela">Grupos</h1>${abasGrupos('familia')}
     <section class="bloco vazio">${ico('users-round', 'g')}<p><b>${CANAL_TESTE ? 'A nuvem fica desligada no canal de teste.' : 'O banco ainda não foi ligado.'}</b></p>
-      <p class="dica">${CANAL_TESTE ? 'Abra com ?nuvem=1 no endereço para testar a sincronização.' : 'Quando o banco estiver configurado, aqui aparecem a família em todos os celulares, os amigos e o ranking da semana.'}</p></section>
+      <p class="dica">${CANAL_TESTE ? 'Abra com ?nuvem=1 no endereço para testar a sincronização.' : 'Quando o banco estiver configurado, aqui aparecem a casa em todos os celulares, a família e o ranking geral.'}</p></section>
     ${rankingLocal(p)}`;
   }
   if (!RAIZ.nuvem) {
-    return `${topo()}<h1 class="tit-tela">Amigos</h1><p class="sub">Ligue a sua família à nuvem para usar em vários celulares e acompanhar os amigos.</p>
+    return `${topo()}<h1 class="tit-tela">Grupos</h1>${abasGrupos('familia')}<p class="sub">Primeiro ligue a sua casa à nuvem: assim ela funciona em vários celulares e pode entrar numa família.</p>
     <section class="bloco"><div class="bloco-tit"><span>Primeiro celular da casa</span></div>
-      <label class="rot" for="fam-nome">Nome da família</label><input id="fam-nome" class="campo" placeholder="Ex.: Família Costa" maxlength="30">
-      <button class="btn grande ouro" data-acao="criar-familia" style="margin-top:12px">Criar família</button></section>
-    <section class="bloco"><div class="bloco-tit"><span>Já criou em outro celular?</span></div>
-      <label class="rot" for="convite">Convite da família</label><input id="convite" class="campo" placeholder="ex.: a1b2c3-d4e5f6" autocapitalize="off">
-      <button class="btn grande" data-acao="entrar-familia" style="margin-top:12px">Entrar na família</button>
-      <p class="dica">O convite aparece no celular que criou a família, nesta mesma tela, e tem o formato <b>abc123-def456</b>. O código de amigo (6 letras) não serve aqui.</p></section>`;
+      <label class="rot" for="fam-nome">Nome da casa</label><input id="fam-nome" class="campo" placeholder="Ex.: Casa Costa" maxlength="30">
+      <button class="btn grande ouro" data-acao="criar-familia" style="margin-top:12px">Criar casa</button></section>
+    <section class="bloco"><div class="bloco-tit"><span>A casa já foi criada em outro celular?</span></div>
+      <label class="rot" for="convite">Convite da casa</label><input id="convite" class="campo" placeholder="ex.: a1b2c3-d4e5f6" autocapitalize="off">
+      <button class="btn grande" data-acao="entrar-familia" style="margin-top:12px">Entrar na casa</button>
+      <p class="dica">O convite aparece no celular que criou a casa, nesta mesma tela, e tem o formato <b>abc123-def456</b>. O código da família (6 letras) não serve aqui: ele se usa depois de criar a casa.</p></section>`;
   }
   const n = RAIZ.nuvem;
   const st = { sincronizando: 'Sincronizando…', ok: `Sincronizado ${SYNC.em ? SYNC.em.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : ''}`, erro: `Erro: ${esc(SYNC.erro || '')}`, pronto: 'Pronto' }[SYNC.status] || '';
-  const familias = {};
-  for (const a of AMIGOS) (familias[a.familia_id] ||= { nome: a.familia, membros: [] }).membros.push(a);
-  return `${topo()}<h1 class="tit-tela">Amigos</h1>
+  return `${topo()}<h1 class="tit-tela">Grupos</h1>${abasGrupos('familia')}
   <p class="sub sync ${SYNC.status}">${ico(SYNC.status === 'erro' ? 'x' : 'circle-check')} ${esc(n.familiaNome)} · ${st} <button class="mini" data-acao="sync">Sincronizar</button></p>
   ${ranking(p)}
-  <section class="bloco"><div class="bloco-tit"><span>Adicionar amigo</span></div>
-    <div class="codigo"><small>Seu código de amigo</small><b>${esc(n.codigoAmigo)}</b><button class="btn sec" data-acao="compartilhar">${ico('upload')} Enviar</button></div>
-    <label class="rot" for="cod-amigo">Código do amigo</label>
-    <div class="linha-btns"><input id="cod-amigo" class="campo" placeholder="ABC123" maxlength="6" autocapitalize="characters"><button class="btn ouro" data-acao="add-amigo">Adicionar</button></div></section>
-  ${Object.keys(familias).length ? `<section class="bloco"><div class="bloco-tit"><span>Famílias amigas</span></div>
-    ${Object.entries(familias).map(([fid, f]) => `<div class="fam-amiga"><div><b>${esc(f.nome)}</b><small>${f.membros.map((m) => esc(m.nome)).join(', ')}</small></div><button class="mini" data-acao="rem-amigo" data-f="${fid}" data-n="${esc(f.nome)}">Remover</button></div>`).join('')}</section>` : ''}
-  <section class="bloco"><div class="bloco-tit"><span>Outros celulares da casa</span></div>
-    <p class="dica">No outro celular, abra o app, vá em Amigos → "Entrar na família" e use o convite. Ele é secreto: dá acesso às anotações da família.</p>
-    <div class="codigo secreto"><small>Convite</small><b id="convite-val" data-v="${esc(n.convite)}">••••••-••••••</b><button class="btn sec" data-acao="ver-convite">Mostrar</button></div>
-    <details class="trocar-fam"><summary>Este celular está na família errada?</summary>
-      <p class="dica">Se você criou uma família sozinho e queria entrar em outra, use o convite dela. Os viajantes deste celular vão junto, com todo o progresso.</p>
-      <label class="rot" for="convite-troca">Convite da outra família</label><input id="convite-troca" class="campo" placeholder="ex.: a1b2c3-d4e5f6" autocapitalize="off">
-      <button class="btn grande" data-acao="trocar-familia" style="margin-top:12px">Entrar na outra família</button></details></section>`;
+  ${blocoFamilia()}
+  ${blocoMinhaCasa(n)}`;
+}
+
+// ─── Ranking geral (mensal, todos do app, só apelido + personagem) ───
+const MESES_LONGOS = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+function nomePublico(o) {
+  if (o.apelido?.trim()) return o.apelido.trim();
+  const a = o.avatar?.personagem && AVATARES.find((x) => x.id === o.avatar.personagem);
+  return a ? a.nome : 'Pó da terra';
+}
+function carregarGeral(ordem) {
+  const mes = store.hoje().slice(0, 7);
+  GERAL[ordem] = { ...(GERAL[ordem] || {}), carregando: true, erro: null };
+  N.rankingGeral(mes, ordem)
+    .then((linhas) => { GERAL[ordem] = { linhas, em: Date.now(), mes }; })
+    .catch((e) => { GERAL[ordem] = { erro: e.message, em: Date.now() }; })
+    .finally(() => { if (location.hash.startsWith('#/geral')) render(); });
+}
+function telaGeral(arg) {
+  const p = P();
+  const ordem = arg === 'progresso' ? 'progresso' : 'xp';
+  const cab = `${topo()}<h1 class="tit-tela">Grupos</h1>${abasGrupos('geral')}`;
+  if (!N.ligada() || !RAIZ.nuvem) {
+    return `${cab}<section class="bloco vazio">${ico('trophy', 'g')}<p><b>O ranking geral precisa da casa ligada à nuvem.</b></p>
+      <p class="dica">${N.ligada() ? 'Vá na aba Família e crie (ou entre na) sua casa.' : (CANAL_TESTE ? 'A nuvem fica desligada no canal de teste. Abra com ?nuvem=1 para testar.' : 'O banco ainda não foi ligado.')}</p></section>`;
+  }
+  const g = GERAL[ordem];
+  if (!g || (!g.carregando && Date.now() - (g.em || 0) > 60000) || (g.mes && g.mes !== store.hoje().slice(0, 7))) carregarGeral(ordem);
+  const sub = `<div class="seg sub-abas"><a class="${ordem === 'xp' ? 'on' : ''}" href="#/geral">XP do mês</a><a class="${ordem === 'progresso' ? 'on' : ''}" href="#/geral/progresso">Progresso</a></div>`;
+  const mesNome = MESES_LONGOS[new Date().getMonth()];
+  const tit = ordem === 'xp' ? `<span>XP de ${mesNome}</span><span>zera no dia 1º</span>` : '<span>Capítulos lidos</span><span>desde o início</span>';
+  let corpo;
+  if (!g?.linhas && g?.erro) corpo = `<p class="dica">Não consegui carregar: ${esc(g.erro)}</p>`;
+  else if (!g?.linhas) corpo = '<p class="dica">Carregando…</p>';
+  else {
+    const linhas = g.linhas.filter((l) => !l.meu || RAIZ.perfis[l.perfil_id]); // perfis meus que ainda existem
+    let ant = 0;
+    corpo = linhas.map((l) => {
+      const local = l.meu ? RAIZ.perfis[l.perfil_id] : null;
+      const pub = { apelido: local ? local.apelido : l.apelido, avatar: local ? local.avatar : l.avatar };
+      const eraNome = l.sessao_atual === 'fim' ? 'Tudo lido' : (ERAS.find((e) => e.id === l.era)?.nome || '');
+      const salto = l.pos > ant + 1 && ant ? '<div class="rank-salto">…</div>' : ''; ant = l.pos;
+      return `${salto}<div class="rank ${l.meu && l.perfil_id === p.id ? 'eu' : ''}"><span class="pos ${l.pos <= 3 ? 'p' + l.pos : ''}">${l.pos}</span>${avatarHTML(pub.avatar, J.itensAte(J.nivel(l.xp).n), 34)}
+        <div><b>${esc(nomePublico(pub))}${l.meu ? ' <small class="voce">você</small>' : ''}</b><small>${ordem === 'xp' ? `Nível ${J.nivel(l.xp).n}` : esc(eraNome)}</small></div>
+        <span class="rank-xp">${ordem === 'xp' ? `${l.xp_mes} XP` : `${l.capitulos} cap.`}</span></div>`;
+    }).join('') || '<p class="dica">Ninguém pontuou ainda neste mês.</p>';
+  }
+  const semApelido = !p.apelido?.trim();
+  return `${cab}${sub}
+  <section class="bloco"><div class="bloco-tit">${tit}</div>${corpo}</section>
+  <p class="dica centro">No ranking geral aparecem só o apelido e o personagem, nunca o nome real nem a casa.${semApelido ? ` <a class="link" href="#/editar/${p.id}">Escolher apelido para ${esc(p.nome)}</a>` : ''}</p>`;
 }
 
 function linhaRanking(pos, a, eu) {
@@ -793,9 +873,10 @@ function rankingLocal(p) {
 }
 function ranking(p) {
   const semana = J.semanaAtual(p).dias[0];
+  const casa = RAIZ.nuvem?.familiaNome;
   const lista = [
-    ...perfis().map((o) => ({ id: o.id, nome: o.nome, avatar: o.avatar, xp: o.xp, xpSemana: resumo(o).xpSemana, onde: ondeEsta(resumo(o).sessaoAtual) })),
-    ...AMIGOS.map((a) => ({ id: a.perfil_id, nome: a.nome, avatar: a.avatar, xp: a.xp, xpSemana: a.semana === semana ? a.xp_semana : 0, onde: `${esc(a.familia)} · ${ondeEsta(a.sessao_atual)}` })),
+    ...perfis().map((o) => ({ id: o.id, nome: o.nome, avatar: o.avatar, xp: o.xp, xpSemana: resumo(o).xpSemana, onde: `${casa ? `${esc(casa)} · ` : ''}${ondeEsta(resumo(o).sessaoAtual)}` })),
+    ...AMIGOS.map((a) => ({ id: a.perfil_id, nome: a.nome, avatar: a.avatar, xp: a.xp, xpSemana: a.semana === semana ? a.xp_semana : 0, onde: `${esc(a.casa)} · ${ondeEsta(a.sessao_atual)}` })),
   ].sort((a, b) => b.xpSemana - a.xpSemana);
   return `<section class="bloco"><div class="bloco-tit"><span>Ranking da semana</span><span>zera na segunda</span></div>${lista.map((a, i) => linhaRanking(i + 1, a, a.id === p.id)).join('')}</section>`;
 }
@@ -968,7 +1049,7 @@ function telaPerfil() {
     <div><b>${aplic}</b><small>aplicações vividas</small></div>
     <div><b>${p.log.filter((l) => l.tipo === 'acerto').length}</b><small>acertos</small></div>
   </div>
-  <section class="bloco"><div class="bloco-tit"><span>Família</span></div>
+  <section class="bloco"><div class="bloco-tit"><span>Casa</span></div>
     <div class="familia">${perfis().map((o) => `<button class="membro ${o.id === p.id ? 'on' : ''}" data-acao="trocar" data-p="${o.id}">${avatarHTML(o.avatar, J.itensAte(J.nivel(o.xp).n), 46)}<b>${esc(o.nome)}</b><small>Nível ${J.nivel(o.xp).n}</small></button>`).join('')}
       <a class="membro novo" href="#/novo-perfil">${ico('plus')}<b>Adicionar</b><small>viajante</small></a></div></section>
   ${blocoConquistas(p)}
@@ -993,7 +1074,7 @@ function capturar(id) {
 // ─── Roteamento ───
 let passoAtual = {};
 let ultimoResultado = null;
-const NAV = { hoje: 'hoje', jornada: 'jornada', sessao: 'jornada', livro: 'jornada', cartas: 'cartas', carta: 'cartas', selos: 'cartas', eventos: 'cartas', selo: 'cartas', linha: 'jornada', amigos: 'amigos', perfil: 'perfil', editar: 'perfil', 'novo-perfil': 'perfil', revisao: 'hoje', aplicacao: 'hoje', resultado: 'hoje', desafio: 'hoje', dsessao: 'hoje' };
+const NAV = { hoje: 'hoje', jornada: 'jornada', sessao: 'jornada', livro: 'jornada', cartas: 'cartas', carta: 'cartas', selos: 'cartas', eventos: 'cartas', selo: 'cartas', linha: 'jornada', amigos: 'amigos', geral: 'amigos', perfil: 'perfil', editar: 'perfil', 'novo-perfil': 'perfil', revisao: 'hoje', aplicacao: 'hoje', resultado: 'hoje', desafio: 'hoje', dsessao: 'hoje' };
 
 function render() {
   const [, rota = 'hoje', arg] = (location.hash || '#/hoje').split('/');
@@ -1019,6 +1100,7 @@ function render() {
     case 'conquistar': html = telaConquistar(arg); break;
     case 'linha': html = telaLinha(); break;
     case 'amigos': html = telaAmigos(); break;
+    case 'geral': html = telaGeral(arg); break;
     case 'perfil': html = telaPerfil(); break;
     default: html = telaHoje();
   }
@@ -1053,6 +1135,7 @@ window.addEventListener('hashchange', () => {
 
 $app.addEventListener('input', (ev) => {
   if (ev.target.id === 'nome' && FORM) { FORM.nome = ev.target.value; return; }
+  if (ev.target.id === 'apelido' && FORM) { FORM.apelido = ev.target.value; return; }
   if (!location.hash.startsWith('#/sessao') && !location.hash.startsWith('#/dsessao')) return;
   const r = capturar(location.hash.split('/')[2]);
   const b1 = document.getElementById('btn-li'); if (b1) b1.disabled = !r.li;
@@ -1076,16 +1159,17 @@ document.body.addEventListener('click', (ev) => {
   const id = b.dataset.id || location.hash.split('/')[2];
 
   if (acao === 'ver-xp' && !document.querySelector('.overlay')) { abrirXP(); return; }
-  if (acao === 'f-tipo') { FORM.tipo = b.dataset.v; render(); }
+  if (acao === 'f-tipo') { capturarForm(); FORM.tipo = b.dataset.v; render(); }
   if (acao === 'f-av') { FORM.avatar[b.dataset.k] = Number(b.dataset.v); render(); }
-  if (acao === 'f-personagem') { FORM.nome = document.getElementById('nome')?.value ?? FORM.nome; FORM.avatar = { personagem: b.dataset.v }; render(); }
+  if (acao === 'f-personagem') { capturarForm(); FORM.avatar = { personagem: b.dataset.v }; render(); }
   if (acao === 'escolher-personagem') folegoDeVida(P().id);
   if (acao === 'f-salvar') {
     const nome = (document.getElementById('nome').value || '').trim();
+    const apelido = (document.getElementById('apelido')?.value || '').trim().slice(0, 20);
     if (!nome) { toast('Dê um nome ao viajante'); return; }
     const editado = new Date().toISOString();
-    if (b.dataset.id) Object.assign(RAIZ.perfis[b.dataset.id], { nome, tipo: FORM.tipo, avatar: FORM.avatar, editado });
-    else { const np = { ...store.novoPerfil(nome, FORM.tipo, FORM.avatar), editado }; RAIZ.perfis[np.id] = np; RAIZ.ativo = np.id; }
+    if (b.dataset.id) Object.assign(RAIZ.perfis[b.dataset.id], { nome, apelido, tipo: FORM.tipo, avatar: FORM.avatar, editado });
+    else { const np = { ...store.novoPerfil(nome, FORM.tipo, FORM.avatar), apelido, editado }; RAIZ.perfis[np.id] = np; RAIZ.ativo = np.id; }
     salvar(); FORM = null; ir(b.dataset.id ? '#/perfil' : '#/hoje');
   }
   if (acao === 'f-remover') {
@@ -1109,19 +1193,24 @@ document.body.addEventListener('click', (ev) => {
   if (acao === 'trocar-familia') {
     const v = document.getElementById('convite-troca').value; if (!v.trim()) return;
     if (N.pareceCodigoAmigo(v)) { avisoCodigoAmigo(); return; }
-    confirmar(`Sair de <b>${esc(RAIZ.nuvem.familiaNome)}</b> e entrar na família do convite? Os viajantes deste celular vão junto.`, 'Entrar', () => entrarFamilia(b, v));
+    confirmar(`Sair de <b>${esc(RAIZ.nuvem.familiaNome)}</b> e entrar na casa do convite? Os viajantes deste celular vão junto.`, 'Entrar', () => entrarFamilia(b, v));
   }
   if (acao === 'sync') sincronizar().then(render);
-  if (acao === 'add-amigo') {
-    const cod = document.getElementById('cod-amigo').value; if (!cod.trim()) return;
-    N.adicionarAmigo(cod).then((nome) => { toast(`Agora vocês são amigos: ${esc(nome)}`); return sincronizar(); }).catch((e) => toast(esc(e.message))).finally(render);
+  if (acao === 'criar-grupo' || acao === 'entrar-grupo') {
+    const v = document.getElementById(acao === 'criar-grupo' ? 'nome-familia' : 'cod-familia').value;
+    if (acao === 'entrar-grupo' && !v.trim()) return;
+    b.disabled = true;
+    (acao === 'criar-grupo' ? N.criarFamiliaGrupo(v) : N.entrarFamiliaGrupo(v))
+      .then((g) => { toast(acao === 'criar-grupo' ? `Família criada: ${esc(g.nome)}` : `Sua casa entrou em ${esc(g.nome)}`); return sincronizar(); })
+      .catch((e) => { toast(esc(e.message)); b.disabled = false; }).finally(render);
   }
-  if (acao === 'rem-amigo') confirmar(`Deixar de ser amigo de <b>${esc(b.dataset.n)}</b>?`, 'Remover', () => N.removerAmigo(b.dataset.f).then(sincronizar).catch((e) => toast(esc(e.message))).finally(render));
+  if (acao === 'sair-grupo') confirmar(`Tirar a sua casa da família <b>${esc(b.dataset.n)}</b>? Vocês deixam de se ver no ranking da semana.`, 'Tirar', () => N.sairFamiliaGrupo(b.dataset.f).then(sincronizar).catch((e) => toast(esc(e.message))).finally(render));
   if (acao === 'ver-convite') { const el = document.getElementById('convite-val'); el.textContent = el.dataset.v; }
   if (acao === 'compartilhar') {
-    const txt = `Vamos estudar a Bíblia juntos n'A Jornada! Meu código de amigo: ${RAIZ.nuvem.codigoAmigo}
-Para me adicionar: abra o app, vá em Amigos, crie a sua família e coloque esse código em "Código do amigo".
-(É para outra família. Quem mora comigo entra com o convite da família.)
+    const f = FAMILIAS[0]; if (!f) return;
+    const txt = `Vamos estudar a Bíblia juntos n'A Jornada! Entre na família ${f.nome}. Código da família: ${f.codigo}
+Como entrar: abra o app, vá em Grupos → Família, crie a sua casa e coloque o código em "Código da família".
+(Quem mora na mesma casa entra com o convite da casa, não com este código.)
 ${location.origin}${location.pathname}`;
     if (navigator.share) navigator.share({ text: txt }).catch(() => {}); else navigator.clipboard?.writeText(txt).then(() => toast('Copiado'));
   }
@@ -1207,7 +1296,7 @@ ${location.origin}${location.pathname}`;
 });
 
 document.querySelector('nav').innerHTML = [
-  ['hoje', 'house', 'Hoje'], ['jornada', 'map', 'Jornada'], ['cartas', 'layers', 'Álbum'], ['amigos', 'users-round', 'Amigos'], ['perfil', 'user-round', 'Perfil'],
+  ['hoje', 'house', 'Hoje'], ['jornada', 'map', 'Jornada'], ['cartas', 'layers', 'Álbum'], ['amigos', 'users-round', 'Grupos'], ['perfil', 'user-round', 'Perfil'],
 ].map(([r, i, t]) => `<a href="#/${r}" data-r="${r}">${ico(i)}<span>${t}</span></a>`).join('');
 
 render();

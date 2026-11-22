@@ -63,7 +63,10 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
    - **Falta:** (a) ligar o Pages no `a-jornada-teste` (Settings → Pages → Deploy from a branch → `main` / root), o que o Rafael faz pelo celular; (b) com o "pode publicar", levar a v32 da `teste` para a `main`, com o redirecionamento de `/a-jornada/teste/`, o link do rodapé e o cartão "já instalado".
    - **No celular:** desinstalar o teste antigo, se ainda existir, e instalar o novo pelo botão.
 2. **Convite × código de amigo (v37, na `teste`, 21/11/2026).** Um familiar colocou o código de amigo no campo do convite e recebeu "convite inválido". Agora: aviso explicando a diferença; texto do "Enviar" diz como usar o código; seção "Este celular está na família errada?" para quem criou família sozinho entrar em outra (os perfis ganham ids novos, `renovarIds` em `store.js`, para não colidir no banco). Sem mudança no Supabase. Publicado no oficial em 21/11/2026 (v37, junto com era 3 e cartas por questionário).
-3. ~~Conferir os slugs da NAA~~: feito em 21/11/2026 (`ex`, `lv`, `nm`, `dt` conferidos no site; o botão NAA da era 2 passou a aparecer na v33).
+3. **Casa, Família e ranking geral (v38, na `teste`, 22/11/2026).** Casa = quem mora junto (convite); Família = grupo de casas (código da família), uma por casa por enquanto. Aba "Grupos" com Família (ranking semanal) e Geral (mensal, só apelido + personagem; abas XP do mês e Progresso). Apelido no Editar viajante. SQL testado em Postgres 16 (migração das amizades, RLS, anon bloqueado).
+   - **Falta:** (a) Rafael rodar o `supabase/schema.sql` inteiro no SQL Editor do Supabase; (b) só depois, "pode publicar". Publicar antes do SQL quebra a sincronização.
+   - **Depois:** casa em mais de uma família (grupos de estudo); moderação de apelidos se o geral abrir para a igreja.
+4. ~~Conferir os slugs da NAA~~: feito em 21/11/2026 (`ex`, `lv`, `nm`, `dt` conferidos no site; o botão NAA da era 2 passou a aparecer na v33).
 
 ---
 

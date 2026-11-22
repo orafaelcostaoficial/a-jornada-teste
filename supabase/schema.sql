@@ -142,3 +142,180 @@ grant execute on function public.criar_familia(text), public.entrar_familia(text
   public.remover_amigo(uuid), public.amigos(), public.minha_familia() to authenticated;
 grant select, insert, update, delete on public.perfis to authenticated;
 grant select on public.familias, public.membros, public.amizades to authenticated;
+
+-- ════════════════════════════════════════════════════════════════════════════
+-- v38 — CASA e FAMÍLIA + ranking geral
+--   casa    = a tabela `familias` acima (quem entra pelo convite secreto; dados e anotações).
+--   família = grupo de casas (`grupos`), entrando com o código da família. Por enquanto cada casa
+--             fica em uma família só (regra nas funções, não na tabela, para abrir depois).
+--   Ranking da família: semanal, nomes reais. Ranking geral: mensal, todos os viajantes do app,
+--   só apelido + personagem (nunca o nome real nem a casa).
+-- ════════════════════════════════════════════════════════════════════════════
+
+create table if not exists public.grupos (
+  id uuid primary key default gen_random_uuid(),
+  nome text not null,
+  codigo text unique not null,
+  criado_em timestamptz not null default now()
+);
+
+create table if not exists public.grupo_casas (
+  grupo_id uuid not null references public.grupos on delete cascade,
+  casa_id uuid not null references public.familias on delete cascade,
+  criado_em timestamptz not null default now(),
+  primary key (grupo_id, casa_id)
+);
+
+alter table public.grupos enable row level security;
+alter table public.grupo_casas enable row level security;
+
+alter table public.perfis add column if not exists apelido text;
+alter table public.perfis add column if not exists xp_mes int not null default 0;
+alter table public.perfis add column if not exists mes text;
+alter table public.perfis add column if not exists capitulos int not null default 0;
+do $$ begin
+  if not exists (select 1 from pg_constraint where conname = 'perfis_apelido_tam') then
+    alter table public.perfis add constraint perfis_apelido_tam check (apelido is null or char_length(apelido) <= 20);
+  end if;
+end $$;
+
+create or replace function public.meus_grupos() returns setof uuid
+language sql stable security definer set search_path = public as $$
+  select grupo_id from grupo_casas where casa_id = minha_familia()
+$$;
+
+drop policy if exists grupos_ler on public.grupos;
+create policy grupos_ler on public.grupos for select using (id in (select public.meus_grupos()));
+drop policy if exists grupo_casas_ler on public.grupo_casas;
+create policy grupo_casas_ler on public.grupo_casas for select using (grupo_id in (select public.meus_grupos()));
+
+-- Cria uma família e coloca a minha casa nela.
+create or replace function public.criar_grupo(p_nome text) returns public.grupos
+language plpgsql security definer set search_path = public as $$
+declare minha uuid := minha_familia(); g grupos;
+begin
+  if minha is null then raise exception 'ligue a sua casa à nuvem primeiro'; end if;
+  if exists (select 1 from grupo_casas where casa_id = minha) then raise exception 'sua casa já está numa família'; end if;
+  loop
+    begin
+      insert into grupos (nome, codigo) values (coalesce(nullif(trim(p_nome), ''), 'Família'), upper(substr(md5(gen_random_uuid()::text), 1, 6)))
+      returning * into g;
+      exit;
+    exception when unique_violation then null; -- código repetido: sorteia outro
+    end;
+  end loop;
+  insert into grupo_casas (grupo_id, casa_id) values (g.id, minha);
+  return g;
+end $$;
+
+-- Entra com a minha casa numa família existente, pelo código.
+create or replace function public.entrar_grupo(p_codigo text) returns public.grupos
+language plpgsql security definer set search_path = public as $$
+declare minha uuid := minha_familia(); g grupos; outra familias;
+begin
+  if minha is null then raise exception 'ligue a sua casa à nuvem primeiro'; end if;
+  select * into g from grupos where codigo = upper(trim(p_codigo));
+  if g.id is null then
+    -- Compatibilidade: código de amigo antigo de uma casa (v37). Entra na família dela; se ela não tem, cria.
+    select * into outra from familias where codigo_amigo = upper(trim(p_codigo));
+    if outra.id is null then raise exception 'código de família não encontrado'; end if;
+    if outra.id = minha then raise exception 'esse é o código da sua própria casa'; end if;
+    select gr.* into g from grupos gr join grupo_casas c on c.grupo_id = gr.id where c.casa_id = outra.id order by c.criado_em limit 1;
+    if g.id is null then
+      if exists (select 1 from grupo_casas where casa_id = minha) then raise exception 'sua casa já está em outra família: saia dela primeiro'; end if;
+      insert into grupos (nome, codigo) values (outra.nome, upper(substr(md5(gen_random_uuid()::text), 1, 6))) returning * into g;
+      insert into grupo_casas (grupo_id, casa_id) values (g.id, outra.id);
+    end if;
+  end if;
+  if exists (select 1 from grupo_casas where casa_id = minha and grupo_id = g.id) then return g; end if;
+  if exists (select 1 from grupo_casas where casa_id = minha) then raise exception 'sua casa já está em outra família: saia dela primeiro'; end if;
+  insert into grupo_casas (grupo_id, casa_id) values (g.id, minha);
+  return g;
+end $$;
+
+-- Tira a minha casa da família; família sem casas é apagada.
+create or replace function public.sair_grupo(p_grupo uuid) returns void
+language plpgsql security definer set search_path = public as $$
+declare minha uuid := minha_familia();
+begin
+  delete from grupo_casas where casa_id = minha and grupo_id = p_grupo;
+  delete from grupos g where g.id = p_grupo and not exists (select 1 from grupo_casas c where c.grupo_id = g.id);
+end $$;
+
+-- As famílias da minha casa, com as casas de cada uma.
+create or replace function public.minhas_familias()
+returns table (id uuid, nome text, codigo text, casas text[])
+language sql stable security definer set search_path = public as $$
+  select g.id, g.nome, g.codigo,
+         array(select f.nome from grupo_casas c join familias f on f.id = c.casa_id where c.grupo_id = g.id order by c.criado_em)
+  from grupos g where g.id in (select meus_grupos())
+  order by g.criado_em
+$$;
+
+-- Ranking da família: viajantes das OUTRAS casas das minhas famílias (os da minha casa o app já tem).
+-- Só dados do jogo, nunca as anotações.
+create or replace function public.ranking_familia()
+returns table (grupo_id uuid, casa_id uuid, casa text, perfil_id text, nome text, tipo text, avatar jsonb,
+               xp int, xp_semana int, semana text, sessao_atual text, era text, atualizado timestamptz)
+language sql stable security definer set search_path = public as $$
+  select c.grupo_id, f.id, f.nome, p.id, p.nome, p.tipo, p.avatar, p.xp, p.xp_semana, p.semana, p.sessao_atual, p.era, p.atualizado
+  from grupo_casas c
+  join familias f on f.id = c.casa_id
+  join perfis p on p.familia_id = f.id
+  where c.grupo_id in (select meus_grupos()) and f.id <> minha_familia()
+$$;
+
+-- Ranking geral: todos os viajantes do app. p_ordem = 'xp' (XP do mês p_mes, 'AAAA-MM') ou 'progresso'
+-- (capítulos lidos). Devolve o top 50 e, fora dele, os viajantes da minha casa (meu = true).
+-- Nunca devolve nome real, casa ou id de quem não é da minha casa.
+create or replace function public.ranking_geral(p_mes text, p_ordem text default 'xp')
+returns table (pos bigint, meu boolean, perfil_id text, apelido text, avatar jsonb, xp int, xp_mes int,
+               era text, sessao_atual text, capitulos int)
+language sql stable security definer set search_path = public as $$
+  with base as (
+    select p.*, (p.familia_id = minha_familia()) as eh_meu,
+           case when p.mes = p_mes then p.xp_mes else 0 end as xm
+    from perfis p
+  ), r as (
+    select b.*, rank() over (order by
+             case when p_ordem = 'progresso' then b.capitulos else b.xm end desc,
+             case when p_ordem = 'progresso' then b.xp else b.capitulos end desc) as posicao
+    from base b
+    where case when p_ordem = 'progresso' then b.capitulos > 0 else b.xm > 0 end or b.eh_meu
+  )
+  select r.posicao, r.eh_meu, case when r.eh_meu then r.id end, nullif(trim(r.apelido), ''), r.avatar, r.xp, r.xm,
+         r.era, r.sessao_atual, r.capitulos
+  from r
+  where r.posicao <= 50 or r.eh_meu
+  order by r.posicao
+$$;
+
+-- Migração: famílias amigas (amizades) viram uma família só, por grupo ligado. Roda uma vez por casa.
+do $$
+declare semente uuid; g uuid;
+begin
+  loop
+    select a.familia_id into semente from amizades a
+    where not exists (select 1 from grupo_casas c where c.casa_id = a.familia_id) limit 1;
+    exit when semente is null;
+    insert into grupos (nome, codigo)
+    values ((select nome from familias where id = semente), upper(substr(md5(gen_random_uuid()::text), 1, 6)))
+    returning id into g;
+    insert into grupo_casas (grupo_id, casa_id)
+    with recursive comp(id) as (
+      select semente
+      union
+      select a.amigo_id from amizades a join comp on a.familia_id = comp.id
+    )
+    select g, id from comp where not exists (select 1 from grupo_casas c where c.casa_id = comp.id);
+  end loop;
+end $$;
+
+revoke all on function public.meus_grupos(), public.criar_grupo(text), public.entrar_grupo(text), public.sair_grupo(uuid),
+  public.minhas_familias(), public.ranking_familia(), public.ranking_geral(text, text) from public, anon;
+grant execute on function public.meus_grupos(), public.criar_grupo(text), public.entrar_grupo(text), public.sair_grupo(uuid),
+  public.minhas_familias(), public.ranking_familia(), public.ranking_geral(text, text) to authenticated;
+grant select on public.grupos, public.grupo_casas to authenticated;
+
+-- Avisa a API do Supabase (PostgREST) para enxergar as tabelas e funções novas.
+notify pgrst, 'reload schema';

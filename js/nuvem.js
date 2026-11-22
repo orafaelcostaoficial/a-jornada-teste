@@ -56,6 +56,7 @@ function linha(p, familiaId, resumo) {
     id: p.id, familia_id: familiaId, nome: p.nome, tipo: p.tipo, avatar: p.avatar,
     dados: p, xp: p.xp, xp_semana: resumo.xpSemana, semana: resumo.semana,
     sessao_atual: resumo.sessaoAtual, era: resumo.era, atualizado: new Date().toISOString(),
+    apelido: (p.apelido || '').trim().slice(0, 20) || null, xp_mes: resumo.xpMes, mes: resumo.mes, capitulos: resumo.capitulos,
   };
 }
 
@@ -88,24 +89,18 @@ export async function sincronizar(raiz, resumir) {
   return r;
 }
 
-export async function adicionarAmigo(codigo) {
+// ─── Família (grupo de casas) e ranking geral ───
+async function rpc(nome, args) {
   const c = await cliente();
-  const { data, error } = await c.rpc('adicionar_amigo', { p_codigo: codigo });
+  const { data, error } = await c.rpc(nome, args);
   if (error) throw new Error(erroLegivel(error));
   return data;
 }
-
-export async function removerAmigo(familiaId) {
-  const c = await cliente();
-  const { error } = await c.rpc('remover_amigo', { p_familia: familiaId });
-  if (error) throw new Error(erroLegivel(error));
-}
-
-export async function amigos() {
-  const c = await cliente();
-  const { data, error } = await c.rpc('amigos');
-  if (error) throw new Error(erroLegivel(error));
-  return data || [];
-}
+export const criarFamiliaGrupo = (nome) => rpc('criar_grupo', { p_nome: nome });
+export const entrarFamiliaGrupo = (codigo) => rpc('entrar_grupo', { p_codigo: codigo });
+export const sairFamiliaGrupo = (id) => rpc('sair_grupo', { p_grupo: id });
+export const minhasFamilias = async () => (await rpc('minhas_familias')) || [];
+export const rankingFamilia = async () => (await rpc('ranking_familia')) || [];
+export const rankingGeral = async (mes, ordem) => (await rpc('ranking_geral', { p_mes: mes, p_ordem: ordem })) || [];
 
 export { hoje };

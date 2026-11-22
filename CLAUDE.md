@@ -79,8 +79,17 @@ Nova era: criar `data/era-<id>.js` no mesmo formato, importar em `js/jogo.js`, m
   (login anônimo por aparelho), perfis (progresso completo em `dados`), amizades. Amigos só veem dados
   públicos do jogo pela função `amigos()` — nunca as anotações.
 - `js/config.js`: `SUPABASE_URL` e a chave pública (anon/publishable). Nunca a service_role.
-- `js/nuvem.js`: criar/entrar na família (convite secreto), sincronizar (mescla com `mesclarPerfil` em
-  `js/store.js`, sem perder progresso), amigos por código de 6 letras.
+- `js/nuvem.js`: criar/entrar na casa (convite secreto), sincronizar (mescla com `mesclarPerfil` em
+  `js/store.js`, sem perder progresso), família por código de 6 letras, ranking geral.
+- **Casa × Família** (decidido em 22/11/2026, v38): **casa** = tabela `familias` (celulares de quem mora junto, convite secreto,
+  dados e anotações). **Família** = grupo de casas (`grupos` + `grupo_casas`), entra pelo código da família; por enquanto
+  uma família por casa (regra nas funções, para abrir várias depois, ex.: grupos de estudo). Código de amigo antigo de uma
+  casa ainda funciona em `entrar_grupo`. As `amizades` antigas viraram famílias na migração; `amigos()` fica só para apps v37.
+- **Rankings** (aba Grupos): Família = semanal, nomes reais, casas da família (`ranking_familia()`). Geral = todos do app,
+  **só apelido + personagem** (nunca nome real nem casa), duas abas: XP do mês (zera dia 1º) e Progresso (capítulos lidos),
+  top 50 + os da minha casa (`ranking_geral(mes, ordem)`). Apelido (`apelido`, até 20) no Editar viajante; sem apelido,
+  aparece o nome do personagem. `resumo()` em `app.js` manda `xp_mes`, `mes` e `capitulos` na sincronização.
+- **Mudou o banco? Rafael roda o `schema.sql` inteiro no SQL Editor ANTES de publicar o app no oficial.**
 - Requer no painel: Authentication → "Allow anonymous sign-ins" ligado.
 
 ## Estrutura
