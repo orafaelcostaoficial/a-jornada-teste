@@ -811,3 +811,8 @@ body.tema-natal { background: linear-gradient(#f6ece6, #f3efe6 420px); }
 .dica.centro { text-align: center; padding: 0 12px; }
 .aviso-convite { display: flex; gap: 8px; align-items: center; background: var(--ouro-cl); border-radius: 14px; padding: 10px 12px; font-weight: 700; font-size: .9rem; text-align: left; margin: 4px 0 12px; }
 .aviso-convite svg { flex: none; }
+.biblia-jan .biblia-topo { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.biblia-jan .biblia-topo .btn { padding: 8px 12px; min-width: 0; }
+.biblia-jan .versos { max-height: 55vh; overflow-y: auto; text-align: left; line-height: 1.6; margin-bottom: 8px; }
+.biblia-jan { background: var(--sup); color: var(--tx); border-radius: 22px; padding: 16px; box-shadow: var(--sombra); }
+.biblia-jan h3 { margin: 0; font-size: 1.1rem; }

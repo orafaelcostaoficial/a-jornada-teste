@@ -115,7 +115,24 @@ export function personagensLiberados(e) {
   for (const id of apresentados(e)) if (!e.cartas || !temBancoCarta(id)) set.add(id);
   return set;
 }
-export const cartasAConquistar = (e) => { const lib = personagensLiberados(e); return [...apresentados(e)].filter((id) => !lib.has(id)); };
+// Uma carta por sessão (decidido em 22/11/2026): ao concluir uma sessão, fica disponível para conquistar o primeiro
+// personagem novo dela ("o da vez"); os outros entram na fila. Sessão sem personagem novo solta o próximo da fila.
+// Calculado a partir das sessões concluídas (em ordem), sem estado guardado. Quem já começou o questionário continua.
+export function fila(e) {
+  const soltas = new Set(); const espera = []; const vistos = new Set();
+  for (const s of concluidas(e)) {
+    const novos = s.personagens.filter((p) => !vistos.has(p));
+    novos.forEach((p) => vistos.add(p));
+    if (novos.length) { soltas.add(novos[0]); espera.push(...novos.slice(1)); } else if (espera.length) soltas.add(espera.shift());
+  }
+  return { soltas, espera };
+}
+export const cartasAConquistar = (e) => {
+  const lib = personagensLiberados(e); const { soltas } = fila(e);
+  return [...apresentados(e)].filter((id) => !lib.has(id) && (soltas.has(id) || e.cartaQuiz?.[id]));
+};
+// Personagens já apresentados que esperam a vez (na ordem em que vão sair).
+export const cartasNaFila = (e) => { const lib = personagensLiberados(e); const aq = new Set(cartasAConquistar(e)); return fila(e).espera.filter((id) => !lib.has(id) && !aq.has(id)); };
 export const acertosParaCarta = (e) => (e.tipo === 'crianca' ? 2 : 3);
 export function estadoCarta(e, id) {
   const st = e.cartaQuiz?.[id] || {};
@@ -223,6 +240,7 @@ function ganhar(e, tipo, xp, ref) {
 // Conclui a sessão e devolve o que foi desbloqueado (para a tela de resultado).
 export function concluirSessao(e, s, dados) {
   const antesP = personagensLiberados(e);
+  const antesQ = new Set(cartasAConquistar(e));
   const antesM = marcosLiberados(e);
   const ganhos = [];
   const nivelAntes = nivel(e.xp).n;
@@ -238,12 +256,13 @@ export function concluirSessao(e, s, dados) {
     ganhar(e, 'era', XP.era, era); ganhos.push(['Era concluída', XP.era]);
   }
   const novosP = [...personagensLiberados(e)].filter((p) => !antesP.has(p));
-  const novosQ = s.personagens.filter((p) => cartasAConquistar(e).includes(p));
+  const novosQ = cartasAConquistar(e).filter((p) => !antesQ.has(p));
+  const naFila = cartasNaFila(e).length;
   const novosS = selosDaSessao(s.id);
   const novosM = [...marcosLiberados(e)].filter((m) => !antesM.has(m));
   const novasC = verificarConquistas(e);
   const nivelDepois = nivel(e.xp).n;
-  return { ganhos, novosP, novosQ, novosS, novosM, novasC, subiu: nivelDepois > nivelAntes ? nivelDepois : null };
+  return { ganhos, novosP, novosQ, naFila, novosS, novosM, novasC, subiu: nivelDepois > nivelAntes ? nivelDepois : null };
 }
 
 // ─── Desafios sazonais (em paralelo à jornada) ───

@@ -67,7 +67,8 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
    - SQL rodado no Supabase em 22/11/2026 (pelo Chrome do Rafael). Publicado no oficial como v39, junto com os convites por link.
    - **Depois:** casa em mais de uma família (grupos de estudo); moderação de apelidos se o geral abrir para a igreja.
 4. **Convites por link (v39, 22/11/2026).** "Enviar convite da casa" e "Enviar" da família mandam mensagem com link `#/entrar/casa/<convite>` ou `#/entrar/familia/<código>`. O app guarda o convite (`ajornada.convite`), tira o código da barra, pede para criar o viajante se for novo e mostra a tela "Entrar na casa/família" (a da família cria a casa junto). Os campos aceitam a mensagem inteira colada. **Atenção iPhone:** app instalado na tela inicial não abre links; aí vale colar a mensagem no campo.
-5. ~~Conferir os slugs da NAA~~: feito em 21/11/2026 (`ex`, `lv`, `nm`, `dt` conferidos no site; o botão NAA da era 2 passou a aparecer na v33).
+5. **Cartas: uma por sessão, Bíblia no questionário, tela piscando (v40, na `teste`, 22/11/2026).** Piscar: a cada ~2,5 s a sincronização redesenhava o questionário (que por sua vez agendava outra sincronização). Fila de cartas conforme regra do Rafael. Simulação: na era 1 a fila chega a 13 e um personagem pode esperar até 21 sessões; sobram 11 no fim de Rute. **Falta:** Rafael testar e dizer "pode publicar"; decidir se mantém 1 por sessão ou "da vez + 1 da fila".
+6. ~~Conferir os slugs da NAA~~: feito em 21/11/2026 (`ex`, `lv`, `nm`, `dt` conferidos no site; o botão NAA da era 2 passou a aparecer na v33).
 
 ---
 

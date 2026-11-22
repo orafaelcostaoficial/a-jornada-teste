@@ -53,7 +53,8 @@ async function sincronizar() {
     RAIZ = await N.sincronizar(RAIZ, resumo); store.salvar(RAIZ);
     [AMIGOS, FAMILIAS] = await Promise.all([N.rankingFamilia(), N.minhasFamilias()]);
     SYNC = { status: 'ok', erro: null, em: new Date() };
-    if (!document.querySelector('textarea:focus, input:focus') && !location.hash.startsWith('#/sessao')) render();
+    const emQuiz = /^#\/(sessao|conquistar|revisao|dsessao)/.test(location.hash) || document.querySelector('.overlay');
+    if (!document.querySelector('textarea:focus, input:focus') && !emQuiz) render();
   } catch (e) { SYNC = { status: 'erro', erro: e.message }; }
 }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') agendarSync(300); });
@@ -631,8 +632,8 @@ function telaResultado(res) {
     <ul class="ganhos">${res.ganhos.map(([t, x]) => `<li><span>${esc(t)}</span><b>+${x}</b></li>`).join('')}</ul>
     ${res.juntos?.length ? `<p class="dica">Também concluíram: ${res.juntos.map(esc).join(', ')}</p>` : ''}
     ${res.abertas ? `<a class="btn grande sec" href="#/cartas">${ico('layers')} Ver no álbum</a>` : res.novosP.length + (res.novosS?.length || 0) ? `<button class="btn grande ouro pacote" data-acao="abrir-cartas">${ico('layers')} Abrir ${[res.novosP.length ? `${res.novosP.length} carta${res.novosP.length > 1 ? 's' : ''}` : '', res.novosS?.length ? `${res.novosS.length} selo${res.novosS.length > 1 ? 's' : ''}` : ''].filter(Boolean).join(' e ')}</button>` : ''}
-    ${res.novosQ?.length ? `<section class="bloco conquistar-res"><div class="rot">Cartas a conquistar</div>
-      <p class="dica">Responda 3 perguntas sobre cada personagem desta leitura para ganhar a carta. Pode ser agora ou depois, pelo Álbum.</p>
+    ${res.novosQ?.length ? `<section class="bloco conquistar-res"><div class="rot">Carta da vez</div>
+      <p class="dica">Responda 3 perguntas para ganhar a carta. Pode ser agora ou depois, pelo Álbum.${res.naFila ? ` Os outros personagens esperam a vez: sai uma carta por sessão (${res.naFila} na fila).` : ''}</p>
       <div class="grade-cartas mini">${res.novosQ.map((id) => carta(id, { estado: 'conquistar' })).join('')}</div></section>` : ''}
     ${res.novosM.length ? `<section class="bloco"><div class="rot">Na linha do tempo</div>${res.novosM.map((m) => `<p>${ico('flag')} ${esc(J.MARCOS.find((x) => x.id === m).titulo)}</p>`).join('')}</section>` : ''}
     ${res.novasC.length ? (res.conqVistas ? `<section class="bloco"><div class="rot">Conquistas</div>${res.novasC.map((c) => `<p>${ico('trophy')} <b>${esc(c.nome)}</b> — ${esc(c.desc)}</p>`).join('')}</section>` : `<button class="btn grande ouro pacote" data-acao="ver-conquistas">${ico('trophy')} Receber ${res.novasC.length > 1 ? `${res.novasC.length} conquistas` : 'conquista'}</button>`) : ''}
@@ -712,7 +713,8 @@ function telaConquistar(id) {
   }
   const st = J.estadoCarta(p, id);
   if (st.volta) return `${cab}<section class="bloco cq-fim">${ico('hourglass', 'g')}<h3>Volta em ${fmtData(st.volta)}</h3><p class="dica">As 3 tentativas acabaram. Nessa data o questionário volta com perguntas novas.</p>${reler}</section>`;
-  const t = J.tentativaCarta(p, id); salvar();
+  const nova = !J.estadoCarta(p, id).emCurso;
+  const t = J.tentativaCarta(p, id); if (nova) store.salvar(RAIZ); // só grava; a sincronização vem com a resposta
   const n = t.respostas.length; const q = t.perguntas[n];
   return `${cab}
   <p class="sub cq-regra">Responda 3 perguntas sobre ${esc(c.nome)} na leitura. Para ganhar a carta, acerte <b>${precisa === 3 ? 'as 3' : `${precisa} das 3`}</b>.
@@ -720,7 +722,31 @@ function telaConquistar(id) {
   <div class="cq-pontos">${[0, 1, 2].map((k) => `<i class="${k < n ? (t.respostas[k] ? 'ok' : 'erro') : k === n ? 'atual' : ''}"></i>`).join('')}</div>
   <section class="quiz anima"><small>Pergunta ${n + 1} de 3</small><p class="pergunta">${esc(q.q)}</p>
     <div class="opcoes">${q.op.map((o, i) => `<button class="opcao" data-acao="cq-resp" data-id="${id}" data-i="${i}"><i>${'ABCD'[i]}</i>${esc(o)}</button>`).join('')}</div>
-    <div id="feedback"></div></section>`;
+    <div id="feedback"></div></section>
+  ${ses ? `<button class="btn sec" data-acao="abrir-biblia" data-s="${ses.id}">${ico('book-open')} Abrir a Bíblia para pesquisar</button>` : ''}`;
+}
+
+// Bíblia em janela por cima do questionário: abre no trecho da sessão em que o personagem apareceu e deixa
+// navegar pelos capítulos do livro até onde a sessão vai (o que já foi lido).
+function abrirBiblia(sessaoId) {
+  const s = J.SESSOES.find((x) => x.id === sessaoId); if (!s) return;
+  const livro = LIVROS[s.livro]; const max = s.caps[1];
+  let cap = s.caps[0];
+  const o = overlay('<div class="biblia-jan"></div>');
+  const desenhar = async () => {
+    const box = o.querySelector('.biblia-jan'); if (!box) return;
+    box.innerHTML = `<div class="biblia-topo"><button class="btn sec" data-bib="-1" ${cap <= 1 ? 'disabled' : ''}>${ico('chevron-left')}</button>
+      <h3>${esc(livro.nome)} ${cap}</h3><button class="btn sec" data-bib="1" ${cap >= max ? 'disabled' : ''}>${ico('chevron-right')}</button></div>
+      <div class="versos"><p class="dica">Carregando o texto…</p></div>
+      <p class="credito">Texto: Bíblia Livre (BLIVRE) © Diego Santos, Mario Sérgio e Marco Teles, 2018 · CC BY 4.0</p>
+      <button class="btn grande" data-fechar>Voltar às perguntas</button>`;
+    try {
+      const vs = (await textoLivro(livro))[cap] || {};
+      box.querySelector('.versos').innerHTML = Object.entries(vs).map(([v, txt]) => `<span class="v"><sup>${v}</sup>${esc(txt)} </span>`).join('');
+    } catch { box.querySelector('.versos').innerHTML = '<p class="dica">Não consegui carregar o texto agora.</p>'; }
+  };
+  o.addEventListener('click', (ev) => { const b = ev.target.closest('[data-bib]'); if (!b) return; cap = Math.min(max, Math.max(1, cap + Number(b.dataset.bib))); desenhar(); });
+  desenhar();
 }
 
 function telaRevisao() {
@@ -985,6 +1011,7 @@ function telaCartas(aba = 'pessoas') {
   return `${topo()}<h1 class="tit-tela">Álbum</h1>${abas}<p class="sub">${lib.size} de ${ordem.length} cartas nesta era</p>
   <div class="raridades">${porRar.map(([r, a, t]) => `<span class="r-${r}"><i></i>${RARIDADE[r].nome} ${a}/${t}</span>`).join('')}</div>
   ${aConq.length ? `<p class="dica conquistar-dica">${ico('layers')} ${aConq.length} carta${aConq.length > 1 ? 's' : ''} a conquistar: responda 3 perguntas sobre o personagem.</p>` : ''}
+  ${J.cartasNaFila(p).length ? `<p class="dica">${ico('hourglass')} ${J.cartasNaFila(p).length} personage${J.cartasNaFila(p).length > 1 ? 'ns' : 'm'} esperando a vez: sai uma carta por sessão concluída.</p>` : ''}
   <div class="grade-cartas">${ordem.map((id) => (aConq.includes(id) ? carta(id, { estado: 'conquistar' }) : carta(id, { aberta: lib.has(id) }))).join('')}</div>`;
 }
 
@@ -1361,6 +1388,7 @@ Se o link não abrir no app, abra A Jornada, vá em Grupos e cole este convite e
     if (r.certo) confete(12);
   }
   if (acao === 'cq-prox') render();
+  if (acao === 'abrir-biblia') abrirBiblia(b.dataset.s);
   if (acao === 'cq-nova') { CQ = null; render(); }
   if (acao === 'cq-revelar') { const id = b.dataset.id; const novasC = CQ?.ultimo?.novasC || []; CQ = null; ir('#/cartas'); setTimeout(() => abrirCartas([id], 0, novasC), 150); }
   if (acao === 'proxima-q') { filaQuiz.shift(); if (!filaQuiz.length) { toast('Revisão concluída'); ir('#/hoje'); } else render(); }

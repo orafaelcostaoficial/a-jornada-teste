@@ -67,6 +67,10 @@ Nova era: criar `data/era-<id>.js` no mesmo formato, importar em `js/jogo.js`, m
   com perguntas novas; +5 XP). Banco por raridade: comum 5, rara 6, épica 8, lendária 9, só com o que já foi lido até a sessão
   do personagem, com referência e na redação da Bíblia Livre. Cartas ganhas antes da regra foram mantidas (`modo: 'leitura'`).
   **Nova era: escrever o banco de perguntas junto com os personagens** (sem banco, a carta entra direto, como antes).
+  **Uma carta por sessão** (22/11/2026, v40): ao concluir a sessão sai para conquistar o 1º personagem novo dela ("o da vez");
+  os outros vão para a fila e saem um por sessão sem personagem novo (`fila()` em `jogo.js`, calculado das sessões concluídas).
+  No questionário, "Abrir a Bíblia para pesquisar" abre o texto da sessão por cima (`abrirBiblia`). A sincronização não
+  redesenha telas de quiz (`sessao`, `conquistar`, `revisao`, `dsessao`) nem com janela aberta: era o que fazia a tela piscar.
 - Mapa estilo Duolingo com cenários por trecho (`js/cenario.js`) e amigos/família no ponto onde estão.
 - Selos da Palavra (`SELOS` na era): objetos/palavras-chave ganhos na sessão em que aparecem; Álbum tem abas Pessoas/Selos.
 - Desafios sazonais (`data/desafios.js`): ciclo de 5 anos por época (`serie` + `ciclo`), trilha escolhida pelo ano do
