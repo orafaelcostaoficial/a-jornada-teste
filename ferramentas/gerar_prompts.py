@@ -23,7 +23,8 @@ ESTILO_CARTA = ("a arte de uma carta colecionável de um app bíblico para famí
 EVITE_CARTA = ("texto, letras, números, assinatura, moldura, borda, marca d'água, cenas de luta ou violência, sangue, "
                "arma apontada para alguém, nudez, rostos assustadores, estilo cartoon plano, fotorrealismo, "
                "personagem com cara da imagem tradicional de Jesus (túnica branca, cabelo longo solto e barba, braços abertos "
-               "sob raios de luz): o personagem tem visual próprio")
+               "sob raios de luz): o personagem tem visual próprio, objetos modernos ou de outra época (lampião de vidro e "
+               "metal, cerca de fazenda, móveis modernos; a luz vem de fogueira, tocha ou lamparina de barro)")
 # A raridade aparece na própria arte: cada degrau abre mais a cena e aumenta o impacto.
 COMPOSICAO = {
     'comum': ("CENA (carta comum, simples e calma): retrato da cintura para cima, personagem ligeiramente fora do centro, "
@@ -290,7 +291,7 @@ CENA_LOTE1 = {
                'deserto à noite sob um céu imenso repleto de estrelas e da Via Láctea, tenda iluminada por dentro atrás dele, '
                'luz dourada e prateada sobre o rosto', 'Gn 15:5; 17:5'),
 }
-JA_GERADAS = {'adao', 'eva', 'caim', 'sete', 'enoque', 'matusalem', 'sem', 'ninrode', 'tera', 'abel', 'noe'}
+JA_GERADAS = {'adao', 'eva', 'caim', 'sete', 'enoque', 'matusalem', 'sem', 'ninrode', 'abraao', 'tera', 'abel', 'noe'}
 
 
 def prompt_carta(c):

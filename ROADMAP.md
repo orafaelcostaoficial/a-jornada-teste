@@ -76,7 +76,7 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
 
 | # | Frente | O que é | Esforço |
 |---|---|---|---|
-| 1 | **Imagens das cartas** | Estilo A aprovado (pintura de livro ilustrado, vertical 3:4, raridade aparece na cena) e moldura nova v42 (placas, joias, cantos). Prompts em `PROMPTS-CARTAS.md`, por lotes (Lote 1 = 12 primeiras do Álbum). O Rafael manda a imagem → Claude confere, converte para JPG q95, salva em `01_Imagens/Cartas` no Drive e instala em `img/cartas/<id>.webp` (600×800) + `COM_IMAGEM`. Prontas: Terá, Abel, Noé. | Médio, aos poucos |
+| 1 | **Imagens das cartas** | Estilo A aprovado (pintura de livro ilustrado, vertical 3:4, raridade aparece na cena) e moldura nova v42 (placas, joias, cantos). Prompts em `PROMPTS-CARTAS.md`, por lotes (Lote 1 = 12 primeiras do Álbum). O Rafael manda a imagem → Claude confere, converte para JPG q95, salva em `01_Imagens/Cartas` no Drive e instala em `img/cartas/<id>.webp` (600×800) + `COM_IMAGEM`. Lote 1 completo (12 primeiras do Álbum, Adão a Abraão) em 22/11/2026. | Médio, aos poucos |
 | 2 | **Objetos ilustrados do mapa** | Trocar os desenhos simples ao lado do caminho (tenda, poço, palmeira…) por ilustrações do Gemini, cerca de 30 nas eras 1 e 2. | Médio |
 | 3 | **Fase 1 do PLANO** | Trava de leitura (fim do texto + tempo mínimo), quadros Constância e XP da semana, teto de 3 sessões por dia no ranking, regra da graça. Ver PLANO §2–4. | Médio, só app |
 | 4 | ~~Era 3: Josué e Juízes~~ | Escrita em 21/11/2026 (`data/era-juizes.js`, 11 sessões), com o banco de perguntas das cartas (`data/quiz-cartas-juizes.js`). Falta: imagens das 20 cartas e 11 selos; publicar no oficial. Próxima era: **O Reino Unido** (67 sessões), já com o banco de perguntas. | — |
