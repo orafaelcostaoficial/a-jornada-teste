@@ -275,18 +275,22 @@ CENA_LOTE1 = {
             'homem adulto de barba escura, filho de Noé',
             'encosta de montanha verde depois da chuva, com a arca pequena e distante ao fundo', 'Gn 6:10; 9:18,26'),
     'ninrode': ('de pé, confiante, segurando um grande arco de madeira, com uma aljava de flechas nas costas',
-                'homem forte e imponente, caçador',
+                'homem forte e imponente, caçador, de ombros largos e braços musculosos, pele morena queimada de sol, cabelo preto '
+                'longo preso atrás, barba preta curta e aparada, expressão altiva e confiante, túnica curta de couro com uma pele '
+                'de animal sobre um dos ombros (bem diferente dos outros personagens: nada de túnica longa nem barba cheia)',
                 'planície com as muralhas de uma cidade antiga ao longe', 'Gn 10:8-10'),
     'tera': ('apoiado num cajado de madeira, olhando para o horizonte, pronto para partir em viagem',
              'homem idoso de barba branca longa, rosto sereno e determinado',
              'fim de tarde nos arredores de Ur dos caldeus, com o zigurate de tijolos ao longe, palmeiras e alguns jumentos '
              'carregados ao fundo', 'Gn 11:31'),
     'abraao': ('do lado de fora da tenda, à noite, com o rosto erguido e uma das mãos apontando para o céu, contando as estrelas',
-               'homem idoso de barba branca longa',
+               'homem idoso de rosto forte e marcado, barba grisalha (branca com fios escuros) cheia e não muito longa, cabeça coberta '
+               'por um turbante claro, manto listrado azul-índigo e creme sobre túnica clara (bem diferente de Noé e de Terá, '
+               'que usam marrom)',
                'deserto à noite sob um céu imenso repleto de estrelas e da Via Láctea, tenda iluminada por dentro atrás dele, '
                'luz dourada e prateada sobre o rosto', 'Gn 15:5; 17:5'),
 }
-JA_GERADAS = {'adao', 'eva', 'caim', 'sete', 'enoque', 'matusalem', 'sem', 'tera', 'abel', 'noe'}
+JA_GERADAS = {'adao', 'eva', 'caim', 'sete', 'enoque', 'matusalem', 'sem', 'ninrode', 'tera', 'abel', 'noe'}
 
 
 def prompt_carta(c):
