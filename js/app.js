@@ -315,7 +315,7 @@ function carta(id, { aberta = true, nova = false, verso = false, estado = null }
     const st = J.estadoCarta(P(), id);
     return `<a class="carta conquistar r-${rar}" href="#/conquistar/${id}" style="--c:${COR_ERA[era]}"><div class="corpo">${enfeites(rar)}
       <div class="carta-in"><div class="carta-arte"><span class="simbolo">${ico(sim)}</span><span class="interroga">?</span></div></div>
-      ${nomeEl}
+      <div class="placa placa-nome"><span class="carta-nome">???</span><span class="gemas">${gemas}</span></div>
       <div class="placa placa-tit"><div class="carta-tit">${st.volta ? `Volta em ${fmtData(st.volta)}` : 'A conquistar'}</div>
       <div class="carta-pe"><span>${st.volta ? 'Aguarde' : 'Responder'}</span>${ico(st.volta ? 'hourglass' : 'chevron-right')}</div></div>
     </div></a>`;
@@ -433,7 +433,7 @@ function telaHoje() {
   const missoes = [
     { feito: feitaHoje, ico: 'book-open', txt: 'Fazer a sessão do dia', xp: `+${J.XP.sessao}–${J.XP.sessao + J.XP.aplicacao}`, href: prox ? `#/sessao/${prox.id}` : null },
     quiz.length ? { feito: false, ico: 'medal', txt: `Revisar ${quiz.length} pergunta${quiz.length > 1 ? 's' : ''}`, xp: `+${J.XP.acerto} cada`, href: '#/revisao' } : null,
-    ...J.cartasDisponiveis(p).slice(0, 2).map((id) => ({ feito: false, ico: 'layers', txt: `Conquistar a carta de ${J.PERSONAGENS[id].nome}`, xp: `+${J.XP.carta}`, href: `#/conquistar/${id}` })),
+    ...J.cartasDisponiveis(p).slice(0, 2).map((id) => ({ feito: false, ico: 'layers', txt: `Conquistar uma carta ${RARIDADE[(J.CARTAS[id] || [])[1] || 'comum'].nome.toLowerCase()}`, xp: `+${J.XP.carta}`, href: `#/conquistar/${id}` })),
     ...aplic.map((s) => ({ feito: false, ico: 'heart', txt: `Como foi: “${p.sessoes[s.id].aplicacao}”`, xp: `+${J.XP.revisao}`, href: `#/aplicacao/${s.id}` })),
   ].filter(Boolean);
 

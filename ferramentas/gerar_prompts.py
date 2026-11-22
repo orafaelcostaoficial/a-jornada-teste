@@ -31,7 +31,8 @@ COMPOSICAO = {
     'epica': ("CENA (carta épica, ampla e dramática): PLANO ABERTO, personagem de corpo inteiro ocupando no máximo um terço da "
               "altura da imagem; a paisagem e o céu dominam a cena, com nuvens enormes e luz dramática; o rosto continua legível"),
     'lendaria': ("CENA (carta lendária, o momento mais marcante da vida do personagem): personagem em primeiro plano, rosto no "
-                 "terço superior, cena grandiosa ao fundo, luz dourada intensa descendo do céu, atmosfera majestosa e reverente; "
+                 "terço superior, cena grandiosa ao fundo com céu aberto e profundidade enorme; contraluz dourado forte e raios de "
+                 "luz bem visíveis descendo do céu sobre o personagem, como num pôr do sol épico; atmosfera majestosa e reverente; "
                  "construções, barcos e objetos em proporções reais e imponentes, nada com aparência de brinquedo"),
 }
 FAIXAS = ("Deixe o topo (10% da altura) e a faixa de baixo (25% da altura) com menos detalhes, sem rosto nem elementos "
@@ -282,7 +283,7 @@ CENA_LOTE1 = {
                'deserto à noite sob um céu imenso repleto de estrelas e da Via Láctea, tenda iluminada por dentro atrás dele, '
                'luz dourada e prateada sobre o rosto', 'Gn 15:5; 17:5'),
 }
-JA_GERADAS = {'tera': 'piloto-a-tera.png', 'abel': 'piloto-a-abel.png', 'noe': 'piloto-a-noe.png'}
+JA_GERADAS = {'adao', 'tera', 'abel', 'noe'}
 
 
 def prompt_carta(c):
@@ -318,7 +319,7 @@ Para o traço não variar: uma conversa do Gemini por lote, anexando uma carta j
     resto = [c for c in CARTAS if c[0] not in CENA_LOTE1]
     out += "| Carta | Raridade | Situação |\n|---|---|---|\n"
     for c in lote:
-        sit = f"✅ já gerada no piloto (renomear `{JA_GERADAS[c[0]]}` → `{c[0]}.png`)" if c[0] in JA_GERADAS else "a gerar"
+        sit = "✅ pronta (no app)" if c[0] in JA_GERADAS else "a gerar"
         out += f"| {c[1]} | {NOME_RAR[RARIDADE.get(c[0], 'comum')]} | {sit} |\n"
     out += "\n"
     for c in lote:
