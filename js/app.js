@@ -59,6 +59,65 @@ async function sincronizar() {
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') agendarSync(300); });
 setInterval(() => document.visibilityState === 'visible' && agendarSync(0), 90000);
 
+// Aceita o convite/código puro, o link ou a mensagem inteira colada.
+const extrairConvite = (t) => ((t || '').match(/[0-9a-f]{6}-[0-9a-f]{6}/i) || [t || ''])[0].trim();
+const extrairCodigoFamilia = (t) => { t = (t || '').trim(); const m = t.match(/familia\/([a-z0-9]{6})\b/i) || t.match(/fam[ií]lia:\s*([a-z0-9]{6})\b/i); return (m ? m[1] : t).toUpperCase(); };
+
+// ─── Convite por link: #/entrar/casa/<convite> e #/entrar/familia/<código> ───
+const CHAVE_CONVITE = CANAL_TESTE ? 'ajornada.teste.convite' : 'ajornada.convite';
+function convitePendente() { try { return JSON.parse(localStorage.getItem(CHAVE_CONVITE)); } catch { return null; } }
+function guardarConvite(c) { try { c ? localStorage.setItem(CHAVE_CONVITE, JSON.stringify(c)) : localStorage.removeItem(CHAVE_CONVITE); } catch { /* sem armazenamento */ } }
+const linkConvite = (tipo, codigo) => `${location.origin}${location.pathname}#/entrar/${tipo}/${encodeURIComponent(codigo)}`;
+
+function telaEntrar() {
+  const c = convitePendente();
+  if (!c) return telaAmigos();
+  const cab = `${topo()}<h1 class="tit-tela">Convite</h1>`;
+  const nViaj = perfis().length;
+  const viaj = `<p class="dica">${nViaj === 1 ? `O viajante deste celular (${esc(P().nome)}) vai junto` : `Os ${nViaj} viajantes deste celular vão junto`}, com todo o progresso.</p>`;
+  if (!N.ligada()) return `${cab}<section class="bloco vazio"><p><b>${CANAL_TESTE ? 'A nuvem fica desligada no canal de teste.' : 'O banco ainda não foi ligado.'}</b></p></section>`;
+  if (c.tipo === 'casa') {
+    if (RAIZ.nuvem && RAIZ.nuvem.convite === c.codigo) { guardarConvite(null); return telaAmigos(); }
+    return `${cab}<section class="bloco"><div class="bloco-tit"><span>Entrar na casa</span></div>
+      <p>Você recebeu o convite para entrar numa <b>casa</b> d'A Jornada: os celulares de quem mora junto, com o progresso e as anotações sincronizados.</p>
+      ${viaj}
+      ${RAIZ.nuvem ? `<p class="dica">Este celular hoje está na casa <b>${esc(RAIZ.nuvem.familiaNome)}</b> e vai sair dela.</p>` : ''}
+      <button class="btn grande ouro" data-acao="aceitar-convite">Entrar na casa</button>
+      <button class="btn sec" data-acao="recusar-convite">Agora não</button></section>`;
+  }
+  return `${cab}<section class="bloco"><div class="bloco-tit"><span>Entrar na família</span></div>
+    <p>Você recebeu o convite para entrar numa <b>família</b> d'A Jornada: casas que estudam juntas e se acompanham no ranking da semana.</p>
+    ${RAIZ.nuvem ? `<p class="dica">A sua casa, <b>${esc(RAIZ.nuvem.familiaNome)}</b>, vai entrar na família.</p>`
+      : `<p class="dica">Primeiro a sua casa (quem mora com você) é criada na nuvem; depois ela entra na família.</p>
+         <label class="rot" for="casa-nome">Nome da sua casa</label><input id="casa-nome" class="campo" placeholder="Ex.: Casa Costa" maxlength="30">`}
+    ${viaj}
+    <button class="btn grande ouro" data-acao="aceitar-convite">${RAIZ.nuvem ? 'Entrar na família' : 'Criar casa e entrar'}</button>
+    <button class="btn sec" data-acao="recusar-convite">Agora não</button></section>`;
+}
+
+function aceitarConvite(b) {
+  const c = convitePendente(); if (!c) return;
+  b.disabled = true;
+  const fim = (msg) => { guardarConvite(null); toast(msg); ir('#/amigos'); return sincronizar(); };
+  const erro = (e) => { toast(esc(e.message)); b.disabled = false; };
+  if (c.tipo === 'casa') {
+    N.entrarFamilia(c.codigo).then((info) => {
+      RAIZ = { ...store.renovarIds(RAIZ), nuvem: info }; store.salvar(RAIZ); AMIGOS = []; FAMILIAS = []; GERAL = {};
+      return fim(`Você entrou na casa ${esc(info.familiaNome)}`);
+    }).catch(erro).finally(render);
+    return;
+  }
+  const casa = RAIZ.nuvem ? Promise.resolve(RAIZ.nuvem)
+    : N.criarFamilia(document.getElementById('casa-nome')?.value || '').then((info) => { RAIZ.nuvem = info; store.salvar(RAIZ); return info; });
+  casa.then(() => sincronizar()).then(() => N.entrarFamiliaGrupo(c.codigo))
+    .then((g) => fim(`Sua casa entrou em ${esc(g.nome)}`)).catch(erro).finally(render);
+}
+
+function compartilhar(txt) {
+  if (navigator.share) navigator.share({ text: txt }).catch(() => {});
+  else navigator.clipboard?.writeText(txt).then(() => toast('Mensagem copiada: cole no WhatsApp'));
+}
+
 function avisoCodigoAmigo() {
   overlay(`<div class="confirma"><p><b>Isso é um código de família</b>, não o convite da casa.</p>
     <p class="dica">• <b>Mora na mesma casa?</b> Peça o <b>convite da casa</b> (formato abc123-def456). Ele fica em Grupos → Família → Minha casa → Mostrar.</p>
@@ -67,7 +126,8 @@ function avisoCodigoAmigo() {
 }
 
 function entrarFamilia(b, convite) {
-  if (!convite.trim()) return;
+  convite = extrairConvite(convite);
+  if (!convite) return;
   b.disabled = true;
   N.entrarFamilia(convite).then((info) => {
     if (RAIZ.nuvem?.familiaId === info.familiaId) { toast('Este celular já está nessa casa'); return; }
@@ -276,6 +336,7 @@ function telaBoasVindas() {
     <div class="boas-av">${avatarHTML({}, [], 130)}</div>
     <h1>${NOME_APP}</h1>
     <p class="lead">Atravesse a Bíblia na ordem da história. Toda jornada começa no pó da terra (Gn 2:7): na primeira sessão você recebe o fôlego de vida e escolhe quem vai te acompanhar.</p>
+    ${convitePendente() ? `<p class="aviso-convite">${ico('messages-square')} Você recebeu um convite para ${convitePendente().tipo === 'casa' ? 'uma casa' : 'uma família'}. Crie o seu viajante e em seguida você entra.</p>` : ''}
     <a class="btn grande" href="#/novo-perfil">Criar meu viajante</a>
     ${instalado() ? '' : `<button class="btn sec" data-acao="instalar">${ico('download')} Instalar no celular</button>`}
   </div>`;
@@ -755,8 +816,9 @@ function abasGrupos(atual) {
 
 function blocoMinhaCasa(n) {
   return `<section class="bloco"><div class="bloco-tit"><span>Minha casa · ${esc(n.familiaNome)}</span></div>
-    <p class="dica">Outro celular da mesma casa: abra o app, vá em Grupos → Família → "Entrar na casa" e use o convite. Ele é secreto: dá acesso às anotações da casa.</p>
+    <p class="dica">Para quem mora com você: envie o convite (vai um link). Ele é secreto: dá acesso às anotações da casa.</p>
     <div class="codigo secreto"><small>Convite da casa</small><b id="convite-val" data-v="${esc(n.convite)}">••••••-••••••</b><button class="btn sec" data-acao="ver-convite">Mostrar</button></div>
+    <button class="btn grande" data-acao="enviar-convite">${ico('upload')} Enviar convite da casa</button>
     <details class="trocar-fam"><summary>Este celular está na casa errada?</summary>
       <p class="dica">Se você criou uma casa sozinho e queria entrar em outra, use o convite dela. Os viajantes deste celular vão junto, com todo o progresso.</p>
       <label class="rot" for="convite-troca">Convite da outra casa</label><input id="convite-troca" class="campo" placeholder="ex.: a1b2c3-d4e5f6" autocapitalize="off">
@@ -769,7 +831,7 @@ function blocoFamilia() {
     return `<section class="bloco"><div class="bloco-tit"><span>Família</span></div>
       <p class="dica">Junte a sua casa com outras casas (avós, tios, primos) numa família. Cada casa guarda as próprias anotações; a família vê o ranking da semana e onde cada um está no mapa.</p>
       <label class="rot" for="cod-familia">Código da família</label>
-      <div class="linha-btns"><input id="cod-familia" class="campo" placeholder="ABC123" maxlength="6" autocapitalize="characters"><button class="btn ouro" data-acao="entrar-grupo">Entrar</button></div>
+      <div class="linha-btns"><input id="cod-familia" class="campo" placeholder="ABC123" autocapitalize="characters"><button class="btn ouro" data-acao="entrar-grupo">Entrar</button></div>
       <details class="trocar-fam"><summary>Ninguém criou ainda? Criar uma família</summary>
         <label class="rot" for="nome-familia">Nome da família</label><input id="nome-familia" class="campo" placeholder="Ex.: Família Costa" maxlength="30">
         <button class="btn grande ouro" data-acao="criar-grupo" style="margin-top:12px">Criar família</button></details></section>`;
@@ -1074,10 +1136,14 @@ function capturar(id) {
 // ─── Roteamento ───
 let passoAtual = {};
 let ultimoResultado = null;
-const NAV = { hoje: 'hoje', jornada: 'jornada', sessao: 'jornada', livro: 'jornada', cartas: 'cartas', carta: 'cartas', selos: 'cartas', eventos: 'cartas', selo: 'cartas', linha: 'jornada', amigos: 'amigos', geral: 'amigos', perfil: 'perfil', editar: 'perfil', 'novo-perfil': 'perfil', revisao: 'hoje', aplicacao: 'hoje', resultado: 'hoje', desafio: 'hoje', dsessao: 'hoje' };
+const NAV = { hoje: 'hoje', jornada: 'jornada', sessao: 'jornada', livro: 'jornada', cartas: 'cartas', carta: 'cartas', selos: 'cartas', eventos: 'cartas', selo: 'cartas', linha: 'jornada', amigos: 'amigos', geral: 'amigos', entrar: 'amigos', perfil: 'perfil', editar: 'perfil', 'novo-perfil': 'perfil', revisao: 'hoje', aplicacao: 'hoje', resultado: 'hoje', desafio: 'hoje', dsessao: 'hoje' };
 
 function render() {
-  const [, rota = 'hoje', arg] = (location.hash || '#/hoje').split('/');
+  const [, rota = 'hoje', arg, cod] = (location.hash || '#/hoje').split('/');
+  if (rota === 'entrar' && (arg === 'casa' || arg === 'familia') && cod) {
+    guardarConvite({ tipo: arg, codigo: arg === 'casa' ? extrairConvite(decodeURIComponent(cod)) : decodeURIComponent(cod).toUpperCase() });
+    history.replaceState(null, '', '#/entrar'); // tira o código da barra de endereço
+  }
   if (perfis().map((o) => J.migrarCartas(o)).some(Boolean)) salvar(); // cartas antigas: quem já tinha, fica com elas
   let html;
   if (!P() && rota !== 'novo-perfil') html = telaBoasVindas();
@@ -1101,6 +1167,7 @@ function render() {
     case 'linha': html = telaLinha(); break;
     case 'amigos': html = telaAmigos(); break;
     case 'geral': html = telaGeral(arg); break;
+    case 'entrar': html = telaEntrar(); break;
     case 'perfil': html = telaPerfil(); break;
     default: html = telaHoje();
   }
@@ -1170,7 +1237,7 @@ document.body.addEventListener('click', (ev) => {
     const editado = new Date().toISOString();
     if (b.dataset.id) Object.assign(RAIZ.perfis[b.dataset.id], { nome, apelido, tipo: FORM.tipo, avatar: FORM.avatar, editado });
     else { const np = { ...store.novoPerfil(nome, FORM.tipo, FORM.avatar), apelido, editado }; RAIZ.perfis[np.id] = np; RAIZ.ativo = np.id; }
-    salvar(); FORM = null; ir(b.dataset.id ? '#/perfil' : '#/hoje');
+    salvar(); FORM = null; ir(b.dataset.id ? '#/perfil' : (convitePendente() ? '#/entrar' : '#/hoje'));
   }
   if (acao === 'f-remover') {
     const alvo = RAIZ.perfis[b.dataset.id];
@@ -1191,13 +1258,14 @@ document.body.addEventListener('click', (ev) => {
   }
   if (acao === 'entrar-familia') entrarFamilia(b, document.getElementById('convite').value);
   if (acao === 'trocar-familia') {
-    const v = document.getElementById('convite-troca').value; if (!v.trim()) return;
+    const v = extrairConvite(document.getElementById('convite-troca').value); if (!v) return;
     if (N.pareceCodigoAmigo(v)) { avisoCodigoAmigo(); return; }
     confirmar(`Sair de <b>${esc(RAIZ.nuvem.familiaNome)}</b> e entrar na casa do convite? Os viajantes deste celular vão junto.`, 'Entrar', () => entrarFamilia(b, v));
   }
   if (acao === 'sync') sincronizar().then(render);
   if (acao === 'criar-grupo' || acao === 'entrar-grupo') {
-    const v = document.getElementById(acao === 'criar-grupo' ? 'nome-familia' : 'cod-familia').value;
+    const campo = document.getElementById(acao === 'criar-grupo' ? 'nome-familia' : 'cod-familia').value;
+    const v = acao === 'criar-grupo' ? campo : extrairCodigoFamilia(campo);
     if (acao === 'entrar-grupo' && !v.trim()) return;
     b.disabled = true;
     (acao === 'criar-grupo' ? N.criarFamiliaGrupo(v) : N.entrarFamiliaGrupo(v))
@@ -1208,12 +1276,21 @@ document.body.addEventListener('click', (ev) => {
   if (acao === 'ver-convite') { const el = document.getElementById('convite-val'); el.textContent = el.dataset.v; }
   if (acao === 'compartilhar') {
     const f = FAMILIAS[0]; if (!f) return;
-    const txt = `Vamos estudar a Bíblia juntos n'A Jornada! Entre na família ${f.nome}. Código da família: ${f.codigo}
-Como entrar: abra o app, vá em Grupos → Família, crie a sua casa e coloque o código em "Código da família".
-(Quem mora na mesma casa entra com o convite da casa, não com este código.)
-${location.origin}${location.pathname}`;
-    if (navigator.share) navigator.share({ text: txt }).catch(() => {}); else navigator.clipboard?.writeText(txt).then(() => toast('Copiado'));
+    compartilhar(`Vamos estudar a Bíblia juntos n'A Jornada! Entre ${/^fam[ií]lia\b/i.test(f.nome) ? `na ${f.nome}` : `na família ${f.nome}`}: toque no link 👇
+${linkConvite('familia', f.codigo)}
+
+Se o link não abrir no app, abra A Jornada, vá em Grupos → Família e cole o código da família: ${f.codigo}`);
   }
+  if (acao === 'enviar-convite') {
+    const n = RAIZ.nuvem; if (!n) return;
+    compartilhar(`Entre na nossa casa n'A Jornada (${n.familiaNome})! Toque no link 👇
+${linkConvite('casa', n.convite)}
+
+Se o link não abrir no app, abra A Jornada, vá em Grupos e cole este convite em "Convite da casa": ${n.convite}
+(É secreto: só para quem mora com a gente.)`);
+  }
+  if (acao === 'aceitar-convite') aceitarConvite(b);
+  if (acao === 'recusar-convite') { guardarConvite(null); ir('#/hoje'); }
   if (acao === 'trocar') { RAIZ.ativo = b.dataset.p; salvar(); toast(`Agora: ${esc(P().nome)}`); ir('#/hoje'); render(); }
 
   if (acao === 'passo') { capturar(id); passoAtual[id] = Number(b.dataset.passo); render(); }

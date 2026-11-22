@@ -89,6 +89,7 @@ Nova era: criar `data/era-<id>.js` no mesmo formato, importar em `js/jogo.js`, m
   **só apelido + personagem** (nunca nome real nem casa), duas abas: XP do mês (zera dia 1º) e Progresso (capítulos lidos),
   top 50 + os da minha casa (`ranking_geral(mes, ordem)`). Apelido (`apelido`, até 20) no Editar viajante; sem apelido,
   aparece o nome do personagem. `resumo()` em `app.js` manda `xp_mes`, `mes` e `capitulos` na sincronização.
+- **Convites por link** (v39): `#/entrar/casa/<convite>` e `#/entrar/familia/<código>` → tela `telaEntrar` (guarda em `ajornada.convite`); campos aceitam a mensagem colada (`extrairConvite`, `extrairCodigoFamilia`).
 - **Mudou o banco? Rafael roda o `schema.sql` inteiro no SQL Editor ANTES de publicar o app no oficial.**
 - Requer no painel: Authentication → "Allow anonymous sign-ins" ligado.
 

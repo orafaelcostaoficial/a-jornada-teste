@@ -9,7 +9,7 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
 
 | Canal | Versão | Link |
 |---|---|---|
-| Oficial (família) | **v37** (branch `main`) | https://orafaelcostaoficial.github.io/a-jornada/ |
+| Oficial (família) | **v39** (branch `main`) | https://orafaelcostaoficial.github.io/a-jornada/ |
 | Teste | branch `teste`, app separado "Jornada TESTE" | https://orafaelcostaoficial.github.io/a-jornada-teste/ |
 
 ### Já está no ar
@@ -64,9 +64,10 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
    - **No celular:** desinstalar o teste antigo, se ainda existir, e instalar o novo pelo botão.
 2. **Convite × código de amigo (v37, na `teste`, 21/11/2026).** Um familiar colocou o código de amigo no campo do convite e recebeu "convite inválido". Agora: aviso explicando a diferença; texto do "Enviar" diz como usar o código; seção "Este celular está na família errada?" para quem criou família sozinho entrar em outra (os perfis ganham ids novos, `renovarIds` em `store.js`, para não colidir no banco). Sem mudança no Supabase. Publicado no oficial em 21/11/2026 (v37, junto com era 3 e cartas por questionário).
 3. **Casa, Família e ranking geral (v38, na `teste`, 22/11/2026).** Casa = quem mora junto (convite); Família = grupo de casas (código da família), uma por casa por enquanto. Aba "Grupos" com Família (ranking semanal) e Geral (mensal, só apelido + personagem; abas XP do mês e Progresso). Apelido no Editar viajante. SQL testado em Postgres 16 (migração das amizades, RLS, anon bloqueado).
-   - **Falta:** (a) Rafael rodar o `supabase/schema.sql` inteiro no SQL Editor do Supabase; (b) só depois, "pode publicar". Publicar antes do SQL quebra a sincronização.
+   - SQL rodado no Supabase em 22/11/2026 (pelo Chrome do Rafael). Publicado no oficial como v39, junto com os convites por link.
    - **Depois:** casa em mais de uma família (grupos de estudo); moderação de apelidos se o geral abrir para a igreja.
-4. ~~Conferir os slugs da NAA~~: feito em 21/11/2026 (`ex`, `lv`, `nm`, `dt` conferidos no site; o botão NAA da era 2 passou a aparecer na v33).
+4. **Convites por link (v39, 22/11/2026).** "Enviar convite da casa" e "Enviar" da família mandam mensagem com link `#/entrar/casa/<convite>` ou `#/entrar/familia/<código>`. O app guarda o convite (`ajornada.convite`), tira o código da barra, pede para criar o viajante se for novo e mostra a tela "Entrar na casa/família" (a da família cria a casa junto). Os campos aceitam a mensagem inteira colada. **Atenção iPhone:** app instalado na tela inicial não abre links; aí vale colar a mensagem no campo.
+5. ~~Conferir os slugs da NAA~~: feito em 21/11/2026 (`ex`, `lv`, `nm`, `dt` conferidos no site; o botão NAA da era 2 passou a aparecer na v33).
 
 ---
 
