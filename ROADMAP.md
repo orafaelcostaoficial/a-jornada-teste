@@ -9,7 +9,7 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
 
 | Canal | Versão | Link |
 |---|---|---|
-| Oficial (família) | **v31** (branch `main`) | https://orafaelcostaoficial.github.io/a-jornada/ |
+| Oficial (família) | **v37** (branch `main`) | https://orafaelcostaoficial.github.io/a-jornada/ |
 | Teste | branch `teste`, app separado "Jornada TESTE" | https://orafaelcostaoficial.github.io/a-jornada-teste/ |
 
 ### Já está no ar
@@ -62,7 +62,7 @@ As decisões de produto e o desenho das funções ficam no `PLANO.md`. As regras
 1. **Teste separado do oficial (feito, 21/11/2026; v32 no oficial).** O teste virou outro app, em outro endereço: o repositório `a-jornada-teste`, publicado por `ferramentas/publicar_teste.sh`. O conteúdo já foi enviado.
    - **Falta:** (a) ligar o Pages no `a-jornada-teste` (Settings → Pages → Deploy from a branch → `main` / root), o que o Rafael faz pelo celular; (b) com o "pode publicar", levar a v32 da `teste` para a `main`, com o redirecionamento de `/a-jornada/teste/`, o link do rodapé e o cartão "já instalado".
    - **No celular:** desinstalar o teste antigo, se ainda existir, e instalar o novo pelo botão.
-2. **Convite × código de amigo (v37, na `teste`, 21/11/2026).** Um familiar colocou o código de amigo no campo do convite e recebeu "convite inválido". Agora: aviso explicando a diferença; texto do "Enviar" diz como usar o código; seção "Este celular está na família errada?" para quem criou família sozinho entrar em outra (os perfis ganham ids novos, `renovarIds` em `store.js`, para não colidir no banco). Sem mudança no Supabase. **Falta:** "pode publicar".
+2. **Convite × código de amigo (v37, na `teste`, 21/11/2026).** Um familiar colocou o código de amigo no campo do convite e recebeu "convite inválido". Agora: aviso explicando a diferença; texto do "Enviar" diz como usar o código; seção "Este celular está na família errada?" para quem criou família sozinho entrar em outra (os perfis ganham ids novos, `renovarIds` em `store.js`, para não colidir no banco). Sem mudança no Supabase. Publicado no oficial em 21/11/2026 (v37, junto com era 3 e cartas por questionário).
 3. ~~Conferir os slugs da NAA~~: feito em 21/11/2026 (`ex`, `lv`, `nm`, `dt` conferidos no site; o botão NAA da era 2 passou a aparecer na v33).
 
 ---
