@@ -287,7 +287,7 @@ function abrirXP() {
     <div class="xp-hist">${ult.map((u) => `<div><small>${dataCurta(u.data)}</small><span>${u.g === 'acerto' ? `${u.n} acerto${u.n > 1 ? 's' : ''} no quiz` : esc(u.txt)}</span><b>+${u.xp}</b></div>`).join('')}</div>` : ''}
     <div class="xp-sec">Como ganhar XP</div>
     <div class="xp-como">
-      <span>Concluir uma sessão <b>+${J.XP.sessao}</b></span><span>2ª sessão no mesmo dia <b>metade</b></span><span>3ª em diante no mesmo dia <b>¼</b></span><span>Escrever a aplicação <b>+${J.XP.aplicacao}</b></span>
+      <span>Concluir uma sessão <b>+${J.XP.sessao}</b></span><span>1ª e 2ª sessão do dia <b>XP cheio</b></span><span>3ª sessão no mesmo dia <b>metade</b></span><span>4ª em diante no mesmo dia <b>¼</b></span><span>Escrever a aplicação <b>+${J.XP.aplicacao}</b></span>
       <span>Contar "como foi?" <b>+${J.XP.revisao}</b></span><span>Acerto na revisão <b>+${J.XP.acerto}</b></span>
       <span>Meta da semana (5 dias) <b>+${J.FAIXAS_SEMANA[0].xp}</b></span><span>Concluir um livro <b>+${J.XP.livro}</b></span>
       <span>Concluir uma era <b>+${J.XP.era}</b></span><span>Completar um desafio <b>+${J.XP.livro}</b></span></div>
@@ -450,8 +450,8 @@ function telaHoje() {
       <div class="missao-top"><span>${feitaHoje ? 'Quer avançar mais?' : 'Sessão de hoje'}</span><span>${esc(ERAS.find((e) => e.id === eraDe(prox)).nome)}</span></div>
       <div class="missao-ref">${esc(J.refSessao(prox))}</div>
       <div class="missao-tit">${esc(prox.titulo)}</div>
-      <div class="missao-go">Começar ${ico('chevron-right')}</div>
-      ${feitaHoje ? `<div class="missao-ritmo">+${J.xpRitmo(J.XP.sessao, J.fatorProxima(p))} XP: a 1ª sessão do dia vale mais. Amanhã volta a valer +${J.XP.sessao}.</div>` : ''}
+      <div class="missao-go">Começar ${ico('chevron-right')}<span class="missao-xp">+${J.xpRitmo(J.XP.sessao, J.fatorProxima(p))} XP</span></div>
+
     </a>`
     : `<section class="bloco"><b>Você chegou ao fim do conteúdo escrito!</b><p>A próxima era está sendo preparada. Enquanto isso, revise as perguntas e releia as sessões.</p></section>`}
   ${J.desafiosVisiveis(CANAL_TESTE).map((d) => cartaoDesafio(p, d)).join('')}

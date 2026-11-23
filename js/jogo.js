@@ -255,13 +255,13 @@ function ganhar(e, tipo, xp, ref) {
   e.log.push({ data: hoje(), tipo, xp, ref });
 }
 
-// Ritmo (decidido em 22/11/2026, v57): a 1ª sessão do dia vale XP cheio; as seguintes, cada vez menos
+// Ritmo (decidido em 22/11/2026, v57): as 2 primeiras sessões do dia valem XP cheio; as seguintes, cada vez menos
 // (½, depois ¼), nunca zero. Quem maratona continua avançando e ganhando cartas; o ranking premia constância.
-export const FATOR_DIA = [1, 0.5, 0.25];
+export const FATOR_DIA = [1, 1, 0.5, 0.25];
 export const sessoesHoje = (e) => SESSOES.filter((s) => e.sessoes[s.id]?.data === hoje() && !e.sessoes[s.id]?.teste).length;
 export const fatorProxima = (e) => FATOR_DIA[Math.min(sessoesHoje(e), FATOR_DIA.length - 1)];
 export const xpRitmo = (base, fator) => Math.max(1, Math.round(base * fator));
-const ORDINAL = ['', '1ª', '2ª', '3ª'];
+const ORDINAL = ['', '1ª', '2ª', '3ª', '4ª'];
 // Conclui a sessão e devolve o que foi desbloqueado (para a tela de resultado).
 export function concluirSessao(e, s, dados) {
   const antesP = personagensLiberados(e);

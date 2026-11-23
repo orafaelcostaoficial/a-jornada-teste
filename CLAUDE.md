@@ -60,7 +60,7 @@ Nova era: criar `data/era-<id>.js` no mesmo formato, importar em `js/jogo.js`, m
   pó da terra (Gn 2:7, `poHTML`) e escolhe o personagem no "fôlego de vida", ao concluir a 1ª sessão. Três imagens por
   personagem: `<id>` (níveis 1–7), `<id>-meio` (8–19), `<id>-final` (20+), sobre cenário que muda por estágio (`FUNDOS`).
   Imagens do Gemini vêm com fundo branco: `python3 ferramentas/recortar.py entrada.png img/avatares/<id>.webp`.
-- Ritmo (v57): 1ª sessão do dia vale XP cheio (sessão + aplicação); 2ª vale ½; 3ª em diante ¼, nunca zero (`FATOR_DIA` em jogo.js). Cartas, livros e eras não mudam.
+- Ritmo (v57): 1ª e 2ª sessão do dia valem XP cheio (sessão + aplicação); 3ª vale ½; 4ª em diante ¼, nunca zero (`FATOR_DIA` em jogo.js). Cartas, livros e eras não mudam.
 - XP para subir do nível n ao n+1 = 40 + 10·n^1,5 (50, 68, 92 … 356 no nível 10 … 934 no 20).
 - Cartas: imagens do Gemini (prompts em `PROMPTS-CARTAS.md`) em `img/cartas/<id>.webp` (600×800, original em JPG q95 no Drive), listadas em `data/imagens.js`.
   Moldura v42 (placas, joias, cantos; estilo A, raridade na cena). Carta a conquistar mostra "???" no nome.
