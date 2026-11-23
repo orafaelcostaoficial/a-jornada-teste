@@ -112,10 +112,15 @@ export const minhasFamilias = async () => (await rpc('minhas_familias')) || [];
 export const rankingFamilia = async () => (await rpc('ranking_familia')) || [];
 export const rankingGeral = async (mes, ordem) => (await rpc('ranking_geral', { p_mes: mes, p_ordem: ordem })) || [];
 
-// Apaga do servidor a casa inteira: perfis, anotações, membros (todos os celulares) e a participação nas famílias.
-// O progresso continua em cada celular, que passa a funcionar só no aparelho.
-export async function apagarNuvem() {
-  await rpc('apagar_minha_casa');
+// Responsável pela casa (quem criou; se saiu, o celular mais antigo). null = não deu para saber
+// (banco ainda sem a função, sem rede).
+export const souResponsavel = () => rpc('sou_responsavel').catch(() => null);
+
+// modo 'casa': só o responsável. Apaga do servidor a casa inteira (perfis, anotações, todos os celulares,
+// participação nas famílias). modo 'celular': tira só este celular; a casa continua para os outros.
+// Nos dois casos o progresso continua neste celular, que passa a funcionar só no aparelho.
+export async function apagarNuvem(modo) {
+  await rpc(modo === 'casa' ? 'apagar_minha_casa' : 'sair_da_casa');
   try { await (await cliente()).auth.signOut(); } catch { /* o login anônimo não guarda dados */ }
   sb = null;
 }

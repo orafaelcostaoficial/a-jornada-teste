@@ -33,8 +33,8 @@ const RARIDADE = {
 const esc = (t = '') => String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const salvar = () => { store.salvar(RAIZ); agendarSync(); };
 
-// ─── Nuvem ───
-let AMIGOS = []; let FAMILIAS = []; let GERAL = {}; let SYNC = { status: N.ligada() ? 'pronto' : 'desligada', erro: null };
+// ─── Nuvem ───  (RESP: este celular é o responsável pela casa? null = ainda não se sabe)
+let AMIGOS = []; let FAMILIAS = []; let GERAL = {}; let RESP = null; let SYNC = { status: N.ligada() ? 'pronto' : 'desligada', erro: null };
 function resumo(p) {
   const s = J.semanaAtual(p); const prox = J.proxima(p);
   const xpSemana = p.log.filter((l) => s.dias.includes(l.data)).reduce((t, l) => t + l.xp, 0);
@@ -54,11 +54,11 @@ async function sincronizar() {
   try {
     RAIZ = await N.sincronizar(RAIZ, resumo);
     if (RAIZ.nuvemApagada) {
-      delete RAIZ.nuvemApagada; store.salvar(RAIZ); AMIGOS = []; FAMILIAS = []; GERAL = {};
+      delete RAIZ.nuvemApagada; store.salvar(RAIZ); AMIGOS = []; FAMILIAS = []; GERAL = {}; RESP = null;
       SYNC = { status: 'pronto', erro: null }; toast('A casa foi apagada da nuvem. O progresso continua neste celular.'); render(); return;
     }
     store.salvar(RAIZ);
-    [AMIGOS, FAMILIAS] = await Promise.all([N.rankingFamilia(), N.minhasFamilias()]);
+    [AMIGOS, FAMILIAS, RESP] = await Promise.all([N.rankingFamilia(), N.minhasFamilias(), N.souResponsavel()]);
     SYNC = { status: 'ok', erro: null, em: new Date() };
     const emQuiz = /^#\/(sessao|conquistar|revisao|dsessao)/.test(location.hash) || document.querySelector('.overlay');
     if (!document.querySelector('textarea:focus, input:focus') && !emQuiz) render();
@@ -110,7 +110,7 @@ function aceitarConvite(b) {
   const erro = (e) => { toast(esc(e.message)); b.disabled = false; };
   if (c.tipo === 'casa') {
     N.entrarFamilia(c.codigo).then((info) => {
-      RAIZ = { ...store.renovarIds(RAIZ), nuvem: info }; store.salvar(RAIZ); AMIGOS = []; FAMILIAS = []; GERAL = {};
+      RAIZ = { ...store.renovarIds(RAIZ), nuvem: info }; store.salvar(RAIZ); AMIGOS = []; FAMILIAS = []; GERAL = {}; RESP = null;
       return fim(`Você entrou na casa ${esc(info.familiaNome)}`);
     }).catch(erro).finally(render);
     return;
@@ -139,7 +139,7 @@ function entrarFamilia(b, convite) {
   b.disabled = true;
   N.entrarFamilia(convite).then((info) => {
     if (RAIZ.nuvem?.familiaId === info.familiaId) { toast('Este celular já está nessa casa'); return; }
-    RAIZ = { ...store.renovarIds(RAIZ), nuvem: info }; store.salvar(RAIZ); AMIGOS = []; FAMILIAS = []; GERAL = {};
+    RAIZ = { ...store.renovarIds(RAIZ), nuvem: info }; store.salvar(RAIZ); AMIGOS = []; FAMILIAS = []; GERAL = {}; RESP = null;
     toast(`Você entrou na casa ${esc(info.familiaNome)}`); return sincronizar();
   }).catch((e) => { if (e.codigoAmigo) avisoCodigoAmigo(); else toast(esc(e.message)); b.disabled = false; }).finally(render);
 }
@@ -874,8 +874,11 @@ function blocoMinhaCasa(n) {
       <button class="btn grande" data-acao="trocar-familia" style="margin-top:12px">Entrar na outra casa</button></details></section>
   <section class="bloco"><div class="bloco-tit"><span>Seus dados</span></div>
     <p class="dica">${ico('shield-check')} Na nuvem ficam só o apelido, o personagem, o progresso e as anotações da casa. Nada de nome real, idade, endereço ou contato.</p>
-    <button class="btn perigo-sec" data-acao="apagar-nuvem">Apagar meus dados da nuvem</button>
-    <p class="dica">Apaga do servidor os viajantes, as anotações e a casa (em todos os celulares dela) e tira a casa da família. Os pontos e o progresso continuam neste celular.</p></section>`;
+    ${RESP === true ? `<button class="btn perigo-sec" data-acao="apagar-nuvem" data-modo="casa">Apagar meus dados da nuvem</button>
+    <p class="dica">Este celular é o responsável pela casa. Apaga do servidor os viajantes, as anotações e a casa (em todos os celulares dela) e tira a casa da família. Os pontos e o progresso continuam neste celular.</p>`
+    : RESP === false ? `<button class="btn perigo-sec" data-acao="apagar-nuvem" data-modo="celular">Tirar este celular da nuvem</button>
+    <p class="dica">Este celular sai da casa e deixa de sincronizar; os pontos e o progresso ficam nele. A casa continua para os outros celulares. Apagar a casa inteira só pelo celular responsável (quem criou a casa).</p>`
+    : '<p class="dica">Sincronize para ver as opções de apagar.</p>'}</section>`;
 }
 
 function blocoFamilia() {
@@ -1292,10 +1295,12 @@ document.body.addEventListener('click', (ev) => {
     salvar(); FORM = null; ir(b.dataset.id ? '#/perfil' : (convitePendente() ? '#/entrar' : '#/hoje'));
   }
   if (acao === 'apagar-nuvem') {
-    confirmar('Apagar da nuvem os viajantes, as anotações e a casa? Os outros celulares da casa também deixam de sincronizar. <b>Os pontos e o progresso continuam neste celular.</b>', 'Apagar da nuvem', () => {
-      N.apagarNuvem().then(() => {
-        RAIZ = { ...RAIZ, nuvem: null, removidos: [] }; salvar(); AMIGOS = []; FAMILIAS = []; GERAL = {};
-        SYNC = { status: 'pronto', erro: null }; toast('Dados apagados da nuvem'); render();
+    const casa = b.dataset.modo === 'casa';
+    confirmar(casa ? 'Apagar da nuvem os viajantes, as anotações e a casa? Os outros celulares da casa também deixam de sincronizar. <b>Os pontos e o progresso continuam neste celular.</b>'
+      : 'Tirar este celular da nuvem? Ele deixa de sincronizar com a casa. <b>Os pontos e o progresso continuam neste celular.</b>', casa ? 'Apagar da nuvem' : 'Tirar da nuvem', () => {
+      N.apagarNuvem(casa ? 'casa' : 'celular').then(() => {
+        RAIZ = { ...RAIZ, nuvem: null, removidos: [] }; salvar(); AMIGOS = []; FAMILIAS = []; GERAL = {}; RESP = null;
+        SYNC = { status: 'pronto', erro: null }; toast(casa ? 'Dados apagados da nuvem' : 'Este celular saiu da nuvem'); render();
       }).catch((e) => toast(esc(e.message)));
     });
     return;

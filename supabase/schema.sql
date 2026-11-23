@@ -319,7 +319,7 @@ grant execute on function public.meus_grupos(), public.criar_grupo(text), public
 grant select on public.grupos, public.grupo_casas to authenticated;
 
 -- ════════════════════════════════════════════════════════════════════════════
--- v58 — SÓ APELIDO e APAGAR DA NUVEM
+-- v58 — SÓ APELIDO, APAGAR DA NUVEM e RESPONSÁVEL PELA CASA
 --   O viajante tem um campo só, o apelido. A coluna `perfis.nome` fica vazia para sempre e o
 --   gatilho abaixo tira o nome também de `dados`, mesmo que um app antigo ainda mande.
 alter table public.perfis alter column nome drop not null;
@@ -348,20 +348,81 @@ language sql stable security definer set search_path = public as $$
   where a.familia_id = minha_familia()
 $$;
 
+-- Responsável pela casa: o celular que criou a casa (gravado no primeiro membro). Se ele não estiver
+-- mais na casa (trocou de celular, saiu), o responsável passa a ser o celular mais antigo da casa.
+-- Casas criadas antes da v58 não têm o campo: vale o celular mais antigo.
+alter table public.familias add column if not exists responsavel uuid;
+
+create or replace function public.membros_entrada() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if tg_op = 'UPDATE' and new.familia_id is distinct from old.familia_id then
+    new.criado_em := now();  -- mudou de casa: conta como recém-chegado na nova
+  end if;
+  return new;
+end $$;
+drop trigger if exists membros_entrada on public.membros;
+create trigger membros_entrada before update on public.membros
+  for each row execute function public.membros_entrada();
+
+create or replace function public.membros_primeiro() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  update familias set responsavel = new.user_id where id = new.familia_id and responsavel is null;
+  return null;
+end $$;
+drop trigger if exists membros_primeiro on public.membros;
+create trigger membros_primeiro after insert or update of familia_id on public.membros
+  for each row execute function public.membros_primeiro();
+
+create or replace function public.responsavel_da_casa(p_casa uuid) returns uuid
+language sql stable security definer set search_path = public as $$
+  select coalesce(
+    (select f.responsavel from familias f join membros m on m.user_id = f.responsavel and m.familia_id = f.id where f.id = p_casa),
+    (select m.user_id from membros m where m.familia_id = p_casa order by m.criado_em, m.user_id limit 1))
+$$;
+
+create or replace function public.sou_responsavel() returns boolean
+language sql stable security definer set search_path = public as $$
+  select minha_familia() is not null and responsavel_da_casa(minha_familia()) = auth.uid()
+$$;
+
 -- Apaga do servidor a minha casa inteira: perfis e anotações, membros (todos os celulares),
 -- amizades e participação nas famílias (as famílias que ficarem sem casa somem).
+-- Só o celular responsável pela casa pode.
 create or replace function public.apagar_minha_casa() returns void
 language plpgsql security definer set search_path = public as $$
 declare minha uuid := minha_familia(); gs uuid[];
 begin
   if minha is null then return; end if;
+  if responsavel_da_casa(minha) is distinct from auth.uid() then
+    raise exception 'Só o celular responsável pela casa pode apagar a casa.';
+  end if;
   select array_agg(grupo_id) into gs from grupo_casas where casa_id = minha;
   delete from familias where id = minha;
   delete from grupos g where g.id = any(coalesce(gs, '{}'))
     and not exists (select 1 from grupo_casas c where c.grupo_id = g.id);
 end $$;
-revoke all on function public.apagar_minha_casa() from public, anon;
-grant execute on function public.apagar_minha_casa() to authenticated;
+
+-- Tira só este celular da casa. Os viajantes continuam na casa para os outros celulares.
+-- Se era o último celular da casa, a casa é apagada (não fica dado sem dono no servidor).
+create or replace function public.sair_da_casa() returns void
+language plpgsql security definer set search_path = public as $$
+declare minha uuid := minha_familia(); gs uuid[];
+begin
+  if minha is null then return; end if;
+  delete from membros where user_id = auth.uid();
+  if not exists (select 1 from membros where familia_id = minha) then
+    select array_agg(grupo_id) into gs from grupo_casas where casa_id = minha;
+    delete from familias where id = minha;
+    delete from grupos g where g.id = any(coalesce(gs, '{}'))
+      and not exists (select 1 from grupo_casas c where c.grupo_id = g.id);
+  end if;
+end $$;
+
+revoke all on function public.apagar_minha_casa(), public.sair_da_casa(), public.sou_responsavel(),
+  public.responsavel_da_casa(uuid) from public, anon;
+grant execute on function public.apagar_minha_casa(), public.sair_da_casa(), public.sou_responsavel() to authenticated;
 
 -- Avisa a API do Supabase (PostgREST) para enxergar as tabelas e funções novas.
 notify pgrst, 'reload schema';
