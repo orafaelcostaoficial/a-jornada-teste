@@ -21,7 +21,7 @@ Para o traço não variar: uma conversa do Gemini por lote, anexando uma carta j
 | Enoque | épica | ✅ pronta (no app) |
 | Matusalém | rara | ✅ pronta (no app) |
 | Noé | lendária | ✅ pronta (no app) |
-| Sem | comum | 🔁 refazer (rosto parecido com outros) |
+| Sem | comum | ✅ pronta (no app) |
 | Ninrode | comum | ✅ pronta (no app) |
 | Terá | comum | ✅ pronta (no app) |
 | Abraão | lendária | ✅ pronta (no app) |

@@ -295,7 +295,7 @@ CENA_LOTE1 = {
                'deserto à noite sob um céu imenso repleto de estrelas e da Via Láctea, tenda iluminada por dentro atrás dele, '
                'luz dourada e prateada sobre o rosto', 'Gn 15:5; 17:5'),
 }
-REFAZER = {'sem'}
+REFAZER = set()
 JA_GERADAS = {'adao', 'eva', 'caim', 'sete', 'enoque', 'matusalem', 'sem', 'ninrode', 'abraao', 'tera', 'abel', 'noe'}
 
 
