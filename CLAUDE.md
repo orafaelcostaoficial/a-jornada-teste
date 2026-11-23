@@ -22,7 +22,7 @@ ao mudar personagens/cartas/selos, atualizar a lista ali, gerar de novo e subir 
    (Chromium, viewport 390×844) que percorre as telas mexidas; zero erro no console. Mandar prints ao Rafael.
 3. Subir para `teste` e avisar o link para ele testar no celular.
 4. **Só fazer merge em `main` (produção) quando o Rafael disser "pode publicar" / "sim, publica".**
-5. Ao mudar arquivos que o app usa offline, subir `VERSAO` em `sw.js` e incluir arquivos novos em `ARQUIVOS`.
+5. Ao mudar arquivos que o app usa offline, subir a versão em `versao.js` (única fonte: sw.js e rodapé do Perfil leem dali) e incluir arquivos novos em `ARQUIVOS` do `sw.js`.
 O canal de teste usa dados locais separados (`ajornada.teste.v2`) e não sincroniza com a nuvem
 (a não ser com `?nuvem=1`), para nunca bagunçar os dados reais da família.
 

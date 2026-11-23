@@ -1,10 +1,11 @@
 // Offline: rede primeiro (pega atualizações quando há internet), cache como reserva.
 // Ao mudar a lista de arquivos, suba a versão.
-const VERSAO = 'v54';
+importScripts('./versao.js'); // define self.VERSAO_APP
+const VERSAO = self.VERSAO_APP;
 const PREFIXO = 'ajornada:' + self.registration.scope + ':';
 const CACHE = PREFIXO + VERSAO;
 const ARQUIVOS = [
-  './', './index.html', './css/estilo.css', './manifest.webmanifest',
+  './', './index.html', './versao.js', './css/estilo.css', './manifest.webmanifest',
   './js/app.js', './js/jogo.js', './js/store.js', './js/icones.js', './js/avatar.js',
   './js/tema.js', './js/config.js', './js/nuvem.js', './js/cenario.js', './vendor/supabase.js',
   './data/biblia/blivre/1.json', './data/biblia/blivre/18.json', './data/biblia/blivre/2.json', './data/biblia/blivre/3.json', './data/biblia/blivre/4.json', './data/biblia/blivre/5.json',

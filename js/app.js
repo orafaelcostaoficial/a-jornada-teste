@@ -12,7 +12,7 @@ import { bannerNatal, ARTE_SELO } from './tema.js';
 import { DESAFIOS } from '../data/desafios.js';
 
 const NOME_APP = 'A Jornada';
-const VERSAO_APP = 'v36';
+const VERSAO_APP = self.VERSAO_APP || '?'; // vem de versao.js (mesmo número do sw.js)
 let RAIZ = store.carregar();
 const P = () => RAIZ.perfis[RAIZ.ativo];
 // Canal de teste: a cada carta nova com imagem, o perfil ativo avança até ela (ver avancarTeste em jogo.js).
