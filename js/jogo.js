@@ -255,6 +255,13 @@ function ganhar(e, tipo, xp, ref) {
   e.log.push({ data: hoje(), tipo, xp, ref });
 }
 
+// Ritmo (decidido em 22/11/2026, v57): a 1ª sessão do dia vale XP cheio; as seguintes, cada vez menos
+// (½, depois ¼), nunca zero. Quem maratona continua avançando e ganhando cartas; o ranking premia constância.
+export const FATOR_DIA = [1, 0.5, 0.25];
+export const sessoesHoje = (e) => SESSOES.filter((s) => e.sessoes[s.id]?.data === hoje() && !e.sessoes[s.id]?.teste).length;
+export const fatorProxima = (e) => FATOR_DIA[Math.min(sessoesHoje(e), FATOR_DIA.length - 1)];
+export const xpRitmo = (base, fator) => Math.max(1, Math.round(base * fator));
+const ORDINAL = ['', '1ª', '2ª', '3ª'];
 // Conclui a sessão e devolve o que foi desbloqueado (para a tela de resultado).
 export function concluirSessao(e, s, dados) {
   const antesP = personagensLiberados(e);
@@ -262,9 +269,12 @@ export function concluirSessao(e, s, dados) {
   const antesM = marcosLiberados(e);
   const ganhos = [];
   const nivelAntes = nivel(e.xp).n;
+  const n = sessoesHoje(e) + 1; const fator = fatorProxima(e);
   e.sessoes[s.id] = { data: hoje(), revisao: null, ...dados };
-  ganhar(e, 'sessao', XP.sessao, s.id); ganhos.push(['Sessão concluída', XP.sessao]);
-  if (dados.aplicacao) { ganhar(e, 'bonus', XP.aplicacao, s.id); ganhos.push(['Aplicação escrita', XP.aplicacao]); }
+  const xs = xpRitmo(XP.sessao, fator); const xa = xpRitmo(XP.aplicacao, fator);
+  const sufixo = n > 1 ? ` (${ORDINAL[n] || `${n}ª`} de hoje)` : '';
+  ganhar(e, 'sessao', xs, s.id); ganhos.push([`Sessão concluída${sufixo}`, xs]);
+  if (dados.aplicacao) { ganhar(e, 'bonus', xa, s.id); ganhos.push(['Aplicação escrita', xa]); }
   for (const g of bonusSemana(e)) { ganhar(e, 'bonus', g[1], g[2]); ganhos.push([g[0], g[1]]); }
   if (progressoLivro(e, s.livro).completo) {
     ganhar(e, 'livro', XP.livro, s.livro); ganhos.push([`${LIVROS[s.livro].nome} concluído`, XP.livro]);

@@ -287,7 +287,7 @@ function abrirXP() {
     <div class="xp-hist">${ult.map((u) => `<div><small>${dataCurta(u.data)}</small><span>${u.g === 'acerto' ? `${u.n} acerto${u.n > 1 ? 's' : ''} no quiz` : esc(u.txt)}</span><b>+${u.xp}</b></div>`).join('')}</div>` : ''}
     <div class="xp-sec">Como ganhar XP</div>
     <div class="xp-como">
-      <span>Concluir uma sessão <b>+${J.XP.sessao}</b></span><span>Escrever a aplicação <b>+${J.XP.aplicacao}</b></span>
+      <span>Concluir uma sessão <b>+${J.XP.sessao}</b></span><span>2ª sessão no mesmo dia <b>metade</b></span><span>3ª em diante no mesmo dia <b>¼</b></span><span>Escrever a aplicação <b>+${J.XP.aplicacao}</b></span>
       <span>Contar "como foi?" <b>+${J.XP.revisao}</b></span><span>Acerto na revisão <b>+${J.XP.acerto}</b></span>
       <span>Meta da semana (5 dias) <b>+${J.FAIXAS_SEMANA[0].xp}</b></span><span>Concluir um livro <b>+${J.XP.livro}</b></span>
       <span>Concluir uma era <b>+${J.XP.era}</b></span><span>Completar um desafio <b>+${J.XP.livro}</b></span></div>
@@ -451,6 +451,7 @@ function telaHoje() {
       <div class="missao-ref">${esc(J.refSessao(prox))}</div>
       <div class="missao-tit">${esc(prox.titulo)}</div>
       <div class="missao-go">Começar ${ico('chevron-right')}</div>
+      ${feitaHoje ? `<div class="missao-ritmo">+${J.xpRitmo(J.XP.sessao, J.fatorProxima(p))} XP: a 1ª sessão do dia vale mais. Amanhã volta a valer +${J.XP.sessao}.</div>` : ''}
     </a>`
     : `<section class="bloco"><b>Você chegou ao fim do conteúdo escrito!</b><p>A próxima era está sendo preparada. Enquanto isso, revise as perguntas e releia as sessões.</p></section>`}
   ${J.desafiosVisiveis(CANAL_TESTE).map((d) => cartaoDesafio(p, d)).join('')}
@@ -617,7 +618,7 @@ function telaSessao(id, passo = 0) {
         ? `${J.CRIANCAS[s.id] ? `<div class="rot">Para conversar</div><p class="conversa">${esc(J.CRIANCAS[s.id])}</p>` : ''}
       <div class="rot">Para fazer</div><p class="pergunta">${esc(J.CRIANCAS_FAZER[s.id])}</p>`
         : `<div class="rot">Para pensar</div><p class="pergunta">${esc(crianca && J.CRIANCAS[s.id] ? J.CRIANCAS[s.id] : s.pergunta)}</p>`}
-      <label class="rot" for="aplicacao">${crianca ? 'O que eu vou fazer' : 'Minha aplicação'} <em>+${J.XP.aplicacao} XP</em></label>
+      <label class="rot" for="aplicacao">${crianca ? 'O que eu vou fazer' : 'Minha aplicação'} <em>+${J.concluida(p, s.id) ? J.XP.aplicacao : J.xpRitmo(J.XP.aplicacao, J.fatorProxima(p))} XP</em></label>
       <textarea id="aplicacao" rows="4" placeholder="${crianca ? `Escreva com as suas palavras. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.` : `Algo concreto. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.`}">${esc(r.aplicacao || '')}</textarea>
     </section>
     ${outros.length && !J.concluida(p, s.id) ? `<section class="bloco"><div class="rot">Estudaram junto</div>

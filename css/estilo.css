@@ -851,3 +851,4 @@ body.tema-natal { background: linear-gradient(#f6ece6, #f3efe6 420px); }
 
 /* Aplicação das crianças: pergunta de conversa (menor) antes da atitude */
 .conversa { font-size: .95rem; color: var(--tx-2); margin: 0 0 14px; }
+.missao-ritmo { margin-top: 10px; font-size: .78rem; opacity: .75; }
