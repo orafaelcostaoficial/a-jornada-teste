@@ -248,7 +248,9 @@ CENA_LOTE1 = {
             'imensa paisagem abaixo dela com rios serpenteando e, bem distante no horizonte, um jardim exuberante brilhando; '
             'céu enorme ao nascer do sol, com nuvens iluminadas em dourado e rosa', 'Gn 3:20-21; 4:1'),
     'caim': ('segurando nos braços feixes de grãos e frutos do campo como oferta',
-             'homem adulto, lavrador, de mãos fortes, com roupas de trabalho no campo',
+             'homem jovem de uns 20 anos, lavrador, robusto, rosto anguloso de sobrancelhas grossas e olhar sério, pele morena-escura, '
+             'cabelo preto curto e crespo, barba rala e curta, túnica curta sem mangas cor de ocre, braços fortes com terra nas mãos '
+             '(bem diferente de Adão, Sete e Sem: nada de cabelo ondulado nem barba cheia)',
              'campo cultivado ao entardecer, com sulcos de terra arada e trigo maduro', 'Gn 4:2-3'),
     'abel': ('caminhando em direção a um altar de pedras levando nos braços um cordeiro branco, o melhor do seu rebanho; '
              'a fumaça do altar sobe reta para o céu',
@@ -273,7 +275,9 @@ CENA_LOTE1 = {
             'o alto dos montes de Ararate logo depois da chuva, com um enorme arco-íris cruzando o céu de ponta a ponta',
             'Gn 8:4,18-20; 9:12-16'),
     'sem': ('de pé, olhar tranquilo, com a mão sobre o peito em gratidão',
-            'homem adulto de barba escura, filho de Noé',
+            'homem maduro, filho de Noé, testa larga e rosto largo, cabelo castanho curto com fios grisalhos nas têmporas, barba média '
+            'castanha grisalha nas pontas, manto azul-acinzentado sobre túnica creme e faixa vermelha na cintura (bem diferente de Caim, '
+            'Sete e Adão; mais jovem que Noé, sem barba branca)',
             'encosta de montanha verde depois da chuva, com a arca pequena e distante ao fundo', 'Gn 6:10; 9:18,26'),
     'ninrode': ('de pé, confiante, segurando um grande arco de madeira, com uma aljava de flechas nas costas',
                 'homem forte e imponente, caçador, de ombros largos e braços musculosos, pele morena queimada de sol, cabelo preto '
@@ -291,6 +295,7 @@ CENA_LOTE1 = {
                'deserto à noite sob um céu imenso repleto de estrelas e da Via Láctea, tenda iluminada por dentro atrás dele, '
                'luz dourada e prateada sobre o rosto', 'Gn 15:5; 17:5'),
 }
+REFAZER = {'sem'}
 JA_GERADAS = {'adao', 'eva', 'caim', 'sete', 'enoque', 'matusalem', 'sem', 'ninrode', 'abraao', 'tera', 'abel', 'noe'}
 
 
@@ -327,7 +332,7 @@ Para o traço não variar: uma conversa do Gemini por lote, anexando uma carta j
     resto = [c for c in CARTAS if c[0] not in CENA_LOTE1]
     out += "| Carta | Raridade | Situação |\n|---|---|---|\n"
     for c in lote:
-        sit = "✅ pronta (no app)" if c[0] in JA_GERADAS else "a gerar"
+        sit = "🔁 refazer (rosto parecido com outros)" if c[0] in REFAZER else "✅ pronta (no app)" if c[0] in JA_GERADAS else "a gerar"
         out += f"| {c[1]} | {NOME_RAR[RARIDADE.get(c[0], 'comum')]} | {sit} |\n"
     out += "\n"
     for c in lote:
