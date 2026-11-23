@@ -848,3 +848,6 @@ body.tema-natal { background: linear-gradient(#f6ece6, #f3efe6 420px); }
 .biblia-jan .versos { max-height: 55vh; overflow-y: auto; text-align: left; line-height: 1.6; margin-bottom: 8px; }
 .biblia-jan { background: var(--sup); color: var(--tx); border-radius: 22px; padding: 16px; box-shadow: var(--sombra); }
 .biblia-jan h3 { margin: 0; font-size: 1.1rem; }
+
+/* Aplicação das crianças: pergunta de conversa (menor) antes da atitude */
+.conversa { font-size: .95rem; color: var(--tx-2); margin: 0 0 14px; }

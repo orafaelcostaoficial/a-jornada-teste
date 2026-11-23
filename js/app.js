@@ -613,9 +613,12 @@ function telaSessao(id, passo = 0) {
     const outros = perfis().filter((x) => x.id !== p.id);
     corpo = `
     <section class="bloco">
-      <div class="rot">Para pensar</div><p class="pergunta">${esc(crianca && J.CRIANCAS[s.id] ? J.CRIANCAS[s.id] : s.pergunta)}</p>
+      ${crianca && J.CRIANCAS_FAZER[s.id]
+        ? `${J.CRIANCAS[s.id] ? `<div class="rot">Para conversar</div><p class="conversa">${esc(J.CRIANCAS[s.id])}</p>` : ''}
+      <div class="rot">Para fazer</div><p class="pergunta">${esc(J.CRIANCAS_FAZER[s.id])}</p>`
+        : `<div class="rot">Para pensar</div><p class="pergunta">${esc(crianca && J.CRIANCAS[s.id] ? J.CRIANCAS[s.id] : s.pergunta)}</p>`}
       <label class="rot" for="aplicacao">${crianca ? 'O que eu vou fazer' : 'Minha aplicação'} <em>+${J.XP.aplicacao} XP</em></label>
-      <textarea id="aplicacao" rows="4" placeholder="Algo concreto. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.">${esc(r.aplicacao || '')}</textarea>
+      <textarea id="aplicacao" rows="4" placeholder="${crianca ? `Escreva com as suas palavras. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.` : `Algo concreto. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.`}">${esc(r.aplicacao || '')}</textarea>
     </section>
     ${outros.length && !J.concluida(p, s.id) ? `<section class="bloco"><div class="rot">Estudaram junto</div>
       <div class="juntos">${outros.map((o) => `<button class="junto ${r.juntos?.includes(o.id) ? 'on' : ''}" data-acao="junto" data-p="${o.id}">${avatarHTML(o.avatar, J.itensAte(J.nivel(o.xp).n), 30)}<span>${esc(o.nome)}</span></button>`).join('')}</div>

@@ -16,6 +16,8 @@ export const MARCOS = [...E1.MARCOS.map((m) => ({ ...m, era: 'principio' })), ..
 export const INTRODUCOES = { ...E1.INTRODUCOES, ...E2.INTRODUCOES, ...E3.INTRODUCOES };
 export const CARTAS = { ...E1.CARTAS, ...E2.CARTAS, ...E3.CARTAS };
 export const CRIANCAS = { ...E1.CRIANCAS, ...E2.CRIANCAS, ...E3.CRIANCAS };
+// Atitude concreta para as crianças na Aplicação (sem ela, a Aplicação usa CRIANCAS como antes).
+export const CRIANCAS_FAZER = { ...(E1.CRIANCAS_FAZER || {}), ...(E2.CRIANCAS_FAZER || {}), ...(E3.CRIANCAS_FAZER || {}) };
 export const SELOS = { ...E1.SELOS, ...E2.SELOS, ...E3.SELOS };
 // Banco de perguntas das cartas: { personagem: [{ q, op, a, ref }] }. Ver "Cartas por questionário" abaixo.
 export const QUIZ_CARTAS = { ...QC1, ...QC2, ...QC3 };
