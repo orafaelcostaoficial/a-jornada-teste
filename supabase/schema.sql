@@ -6,7 +6,8 @@
 --              e um CONVITE (secreto, para entrar com outro celular na mesma família).
 --   membros  = cada aparelho logado (login anônimo do Supabase) pertence a uma família.
 --   perfis   = os viajantes (adulto/criança) com todo o progresso em `dados`.
---   amizades = famílias amigas veem nome, avatar, nível, XP da semana e onde estão no mapa.
+--   amizades = famílias amigas veem apelido, avatar, nível, XP da semana e onde estão no mapa.
+--   v58: o banco não guarda nome de viajante, só o apelido (ver o fim do arquivo).
 --
 -- Pré-requisito no painel: Authentication → Sign In / Providers → "Allow anonymous sign-ins" ligado.
 
@@ -148,8 +149,8 @@ grant select on public.familias, public.membros, public.amizades to authenticate
 --   casa    = a tabela `familias` acima (quem entra pelo convite secreto; dados e anotações).
 --   família = grupo de casas (`grupos`), entrando com o código da família. Por enquanto cada casa
 --             fica em uma família só (regra nas funções, não na tabela, para abrir depois).
---   Ranking da família: semanal, nomes reais. Ranking geral: mensal, todos os viajantes do app,
---   só apelido + personagem (nunca o nome real nem a casa).
+--   Ranking da família: semanal, apelidos e casas. Ranking geral: mensal, todos os viajantes do app,
+--   só apelido + personagem (nunca a casa).
 -- ════════════════════════════════════════════════════════════════════════════
 
 create table if not exists public.grupos (
@@ -258,7 +259,7 @@ create or replace function public.ranking_familia()
 returns table (grupo_id uuid, casa_id uuid, casa text, perfil_id text, nome text, tipo text, avatar jsonb,
                xp int, xp_semana int, semana text, sessao_atual text, era text, atualizado timestamptz)
 language sql stable security definer set search_path = public as $$
-  select c.grupo_id, f.id, f.nome, p.id, p.nome, p.tipo, p.avatar, p.xp, p.xp_semana, p.semana, p.sessao_atual, p.era, p.atualizado
+  select c.grupo_id, f.id, f.nome, p.id, nullif(trim(p.apelido), ''), p.tipo, p.avatar, p.xp, p.xp_semana, p.semana, p.sessao_atual, p.era, p.atualizado
   from grupo_casas c
   join familias f on f.id = c.casa_id
   join perfis p on p.familia_id = f.id
@@ -316,6 +317,51 @@ revoke all on function public.meus_grupos(), public.criar_grupo(text), public.en
 grant execute on function public.meus_grupos(), public.criar_grupo(text), public.entrar_grupo(text), public.sair_grupo(uuid),
   public.minhas_familias(), public.ranking_familia(), public.ranking_geral(text, text) to authenticated;
 grant select on public.grupos, public.grupo_casas to authenticated;
+
+-- ════════════════════════════════════════════════════════════════════════════
+-- v58 — SÓ APELIDO e APAGAR DA NUVEM
+--   O viajante tem um campo só, o apelido. A coluna `perfis.nome` fica vazia para sempre e o
+--   gatilho abaixo tira o nome também de `dados`, mesmo que um app antigo ainda mande.
+alter table public.perfis alter column nome drop not null;
+
+create or replace function public.perfis_sem_nome() returns trigger
+language plpgsql set search_path = public as $$
+begin
+  new.nome := null;
+  new.dados := coalesce(new.dados, '{}'::jsonb) - 'nome';
+  return new;
+end $$;
+drop trigger if exists perfis_sem_nome on public.perfis;
+create trigger perfis_sem_nome before insert or update on public.perfis
+  for each row execute function public.perfis_sem_nome();
+update public.perfis set nome = null where nome is not null or dados ? 'nome';
+
+-- Apps v37 (amigos): também só o apelido.
+create or replace function public.amigos()
+returns table (familia_id uuid, familia text, perfil_id text, nome text, tipo text, avatar jsonb,
+               xp int, xp_semana int, semana text, sessao_atual text, era text, atualizado timestamptz)
+language sql stable security definer set search_path = public as $$
+  select f.id, f.nome, p.id, nullif(trim(p.apelido), ''), p.tipo, p.avatar, p.xp, p.xp_semana, p.semana, p.sessao_atual, p.era, p.atualizado
+  from amizades a
+  join familias f on f.id = a.amigo_id
+  join perfis p on p.familia_id = f.id
+  where a.familia_id = minha_familia()
+$$;
+
+-- Apaga do servidor a minha casa inteira: perfis e anotações, membros (todos os celulares),
+-- amizades e participação nas famílias (as famílias que ficarem sem casa somem).
+create or replace function public.apagar_minha_casa() returns void
+language plpgsql security definer set search_path = public as $$
+declare minha uuid := minha_familia(); gs uuid[];
+begin
+  if minha is null then return; end if;
+  select array_agg(grupo_id) into gs from grupo_casas where casa_id = minha;
+  delete from familias where id = minha;
+  delete from grupos g where g.id = any(coalesce(gs, '{}'))
+    and not exists (select 1 from grupo_casas c where c.grupo_id = g.id);
+end $$;
+revoke all on function public.apagar_minha_casa() from public, anon;
+grant execute on function public.apagar_minha_casa() to authenticated;
 
 -- Avisa a API do Supabase (PostgREST) para enxergar as tabelas e funções novas.
 notify pgrst, 'reload schema';

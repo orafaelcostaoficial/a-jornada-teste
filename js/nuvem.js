@@ -1,7 +1,7 @@
 // Sincronização com o Supabase. Tudo aqui é opcional: sem config, o app funciona só no aparelho.
 // Fluxo: login anônimo do aparelho → família (criar ou entrar com convite) → perfis sincronizados.
 import { SUPABASE_URL, SUPABASE_KEY, NUVEM_LIGADA } from './config.js';
-import { mesclarPerfil, hoje } from './store.js';
+import { mesclarPerfil, normalizarPerfil, hoje } from './store.js';
 
 let sb = null;
 let carregando = null;
@@ -51,10 +51,13 @@ export async function entrarFamilia(convite) {
 const infoFamilia = (f) => ({ familiaId: f.id, familiaNome: f.nome, codigoAmigo: f.codigo_amigo, convite: f.convite });
 
 // Resumo público do perfil (o que amigos veem) + dados completos (só a família vê).
+// v58: nenhum nome vai para o banco, só o apelido. `nome: ''` só satisfaz a coluna antiga (NOT NULL)
+// enquanto o schema novo não roda; depois dele, o gatilho `perfis_sem_nome` zera a coluna de qualquer jeito.
 function linha(p, familiaId, resumo) {
+  const { nome, ...dados } = p;
   return {
-    id: p.id, familia_id: familiaId, nome: p.nome, tipo: p.tipo, avatar: p.avatar,
-    dados: p, xp: p.xp, xp_semana: resumo.xpSemana, semana: resumo.semana,
+    id: p.id, familia_id: familiaId, nome: '', tipo: p.tipo, avatar: p.avatar,
+    dados, xp: p.xp, xp_semana: resumo.xpSemana, semana: resumo.semana,
     sessao_atual: resumo.sessaoAtual, era: resumo.era, atualizado: new Date().toISOString(),
     apelido: (p.apelido || '').trim().slice(0, 20) || null, xp_mes: resumo.xpMes, mes: resumo.mes, capitulos: resumo.capitulos,
   };
@@ -74,12 +77,18 @@ export async function sincronizar(raiz, resumir) {
     if ((r.removidos || []).includes(row.id)) continue;
     r.perfis[row.id] = mesclarPerfil(r.perfis[row.id], row.dados);
   }
+  for (const id of Object.keys(r.perfis)) r.perfis[id] = normalizarPerfil(r.perfis[id]);
   if (!r.ativo || !r.perfis[r.ativo]) r.ativo = Object.keys(r.perfis)[0] || null;
 
   const linhas = Object.values(r.perfis).map((p) => linha(p, fid, resumir(p)));
   if (linhas.length) {
     const { error: e2 } = await c.from('perfis').upsert(linhas);
-    if (e2) throw new Error(erroLegivel(e2));
+    if (e2) {
+      // A casa foi apagada da nuvem (em outro celular): este celular volta a funcionar só no aparelho.
+      const { data: minha } = await c.rpc('minha_familia');
+      if (!minha) return { ...r, nuvem: null, removidos: [], nuvemApagada: true };
+      throw new Error(erroLegivel(e2));
+    }
   }
   if (r.removidos?.length) {
     const { error: e3 } = await c.from('perfis').delete().in('id', r.removidos);
@@ -102,5 +111,13 @@ export const sairFamiliaGrupo = (id) => rpc('sair_grupo', { p_grupo: id });
 export const minhasFamilias = async () => (await rpc('minhas_familias')) || [];
 export const rankingFamilia = async () => (await rpc('ranking_familia')) || [];
 export const rankingGeral = async (mes, ordem) => (await rpc('ranking_geral', { p_mes: mes, p_ordem: ordem })) || [];
+
+// Apaga do servidor a casa inteira: perfis, anotações, membros (todos os celulares) e a participação nas famílias.
+// O progresso continua em cada celular, que passa a funcionar só no aparelho.
+export async function apagarNuvem() {
+  await rpc('apagar_minha_casa');
+  try { await (await cliente()).auth.signOut(); } catch { /* o login anônimo não guarda dados */ }
+  sb = null;
+}
 
 export { hoje };

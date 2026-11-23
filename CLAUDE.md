@@ -92,10 +92,10 @@ Nova era: criar `data/era-<id>.js` no mesmo formato, importar em `js/jogo.js`, m
   dados e anotações). **Família** = grupo de casas (`grupos` + `grupo_casas`), entra pelo código da família; por enquanto
   uma família por casa (regra nas funções, para abrir várias depois, ex.: grupos de estudo). Código de amigo antigo de uma
   casa ainda funciona em `entrar_grupo`. As `amizades` antigas viraram famílias na migração; `amigos()` fica só para apps v37.
-- **Rankings** (aba Grupos): Família = semanal, nomes reais, casas da família (`ranking_familia()`). Geral = todos do app,
+- **Só apelido** (v58): o viajante tem um campo só, `apelido` (até 20); nada de nome no app nem no banco (`perfis.nome` sempre nulo, gatilho `perfis_sem_nome`). Mostrar sempre com `nomePublico(p)` (apelido → personagem → "Pó da terra"). Perfis antigos passam por `normalizarPerfil` (store.js). Grupos tem "Apagar meus dados da nuvem" (`apagar_minha_casa()`), que mantém o progresso no celular.
+- **Rankings** (aba Grupos): Família = semanal, apelidos, casas da família (`ranking_familia()`). Geral = todos do app,
   **só apelido + personagem** (nunca nome real nem casa), duas abas: XP do mês (zera dia 1º) e Progresso (capítulos lidos),
-  top 50 + os da minha casa (`ranking_geral(mes, ordem)`). Apelido (`apelido`, até 20) no Editar viajante; sem apelido,
-  aparece o nome do personagem. `resumo()` em `app.js` manda `xp_mes`, `mes` e `capitulos` na sincronização.
+  top 50 + os da minha casa (`ranking_geral(mes, ordem)`). Apelido (`apelido`, até 20, obrigatório) no Editar viajante. `resumo()` em `app.js` manda `xp_mes`, `mes` e `capitulos` na sincronização.
 - **Convites por link** (v39): `#/entrar/casa/<convite>` e `#/entrar/familia/<código>` → tela `telaEntrar` (guarda em `ajornada.convite`); campos aceitam a mensagem colada (`extrairConvite`, `extrairCodigoFamilia`).
 - **Mudou o banco? Rafael roda o `schema.sql` inteiro no SQL Editor ANTES de publicar o app no oficial.**
 - Requer no painel: Authentication → "Allow anonymous sign-ins" ligado.

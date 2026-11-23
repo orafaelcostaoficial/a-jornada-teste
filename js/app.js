@@ -52,7 +52,12 @@ async function sincronizar() {
   if (!N.ligada() || !RAIZ.nuvem || SYNC.status === 'sincronizando') return;
   SYNC = { status: 'sincronizando', erro: null };
   try {
-    RAIZ = await N.sincronizar(RAIZ, resumo); store.salvar(RAIZ);
+    RAIZ = await N.sincronizar(RAIZ, resumo);
+    if (RAIZ.nuvemApagada) {
+      delete RAIZ.nuvemApagada; store.salvar(RAIZ); AMIGOS = []; FAMILIAS = []; GERAL = {};
+      SYNC = { status: 'pronto', erro: null }; toast('A casa foi apagada da nuvem. O progresso continua neste celular.'); render(); return;
+    }
+    store.salvar(RAIZ);
     [AMIGOS, FAMILIAS] = await Promise.all([N.rankingFamilia(), N.minhasFamilias()]);
     SYNC = { status: 'ok', erro: null, em: new Date() };
     const emQuiz = /^#\/(sessao|conquistar|revisao|dsessao)/.test(location.hash) || document.querySelector('.overlay');
@@ -77,7 +82,7 @@ function telaEntrar() {
   if (!c) return telaAmigos();
   const cab = `${topo()}<h1 class="tit-tela">Convite</h1>`;
   const nViaj = perfis().length;
-  const viaj = `<p class="dica">${nViaj === 1 ? `O viajante deste celular (${esc(P().nome)}) vai junto` : `Os ${nViaj} viajantes deste celular vão junto`}, com todo o progresso.</p>`;
+  const viaj = `<p class="dica">${nViaj === 1 ? `O viajante deste celular (${esc(nomePublico(P()))}) vai junto` : `Os ${nViaj} viajantes deste celular vão junto`}, com todo o progresso.</p>`;
   if (!N.ligada()) return `${cab}<section class="bloco vazio"><p><b>${CANAL_TESTE ? 'A nuvem fica desligada no canal de teste.' : 'O banco ainda não foi ligado.'}</b></p></section>`;
   if (c.tipo === 'casa') {
     if (RAIZ.nuvem && RAIZ.nuvem.convite === c.codigo) { guardarConvite(null); return telaAmigos(); }
@@ -222,7 +227,7 @@ function overlay(html, aoFechar) {
 function topo() {
   const p = P(); const nv = J.nivel(p.xp);
   return `${CANAL_TESTE ? `<a class="faixa-teste" href="https://orafaelcostaoficial.github.io/a-jornada/#/hoje">Canal de teste · ${VERSAO_APP} · dados separados · voltar ao app</a>` : ''}<header class="topbar">
-    <a class="eu" href="#/perfil"><span class="eu-av">${avatarHTML(p.avatar, J.itensAte(nv.n), 34)}</span><span><b>${esc(p.nome)}</b><small>${rotNivel(p)} · ${nomeEstagio(p)}</small></span></a>
+    <a class="eu" href="#/perfil"><span class="eu-av">${avatarHTML(p.avatar, J.itensAte(nv.n), 34)}</span><span><b>${esc(nomePublico(p))}</b><small>${rotNivel(p)} · ${nomeEstagio(p)}</small></span></a>
     <button class="xp-chip" data-acao="ver-xp" aria-label="Ver como ganhou o XP">${ico('sparkles')} ${p.xp} XP</button>
   </header>`;
 }
@@ -365,13 +370,12 @@ function galeriaPersonagens(atual) {
 
 function capturarForm() {
   if (!FORM) return;
-  FORM.nome = document.getElementById('nome')?.value ?? FORM.nome;
   FORM.apelido = document.getElementById('apelido')?.value ?? FORM.apelido;
 }
 
 function telaPerfilForm(editId) {
   const p = editId ? RAIZ.perfis[editId] : null;
-  const f = FORM ||= { nome: p?.nome || '', apelido: p?.apelido || '', tipo: p?.tipo || (perfis().length ? 'crianca' : 'adulto'), avatar: { ...(p?.avatar || { personagem: null }) } };
+  const f = FORM ||= { apelido: p?.apelido || '', tipo: p?.tipo || (perfis().length ? 'crianca' : 'adulto'), avatar: { ...(p?.avatar || { personagem: null }) } };
   const itens = J.itensAte(p ? J.nivel(p.xp).n : 1);
   const esc1 = f.avatar.personagem ? AVATARES.find((a) => a.id === f.avatar.personagem) : null;
   return `<header class="topo-sec"><a class="voltar" href="${perfis().length ? '#/perfil' : '#/hoje'}">${ico('chevron-left')}</a><h2>${p ? 'Editar viajante' : 'Novo viajante'}</h2></header>
@@ -379,11 +383,9 @@ function telaPerfilForm(editId) {
     <div class="editor-prev">${avatarHTML(f.avatar, itens, 140)}
       ${esc1 ? `<div class="esc-info"><b>${esc(esc1.nome)}</b><small>${esc(esc1.frase)} <i>${esc(esc1.ref)}</i></small></div>`
         : `<div class="esc-info"><b>Pó da terra</b><small>Toda jornada começa aqui. Ao concluir a primeira sessão, você recebe o fôlego de vida e escolhe o personagem que vai te acompanhar. <i>Gn 2:7</i></small></div>`}</div>
-    <label class="rot" for="nome">Nome</label>
-    <input id="nome" class="campo" value="${esc(f.nome)}" placeholder="Como chamar este viajante?" maxlength="20">
-    <label class="rot" for="apelido">Apelido no ranking geral</label>
+    <label class="rot" for="apelido">Apelido</label>
     <input id="apelido" class="campo" value="${esc(f.apelido || '')}" placeholder="Ex.: Leão de Judá" maxlength="20">
-    <p class="dica">É o único nome que pessoas de fora da família veem. Sem apelido, aparece o nome do personagem. Evite usar o nome real.</p>
+    <p class="dica">É como este viajante aparece no app, para a família e no ranking geral de todos os usuários. O app não guarda nome real: prefira um apelido.</p>
     <div class="rot">Perfil</div>
     <div class="seg">${[['adulto', 'Adulto'], ['crianca', 'Criança']].map(([v, t]) => `<button class="${f.tipo === v ? 'on' : ''}" data-acao="f-tipo" data-v="${v}">${t}</button>`).join('')}</div>
     ${p?.avatar?.personagem ? `<div class="rot">Trocar de personagem</div>${galeriaPersonagens(f.avatar.personagem)}` : ''}
@@ -399,7 +401,7 @@ function folegoDeVida(perfilId, depois) {
     <div class="folego-cena">${avatarHTML({}, [], 150)}<span class="sopro"></span></div>
     <small>Gênesis 2:7</small>
     <h2>O Senhor formou o homem do pó da terra e soprou o fôlego de vida.</h2>
-    <p>${esc(alvo.nome)}, sua jornada começou. Escolha quem vai te acompanhar:</p>
+    <p>${esc(nomePublico(alvo))}, sua jornada começou. Escolha quem vai te acompanhar:</p>
     ${galeriaPersonagens(null).replace(/data-acao="f-personagem"/g, 'data-acao="receber"')}
   </div>`);
   o.querySelector('.overlay-in').classList.add('largo');
@@ -442,8 +444,9 @@ function telaHoje() {
   return `${topo()}
   <section class="hero" style="--c:${prox ? COR_ERA[eraDe(prox)] : '#d29a2c'}">
     <div class="hero-av">${avatarHTML(p.avatar, J.itensAte(nv.n), 110)}</div>
-    <div class="hero-info"><small>${nomeEstagio(p)}</small><h2>${esc(p.nome)}</h2>${barraXP(p)}</div>
+    <div class="hero-info"><small>${nomeEstagio(p)}</small><h2>${esc(nomePublico(p))}</h2>${barraXP(p)}</div>
   </section>
+  ${p.revisarApelido ? `<a class="aviso" href="#/editar/${p.id}">${ico('shield-check')}<span><b>Confira o apelido "${esc(nomePublico(p))}"</b><br>O app agora guarda só o apelido, e ele aparece no ranking geral. Se for o nome real, troque.</span>${ico('chevron-right')}</a>` : ''}
   ${!p.avatar?.personagem && J.concluidas(p).length ? `<button class="aviso grande-aviso" data-acao="escolher-personagem">${ico('sparkles')}<span><b>Receba o fôlego de vida</b><br>Escolha o personagem que vai te acompanhar.</span>${ico('chevron-right')}</button>` : ''}
   ${cartaoInstalar(true)}
   ${prox ? `<a class="missao" href="#/sessao/${prox.id}" style="--c:${COR_ERA[eraDe(prox)]}">
@@ -543,7 +546,7 @@ function telaDSessao(arg, passo = 0) {
       <label class="rot" for="aplicacao">${crianca ? 'O que eu vou fazer' : 'Minha aplicação'} <em>opcional · +${J.XP.aplicacao} XP</em></label>
       <textarea id="aplicacao" rows="3">${esc(r.aplicacao || '')}</textarea></section>
     ${outros.length ? `<section class="bloco"><div class="rot">Estudaram junto</div>
-      <div class="juntos">${outros.map((o) => `<button class="junto ${r.juntos?.includes(o.id) ? 'on' : ''}" data-acao="junto" data-p="${o.id}">${avatarHTML(o.avatar, J.itensAte(J.nivel(o.xp).n), 30)}<span>${esc(o.nome)}</span></button>`).join('')}</div></section>` : ''}
+      <div class="juntos">${outros.map((o) => `<button class="junto ${r.juntos?.includes(o.id) ? 'on' : ''}" data-acao="junto" data-p="${o.id}">${avatarHTML(o.avatar, J.itensAte(J.nivel(o.xp).n), 30)}<span>${esc(nomePublico(o))}</span></button>`).join('')}</div></section>` : ''}
     <button class="btn grande ouro" data-acao="dconcluir" id="btn-entendi" ${r.entendi?.trim() ? '' : 'disabled'}>Concluir o dia ${i + 1}</button>`;
   }
   return cab + barra + `<div class="anima">${corpo}</div>`;
@@ -622,7 +625,7 @@ function telaSessao(id, passo = 0) {
       <textarea id="aplicacao" rows="4" placeholder="${crianca ? `Escreva com as suas palavras. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.` : `Algo concreto. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.`}">${esc(r.aplicacao || '')}</textarea>
     </section>
     ${outros.length && !J.concluida(p, s.id) ? `<section class="bloco"><div class="rot">Estudaram junto</div>
-      <div class="juntos">${outros.map((o) => `<button class="junto ${r.juntos?.includes(o.id) ? 'on' : ''}" data-acao="junto" data-p="${o.id}">${avatarHTML(o.avatar, J.itensAte(J.nivel(o.xp).n), 30)}<span>${esc(o.nome)}</span></button>`).join('')}</div>
+      <div class="juntos">${outros.map((o) => `<button class="junto ${r.juntos?.includes(o.id) ? 'on' : ''}" data-acao="junto" data-p="${o.id}">${avatarHTML(o.avatar, J.itensAte(J.nivel(o.xp).n), 30)}<span>${esc(nomePublico(o))}</span></button>`).join('')}</div>
       <small class="dica">Quem for marcado também conclui a sessão e ganha XP e cartas.</small></section>` : ''}
     <button class="btn grande ouro" data-acao="concluir" data-id="${s.id}">${J.concluida(p, s.id) ? 'Salvar anotações' : 'Concluir sessão'}</button>`;
   }
@@ -781,8 +784,8 @@ function telaRevisao() {
 
 function marcadoresNo(sessaoId, eu) {
   const locais = perfis().filter((o) => o.id !== eu.id && (J.proxima(o)?.id || 'fim') === sessaoId)
-    .map((o) => ({ nome: o.nome, avatar: o.avatar, xp: o.xp, familia: true }));
-  const amigos = AMIGOS.filter((a) => a.sessao_atual === sessaoId).map((a) => ({ nome: a.nome, avatar: a.avatar, xp: a.xp }));
+    .map((o) => ({ nome: nomePublico(o), avatar: o.avatar, xp: o.xp, familia: true }));
+  const amigos = AMIGOS.filter((a) => a.sessao_atual === sessaoId).map((a) => ({ nome: nomePublico({ apelido: a.nome, avatar: a.avatar }), avatar: a.avatar, xp: a.xp }));
   const todos = [...locais, ...amigos];
   if (!todos.length) return '';
   return `<span class="amigos-no">${todos.slice(0, 3).map((a) => `<span class="amigo-pin ${a.familia ? 'fam' : ''}">${avatarHTML(a.avatar, J.itensAte(J.nivel(a.xp).n), 26)}<small>${esc(a.nome)}</small></span>`).join('')}${todos.length > 3 ? `<span class="amigo-mais">+${todos.length - 3}</span>` : ''}</span>`;
@@ -868,7 +871,11 @@ function blocoMinhaCasa(n) {
     <details class="trocar-fam"><summary>Este celular está na casa errada?</summary>
       <p class="dica">Se você criou uma casa sozinho e queria entrar em outra, use o convite dela. Os viajantes deste celular vão junto, com todo o progresso.</p>
       <label class="rot" for="convite-troca">Convite da outra casa</label><input id="convite-troca" class="campo" placeholder="ex.: a1b2c3-d4e5f6" autocapitalize="off">
-      <button class="btn grande" data-acao="trocar-familia" style="margin-top:12px">Entrar na outra casa</button></details></section>`;
+      <button class="btn grande" data-acao="trocar-familia" style="margin-top:12px">Entrar na outra casa</button></details></section>
+  <section class="bloco"><div class="bloco-tit"><span>Seus dados</span></div>
+    <p class="dica">${ico('shield-check')} Na nuvem ficam só o apelido, o personagem, o progresso e as anotações da casa. Nada de nome real, idade, endereço ou contato.</p>
+    <button class="btn perigo-sec" data-acao="apagar-nuvem">Apagar meus dados da nuvem</button>
+    <p class="dica">Apaga do servidor os viajantes, as anotações e a casa (em todos os celulares dela) e tira a casa da família. Os pontos e o progresso continuam neste celular.</p></section>`;
 }
 
 function blocoFamilia() {
@@ -898,6 +905,7 @@ function telaAmigos() {
   }
   if (!RAIZ.nuvem) {
     return `${topo()}<h1 class="tit-tela">Grupos</h1>${abasGrupos('familia')}<p class="sub">Primeiro ligue a sua casa à nuvem: assim ela funciona em vários celulares e pode entrar numa família.</p>
+    <section class="bloco"><p class="dica">${ico('shield-check')} Na nuvem ficam só o apelido, o personagem, o progresso e as anotações da casa. Nada de nome real, idade, endereço ou contato.</p><p class="dica">Você pode apagar tudo do servidor quando quiser.</p></section>
     <section class="bloco"><div class="bloco-tit"><span>Primeiro celular da casa</span></div>
       <label class="rot" for="fam-nome">Nome da casa</label><input id="fam-nome" class="campo" placeholder="Ex.: Casa Costa" maxlength="30">
       <button class="btn grande ouro" data-acao="criar-familia" style="margin-top:12px">Criar casa</button></section>
@@ -962,7 +970,7 @@ function telaGeral(arg) {
   const semApelido = !p.apelido?.trim();
   return `${cab}${sub}
   <section class="bloco"><div class="bloco-tit">${tit}</div>${corpo}</section>
-  <p class="dica centro">No ranking geral aparecem só o apelido e o personagem, nunca o nome real nem a casa.${semApelido ? ` <a class="link" href="#/editar/${p.id}">Escolher apelido para ${esc(p.nome)}</a>` : ''}</p>`;
+  <p class="dica centro">No ranking geral aparecem só o apelido e o personagem, nunca a casa.${semApelido ? ` <a class="link" href="#/editar/${p.id}">Escolher um apelido</a>` : ''}</p>`;
 }
 
 function linhaRanking(pos, a, eu) {
@@ -974,7 +982,7 @@ function ondeEsta(sessaoId) {
   const s = J.sessaoPorId(sessaoId); return s ? `Em ${J.refSessao(s)}` : '';
 }
 function rankingLocal(p) {
-  const lista = perfis().map((o) => ({ id: o.id, nome: o.nome, avatar: o.avatar, xp: o.xp, xpSemana: resumo(o).xpSemana, onde: ondeEsta(resumo(o).sessaoAtual) }))
+  const lista = perfis().map((o) => ({ id: o.id, nome: nomePublico(o), avatar: o.avatar, xp: o.xp, xpSemana: resumo(o).xpSemana, onde: ondeEsta(resumo(o).sessaoAtual) }))
     .sort((a, b) => b.xpSemana - a.xpSemana);
   if (lista.length < 2) return '';
   return `<section class="bloco"><div class="bloco-tit"><span>Ranking da semana · neste celular</span></div>${lista.map((a, i) => linhaRanking(i + 1, a, a.id === p.id)).join('')}</section>`;
@@ -983,8 +991,8 @@ function ranking(p) {
   const semana = J.semanaAtual(p).dias[0];
   const casa = RAIZ.nuvem?.familiaNome;
   const lista = [
-    ...perfis().map((o) => ({ id: o.id, nome: o.nome, avatar: o.avatar, xp: o.xp, xpSemana: resumo(o).xpSemana, onde: `${casa ? `${esc(casa)} · ` : ''}${ondeEsta(resumo(o).sessaoAtual)}` })),
-    ...AMIGOS.map((a) => ({ id: a.perfil_id, nome: a.nome, avatar: a.avatar, xp: a.xp, xpSemana: a.semana === semana ? a.xp_semana : 0, onde: `${esc(a.casa)} · ${ondeEsta(a.sessao_atual)}` })),
+    ...perfis().map((o) => ({ id: o.id, nome: nomePublico(o), avatar: o.avatar, xp: o.xp, xpSemana: resumo(o).xpSemana, onde: `${casa ? `${esc(casa)} · ` : ''}${ondeEsta(resumo(o).sessaoAtual)}` })),
+    ...AMIGOS.map((a) => ({ id: a.perfil_id, nome: nomePublico({ apelido: a.nome, avatar: a.avatar }), avatar: a.avatar, xp: a.xp, xpSemana: a.semana === semana ? a.xp_semana : 0, onde: `${esc(a.casa)} · ${ondeEsta(a.sessao_atual)}` })),
   ].sort((a, b) => b.xpSemana - a.xpSemana);
   return `<section class="bloco"><div class="bloco-tit"><span>Ranking da semana</span><span>zera na segunda</span></div>${lista.map((a, i) => linhaRanking(i + 1, a, a.id === p.id)).join('')}</section>`;
 }
@@ -1149,7 +1157,7 @@ function telaPerfil() {
   const aplic = Object.values(p.sessoes).filter((s) => s.revisao).length;
   return `${topo()}
   <section class="perfil-hero"><div>${avatarHTML(p.avatar, J.itensAte(nv.n), 120)}</div>
-    <div><h2>${esc(p.nome)}</h2><small>${nomeEstagio(p)} · ${p.tipo === 'crianca' ? 'Criança' : 'Adulto'}</small>${barraXP(p)}
+    <div><h2>${esc(nomePublico(p))}</h2><small>${nomeEstagio(p)} · ${p.tipo === 'crianca' ? 'Criança' : 'Adulto'}</small>${barraXP(p)}
     <a class="link" href="#/editar/${p.id}">Editar viajante</a></div></section>
   <div class="stats">
     <div><b>${J.concluidas(p).length}</b><small>sessões</small></div>
@@ -1158,7 +1166,7 @@ function telaPerfil() {
     <div><b>${p.log.filter((l) => l.tipo === 'acerto').length}</b><small>acertos</small></div>
   </div>
   <section class="bloco"><div class="bloco-tit"><span>Casa</span></div>
-    <div class="familia">${perfis().map((o) => `<button class="membro ${o.id === p.id ? 'on' : ''}" data-acao="trocar" data-p="${o.id}">${avatarHTML(o.avatar, J.itensAte(J.nivel(o.xp).n), 46)}<b>${esc(o.nome)}</b><small>Nível ${J.nivel(o.xp).n}</small></button>`).join('')}
+    <div class="familia">${perfis().map((o) => `<button class="membro ${o.id === p.id ? 'on' : ''}" data-acao="trocar" data-p="${o.id}">${avatarHTML(o.avatar, J.itensAte(J.nivel(o.xp).n), 46)}<b>${esc(nomePublico(o))}</b><small>Nível ${J.nivel(o.xp).n}</small></button>`).join('')}
       <a class="membro novo" href="#/novo-perfil">${ico('plus')}<b>Adicionar</b><small>viajante</small></a></div></section>
   ${blocoConquistas(p)}
   ${cartaoInstalar(false)}
@@ -1247,7 +1255,6 @@ window.addEventListener('hashchange', () => {
 });
 
 $app.addEventListener('input', (ev) => {
-  if (ev.target.id === 'nome' && FORM) { FORM.nome = ev.target.value; return; }
   if (ev.target.id === 'apelido' && FORM) { FORM.apelido = ev.target.value; return; }
   if (!location.hash.startsWith('#/sessao') && !location.hash.startsWith('#/dsessao')) return;
   const r = capturar(location.hash.split('/')[2]);
@@ -1277,17 +1284,25 @@ document.body.addEventListener('click', (ev) => {
   if (acao === 'f-personagem') { capturarForm(); FORM.avatar = { personagem: b.dataset.v }; render(); }
   if (acao === 'escolher-personagem') folegoDeVida(P().id);
   if (acao === 'f-salvar') {
-    const nome = (document.getElementById('nome').value || '').trim();
     const apelido = (document.getElementById('apelido')?.value || '').trim().slice(0, 20);
-    if (!nome) { toast('Dê um nome ao viajante'); return; }
+    if (!apelido) { toast('Dê um apelido ao viajante'); return; }
     const editado = new Date().toISOString();
-    if (b.dataset.id) Object.assign(RAIZ.perfis[b.dataset.id], { nome, apelido, tipo: FORM.tipo, avatar: FORM.avatar, editado });
-    else { const np = { ...store.novoPerfil(nome, FORM.tipo, FORM.avatar), apelido, editado }; RAIZ.perfis[np.id] = np; RAIZ.ativo = np.id; }
+    if (b.dataset.id) { Object.assign(RAIZ.perfis[b.dataset.id], { apelido, tipo: FORM.tipo, avatar: FORM.avatar, editado }); delete RAIZ.perfis[b.dataset.id].revisarApelido; }
+    else { const np = { ...store.novoPerfil(apelido, FORM.tipo, FORM.avatar), editado }; RAIZ.perfis[np.id] = np; RAIZ.ativo = np.id; }
     salvar(); FORM = null; ir(b.dataset.id ? '#/perfil' : (convitePendente() ? '#/entrar' : '#/hoje'));
+  }
+  if (acao === 'apagar-nuvem') {
+    confirmar('Apagar da nuvem os viajantes, as anotações e a casa? Os outros celulares da casa também deixam de sincronizar. <b>Os pontos e o progresso continuam neste celular.</b>', 'Apagar da nuvem', () => {
+      N.apagarNuvem().then(() => {
+        RAIZ = { ...RAIZ, nuvem: null, removidos: [] }; salvar(); AMIGOS = []; FAMILIAS = []; GERAL = {};
+        SYNC = { status: 'pronto', erro: null }; toast('Dados apagados da nuvem'); render();
+      }).catch((e) => toast(esc(e.message)));
+    });
+    return;
   }
   if (acao === 'f-remover') {
     const alvo = RAIZ.perfis[b.dataset.id];
-    confirmar(`Remover <b>${esc(alvo.nome)}</b> e todo o progresso dele${RAIZ.nuvem ? ' em todos os celulares da família' : ''}? Não dá para desfazer.`, 'Remover', () => {
+    confirmar(`Remover <b>${esc(nomePublico(alvo))}</b> e todo o progresso dele${RAIZ.nuvem ? ' em todos os celulares da família' : ''}? Não dá para desfazer.`, 'Remover', () => {
       delete RAIZ.perfis[alvo.id]; RAIZ.removidos = [...(RAIZ.removidos || []), alvo.id];
       if (RAIZ.ativo === alvo.id) RAIZ.ativo = Object.keys(RAIZ.perfis)[0];
       salvar(); FORM = null; ir('#/perfil');
@@ -1337,7 +1352,7 @@ Se o link não abrir no app, abra A Jornada, vá em Grupos e cole este convite e
   }
   if (acao === 'aceitar-convite') aceitarConvite(b);
   if (acao === 'recusar-convite') { guardarConvite(null); ir('#/hoje'); }
-  if (acao === 'trocar') { RAIZ.ativo = b.dataset.p; salvar(); toast(`Agora: ${esc(P().nome)}`); ir('#/hoje'); render(); }
+  if (acao === 'trocar') { RAIZ.ativo = b.dataset.p; salvar(); toast(`Agora: ${esc(nomePublico(P()))}`); ir('#/hoje'); render(); }
 
   if (acao === 'passo') { capturar(id); passoAtual[id] = Number(b.dataset.passo); render(); }
   if (acao === 'junto') { const r = rascunho(id); const pid = b.dataset.p; r.juntos = r.juntos.includes(pid) ? r.juntos.filter((x) => x !== pid) : [...r.juntos, pid]; b.classList.toggle('on'); }
@@ -1351,7 +1366,7 @@ Se o link não abrir no app, abra A Jornada, vá em Grupos e cole este convite e
     const juntos = [];
     for (const pid of r.juntos || []) {
       const o = RAIZ.perfis[pid];
-      if (o && !J.concluida(o, id)) { J.concluirSessao(o, s, { entendi: dados.entendi, aplicacao: dados.aplicacao, familia: true }); juntos.push(o.nome); }
+      if (o && !J.concluida(o, id)) { J.concluirSessao(o, s, { entendi: dados.entendi, aplicacao: dados.aplicacao, familia: true }); juntos.push(nomePublico(o)); }
     }
     ultimoResultado.juntos = juntos;
     salvar(); delete RASC[id]; passoAtual = {};
@@ -1367,7 +1382,7 @@ Se o link não abrir no app, abra A Jornada, vá em Grupos e cole este convite e
     const dados = { entendi: r.entendi.trim(), aplicacao: r.aplicacao?.trim() || '' };
     ultimoResultado = J.concluirDesafio(p, d, i, dados);
     const juntos = [];
-    for (const pid of r.juntos || []) { const o = RAIZ.perfis[pid]; if (o && !o.desafios?.[did]?.[i]) { J.concluirDesafio(o, d, i, { ...dados, familia: true }); juntos.push(o.nome); } }
+    for (const pid of r.juntos || []) { const o = RAIZ.perfis[pid]; if (o && !o.desafios?.[did]?.[i]) { J.concluirDesafio(o, d, i, { ...dados, familia: true }); juntos.push(nomePublico(o)); } }
     ultimoResultado.juntos = juntos;
     salvar(); delete RASC[id]; passoAtual = {};
     ir('#/resultado'); confete(ultimoResultado.novosS.length ? 90 : 40);

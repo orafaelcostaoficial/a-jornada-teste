@@ -3,7 +3,8 @@
 // carregar(), salvar(raiz), exportar(raiz), importar(texto).
 //
 // Raiz: { v: 2, ativo: <idPerfil>, perfis: { [id]: Perfil } }
-// Perfil: { id, nome, tipo: 'adulto'|'crianca', avatar: {pele, cabelo, manto}, ...progresso }
+// Perfil: { id, apelido, tipo: 'adulto'|'crianca', avatar: {pele, cabelo, manto}, ...progresso }
+// (v58: o perfil tem só o apelido; o antigo `nome` é migrado por normalizarPerfil.)
 
 import { CANAL_TESTE } from './config.js';
 
@@ -24,9 +25,9 @@ export function progressoVazio() {
   };
 }
 
-export function novoPerfil(nome, tipo = 'adulto', avatar = {}) {
+export function novoPerfil(apelido, tipo = 'adulto', avatar = {}) {
   const id = 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
-  return { id, nome, tipo, avatar: { pele: 1, cabelo: 0, manto: 0, ...avatar }, ...progressoVazio() };
+  return { id, apelido, tipo, avatar: { pele: 1, cabelo: 0, manto: 0, ...avatar }, ...progressoVazio() };
 }
 
 export function raizVazia() {
@@ -47,8 +48,24 @@ export function renovarIds(raiz) {
   return { ...raiz, perfis, ativo: ativo || Object.keys(perfis)[0] || null, removidos: [] };
 }
 
+// v58: o perfil tem um campo só, o apelido. O nome antigo vira apelido (quando não havia apelido)
+// e sai do perfil; `revisarApelido` faz o app pedir para conferir, já que o apelido aparece no ranking geral.
+export function normalizarPerfil(p) {
+  if (!p || !('nome' in p)) return p;
+  const r = { ...p };
+  if (!(r.apelido || '').trim() && (r.nome || '').trim()) { r.apelido = r.nome.trim().slice(0, 20); r.revisarApelido = true; }
+  delete r.nome;
+  return r;
+}
+export function normalizarRaiz(raiz) {
+  const perfis = {};
+  for (const [id, p] of Object.entries(raiz.perfis || {})) perfis[id] = normalizarPerfil(p);
+  return { ...raiz, perfis };
+}
+
 // Junta duas versões do mesmo perfil (aparelhos diferentes) sem perder progresso.
 export function mesclarPerfil(a, b) {
+  a = normalizarPerfil(a); b = normalizarPerfil(b);
   if (!a) return b; if (!b) return a;
   const novo = (a.editado || '') >= (b.editado || '') ? a : b;
   const r = { ...novo };
@@ -90,12 +107,12 @@ export function mesclarPerfil(a, b) {
 export function carregar() {
   try {
     const bruto = localStorage.getItem(CHAVE);
-    if (bruto) return { ...raizVazia(), ...JSON.parse(bruto) };
+    if (bruto) return normalizarRaiz({ ...raizVazia(), ...JSON.parse(bruto) });
     // Migração da v1 (um único usuário) para um perfil.
     const v1 = localStorage.getItem(CHAVE_V1);
     if (v1) {
       const e = JSON.parse(v1);
-      const p = { ...novoPerfil('Rafael'), ...e };
+      const p = normalizarPerfil({ ...novoPerfil('Rafael'), ...e });
       delete p.v;
       return { v: 2, ativo: p.id, perfis: { [p.id]: p } };
     }
@@ -113,9 +130,9 @@ export function exportar(raiz) {
 
 export function importar(texto) {
   const obj = JSON.parse(texto);
-  if (obj?.app === 'a-jornada' && obj.raiz?.perfis) return { ...raizVazia(), ...obj.raiz };
+  if (obj?.app === 'a-jornada' && obj.raiz?.perfis) return normalizarRaiz({ ...raizVazia(), ...obj.raiz });
   if (obj?.app === 'jornada' && obj.estado?.sessoes) { // backup da v1
-    const p = { ...novoPerfil('Rafael'), ...obj.estado }; delete p.v;
+    const p = normalizarPerfil({ ...novoPerfil('Rafael'), ...obj.estado }); delete p.v;
     return { v: 2, ativo: p.id, perfis: { [p.id]: p } };
   }
   throw new Error('Arquivo não é um backup d\'A Jornada.');
