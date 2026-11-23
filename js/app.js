@@ -217,7 +217,7 @@ function overlay(html, aoFechar) {
   requestAnimationFrame(() => o.classList.add('on'));
   o.addEventListener('click', (ev) => {
     if (ev.target.closest('[data-fechar]') || ev.target === o) {
-      o.classList.remove('on'); setTimeout(() => { o.remove(); aoFechar?.(); }, 250);
+      o.classList.remove('on'); setTimeout(() => { o.remove(); aoFechar?.(); setTimeout(celebrarNivel, 300); }, 250);
     }
   });
   return o;
@@ -690,14 +690,33 @@ function abrirCartas(lista, i = 0, novasC = []) {
   setTimeout(() => { o.querySelector('.revelar-carta').classList.add('virada'); if (rar === 'lendaria' || rar === 'epica') confete(rar === 'lendaria' ? 90 : 40); }, 450);
 }
 
-function subiuNivel(n) {
+function subiuNivel(n, antes = n - 1) {
   const p = P(); const est = J.ESTAGIOS.find((e) => e.nivel === n);
-  overlay(`<div class="levelup">
-    <small>Subiu de nível!</small><div class="lv-n">${n}</div>
+  const prox = J.ESTAGIOS.find((e) => e.nivel > n);
+  const ITEM = { cajado: 'cajado', alforje: 'alforje', manto: 'manto', lamparina: 'lamparina', pergaminho: 'pergaminho', aura: 'brilho' };
+  overlay(`<div class="levelup"><div class="raios"></div>
+    <small>${n - antes > 1 ? `Subiu ${n - antes} níveis!` : 'Subiu de nível!'}</small>
+    <div class="lv-marco"><span class="lv-de">${antes}</span>${ico('chevron-right')}<span class="lv-n">${n}</span></div>
     <div class="lv-av">${avatarHTML(p.avatar, J.itensAte(n), 130)}</div>
-    ${est ? `<p>Agora você é <b>${est.nome}</b>${est.item ? ` e ganhou: <b>${{ cajado: 'cajado', alforje: 'alforje', manto: 'manto', lamparina: 'lamparina', pergaminho: 'pergaminho', aura: 'brilho' }[est.item]}</b>` : ''}.</p>` : `<p>Próximo nível: ${J.xpParaSubir(n)} XP.</p>`}
-    <button class="btn grande" data-fechar>Continuar</button></div>`);
-  confete(80);
+    <h2>${esc(nomePublico(p))}</h2>
+    ${est ? `<p>Agora você é <b>${est.nome}</b>${est.item ? ` e ganhou: <b>${ITEM[est.item]}</b>` : ''}.</p>` : `<p>Mais um passo na jornada. Continue: cada sessão te leva mais longe.</p>`}
+    ${prox ? `<p class="lv-prox">No nível ${prox.nivel} você vira <b>${prox.nome}</b>${prox.item ? ` e ganha ${ITEM[prox.item] === 'brilho' ? 'um brilho' : `um${prox.item === 'lamparina' ? 'a' : ''} ${ITEM[prox.item]}`}` : ''}.</p>` : ''}
+    <button class="btn grande ouro" data-fechar>Continuar</button></div>`, () => celebrarNivel());
+  setTimeout(() => confete(90), 300);
+}
+// v60: o nível que o viajante já viu celebrado fica em `nivelVisto`. Qualquer XP que faça subir (sessão,
+// carta, revisão, aplicação, sincronização) dispara a celebração na próxima tela livre: fora de quiz e leitura,
+// sem outra janela aberta. Quem ainda é pó da terra (ou perfil antigo sem o campo) só marca o nível atual.
+const ROTAS_SEM_CELEBRAR = ['sessao', 'dsessao', 'conquistar', 'revisao', 'novo-perfil', 'editar', 'entrar'];
+function celebrarNivel() {
+  const p = P(); if (!p) return;
+  const n = J.nivel(p.xp).n;
+  if (p.nivelVisto == null || ehPo(p)) { if (p.nivelVisto !== n) { p.nivelVisto = n; store.salvar(RAIZ); } return; }
+  if (n <= p.nivelVisto) return;
+  const rota = (location.hash || '#/hoje').split('/')[1] || 'hoje';
+  if (ROTAS_SEM_CELEBRAR.includes(rota) || document.querySelector('.overlay')) return;
+  const antes = p.nivelVisto; p.nivelVisto = n; salvar();
+  subiuNivel(n, antes);
 }
 
 function telaAplicacao(id) {
@@ -717,6 +736,8 @@ let CQ = null; // { id, ultimo: { certo, ref, fim, ... } } — retorno da últim
 function telaConquistar(id) {
   const p = P(); const c = J.PERSONAGENS[id];
   if (!c) return telaCartas();
+  const conserto = J.repararCarta(p, id);
+  if (conserto) { salvar(); if (conserto.fim) CQ = { id, ultimo: conserto }; }
   const u = CQ?.id === id ? CQ.ultimo : null;
   if (!u?.ganhou && J.personagensLiberados(p).has(id)) return telaCarta(id);
   if (!u?.ganhou && !J.cartasAConquistar(p).includes(id)) return telaCartas();
@@ -965,8 +986,9 @@ function telaGeral(arg) {
       const pub = { apelido: local ? local.apelido : l.apelido, avatar: local ? local.avatar : l.avatar };
       const eraNome = l.sessao_atual === 'fim' ? 'Tudo lido' : (ERAS.find((e) => e.id === l.era)?.nome || '');
       const salto = l.pos > ant + 1 && ant ? '<div class="rank-salto">…</div>' : ''; ant = l.pos;
-      return `${salto}<div class="rank ${l.meu && l.perfil_id === p.id ? 'eu' : ''}"><span class="pos ${l.pos <= 3 ? 'p' + l.pos : ''}">${l.pos}</span>${avatarHTML(pub.avatar, J.itensAte(J.nivel(l.xp).n), 34)}
-        <div><b>${esc(nomePublico(pub))}${l.meu ? ' <small class="voce">você</small>' : ''}</b><small>${ordem === 'xp' ? `Nível ${J.nivel(l.xp).n}` : esc(eraNome)}</small></div>
+      const souEu = l.meu && l.perfil_id === p.id; // "meu" = perfil da minha casa; "você" só no viajante ativo
+      return `${salto}<div class="rank ${souEu ? 'eu' : ''}"><span class="pos ${l.pos <= 3 ? 'p' + l.pos : ''}">${l.pos}</span>${avatarHTML(pub.avatar, J.itensAte(J.nivel(l.xp).n), 34)}
+        <div><b>${esc(nomePublico(pub))}${souEu ? ' <small class="voce">você</small>' : ''}</b><small>${ordem === 'xp' ? `Nível ${J.nivel(l.xp).n}` : esc(eraNome)}</small></div>
         <span class="rank-xp">${ordem === 'xp' ? `${l.xp_mes} XP` : `${l.capitulos} cap.`}</span></div>`;
     }).join('') || '<p class="dica">Ninguém pontuou ainda neste mês.</p>';
   }
@@ -1124,9 +1146,9 @@ function blocoConquistas(p) {
   const livros = livrosNaEstante();
   const todas = [...J.CONQUISTAS.filter((c) => c.nivel), ...eras, ...livros];
   return `<section class="bloco"><div class="bloco-tit"><span>Conquistas</span><span>${todas.filter(tem).length}/${todas.length}</span></div>
+    ${grupo('ritmo', 'Ritmo')}${grupo('colecao', 'Coleção')}${grupo('pratica', 'Prática')}
     <div class="conq-grupo"><div class="rot">Grandes marcos: as eras <span>${eras.filter(tem).length}/${eras.length}</span></div><div class="eras-c">${eras.map(era).join('')}</div></div>
-    <div class="conq-grupo"><div class="rot">Estante: livros concluídos <span>${livros.filter(tem).length}/${livros.length}</span></div><div class="estante">${(prateleiras(p).length ? prateleiras(p) : [[]]).map(prateleiraHTML).join('')}</div><p class="dica">${livros.some(tem) ? 'Cada livro concluído ganha seu lugar na estante.' : 'Conclua um livro e ele ganha seu lugar na estante.'}</p></div>
-    ${grupo('ritmo', 'Ritmo')}${grupo('colecao', 'Coleção')}${grupo('pratica', 'Prática')}</section>`;
+    <div class="conq-grupo"><div class="rot">Estante: livros concluídos <span>${livros.filter(tem).length}/${livros.length}</span></div><div class="estante">${(prateleiras(p).length ? prateleiras(p) : [[]]).map(prateleiraHTML).join('')}</div><p class="dica">${livros.some(tem) ? 'Cada livro concluído ganha seu lugar na estante.' : 'Conclua um livro e ele ganha seu lugar na estante.'}</p></div></section>`;
 }
 
 // Animações de conquista: livro entrando na estante, medalha da era, medalhas comuns. Uma tela de cada vez.
@@ -1238,6 +1260,7 @@ function render() {
   const leitor = document.getElementById('leitor');
   if (leitor) carregarLeitor(leitor);
   if (rota === 'dsessao') carregarTrechos();
+  setTimeout(celebrarNivel, 450);
 }
 
 async function carregarLeitor(el) {
@@ -1399,21 +1422,18 @@ Se o link não abrir no app, abra A Jornada, vá em Grupos e cole este convite e
   if (acao === 'revisar') {
     const t = document.getElementById('como').value.trim();
     if (!t) { toast('Escreva como foi, mesmo que em uma frase.'); return; }
-    const antes = J.nivel(P().xp).n;
     J.revisarAplicacao(P(), J.sessaoPorId(id), t); salvar();
     toast(`+${J.XP.revisao} XP · aplicação registrada`); ir('#/hoje');
-    const depois = J.nivel(P().xp).n; if (depois > antes) setTimeout(() => subiuNivel(depois), 500);
   }
 
   if (acao === 'responder') {
     const item = filaQuiz[0]; const i = Number(b.dataset.i); const certo = i === item.q.a;
-    const antes = J.nivel(P().xp).n;
     J.responderQuiz(P(), item.id, certo); J.verificarConquistas(P()); salvar();
     document.querySelectorAll('.opcao').forEach((o, k) => { o.disabled = true; if (k === item.q.a) o.classList.add('certa'); else if (k === i) o.classList.add('errada'); });
     document.getElementById('feedback').innerHTML = `<p class="${certo ? 'ok' : 'erro'}">${certo ? `${ico('circle-check')} Certo! +${J.XP.acerto} XP` : `${ico('x')} Não foi dessa vez — ela volta amanhã.`} <small>${esc(item.q.ref)}</small></p>
       <button class="btn grande" data-acao="proxima-q">${filaQuiz.length > 1 ? 'Próxima' : 'Terminar'}</button>`;
     if (certo) confete(15);
-    const depois = J.nivel(P().xp).n; if (depois > antes) setTimeout(() => subiuNivel(depois), 600);
+
   }
   if (acao === 'cq-resp') {
     const id = b.dataset.id; const i = Number(b.dataset.i);

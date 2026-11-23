@@ -159,6 +159,7 @@ export function estadoCarta(e, id) {
 export const cartasDisponiveis = (e) => cartasAConquistar(e).filter((id) => !estadoCarta(e, id).volta);
 // Começa (ou retoma) uma tentativa. As respostas ficam gravadas uma a uma: sair no meio não dá uma tentativa nova.
 export function tentativaCarta(e, id) {
+  repararCarta(e, id);
   if (!temBancoCarta(id) || personagensLiberados(e).has(id) || estadoCarta(e, id).volta) return null;
   e.cartaQuiz ||= {};
   const st = (e.cartaQuiz[id] ||= { tentativas: 0, usadas: [] });
@@ -176,8 +177,24 @@ export function tentativaCarta(e, id) {
 export function responderCarta(e, id, opcao) {
   const st = e.cartaQuiz?.[id]; if (!st?.atual) return null;
   const q = QUIZ_CARTAS[id][st.atual.q[st.atual.r.length]];
+  if (!q) return null;
   const certo = opcao === q.a; st.atual.r.push(certo);
   if (st.atual.r.length < 3) return { certo, ref: q.ref, fim: false };
+  return fecharTentativa(e, id, st, certo, q.ref);
+}
+// v60: conserta tentativa que ficou num estado impossível (3 respostas gravadas sem fechar, ou perguntas que
+// não existem mais no banco). Era o que travava a carta: o Álbum mostrava "Responder" e a tela não abria.
+// Com 3 respostas, fecha a tentativa como se a última tivesse acabado de ser dada; senão, descarta sem contar.
+export function repararCarta(e, id) {
+  const st = e.cartaQuiz?.[id]; const at = st?.atual; if (!at) return null;
+  const banco = QUIZ_CARTAS[id] || [];
+  const ok = Array.isArray(at.q) && Array.isArray(at.r) && at.q.length === 3 && at.q.every((i) => banco[i]);
+  if (ok && at.r.length < 3) return null;
+  if (ok) { at.r = at.r.slice(0, 3); return fecharTentativa(e, id, st, at.r[2], banco[at.q[2]].ref); }
+  st.atual = null; return { reparada: true };
+}
+function fecharTentativa(e, id, st, certo, ref) {
+  const q = { ref };
   const acertos = st.atual.r.filter(Boolean).length; const precisa = acertosParaCarta(e);
   if (acertos >= precisa) {
     e.cartas ||= {}; e.cartas[id] = { data: hoje(), modo: 'quiz' }; delete e.cartaQuiz[id];

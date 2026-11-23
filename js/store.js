@@ -101,6 +101,7 @@ export function mesclarPerfil(a, b) {
   r.cartaQuiz = { ...((novo === a ? b : a).cartaQuiz || {}), ...(novo.cartaQuiz || {}) };
   for (const k of Object.keys(r.cartas || {})) delete r.cartaQuiz[k];
   r.vistas = { ...b.vistas, ...a.vistas };
+  if (a.nivelVisto != null || b.nivelVisto != null) r.nivelVisto = Math.max(a.nivelVisto ?? 0, b.nivelVisto ?? 0);
   return r;
 }
 

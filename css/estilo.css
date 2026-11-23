@@ -268,6 +268,18 @@ textarea:focus { outline: none; border-color: var(--ouro); }
 .lv-n { font-family: var(--display); font-size: 5rem; line-height: 1; font-weight: 700; background: linear-gradient(#fff3c4, #d29a2c); -webkit-background-clip: text; background-clip: text; color: transparent; animation: pop .7s cubic-bezier(.2,1.6,.4,1); }
 .lv-av { margin: 8px 0; animation: flutua 3s ease-in-out infinite; }
 .levelup p { font-size: 1.05rem; margin-bottom: 18px; }
+/* v60: celebração de nível */
+.levelup { position: relative; }
+.levelup > * { position: relative; }
+.levelup .raios { position: absolute; left: 50%; top: 150px; width: 440px; height: 440px; margin: -220px 0 0 -220px; border-radius: 50%; pointer-events: none;
+  background: repeating-conic-gradient(rgba(255,211,107,.22) 0 8deg, transparent 8deg 20deg); -webkit-mask: radial-gradient(circle, #000 20%, transparent 68%); mask: radial-gradient(circle, #000 20%, transparent 68%);
+  animation: raios-gira 14s linear infinite, aparece 1s .3s ease both; }
+.lv-marco { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 6px 0 2px; }
+.lv-marco .ico { width: 28px; height: 28px; color: #ffd36b; opacity: .8; }
+.lv-de { font-family: var(--display); font-size: 2.4rem; font-weight: 700; color: rgba(255,255,255,.45); }
+.levelup h2 { font-family: var(--display); font-size: 1.5rem; margin: 4px 0 6px; }
+.levelup .lv-prox { font-size: .92rem; opacity: .8; margin-top: -8px; }
+.levelup .btn.ouro { background: linear-gradient(#f6cf6a, #c4841a); color: #1f1d1a; }
 .confete { position: fixed; top: -10px; width: 8px; height: 14px; border-radius: 2px; z-index: 60; pointer-events: none; animation: cai 2.4s cubic-bezier(.2,.6,.4,1) forwards; }
 @keyframes cai { to { transform: translate(var(--x), 105vh) rotate(var(--r)); opacity: .8; } }
 
