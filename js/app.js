@@ -1064,7 +1064,16 @@ function telaCartas(aba = 'pessoas') {
   return `${topo()}<h1 class="tit-tela">Álbum</h1>${abas}<p class="sub">${lib.size} de ${ordem.length} cartas nesta era</p>
   <div class="raridades">${porRar.map(([r, a, t]) => `<span class="r-${r}"><i></i>${RARIDADE[r].nome} ${a}/${t}</span>`).join('')}</div>
   ${aConq.length ? `<p class="dica conquistar-dica">${ico('layers')} ${aConq.length} carta${aConq.length > 1 ? 's' : ''} a conquistar: responda 3 perguntas sobre o personagem.</p>` : ''}
-  <div class="grade-cartas">${ordem.map((id) => (aConq.includes(id) ? carta(id, { estado: 'conquistar' }) : carta(id, { aberta: lib.has(id) }))).join('')}</div>`;
+  ${(() => {
+    // v61: as cartas que você já tem (e as a conquistar) ficam juntas, na ordem da história; as que ainda não
+    // apareceram vão para o fim, num bloco próprio. Antes elas ficavam no meio e pareciam buracos no álbum.
+    const minhas = ordem.filter((id) => lib.has(id) || aConq.includes(id));
+    const faltam = ordem.filter((id) => !lib.has(id) && !aConq.includes(id));
+    return `<div class="grade-cartas">${minhas.map((id) => (aConq.includes(id) ? carta(id, { estado: 'conquistar' }) : carta(id, { aberta: true }))).join('')}</div>
+    ${faltam.length ? `<div class="bloco-tit album-faltam"><span>Ainda por descobrir</span><span>${faltam.length} carta${faltam.length > 1 ? 's' : ''}</span></div>
+    <p class="dica">Elas aparecem conforme você avança na leitura.</p>
+    <div class="grade-cartas">${faltam.map((id) => carta(id, { aberta: false })).join('')}</div>` : ''}`;
+  })()}`;
 }
 
 function telaSelo(id) {
