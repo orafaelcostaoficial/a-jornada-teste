@@ -12,7 +12,7 @@ export const ERAS = [
     ['ex', 'Êxodo', 40, 'ex'], ['lv', 'Levítico', 27, 'lv'], ['nm', 'Números', 36, 'nm'], ['dt', 'Deuteronômio', 34, 'dt']] },
   { id: 'juizes', quando: 'c. 1400/1200 – 1050 a.C.', nome: 'Josué e Juízes', conteudo: true, livros: [
     ['js', 'Josué', 24, 'js'], ['jz', 'Juízes', 21, 'jz'], ['rt', 'Rute', 4, 'rt']] },
-  { id: 'reino-unido', quando: 'c. 1050 – 930 a.C.', nome: 'O Reino Unido', livros: [
+  { id: 'reino-unido', quando: 'c. 1050 – 930 a.C.', nome: 'O Reino Unido', conteudo: true, livros: [
     ['1sm', '1 Samuel', 31], ['2sm', '2 Samuel', 24], ['1cr', '1 Crônicas', 29], ['sl', 'Salmos', 150],
     ['1rs', '1 Reis', 22], ['ct', 'Cântico dos Cânticos', 8], ['pv', 'Provérbios', 31], ['ec', 'Eclesiastes', 12]] },
   { id: 'reino-dividido', quando: '930 – 586 a.C.', nome: 'Reino Dividido', livros: [

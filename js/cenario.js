@@ -40,6 +40,28 @@ export const CENAS = {
     fundo: { tipo: 'colinas', ceu: ['#3d3a6e', '#c78a7a'], longe: '#6b5a7a', meio: '#5f6f4e', chao: ['#8a9a5a', '#6f8045'], textura: 'grama', astro: 'lua', estrelas: true } },
   belem:      { quando: 'No tempo dos juízes (Rt 1:1)', nome: 'Os campos de Belém', enfeites: ['espiga', 'oliveira', 'espiga', 'tenda', 'espiga'],
     fundo: { tipo: 'colinas', ceu: ['#ffb259', '#fff1c2'], longe: '#d9b45c', meio: '#e6c062', chao: ['#f0cf6a', '#dcb24c'], textura: 'trigo', astro: 'sol' } },
+  silo:       { quando: 'Fim do tempo dos juízes (1Sm 4:18)', nome: 'Siló e o menino Samuel', enfeites: ['tenda', 'oliveira', 'estrelas', 'tenda', 'oliveira'],
+    fundo: { tipo: 'colinas', ceu: ['#2f3f8e', '#9fb4f0'], longe: '#6f86b8', meio: '#6c9a5a', chao: ['#8fb862', '#719c4a'], textura: 'grama', astro: 'lua', estrelas: true } },
+  'rei-saul': { quando: 'Quando Samuel já estava velho (1Sm 8:1)', nome: 'O primeiro rei', enfeites: ['oliveira', 'tenda', 'pedras', 'oliveira', 'nuvem'],
+    fundo: { tipo: 'colinas', ceu: ['#5aa9e8', '#d9efff'], longe: '#9aa86a', meio: '#86a456', chao: ['#a6c060', '#8aa64a'], textura: 'grama', astro: 'sol' } },
+  ela:        { quando: 'Ainda no reinado de Saul (1Sm 17:2)', nome: 'O vale de Elá', enfeites: ['pedras', 'rio', 'tenda', 'pedras', 'oliveira'],
+    fundo: { tipo: 'colinas', ceu: ['#ffb24a', '#fff0bf'], longe: '#c7a35e', meio: '#a8b25a', chao: ['#c6c06a', '#a9a34e'], textura: 'pedra', astro: 'sol', rio: true } },
+  cavernas:   { quando: 'Davi fugindo de Saul (1Sm 22:1)', nome: 'As cavernas do deserto', enfeites: ['pedras', 'duna', 'palmeira', 'pedras', 'estrelas'],
+    fundo: { tipo: 'montanha', ceu: ['#3b3570', '#e39a72'], longe: '#8f6f7a', meio: '#a0764e', chao: ['#d1a46a', '#b9884e'], textura: 'pedra', astro: 'lua', estrelas: true } },
+  hebrom:     { quando: 'Davi rei de Judá por 7 anos e meio (2Sm 5:5)', nome: 'Davi em Hebrom', enfeites: ['oliveira', 'espiga', 'tenda', 'oliveira'],
+    fundo: { tipo: 'colinas', ceu: ['#58b7f0', '#e0f4ff'], longe: '#9bb56a', meio: '#7fae52', chao: ['#9fd060', '#80b446'], textura: 'grama', astro: 'sol' } },
+  jerusalem:  { quando: 'Davi reina 33 anos em Jerusalém (2Sm 5:5)', nome: 'A cidade de Davi', enfeites: ['muralha', 'oliveira', 'cantaro', 'muralha', 'palmeira'],
+    fundo: { tipo: 'muralha', ceu: ['#4aa4ea', '#d6eeff'], longe: '#c9a46a', meio: '#d1a967', chao: ['#e2c07a', '#cda35a'], textura: 'pedra', astro: 'sol' } },
+  salmos:     { quando: 'Escritos ao longo de séculos', nome: 'Os Salmos', enfeites: ['estrelas', 'oliveira', 'rio', 'arvore', 'estrelas'],
+    fundo: { tipo: 'colinas', ceu: ['#3a3f9a', '#f2a07a'], longe: '#8a76b0', meio: '#6f9e64', chao: ['#8fc06a', '#6fa452'], textura: 'grama', astro: 'lua', estrelas: true, rio: true } },
+  templo:     { quando: 'O templo leva 7 anos (1Rs 6:38)', nome: 'O templo de Salomão', enfeites: ['muralha', 'palmeira', 'cantaro', 'oliveira', 'muralha'],
+    fundo: { tipo: 'cidade', ceu: ['#ffb84d', '#fff3c4'], longe: '#d9ad5e', meio: '#e8bf6a', chao: ['#f2cf78', '#ddb058'], textura: 'pedra', astro: 'sol' } },
+  dividido:   { quando: 'Depois da morte de Salomão (1Rs 11:43)', nome: 'O reino se divide', enfeites: ['nuvem', 'oliveira', 'tenda', 'nuvem'],
+    fundo: { tipo: 'colinas', ceu: ['#5b5f8f', '#c9b2a0'], longe: '#7f7a8f', meio: '#7d9058', chao: ['#9cae62', '#7f924a'], textura: 'grama', astro: 'sol' } },
+  carmelo:    { quando: 'No reinado de Acabe (1Rs 16:29)', nome: 'Elias e o monte Carmelo', enfeites: ['nuvem', 'raio', 'pedras', 'nuvem', 'oliveira'],
+    fundo: { tipo: 'montanha', ceu: ['#c2552e', '#ffcf7a'], longe: '#a35a3a', meio: '#7f6a3e', chao: ['#b49a5a', '#977f44'], textura: 'pedra', astro: 'sol' } },
+  sabedoria:  { quando: 'Do tempo de Salomão ao de Ezequias (Pv 25:1)', nome: 'Os livros da sabedoria', enfeites: ['arvore', 'espiga', 'flor', 'oliveira', 'arvore'],
+    fundo: { tipo: 'colinas', ceu: ['#5cc0f5', '#e6f7ff'], longe: '#8fc06a', meio: '#6cb255', chao: ['#8fd060', '#6fb446'], textura: 'trigo', astro: 'sol' } },
   uz:         { quando: 'Sem data no texto', nome: 'A terra de Uz', enfeites: ['nuvem', 'raio', 'nuvem', 'sol'],
     fundo: { tipo: 'colinas', ceu: ['#5f73b8', '#c9d4f2'], longe: '#8c9ac4', meio: '#7fa66a', chao: ['#9cc26a', '#7fa851'], textura: 'grama', chuva: true } },
 };
@@ -102,7 +124,13 @@ export function estiloCena(cenaId) {
 }
 
 export function cenaDaSessao(id) {
-  const [l, n] = [id.slice(0, 2), Number(id.slice(3))];
+  const [l, nn] = id.split('-'); const n = Number(nn);
+  if (l === '1sm') return n <= 2 ? 'silo' : n <= 4 ? 'rei-saul' : n === 5 ? 'ela' : 'cavernas';
+  if (l === '2sm') return n === 1 ? 'hebrom' : 'jerusalem';
+  if (l === '1cr') return 'jerusalem';
+  if (l === 'sl') return 'salmos';
+  if (l === '1rs') return n <= 3 ? 'templo' : n === 4 ? 'dividido' : 'carmelo';
+  if (l === 'ct' || l === 'pv' || l === 'ec') return 'sabedoria';
   if (l === 'jo') return 'uz';
   if (l === 'js') return ['jordao', 'jerico', 'conquista'][n - 1] || 'canaa';
   if (l === 'jz') return n <= 3 ? 'juizes' : n === 4 ? 'filisteus' : 'sem-rei';

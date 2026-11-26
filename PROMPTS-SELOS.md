@@ -253,6 +253,146 @@ Conferir: Rt 2:15-17; 3:15
 Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Cevada de Boaz". OBJETO: um feixe de espigas de cevada douradas amarrado com um laço de palha. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
 ```
 
+### `lampada-deus.png` — A lâmpada de Deus
+Conferir: 1Sm 3:3
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "A lâmpada de Deus". OBJETO: uma lamparina de barro antiga, acesa, com a chama pequena e firme. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `ebenezer.png` — Pedra Ebenézer
+Conferir: 1Sm 7:12
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Pedra Ebenézer". OBJETO: uma grande pedra em pé sobre um campo, com o céu claro atrás. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `funda.png` — Funda e cinco pedras
+Conferir: 1Sm 17:40
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Funda e cinco pedras". OBJETO: uma funda de couro aberta e, ao lado, EXATAMENTE 5 (cinco) pedras lisas e arredondadas bem separadas. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `flechas.png` — As flechas de Jônatas
+Conferir: 1Sm 20:20
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "As flechas de Jônatas". OBJETO: um arco de madeira e três flechas cravadas no chão de um campo. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `orla.png` — A ponta do manto
+Conferir: 1Sm 24:4
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "A ponta do manto". OBJETO: um manto real dobrado com um pedaço da borda cortado, e o retalho ao lado. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `danca.png` — A dança diante da arca
+Conferir: 2Sm 6:5,14
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "A dança diante da arca". OBJETO: um tamborim e uma harpa pequenos, com fitas coloridas em movimento. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `mesa.png` — A mesa do rei
+Conferir: 2Sm 9:7
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "A mesa do rei". OBJETO: uma mesa de madeira com pães, frutas e uma jarra, com um lugar vazio pronto para alguém sentar. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `ovelhinha.png` — A ovelhinha
+Conferir: 2Sm 12:3
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "A ovelhinha". OBJETO: uma ovelhinha branca pequena deitada num colo, com um pedaço de pão ao lado. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `eira.png` — A eira de Araúna
+Conferir: 2Sm 24:18-25
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "A eira de Araúna". OBJETO: uma eira de pedra lisa e redonda com feixes de trigo e um pequeno altar de pedras. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `plantada.png` — Árvore junto às águas
+Conferir: Sl 1:3
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Árvore junto às águas". OBJETO: uma árvore verde e cheia de frutos à beira de um riacho. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `pastor.png` — O cajado do pastor
+Conferir: Sl 23:1-4
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "O cajado do pastor". OBJETO: um cajado de pastor de madeira, com a ponta curvada, encostado numa pedra, e uma ovelha ao lado. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `lampada-pes.png` — Lâmpada para os pés
+Conferir: Sl 119:105
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Lâmpada para os pés". OBJETO: uma lamparina de barro acesa iluminando o começo de uma trilha de pedras no escuro. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `aleluia.png` — Aleluia
+Conferir: Sl 150:3-5
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Aleluia". OBJETO: uma trombeta, uma harpa, um tamborim e dois címbalos dispostos juntos. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `coracao.png` — Um coração que ouve
+Conferir: 1Rs 3:9
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Um coração que ouve". OBJETO: um coração estilizado dourado com uma coroa simples em cima. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `templo.png` — O templo
+Conferir: 1Rs 6:2; 7:21
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "O templo". OBJETO: a fachada de um templo antigo de pedra clara com duas colunas de bronze à frente. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `fogo-carmelo.png` — Fogo no Carmelo
+Conferir: 1Rs 18:31-38
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Fogo no Carmelo". OBJETO: um altar de doze pedras com fogo alto descendo do céu sobre a lenha. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `voz-suave.png` — A voz suave
+Conferir: 1Rs 19:9-12
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "A voz suave". OBJETO: a entrada de uma caverna numa montanha, com uma brisa leve movendo folhas. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `selo-amor.png` — Selo sobre o coração
+Conferir: Ct 8:6
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Selo sobre o coração". OBJETO: um selo antigo de pedra preso a um cordão, sobre um coração vermelho. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `formiga.png` — As quatro pequenas
+Conferir: Pv 30:24-28
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "As quatro pequenas". OBJETO: uma formiga, um pequeno roedor das rochas, um gafanhoto e uma lagartixa, lado a lado, simpáticos. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
+### `ampulheta.png` — Tudo tem o seu tempo
+Conferir: Ec 3:1
+
+```
+Crie uma ilustração digital para um app bíblico infantil e familiar, estilo livro ilustrado moderno: cartoon plano (flat) com sombreado suave, contorno limpo e arredondado, formas simples e bonitas, expressões serenas e simpáticas, adequado para crianças, como um ícone-emblema para um selo colecionável chamado "Tudo tem o seu tempo". OBJETO: uma ampulheta de madeira com areia dourada caindo. COMPOSIÇÃO: só o objeto, centralizado, ocupando cerca de 75% da imagem, forma clara e reconhecível mesmo em tamanho pequeno, sem pessoas (a não ser que estejam descritas acima). CORES: saturadas e fortes, com contorno marrom-escuro bem definido em volta de tudo, para destacar sobre uma medalha dourada (evite amarelo-claro e branco como cor principal). SEM brilho difuso, sem halo e sem névoa em volta do objeto: as bordas terminam limpas no branco. FUNDO: branco liso e puro (#FFFFFF), sem moldura e sem círculo (o app coloca o objeto sobre uma medalha dourada). EVITE: texto, letras, números, assinatura, moldura, marca d'água, cenas de luta ou violência, sangue, arma apontada para alguém, nudez, estilo fotográfico realista, rostos assustadores. FORMATO: quadrado 1:1, alta resolução.
+```
+
 ---
 
 ## Selos especiais (desafios sazonais)

@@ -32,7 +32,7 @@ NAA no site da SBB) → Entendi (por trás do texto + o que entendi) → Viver (
 O "para fazer" volta em 3 dias ("como foi?"), mostrando a pergunta, a resposta e o passo combinado.
 **Todo texto de sessão segue a skill `jornada-escrita`** (campos `gancho`, `repare`, `portras`, `conversa`, `fazer`,
 `oracao`). Sessões ainda sem `gancho` usam o formato antigo (`contexto`, `notas`, `pergunta`) e continuam funcionando.
-Desde a v62: as eras 1 a 3 inteiras (78 sessões) estão no formato novo. Validar referências com `node` lendo `data/biblia/blivre` (todas as refs de `repare`, `portras`, `conversa` e `fazer` devem existir).
+Desde a v62: as eras 1 a 3 inteiras (78 sessões) estão no formato novo. Desde a v63: era 4, O Reino Unido (67 sessões, `data/era-reino-unido.js` + `quiz-cartas-reino-unido.js`), já nasce no formato novo; ids de sessão com o id do livro (`1sm-01`, `sl-25`), e `cenaDaSessao` separa pelo hífen. Os livros da era 4 ainda estão sem `slug` da NAA (botão da NAA não aparece) até conferir no site. Validar referências com `node` lendo `data/biblia/blivre` (todas as refs de `repare`, `portras`, `conversa` e `fazer` devem existir).
 Revisão em quiz com repetição espaçada (Leitner). Meta semanal 5 de 7 dias (sem streak que zera).
 
 ## Regras de conteúdo — inegociáveis
@@ -52,7 +52,7 @@ Jesus 19 · Igreja 31 · Fim do Século I 6.
 
 ## Ordem e conteúdo
 Cronológica por livro (imagem @abibliadoprincipioaofim): 66 livros em 10 eras (`data/plano.js`).
-Conteúdo escrito: era 1 (Gênesis + Jó) em `data/era-principio.js` — INTRODUCOES, SESSOES, PERSONAGENS,
+Conteúdo escrito: eras 1 a 4 (`data/era-principio.js`, `era-moises.js`, `era-juizes.js`, `era-reino-unido.js`). Formato: — INTRODUCOES, SESSOES, PERSONAGENS,
 MARCOS, CARTAS (símbolo, raridade, título), CRIANCAS (pergunta por sessão).
 Nova era: criar `data/era-<id>.js` no mesmo formato, importar em `js/jogo.js`, marcar `conteudo: true` em
 `plano.js`, conferir e preencher os `slug` dos livros, adicionar cenas em `js/cenario.js` e incluir no `sw.js`.
