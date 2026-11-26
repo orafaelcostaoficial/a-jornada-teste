@@ -57,6 +57,12 @@ export const SESSOES = [
   // ───────────── JOSUÉ ─────────────
   { id: 'js-01', livro: 'js', caps: [1, 5], titulo: 'Forte e corajoso',
     cenario: 'As margens do Jordão, de frente para Jericó.',
+    gancho: "Moisés morreu, e agora Josué precisa levar mais de meio milhão de pessoas para o outro lado de um rio cheio. Antes, dois espias entram numa cidade murada e uma mulher arrisca a vida para escondê-los. Hoje você descobre o que aconteceu quando os pés dos sacerdotes tocaram a água.",
+    repare: [{"t": "Quantas vezes Deus diz a Josué \"seja forte e corajoso\" no capítulo 1?", "ref": "Js 1:6-9"}, {"t": "Qual foi o sinal combinado na janela de Raabe?", "ref": "Js 2:18"}, {"t": "Como estava o Jordão quando eles atravessaram?", "ref": "Js 3:15"}],
+    portras: [{"selo": "lugar", "t": "Jericó fica no vale do Jordão, uns 11 km ao norte do mar Morto, e é um dos lugares habitados mais antigos do mundo. O monte da cidade antiga fica cerca de 250 m abaixo do nível do mar.", "ref": "Js 2:1", "fonte": "Britannica, verbete \"Jericho\"; Encyclopaedia Judaica, verbete \"Jericho\""}, {"selo": "biblia", "t": "O maná parou no dia seguinte em que o povo comeu do fruto da terra: 40 anos de pão do céu chegavam ao fim.", "ref": "Js 5:12"}, {"selo": "liga", "t": "Raabe aparece na genealogia de Jesus e na lista de heróis da fé em Hebreus.", "ref": "Js 2:1; Mt 1:5; Hb 11:31"}, {"selo": "biblia", "t": "As doze pedras do Jordão eram para os filhos perguntarem: \"O que significam estas pedras?\".", "ref": "Js 4:6-7"}],
+    conversa: "Raabe era de Jericó e não conhecia a Lei de Moisés, mas disse: \"O Senhor é Deus em cima nos céus e embaixo na terra\" (Js 2:11). O que você acha que a convenceu? \"Ainda não sei\" também vale.",
+    fazer: "Israel levantou pedras para os filhos lembrarem o que Deus fez (Js 4:6-7). Até o \"como foi?\", monte com a sua família um \"memorial\": uma pedra, um pote ou um caderno onde cada um coloca ou escreve algo que Deus fez. Deixe num lugar visível da casa.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor disse a Josué: seja forte e corajoso, eu estou com você. Eu recebo essa palavra para mim. Me ajuda a dar o primeiro passo, mesmo antes de ver as águas se abrirem.\" Continue com as suas palavras.",
     contexto: 'Moisés morreu, e Deus manda Josué atravessar o Jordão com o povo. Em Jericó, Raabe esconde os dois espias. As águas do Jordão param, Israel passa em terra seca e levanta doze pedras como memorial. Em Gilgal, o povo é circuncidado, celebra a Páscoa, e o maná cessa.',
     notas: [
       ['1:8', 'O livro da lei não deve sair da boca de Josué: meditar nele de dia e de noite, para cumprir tudo o que está escrito.'],
@@ -77,6 +83,12 @@ export const SESSOES = [
 
   { id: 'js-02', livro: 'js', caps: [6, 8], titulo: 'Jericó e Ai',
     cenario: 'Jericó, a cidade fechada, e depois a cidade de Ai.',
+    gancho: "Deus manda o povo dar voltas ao redor de uma cidade murada, em silêncio, durante seis dias. No sétimo, sete voltas e um grito. Depois, uma vitória certa vira derrota por causa de algo escondido numa tenda. Hoje você descobre o que Acã escondeu.",
+    repare: [{"t": "Quantas voltas por dia, e quantas no sétimo dia?", "ref": "Js 6:3-4"}, {"t": "Quais quatro verbos Acã usa para confessar o que fez?", "ref": "Js 7:21"}, {"t": "Para quem Josué lê a lei no fim do capítulo 8?", "ref": "Js 8:34-35"}],
+    portras: [{"selo": "conta", "t": "Seis dias com uma volta e o sétimo com sete: o povo deu 13 voltas ao redor de Jericó.", "ref": "Js 6:3-4; 6:15"}, {"selo": "biblia", "t": "Acã descreve o caminho do pecado em quatro passos: vi, cobicei, peguei e escondi.", "ref": "Js 7:21"}, {"selo": "liga", "t": "Hebreus diz que foi pela fé que os muros de Jericó caíram, depois de rodeados por sete dias.", "ref": "Js 6:20; Hb 11:30"}, {"selo": "biblia", "t": "Josué lê a lei para todos: homens, mulheres, crianças e estrangeiros.", "ref": "Js 8:35"}],
+    conversa: "Acã viu, cobiçou, pegou e escondeu (Js 7:21). Em qual desses passos você acha que seria mais fácil parar? \"Ainda não sei\" também vale.",
+    fazer: "Acã escondeu o que pegou, e isso trouxe derrota (Js 7:21). Até o \"como foi?\", tire do esconderijo algo que você esconde: devolva o que não é seu, confesse uma mentira ou conte a um adulto de confiança algo que você vem escondendo.",
+    oracao: "Fique um minuto em silêncio e peça a Deus que mostre o que está escondido. Depois ore: \"Senhor, eu não quero esconder nada na minha tenda. Me ajuda a parar no primeiro passo, antes de cobiçar. E me dá coragem para trazer à luz o que eu escondi.\" Continue com as suas palavras.",
     contexto: 'Durante seis dias o povo dá uma volta por dia ao redor de Jericó, com os sacerdotes tocando as trombetas. No sétimo dia são sete voltas e um grande grito, e o muro cai. Raabe e a família dela são poupadas. Mas Acã guarda para si coisas condenadas, e Israel é derrotado em Ai. Depois de o pecado ser tratado, Ai é tomada, e Josué lê a lei diante de todo o povo.',
     notas: [
       ['6:3-4', 'Seis dias, uma volta por dia; no sétimo, sete voltas, com sete sacerdotes tocando trombetas de chifre de carneiro diante da arca.'],
@@ -96,6 +108,12 @@ export const SESSOES = [
 
   { id: 'js-03', livro: 'js', caps: [9, 12], titulo: 'O dia em que o sol parou',
     cenario: 'Gibeom e as cidades do sul e do norte de Canaã.',
+    gancho: "Uns homens chegam com roupas rasgadas, sandálias gastas e pão mofado, dizendo que vêm de muito longe. Israel acredita sem perguntar a Deus. Depois, numa batalha, Josué faz um pedido que ninguém nunca fez. Hoje você descobre o que aconteceu com o sol.",
+    repare: [{"t": "O que os homens de Israel deixaram de fazer antes do acordo?", "ref": "Js 9:14"}, {"t": "O que Josué pede ao Senhor em Gibeom?", "ref": "Js 10:12"}, {"t": "O que o texto diz sobre aquele dia?", "ref": "Js 10:14"}],
+    portras: [{"selo": "biblia", "t": "Os líderes examinaram o pão dos gibeonitas, mas não consultaram o Senhor.", "ref": "Js 9:14"}, {"selo": "biblia", "t": "Mesmo enganados, os líderes cumprem o juramento feito em nome do Senhor e defendem Gibeom.", "ref": "Js 9:19; 10:6-7"}, {"selo": "biblia", "t": "Nunca houve dia como aquele, em que o Senhor atendeu à voz de um homem.", "ref": "Js 10:14"}, {"selo": "liga", "t": "Séculos depois, quando Saul quebra esse juramento aos gibeonitas, Israel sofre por isso.", "ref": "Js 9:15; 2Sm 21:1-2"}],
+    conversa: "Israel tomou uma decisão importante olhando só para as provas, sem perguntar a Deus (Js 9:14). Por que você acha que às vezes a gente decide sem orar, mesmo sabendo que deveria? \"Ainda não sei\" também vale.",
+    fazer: "Os líderes não consultaram o Senhor antes de decidir (Js 9:14). Até o \"como foi?\", antes de cada decisão importante (uma compra, um combinado, uma resposta difícil), pare e ore primeiro. Anote as decisões e como Deus respondeu.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor lutou por Israel e ouviu a voz de Josué. Me perdoa pelas vezes que eu decido sem te consultar. Me ensina a perguntar ao Senhor primeiro.\" Continue com as suas palavras.",
     contexto: 'Os gibeonitas enganam Israel fingindo vir de uma terra distante, e os líderes fazem aliança com eles sem consultar o Senhor. Cinco reis atacam Gibeom; Israel sai em socorro, e o sol para no meio do céu. Josué vence os reis do sul e depois os do norte. O capítulo 12 lista os reis vencidos.',
     notas: [
       ['9:14', 'Os homens de Israel examinaram as provisões dos gibeonitas, mas não consultaram o Senhor.'],
@@ -113,6 +131,12 @@ export const SESSOES = [
 
   { id: 'js-04', livro: 'js', caps: [13, 19], titulo: 'A terra repartida',
     cenario: 'Gilgal e depois Siló, onde a terra é sorteada entre as tribos.',
+    gancho: "A terra está sendo repartida entre as tribos. No meio das listas de cidades, um homem de 85 anos levanta a mão e pede a parte mais difícil: um monte cheio de gigantes. Hoje você descobre por que Calebe quis justamente aquele lugar.",
+    repare: [{"t": "Qual tribo não recebe terra, e por quê?", "ref": "Js 13:33"}, {"t": "Como Calebe diz que está aos 85 anos?", "ref": "Js 14:10-11"}, {"t": "O que Acsa pede ao pai?", "ref": "Js 15:18-19"}],
+    portras: [{"selo": "conta", "t": "Calebe tinha 40 anos quando foi espiar a terra e 85 quando pediu o monte: 45 anos esperando a promessa.", "ref": "Js 14:7; 14:10"}, {"selo": "liga", "t": "Calebe pede o monte que Deus lhe prometeu porque seguiu o Senhor de todo o coração.", "ref": "Nm 14:24; Js 14:9; 14:14"}, {"selo": "liga", "t": "As filhas de Zelofeade recebem a herança, como Deus tinha mandado a Moisés.", "ref": "Nm 27:7; Js 17:3-4"}, {"selo": "biblia", "t": "Josué pergunta às tribos: até quando vocês vão adiar a posse da terra que o Senhor deu?", "ref": "Js 18:3"}],
+    conversa: "Calebe esperou 45 anos e, aos 85, ainda pediu o desafio mais difícil (Js 14:10-12). O que você acha que manteve a fé de Calebe acesa por tanto tempo? \"Ainda não sei\" também vale.",
+    fazer: "Josué perguntou: \"Até quando vocês vão adiar?\" (Js 18:3). Escolha uma coisa que Deus já colocou no seu coração para fazer e que você vem adiando (estudar a Bíblia, servir na igreja, falar de Jesus a alguém) e dê o primeiro passo até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, Calebe te seguiu de todo o coração até o fim. Eu também quero. Me dá força para conquistar o que o Senhor me prometeu e não adiar o que o Senhor me pede.\" Continue com as suas palavras.",
     contexto: 'Josué está velho e ainda resta terra para conquistar. A terra é repartida por sorteio entre as tribos; boa parte destes capítulos são listas de fronteiras e cidades. Calebe, aos 85 anos, pede o monte que Deus lhe prometera. Em Siló a tenda do encontro é armada e as últimas tribos recebem a sua parte. Por último, Josué recebe a sua cidade.',
     notas: [
       ['13:1', 'Josué está velho, e ainda resta muita terra para tomar.'],
@@ -134,6 +158,12 @@ export const SESSOES = [
 
   { id: 'js-05', livro: 'js', caps: [20, 24], titulo: 'Eu e a minha casa',
     cenario: 'Siquém, onde Josué reúne as tribos pela última vez.',
+    gancho: "Josué está velho. Ele reúne todas as tribos e conta a história desde Abraão. No fim, coloca o povo diante de uma escolha e diz em voz alta a escolha dele. Hoje você descobre a frase que muitas famílias penduram na parede de casa até hoje.",
+    repare: [{"t": "O que o texto diz sobre as promessas de Deus a Israel?", "ref": "Js 21:45"}, {"t": "O que Josué diz sobre ele e a casa dele?", "ref": "Js 24:15"}, {"t": "Onde são enterrados os ossos de José?", "ref": "Js 24:32"}],
+    portras: [{"selo": "biblia", "t": "Nenhuma de todas as boas promessas do Senhor falhou: todas se cumpriram.", "ref": "Js 21:45; 23:14"}, {"selo": "liga", "t": "Os ossos de José, que ele pediu para levarem, finalmente são enterrados em Siquém.", "ref": "Gn 50:25; Êx 13:19; Js 24:32"}, {"selo": "conta", "t": "Josué morreu com 110 anos, a mesma idade de José.", "ref": "Js 24:29; Gn 50:26"}, {"selo": "biblia", "t": "Josué escreve as palavras no livro da lei e levanta uma grande pedra como testemunha.", "ref": "Js 24:26-27"}],
+    conversa: "Josué disse: \"Eu e a minha casa serviremos ao Senhor\" (Js 24:15). O que você acha que significa, na prática, uma família inteira servir ao Senhor? \"Ainda não sei\" também vale.",
+    fazer: "Josué decidiu por ele e pela casa dele (Js 24:15). Até o \"como foi?\", converse com a sua família e escolham juntos um hábito para servir ao Senhor como casa (orar juntos à noite, ler a Bíblia numa refeição, ajudar alguém juntos) e comecem.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, nenhuma das suas promessas falhou. Hoje eu escolho: eu e a minha casa serviremos ao Senhor. Ajuda a minha família a te seguir junta.\" Continue com as suas palavras.",
     contexto: 'São separadas as cidades de refúgio e as cidades dos levitas. As tribos do outro lado do Jordão voltam para casa e levantam um altar que quase provoca uma guerra. Já velho, Josué se despede, conta a história desde Abraão e chama o povo a escolher a quem vai servir. A aliança é renovada, e Josué morre com 110 anos.',
     notas: [
       ['20:2-3', 'As cidades de refúgio: quem matasse alguém sem querer podia fugir para lá e ficar protegido do vingador.'],
@@ -155,6 +185,12 @@ export const SESSOES = [
   // ───────────── JUÍZES ─────────────
   { id: 'jz-01', livro: 'jz', caps: [1, 5], titulo: 'O ciclo e os primeiros juízes',
     cenario: 'Canaã depois de Josué; o monte Tabor e o ribeiro de Quisom.',
+    gancho: "Josué morreu, e cresce uma geração que não conhece o Senhor. O povo começa a girar num ciclo que vai se repetir muitas vezes. No meio disso, Deus levanta libertadores improváveis: um canhoto, um homem com um ferrão de boi e uma mulher que julgava debaixo de uma palmeira. Hoje você descobre o ciclo.",
+    repare: [{"t": "O que o texto diz sobre a geração que veio depois de Josué?", "ref": "Jz 2:10"}, {"t": "O que acontecia quando o juiz morria?", "ref": "Jz 2:19"}, {"t": "Onde Débora julgava o povo?", "ref": "Jz 4:4-5"}],
+    portras: [{"selo": "biblia", "t": "O ciclo dos Juízes: o povo se afasta, é oprimido, clama, Deus levanta um juiz, há descanso, e depois tudo recomeça.", "ref": "Jz 2:11-19"}, {"selo": "biblia", "t": "Débora diz a Baraque que a honra da vitória ficaria com uma mulher.", "ref": "Jz 4:9"}, {"selo": "liga", "t": "Hebreus cita Baraque entre os que, pela fé, venceram reinos.", "ref": "Jz 4:14; Hb 11:32-33"}, {"selo": "biblia", "t": "O cântico de Débora termina pedindo que os que amam o Senhor sejam como o sol quando nasce.", "ref": "Jz 5:31"}],
+    conversa: "Bastou uma geração para o povo esquecer o Senhor e o que ele tinha feito (Jz 2:10). Por que você acha que a fé dos pais não passa sozinha para os filhos? \"Ainda não sei\" também vale.",
+    fazer: "Uma geração inteira cresceu sem conhecer o que Deus tinha feito (Jz 2:10). Até o \"como foi?\", conte para uma criança (filho, irmão, sobrinho, aluno) uma história da Bíblia que você aprendeu nestas semanas e uma coisa que Deus fez na sua vida.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, eu não quero que a próxima geração cresça sem te conhecer. Me ajuda a contar o que o Senhor fez. Quebra os ciclos de afastamento na minha vida e na minha família.\" Continue com as suas palavras.",
     contexto: 'As tribos não expulsam por completo os povos da terra. A geração de Josué morre, e surge outra que não conhecia o Senhor. Começa um ciclo: o povo serve a outros deuses, é oprimido, clama, e Deus levanta juízes. Otniel, Eúde e Sangar livram Israel. Depois a profetisa Débora chama Baraque, e o comandante inimigo, Sísera, morre pelas mãos de Jael.',
     notas: [
       ['2:10', 'Surgiu outra geração, que não conhecia o Senhor nem o que ele tinha feito por Israel.'],
@@ -177,6 +213,12 @@ export const SESSOES = [
 
   { id: 'jz-02', livro: 'jz', caps: [6, 8], titulo: 'Gideão e os 300',
     cenario: 'O vale de Jezreel, invadido pelos midianitas.',
+    gancho: "Um rapaz está escondido batendo trigo dentro de um tanque de uvas, com medo dos inimigos. Um anjo aparece e o chama de \"valente guerreiro\". Depois, Deus faz algo estranho: diminui o exército dele de milhares para 300. Hoje você descobre como Gideão venceu.",
+    repare: [{"t": "Onde Gideão estava batendo o trigo, e por quê?", "ref": "Jz 6:11"}, {"t": "Que sinal Gideão pede com a lã?", "ref": "Jz 6:36-40"}, {"t": "Por que Deus diz que o exército era grande demais?", "ref": "Jz 7:2"}],
+    portras: [{"selo": "conta", "t": "O exército começa com 32 mil homens. Voltam 22 mil com medo, sobram 10 mil, e no fim ficam só 300.", "ref": "Jz 7:3; 7:6-7"}, {"selo": "biblia", "t": "As armas dos 300: trombetas, cântaros vazios e tochas acesas dentro deles.", "ref": "Jz 7:16"}, {"selo": "biblia", "t": "Gideão recusa ser rei: o Senhor governará sobre vocês.", "ref": "Jz 8:23"}, {"selo": "biblia", "t": "O ouro da vitória vira um éfode, e o éfode vira uma armadilha para Gideão e a sua casa.", "ref": "Jz 8:27"}],
+    conversa: "O anjo chamou Gideão de \"valente guerreiro\" enquanto ele estava escondido com medo (Jz 6:11-12). Por que você acha que Deus chama as pessoas pelo que elas vão ser, e não pelo que são agora? \"Ainda não sei\" também vale.",
+    fazer: "Deus reduziu o exército para que ninguém dissesse \"venci pela minha força\" (Jz 7:2). Até o \"como foi?\", faça algo bom para alguém em segredo e, quando der certo alguma coisa na sua semana, conte a alguém como Deus te ajudou.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor chamou Gideão de valente quando ele tinha medo. Obrigado porque o Senhor vê em mim o que eu ainda não vejo. Me usa, mesmo eu sendo pequeno, para que a glória seja sua.\" Continue com as suas palavras.",
     contexto: 'Os midianitas devastam Israel ano após ano. O anjo do Senhor encontra Gideão malhando trigo escondido num lagar e o chama de valente guerreiro. Gideão derruba o altar de Baal, pede sinais com a lã, e Deus reduz o exército a 300 homens. Com trombetas, cântaros e tochas, Midiã é vencido. Depois Gideão faz um éfode de ouro, que se torna uma armadilha.',
     notas: [
       ['6:11-12', 'Gideão malhava trigo no lagar, para escondê-lo dos midianitas. O anjo: o Senhor está com você, valente guerreiro.'],
@@ -197,6 +239,12 @@ export const SESSOES = [
 
   { id: 'jz-03', livro: 'jz', caps: [9, 12], titulo: 'O espinheiro e o voto',
     cenario: 'Siquém e a terra de Gileade, do outro lado do Jordão.',
+    gancho: "Um dos filhos de Gideão quer ser rei a qualquer custo. O irmão mais novo escapa e conta uma história sobre árvores procurando um rei. Depois, um guerreiro rejeitado pela família faz uma promessa sem pensar. Hoje você descobre o preço de palavras ditas às pressas.",
+    repare: [{"t": "Na parábola de Jotão, qual árvore aceita ser rei?", "ref": "Jz 9:14-15"}, {"t": "O que o povo faz antes de Deus livrá-lo dos amonitas?", "ref": "Jz 10:16"}, {"t": "Que promessa Jefté faz ao Senhor?", "ref": "Jz 11:30-31"}],
+    portras: [{"selo": "biblia", "t": "Na parábola, a oliveira, a figueira e a videira recusam ser rei. Só o espinheiro aceita.", "ref": "Jz 9:8-15"}, {"selo": "biblia", "t": "O mal que Abimeleque fez volta sobre ele mesmo.", "ref": "Jz 9:56"}, {"selo": "biblia", "t": "Quando o povo tira os deuses estranhos e volta ao Senhor, o texto diz que o Senhor se angustiou com o sofrimento de Israel.", "ref": "Jz 10:16"}, {"selo": "liga", "t": "Eclesiastes aconselha: não seja precipitado com a boca diante de Deus; é melhor não prometer do que prometer e não cumprir.", "ref": "Jz 11:30-31; Ec 5:2-5"}],
+    conversa: "Jefté prometeu algo sem pensar e depois sofreu muito com isso (Jz 11:30-35). Por que você acha que as palavras ditas no calor do momento podem trazer tanto peso? \"Ainda não sei\" também vale.",
+    fazer: "Jefté falou sem pensar (Jz 11:30-31). Por 3 dias, antes de prometer qualquer coisa, espere um pouco, pense e só então responda. Se você já prometeu algo às pressas, converse com a pessoa e resolva com honestidade.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, guarda a minha boca. Me ensina a pensar antes de prometer e a cumprir o que eu digo. Livra a minha vida de querer poder a qualquer custo, como Abimeleque.\" Continue com as suas palavras.",
     contexto: 'Abimeleque, filho de Gideão, mata os irmãos para reinar em Siquém; só Jotão escapa e conta a parábola das árvores. Abimeleque acaba recebendo o mal que fez. Depois de outros juízes, os amonitas oprimem Israel. Jefté, expulso pelos irmãos, é chamado para liderar e faz um voto precipitado, que atinge a sua única filha.',
     notas: [
       ['9:5', 'Abimeleque mata os seus setenta irmãos sobre uma pedra; só Jotão, o mais novo, escapa escondido.'],
@@ -217,6 +265,12 @@ export const SESSOES = [
 
   { id: 'jz-04', livro: 'jz', caps: [13, 16], titulo: 'Sansão',
     cenario: 'A fronteira com os filisteus: Zorá, Timna e Gaza.',
+    gancho: "Um anjo avisa uma mulher que nunca tinha conseguido ter filhos: ela vai ter um menino especial, separado para Deus desde o ventre. Ele cresce com uma força que ninguém explica. Mas a maior fraqueza dele não está nos músculos. Hoje você descobre o que derrubou Sansão.",
+    repare: [{"t": "O que não podia passar na cabeça do menino?", "ref": "Jz 13:5"}, {"t": "Qual é o enigma de Sansão?", "ref": "Jz 14:14"}, {"t": "O que Sansão não sabia quando acordou?", "ref": "Jz 16:20"}],
+    portras: [{"selo": "biblia", "t": "A força de Sansão vinha do Espírito do Senhor que vinha sobre ele.", "ref": "Jz 14:6; 14:19; 15:14"}, {"selo": "liga", "t": "Sansão era nazireu: não podia cortar o cabelo, como mandava a lei de Números.", "ref": "Nm 6:5; Jz 13:5"}, {"selo": "biblia", "t": "Sansão acorda e não sabe que o Senhor tinha se afastado dele.", "ref": "Jz 16:20"}, {"selo": "liga", "t": "Mesmo com todos os erros, Sansão aparece em Hebreus entre os que agiram pela fé.", "ref": "Jz 16:28; Hb 11:32"}],
+    conversa: "Sansão tinha uma força enorme, mas vivia fazendo só o que queria (Jz 14:3; 16:1). Por que você acha que alguém tão forte por fora pode ser tão fraco por dentro? \"Ainda não sei\" também vale.",
+    fazer: "Sansão foi brincando com o que era errado até perder a força (Jz 16:15-20). Identifique uma \"Dalila\" na sua vida (algo que você sabe que te afasta de Deus e você continua deixando chegar perto) e corte esse contato por 3 dias. Conte para alguém que possa te ajudar.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, minha força vem do Senhor, não de mim. Me livra de brincar com o que me afasta do Senhor. E, como Sansão no fim, eu clamo: lembra-te de mim e me fortalece.\" Continue com as suas palavras.",
     contexto: 'O anjo do Senhor anuncia a uma mulher estéril, da tribo de Dã, que ela terá um filho nazireu, separado para Deus desde o ventre. Sansão cresce, e o Espírito do Senhor lhe dá uma força enorme. Mas ele vive pelos próprios desejos: casa-se com uma filisteia, vinga-se e, por fim, revela a Dalila o segredo do seu cabelo. Preso e cego, clama a Deus uma última vez.',
     notas: [
       ['13:5', 'O menino será nazireu desde o ventre; navalha não passará na cabeça dele, e ele começará a livrar Israel dos filisteus.'],
@@ -238,6 +292,12 @@ export const SESSOES = [
 
   { id: 'jz-05', livro: 'jz', caps: [17, 21], titulo: 'Cada um fazia o que achava certo',
     cenario: 'Os montes de Efraim, a tribo de Dã e Gibeá de Benjamim, sem rei em Israel.',
+    gancho: "O livro dos Juízes termina com duas histórias tristes, e uma frase que se repete como um alarme. Um homem faz um ídolo dentro de casa e acha que Deus vai abençoá-lo por isso. Hoje você descobre a frase que resume aquela época.",
+    repare: [{"t": "Que frase aparece no começo e no fim destas histórias?", "ref": "Jz 17:6; 21:25"}, {"t": "Por que Mica acha que Deus vai fazer bem a ele?", "ref": "Jz 17:13"}, {"t": "O que o povo faz em Betel diante do Senhor?", "ref": "Jz 20:26"}],
+    portras: [{"selo": "biblia", "t": "Naqueles dias não havia rei em Israel; cada um fazia o que achava certo aos próprios olhos.", "ref": "Jz 17:6; 21:25"}, {"selo": "biblia", "t": "Mica faz um ídolo com prata e acha que vai ser abençoado só porque contratou um levita.", "ref": "Jz 17:4-5; 17:13"}, {"selo": "liga", "t": "Provérbios avisa: há caminho que parece certo ao homem, mas o fim dele é caminho de morte.", "ref": "Jz 21:25; Pv 14:12"}, {"selo": "biblia", "t": "Diante de um crime terrível, o povo chora e jejua diante do Senhor em Betel.", "ref": "Jz 20:26"}],
+    conversa: "O livro termina dizendo que cada um fazia o que achava certo (Jz 21:25). Por que você acha que viver só pelo \"eu acho certo\" leva a tantos problemas? \"Ainda não sei\" também vale.",
+    fazer: "O povo jejuou e buscou ao Senhor em Betel (Jz 20:26). Por 3 dias, faça um jejum de algo de que você gosta (crianças: telas, doce ou um jogo, combinado com a família; adultos: pode ser de comida, do jeito que a sua saúde permitir) e use esse tempo para pedir a Deus direção sobre algo em que você tem feito \"o que acha certo\".",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, eu não quero fazer só o que eu acho certo. O Senhor é o meu Rei. Mostra onde eu tenho seguido o meu próprio caminho e me traz de volta para o seu.\" Continue com as suas palavras.",
     contexto: 'Dois relatos mostram como o povo estava. Mica faz um ídolo em casa e contrata um levita como sacerdote; a tribo de Dã leva o ídolo e o levita e toma a cidade de Laís. Depois, um crime terrível contra uma mulher em Gibeá, cidade de Benjamim, leva as outras tribos a uma guerra que quase acaba com Benjamim. O livro termina dizendo que cada um fazia o que achava certo.',
     notas: [
       ['17:6', 'Naqueles dias não havia rei em Israel; cada um fazia o que parecia certo aos seus olhos.'],
@@ -258,6 +318,12 @@ export const SESSOES = [
   // ───────────── RUTE ─────────────
   { id: 'rt-01', livro: 'rt', caps: [1, 4], titulo: 'Rute e Boaz',
     cenario: 'Moabe e Belém de Judá, no tempo dos juízes.',
+    gancho: "Uma família foge da fome e, em terra estrangeira, a mãe perde o marido e os dois filhos. Ela decide voltar para casa, de mãos vazias. Uma das noras, que nem é do povo de Israel, se recusa a deixá-la. Hoje você descobre aonde a lealdade de Rute a levou.",
+    repare: [{"t": "O que Rute diz a Noemi quando decide ficar com ela?", "ref": "Rt 1:16-17"}, {"t": "Que nome Noemi pede que a chamem, e por quê?", "ref": "Rt 1:20"}, {"t": "No campo de quem Rute vai colher \"por acaso\"?", "ref": "Rt 2:3"}],
+    portras: [{"selo": "liga", "t": "Rute colhe as sobras do campo, exatamente como mandava a lei de Levítico para o pobre e o estrangeiro.", "ref": "Lv 19:9-10; Rt 2:2-3"}, {"selo": "biblia", "t": "Boaz diz que Rute veio se abrigar debaixo das asas do Senhor.", "ref": "Rt 2:12"}, {"selo": "biblia", "t": "Noemi, que voltou dizendo que estava vazia, termina com um neto no colo.", "ref": "Rt 1:21; 4:16"}, {"selo": "liga", "t": "O filho de Rute e Boaz é Obede, avô do rei Davi. Rute aparece na genealogia de Jesus.", "ref": "Rt 4:17; Mt 1:5"}],
+    conversa: "Rute podia ter voltado para a família dela em Moabe, mas escolheu ficar com Noemi e com o Deus de Noemi (Rt 1:16). O que você acha que custou para Rute essa escolha? \"Ainda não sei\" também vale.",
+    fazer: "Boaz tratou com bondade uma estrangeira pobre que colhia no campo dele (Rt 2:8-16). Até o \"como foi?\", faça uma bondade concreta e generosa para alguém que é de fora (um vizinho novo, um colega que acabou de chegar, um imigrante, alguém sem família por perto).",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor cuidou de Rute e de Noemi quando elas estavam vazias. Obrigado porque eu posso me abrigar debaixo das suas asas. Me faz leal como Rute e bondoso como Boaz.\" Continue com as suas palavras.",
     contexto: 'Numa fome, Elimeleque leva a família de Belém para Moabe. Ele e os dois filhos morrem. Noemi volta para Belém, e a nora moabita Rute decide ir com ela. Rute colhe espigas no campo de Boaz, parente de Elimeleque, que a trata com bondade. Boaz resgata a herança da família e se casa com Rute. Nasce Obede, avô de Davi.',
     notas: [
       ['1:1', 'Nos dias em que os juízes julgavam, houve fome na terra.'],

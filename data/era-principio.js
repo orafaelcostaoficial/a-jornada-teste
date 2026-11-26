@@ -6,6 +6,9 @@
 // - Nada é copiado da NAA nem da Bíblia de Estudo NAA: é paráfrase própria,
 //   no formato de uma Bíblia de estudo (introdução, cenário, notas).
 // - Datas que o texto não dá não são inventadas.
+//
+// v62: sessões com `gancho` seguem a skill jornada-escrita (gancho, repare, portras, conversa, fazer, oracao).
+// Itens de fora da Bíblia (🔎/🗺️) trazem `fonte` conferida. `contexto/notas/pergunta` ficam para registros antigos.
 
 export const INTRODUCOES = {
   gn: {
@@ -44,6 +47,12 @@ export const SESSOES = [
   // ───────────── GÊNESIS ─────────────
   { id: 'gn-01', livro: 'gn', caps: [1, 2], titulo: 'A criação',
     cenario: 'O princípio de tudo.',
+    gancho: "Antes de existir sol, mar ou qualquer animal, o texto já começa com alguém: Deus. Ele fala, e as coisas passam a existir. Hoje você descobre em que ordem tudo apareceu e o que Deus achou do resultado.",
+    repare: [{"t": "Que frase se repete no fim de quase todos os dias da criação? O que muda no sexto dia?", "ref": "Gn 1:4-31"}, {"t": "De que Deus forma o homem, e o que ele sopra nele?", "ref": "Gn 2:7"}, {"t": "Qual é a única árvore de que o homem não pode comer?", "ref": "Gn 2:17"}],
+    portras: [{"selo": "biblia", "t": "Seis vezes o texto diz que Deus viu que era bom. No fim do sexto dia, depois de criar o ser humano, a frase cresce: \"muito bom\".", "ref": "Gn 1:4-25; 1:31"}, {"selo": "liga", "t": "João abre o seu evangelho com as mesmas palavras, \"No princípio\", e diz que todas as coisas foram feitas por meio da Palavra.", "ref": "Gn 1:1; Jo 1:1-3"}, {"selo": "liga", "t": "O sétimo dia volta nos Dez Mandamentos: o descanso semanal é ligado aos seis dias da criação.", "ref": "Gn 2:2-3; Êx 20:8-11"}],
+    conversa: "Deus fez o homem e a mulher à imagem dele (Gn 1:27). O que isso diz sobre o valor de cada pessoa que você conhece, inclusive as que são difíceis? \"Ainda não sei\" também vale.",
+    fazer: "Deus deu ao homem o trabalho de cultivar e guardar o jardim (Gn 2:15). Assuma um cuidado em casa pelos próximos 3 dias: uma planta, um bicho, um cômodo ou um canto da casa. Faça sem ninguém precisar lembrar.",
+    oracao: "Fique um minuto em silêncio olhando algo que Deus criou: o céu, uma planta, as suas mãos. Depois ore: \"Senhor, obrigado porque tudo o que o Senhor fez é bom. Obrigado por me fazer à sua imagem. Me ajuda a cuidar bem do que o Senhor me confiou.\" Continue com as suas palavras.",
     contexto: 'Gênesis abre com Deus criando os céus e a terra e ordenando tudo em seis dias. O capítulo 2 volta ao sexto dia e mostra de perto a formação do homem e da mulher e o jardim do Éden.',
     notas: [
       ['1:1', 'Antes de tudo, Deus já existe e cria. O texto não explica Deus; começa por ele.'],
@@ -58,6 +67,12 @@ export const SESSOES = [
 
   { id: 'gn-02', livro: 'gn', caps: [3, 3], titulo: 'A queda',
     cenario: 'O jardim do Éden.',
+    gancho: "Um jardim perfeito, com uma única regra. Então aparece alguém com uma pergunta que parece inocente. Hoje você descobre como uma conversa mudou tudo, e o que Deus fez em seguida.",
+    repare: [{"t": "Compare a pergunta da serpente com o que Deus tinha dito. O que ela muda?", "ref": "Gn 2:16-17; 3:1"}, {"t": "O que o homem e a mulher fazem quando ouvem Deus andando no jardim?", "ref": "Gn 3:8"}, {"t": "Quando Deus pergunta o que aconteceu, de quem cada um põe a culpa?", "ref": "Gn 3:12-13"}],
+    portras: [{"selo": "biblia", "t": "Quem procura é Deus. A primeira pergunta dele depois do erro é: \"Onde você está?\".", "ref": "Gn 3:9"}, {"selo": "biblia", "t": "Antes de tirá-los do jardim, Deus faz roupas de pele e os veste.", "ref": "Gn 3:21"}, {"selo": "liga", "t": "A árvore da vida, cujo caminho fica guardado em Gênesis, aparece de novo no último capítulo da Bíblia.", "ref": "Gn 3:24; Ap 22:2"}, {"selo": "liga", "t": "A imagem de esmagar a serpente debaixo dos pés volta numa carta de Paulo.", "ref": "Gn 3:15; Rm 16:20"}],
+    conversa: "Quando Deus perguntou o que tinha acontecido, o homem culpou a mulher, e a mulher culpou a serpente (Gn 3:12-13). Por que você acha que é tão difícil dizer \"fui eu\"? \"Ainda não sei\" também vale.",
+    fazer: "Adão e Eva se esconderam e jogaram a culpa em outro (Gn 3:8-13). Procure alguém a quem você deve um pedido de desculpas e diga com todas as letras: \"Fui eu, me perdoa.\" Sem desculpa e sem \"mas\".",
+    oracao: "Fique um minuto em silêncio e lembre de algo errado que você ainda não entregou a Deus. Depois ore: \"Senhor, obrigado porque o Senhor foi procurar Adão e Eva mesmo depois do erro. Eu não quero me esconder do Senhor. Me perdoa pelo que eu fiz de errado e me dá coragem para pedir perdão a quem eu magoei.\" Continue com as suas palavras.",
     contexto: 'A serpente questiona a palavra de Deus, a mulher e o homem comem do fruto proibido e a relação com Deus, entre os dois e com a criação se quebra. Mesmo no juízo, Deus anuncia uma promessa.',
     notas: [
       ['3:1', 'A tentação começa com uma pergunta que distorce o que Deus disse.'],
@@ -72,6 +87,12 @@ export const SESSOES = [
 
   { id: 'gn-03', livro: 'gn', caps: [4, 5], titulo: 'Caim, Abel e a linhagem de Adão',
     cenario: 'Fora do Éden, na primeira família.',
+    gancho: "Dois irmãos levam ofertas a Deus. Uma é aceita, a outra não, e o irmão fica muito irado. Antes de qualquer coisa acontecer, Deus vem conversar com ele. Hoje você descobre o aviso que Deus deu e o que Caim fez com ele.",
+    repare: [{"t": "O que Deus diz a Caim sobre o pecado, antes de qualquer coisa acontecer?", "ref": "Gn 4:7"}, {"t": "Que pergunta Caim devolve a Deus?", "ref": "Gn 4:9"}, {"t": "No capítulo 5, que frase fecha a vida de quase todos? Quem é a exceção?", "ref": "Gn 5:5-31"}],
+    portras: [{"selo": "conta", "t": "Some as idades do próprio texto: Matusalém tinha 187 anos quando nasceu Lameque; Lameque tinha 182 quando nasceu Noé; e Noé tinha 600 quando veio o dilúvio. 187 + 182 + 600 = 969, exatamente a idade com que Matusalém morreu. A conta fecha no ano do dilúvio.", "ref": "Gn 5:25-29; 5:27; 7:6"}, {"selo": "liga", "t": "Enoque volta na carta aos Hebreus: foi levado sem ver a morte, porque agradava a Deus.", "ref": "Gn 5:24; Hb 11:5"}, {"selo": "liga", "t": "João usa Caim como o exemplo do que não fazer com o irmão.", "ref": "Gn 4:8; 1Jo 3:12"}],
+    conversa: "Deus avisou Caim antes: o pecado estava à porta, e ele devia dominá-lo (Gn 4:7). Por que você acha que Caim não ouviu o aviso? E o que costuma \"bater à sua porta\" quando você fica com raiva? \"Ainda não sei\" também vale.",
+    fazer: "Caim deixou a raiva crescer até ferir o próprio irmão (Gn 4:5-8). Escolha uma pessoa com quem você está brigado ou chateado e dê o primeiro passo para fazer as pazes até o \"como foi?\": uma conversa, um recado ou um gesto.",
+    oracao: "Fique um minuto em silêncio e pense em alguém com quem você está chateado. Depois ore: \"Senhor, o Senhor avisou Caim porque se importava com ele. Me ajuda a dominar a minha raiva antes que ela me domine. Abençoa essa pessoa e me dá coragem para dar o primeiro passo.\" Continue com as suas palavras.",
     contexto: 'O pecado logo chega ao primeiro assassinato. Depois, a genealogia de Adão até Noé mostra a vida seguindo, geração após geração, com o refrão "e morreu".',
     notas: [
       ['4:7', 'Antes do crime, Deus avisa Caim: o pecado está à porta, e ele deve dominá-lo.'],
@@ -88,6 +109,12 @@ export const SESSOES = [
 
   { id: 'gn-04', livro: 'gn', caps: [6, 7], titulo: 'Noé e o dilúvio',
     cenario: 'A terra antes do dilúvio.',
+    gancho: "Deus manda Noé construir um barco do tamanho de um prédio deitado, e ainda não tinha caído uma gota de chuva. Hoje você descobre o que Noé fez com essa ordem.",
+    repare: [{"t": "Quantas vezes o texto diz que Noé fez \"como Deus ordenou\"?", "ref": "Gn 6:22; 7:5"}, {"t": "Quem fecha a porta da arca?", "ref": "Gn 7:16"}],
+    portras: [{"selo": "biblia", "t": "A arca media 300 côvados de comprimento, 50 de largura e 30 de altura.", "ref": "Gn 6:15"}, {"selo": "conta", "t": "Um côvado era a medida do cotovelo até a ponta do dedo médio: em geral uns 45,7 cm, chegando a 53 cm em alguns povos. Isso dá uma arca de 137 a 159 m de comprimento, mais que um campo de futebol (o maior permitido tem 120 m), e uns 14 m de altura, como um prédio de 4 andares.", "ref": "Gn 6:15", "fonte": "Britannica, verbete \"cubit\"; Regras do Jogo da IFAB, Regra 1"}, {"selo": "liga", "t": "A Bíblia também usa o \"côvado de homem\" para medir a cama do rei Ogue.", "ref": "Dt 3:11"}, {"selo": "liga", "t": "Chove 40 dias e 40 noites. Moisés também fica 40 dias no monte, e Jesus, 40 dias no deserto.", "ref": "Gn 7:12; Êx 24:18; Mt 4:2"}],
+    conversa: "Noé ainda não via chuva nenhuma. Por que você acha que ele obedeceu mesmo assim? \"Ainda não sei\" também vale.",
+    fazer: "Noé começou a construir antes de ver a chuva. Escolha hoje uma coisa certa que você vem empurrando para depois (o pedido de desculpas, a tarefa, a ajuda que prometeu) e comece amanhã, sem esperar vontade ou garantia.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, obrigado porque o Senhor guardou Noé e fechou a porta da arca. Me dá coragem para obedecer mesmo quando eu ainda não vejo o resultado. Me ajuda a começar amanhã o que eu venho adiando.\" Continue com as suas palavras.",
     contexto: 'A maldade humana se espalha e Deus decide trazer o dilúvio. Noé é a exceção: recebe a ordem de construir a arca e obedece.',
     notas: [
       ['6:5-6', 'Deus vê que a maldade é grande e que todo desígnio do coração humano é mau.'],
@@ -102,6 +129,12 @@ export const SESSOES = [
 
   { id: 'gn-05', livro: 'gn', caps: [8, 9], titulo: 'A aliança com Noé',
     cenario: 'Depois do dilúvio, nos montes de Ararate (Gn 8:4).',
+    gancho: "Depois de meses de água, a arca para no alto de uns montes. Noé abre a janela e solta duas aves, uma de cada vez. Hoje você descobre qual delas voltou com uma resposta no bico.",
+    repare: [{"t": "Quantas vezes Noé solta a pomba, e o que acontece em cada uma?", "ref": "Gn 8:8-12"}, {"t": "Qual é a primeira coisa que Noé faz ao sair da arca?", "ref": "Gn 8:20"}, {"t": "Com quem Deus faz a aliança? Só com Noé?", "ref": "Gn 9:9-17"}],
+    portras: [{"selo": "conta", "t": "Noé entra na arca no ano 600 da vida dele, mês 2, dia 17. A terra fica seca no ano 601, mês 2, dia 27, e Deus manda sair. Pelas datas do próprio texto, foram um ano e dez dias lá dentro.", "ref": "Gn 7:11; 8:14-16"}, {"selo": "lugar", "t": "O texto não fala de um único monte, e sim dos \"montes de Ararate\". Ararate é o nome hebraico do antigo reino de Urartu, ao redor do lago Van, numa região que hoje fica dividida entre Turquia, Armênia e Irã.", "ref": "Gn 8:4", "fonte": "Britannica, verbete \"Urartu\"; Columbia Encyclopedia, verbete \"Urartu\""}, {"selo": "liga", "t": "Ararate aparece de novo como a terra para onde fogem os filhos do rei Senaqueribe.", "ref": "Gn 8:4; 2Rs 19:37"}, {"selo": "liga", "t": "O arco nas nuvens volta nas visões da glória de Deus, em Ezequiel e no Apocalipse.", "ref": "Gn 9:13; Ez 1:28; Ap 4:3"}],
+    conversa: "A primeira coisa que Noé fez fora da arca foi construir um altar ao Senhor (Gn 8:20). Por que você acha que ele começou por aí, antes de qualquer outra coisa? \"Ainda não sei\" também vale.",
+    fazer: "Noé saiu da arca e, antes de tudo, adorou a Deus (Gn 8:20). Por 3 dias, comece o seu dia agradecendo a Deus antes de pegar o celular ou ligar a TV: três motivos diferentes a cada manhã.",
+    oracao: "Fique um minuto em silêncio e lembre de uma promessa de Deus que você conhece. Depois ore: \"Senhor, obrigado porque o Senhor cumpre o que promete, como fez com Noé. Quando eu vir um arco-íris, quero lembrar que o Senhor é fiel. Me ajuda a começar cada dia agradecendo.\" Continue com as suas palavras.",
     contexto: 'As águas baixam, Noé sai da arca e oferece sacrifícios. Deus faz uma aliança com toda a criação e dá o arco nas nuvens como sinal.',
     notas: [
       ['8:11', 'A pomba volta com uma folha de oliveira: as águas tinham baixado.'],
@@ -116,6 +149,12 @@ export const SESSOES = [
 
   { id: 'gn-06', livro: 'gn', caps: [10, 11], titulo: 'As nações e Babel',
     cenario: 'A terra de Sinar (Gn 11:2) e, no fim, Ur e Harã.',
+    gancho: "O mundo inteiro fala a mesma língua. Um grupo tem uma ideia ousada: construir uma torre que chegue até o céu. Hoje você descobre o que Deus fez com esse plano e de onde veio o nome Babel.",
+    repare: [{"t": "Que material eles usam no lugar de pedra e de argamassa?", "ref": "Gn 11:3"}, {"t": "Quais são os objetivos da construção?", "ref": "Gn 11:4"}, {"t": "Quem desce para ver a cidade e a torre?", "ref": "Gn 11:5"}],
+    portras: [{"selo": "lugar", "t": "Tijolo cozido e betume eram mesmo o material da região: na Mesopotâmia, as grandes torres de templo eram revestidas de tijolo cozido em forno e reforçadas com betume.", "ref": "Gn 11:3", "fonte": "Britannica, verbete \"Mesopotamian art\""}, {"selo": "liga", "t": "Em Babel, o plano era \"fazer um nome\" para si. No capítulo seguinte, é Deus quem promete tornar grande o nome de Abrão.", "ref": "Gn 11:4; 12:2"}, {"selo": "lugar", "t": "Ur dos caldeus, de onde sai a família de Abrão, foi encontrada: são as ruínas de Tell el-Muqayyar, no sul do Iraque, perto do rio Eufrates.", "ref": "Gn 11:31", "fonte": "Britannica, verbete \"Ur\""}, {"selo": "liga", "t": "Em Babel, Deus confunde as línguas e o povo se espalha. No dia de Pentecostes, gente de muitas nações ouve os apóstolos, cada um na sua própria língua.", "ref": "Gn 11:7-9; At 2:5-11"}],
+    conversa: "O povo de Babel queria fazer um nome para si e não ser espalhado (Gn 11:4). Por que você acha que esse plano desagradou a Deus? E onde você vê gente querendo \"fazer um nome\" hoje? \"Ainda não sei\" também vale.",
+    fazer: "Em Babel, todos queriam aparecer (Gn 11:4). Nos próximos 3 dias, faça uma coisa boa em segredo para alguém da sua casa, sem contar para ninguém e sem esperar elogio.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o seu nome é maior que qualquer nome. Me livra de querer aparecer mais do que o Senhor. Me ajuda a fazer o bem em segredo, só para o Senhor ver.\" Continue com as suas palavras.",
     contexto: 'A lista das nações descende dos filhos de Noé. Em Babel, a humanidade se une para fazer um nome para si; Deus confunde a língua e a espalha. A genealogia de Sem leva até Terá e Abrão.',
     notas: [
       ['10:8-10', 'Ninrode, poderoso caçador, começa um reino que inclui Babel.'],
@@ -130,6 +169,12 @@ export const SESSOES = [
 
   { id: 'gn-07', livro: 'gn', caps: [12, 13], titulo: 'O chamado de Abrão',
     cenario: 'De Harã para Canaã, passando pelo Egito.',
+    gancho: "Deus fala com um homem de 75 anos e manda: saia da sua terra, da sua parentela e da casa do seu pai. Ele ainda não sabe para onde vai. Hoje você descobre o que Abrão fez com esse chamado.",
+    repare: [{"t": "Quantas coisas Deus promete a Abrão logo no chamado?", "ref": "Gn 12:1-3"}, {"t": "No Egito, o que Abrão diz sobre Sarai, e por quê?", "ref": "Gn 12:11-13"}, {"t": "Quando há briga entre os pastores, quem escolhe primeiro a terra: Abrão ou Ló?", "ref": "Gn 13:8-11"}],
+    portras: [{"selo": "lugar", "t": "Harã, onde a família de Abrão morava antes do chamado, ainda existe: hoje é uma vila no sudeste da Turquia, junto ao rio Balikh, a uns 38 km da cidade de Urfa.", "ref": "Gn 11:31; 12:4", "fonte": "Britannica, verbete \"Harran\""}, {"selo": "biblia", "t": "A promessa termina olhando para longe: em Abrão seriam abençoadas todas as famílias da terra.", "ref": "Gn 12:3"}, {"selo": "liga", "t": "Paulo cita essa mesma promessa e diz que ela já anunciava a boa notícia para todas as nações.", "ref": "Gn 12:3; Gl 3:8"}, {"selo": "liga", "t": "Hebreus resume a saída de Abrão assim: ele obedeceu e saiu sem saber para onde ia.", "ref": "Gn 12:4; Hb 11:8"}],
+    conversa: "Abrão saiu sem saber para onde ia, mas depois, no Egito, mentiu por medo (Gn 12:4; 12:13). Por que você acha que a mesma pessoa consegue confiar tanto num dia e ter tanto medo no outro? \"Ainda não sei\" também vale.",
+    fazer: "Abrão deixou Ló escolher primeiro a melhor terra (Gn 13:9). Nos próximos 3 dias, ceda a sua vez de propósito: a melhor parte, o lugar preferido, a primeira escolha. Faça isso pelo menos uma vez por dia, sem reclamar.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor chamou Abrão e foi com ele. Me dá coragem para obedecer mesmo sem ver todo o caminho. Me ajuda a não ter medo de ceder e de confiar.\" Continue com as suas palavras.",
     contexto: 'Deus chama Abrão para deixar a terra e a família, com promessas de descendência, bênção e terra. Abrão obedece, mas no Egito mente sobre Sarai. Depois, ele e Ló se separam.',
     notas: [
       ['12:1-3', 'O chamado vem com promessa: grande nação, nome engrandecido e bênção para todas as famílias da terra.'],
@@ -144,6 +189,12 @@ export const SESSOES = [
 
   { id: 'gn-08', livro: 'gn', caps: [14, 15], titulo: 'Melquisedeque e a aliança',
     cenario: 'Canaã: vale de Savé e arredores.',
+    gancho: "Ló é levado prisioneiro numa guerra entre reis. Abrão junta os homens da casa dele e sai atrás. Depois disso, numa noite, Deus manda Abrão olhar para cima. Hoje você descobre o que ele viu.",
+    repare: [{"t": "Quantos homens Abrão leva para resgatar Ló?", "ref": "Gn 14:14"}, {"t": "O que Melquisedeque traz para Abrão, e o que Abrão dá a ele?", "ref": "Gn 14:18-20"}, {"t": "Por que Abrão recusa ficar com os bens do rei de Sodoma?", "ref": "Gn 14:22-23"}],
+    portras: [{"selo": "biblia", "t": "Abrão creu no Senhor, e isso lhe foi contado como justiça.", "ref": "Gn 15:6"}, {"selo": "liga", "t": "Paulo usa exatamente esse versículo para falar de como Deus aceita quem crê.", "ref": "Gn 15:6; Rm 4:3"}, {"selo": "liga", "t": "Melquisedeque aparece de novo num salmo e em Hebreus, que diz que ele não tem genealogia registrada.", "ref": "Gn 14:18; Sl 110:4; Hb 7:1-3"}, {"selo": "liga", "t": "Deus avisa que a descendência de Abrão seria estrangeira e oprimida por 400 anos. Êxodo registra que Israel morou no Egito 430 anos.", "ref": "Gn 15:13; Êx 12:40"}],
+    conversa: "Deus mandou Abrão contar as estrelas, e ele creu, mesmo sem ter nenhum filho ainda (Gn 15:5-6). O que você acha que ajudou Abrão a crer numa promessa tão grande? \"Ainda não sei\" também vale.",
+    fazer: "Abrão olhou o céu e creu na promessa (Gn 15:5-6). Hoje à noite, saia com alguém da família para olhar o céu e, juntos, agradeçam a Deus por três promessas dele que vocês conhecem.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor prometeu a Abrão mais descendentes do que as estrelas, e ele creu. Eu quero crer no que o Senhor diz, mesmo quando ainda não vejo. Aumenta a minha fé.\" Continue com as suas palavras.",
     contexto: 'Abrão resgata Ló numa guerra entre reis e é abençoado por Melquisedeque. Depois, Deus reafirma a promessa e faz com ele uma aliança solene.',
     notas: [
       ['14:14', 'Abrão sai com 318 homens treinados, nascidos em sua casa.'],
@@ -158,6 +209,12 @@ export const SESSOES = [
 
   { id: 'gn-09', livro: 'gn', caps: [16, 17], titulo: 'Agar, Ismael e a circuncisão',
     cenario: 'Canaã e o deserto a caminho de Sur.',
+    gancho: "Os anos passam e o filho prometido não chega. Sarai decide resolver do jeito dela. Do outro lado, uma serva grávida foge sozinha para o deserto. Hoje você descobre quem a encontrou lá.",
+    repare: [{"t": "Que nome Agar dá ao Senhor que falou com ela?", "ref": "Gn 16:13"}, {"t": "Que nome novo Abrão recebe, e o que ele quer dizer?", "ref": "Gn 17:5"}, {"t": "Como Abraão reage quando ouve que Sara terá um filho?", "ref": "Gn 17:17"}],
+    portras: [{"selo": "conta", "t": "Abrão tinha 86 anos quando Ismael nasceu e 99 quando Deus apareceu de novo. Foram 13 anos de silêncio no texto entre um capítulo e outro.", "ref": "Gn 16:16; 17:1"}, {"selo": "biblia", "t": "Os dois ganham nome novo: Abrão vira Abraão, e Sarai vira Sara.", "ref": "Gn 17:5; 17:15"}, {"selo": "liga", "t": "Paulo explica que Abraão foi aceito por Deus pela fé antes de ser circuncidado.", "ref": "Gn 15:6; 17:10; Rm 4:10-11"}, {"selo": "biblia", "t": "Deus manda dar ao filho o nome Isaque, palavra que lembra \"riso\", logo depois de Abraão rir.", "ref": "Gn 17:17-19"}],
+    conversa: "Sarai cansou de esperar e quis dar um jeito por conta própria, e isso trouxe briga e tristeza (Gn 16:2-6). Por que você acha que é tão difícil esperar o tempo de Deus? \"Ainda não sei\" também vale.",
+    fazer: "Agar descobriu que Deus a via no deserto (Gn 16:13). Até o \"como foi?\", procure alguém que costuma ficar sozinho ou de fora (na escola, no trabalho, na igreja) e passe um tempo de verdade com essa pessoa.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor é o Deus que me vê, como viu Agar no deserto. Obrigado porque eu nunca estou escondido do Senhor. Me ensina a esperar o seu tempo sem querer resolver tudo do meu jeito.\" Continue com as suas palavras.",
     contexto: 'Cansada de esperar, Sarai dá sua serva Agar a Abrão, e nasce Ismael. Treze anos depois, Deus muda os nomes de Abrão e Sarai e dá a circuncisão como sinal da aliança.',
     notas: [
       ['16:13', 'Agar chama o Senhor de "o Deus que me vê".'],
@@ -172,6 +229,12 @@ export const SESSOES = [
 
   { id: 'gn-10', livro: 'gn', caps: [18, 19], titulo: 'A visita e Sodoma',
     cenario: 'Os carvalhos de Manre; depois, Sodoma.',
+    gancho: "Num dia de calor, três visitantes chegam à tenda de Abraão. Um deles diz algo que faz Sara rir escondida. Depois, Abraão começa a negociar com Deus por uma cidade inteira. Hoje você descobre até onde ele chegou.",
+    repare: [{"t": "O que Abraão faz quando vê os três homens chegando?", "ref": "Gn 18:2-8"}, {"t": "Que pergunta o Senhor faz depois que Sara ri?", "ref": "Gn 18:14"}, {"t": "Abraão começa pedindo por 50 justos. Em quantos ele para?", "ref": "Gn 18:24-32"}],
+    portras: [{"selo": "biblia", "t": "Abraão apela ao próprio caráter de Deus: o Juiz de toda a terra não fará justiça?", "ref": "Gn 18:25"}, {"selo": "biblia", "t": "Os anjos pegam Ló, a mulher e as filhas pela mão e os tiram da cidade, porque o Senhor teve misericórdia deles.", "ref": "Gn 19:16"}, {"selo": "liga", "t": "Jesus usa a mulher de Ló como aviso: \"Lembrem-se da mulher de Ló\".", "ref": "Gn 19:26; Lc 17:32"}, {"selo": "liga", "t": "A pergunta \"Há alguma coisa difícil demais para o Senhor?\" volta nos lábios de Jeremias.", "ref": "Gn 18:14; Jr 32:17"}],
+    conversa: "Abraão pediu a Deus por uma cidade cheia de gente que não era da família dele (Gn 18:23-32). Por que você acha que ele se importou tanto com aquelas pessoas? \"Ainda não sei\" também vale.",
+    fazer: "Abraão intercedeu por Sodoma várias vezes seguidas (Gn 18:23-32). Escolha uma pessoa que precisa de Deus e ore por ela todas as noites até o \"como foi?\". Se for possível, mande uma mensagem dizendo que está orando.",
+    oracao: "Fique um minuto em silêncio e pense em alguém que precisa de Deus. Depois ore: \"Senhor, para o Senhor nada é difícil demais. Eu te peço por essa pessoa, como Abraão pediu por Sodoma. Tem misericórdia dela e me usa para mostrar o seu amor.\" Continue com as suas palavras.",
     contexto: 'Três visitantes anunciam que Sara terá um filho. Abraão intercede por Sodoma, mas a cidade é destruída; Ló e as filhas escapam.',
     notas: [
       ['18:12-14', 'Sara ri da promessa; o Senhor pergunta se existe algo difícil demais para ele.'],
@@ -186,6 +249,12 @@ export const SESSOES = [
 
   { id: 'gn-11', livro: 'gn', caps: [20, 21], titulo: 'O nascimento de Isaque',
     cenario: 'Gerar e Berseba.',
+    gancho: "Abraão e Sara esperaram tanto que Sara chegou a rir da promessa. Agora, finalmente, a promessa vai se cumprir. Mas na mesma casa vai surgir uma nova tristeza. Hoje você descobre como Deus cuidou de todos.",
+    repare: [{"t": "Que frase o texto usa para dizer que Deus cumpriu a promessa a Sara?", "ref": "Gn 21:1"}, {"t": "Que idade Abraão tinha quando Isaque nasceu?", "ref": "Gn 21:5"}, {"t": "No deserto, de quem Deus ouve a voz: de Agar ou do menino?", "ref": "Gn 21:17"}],
+    portras: [{"selo": "conta", "t": "Abrão tinha 75 anos quando recebeu a promessa e 100 quando Isaque nasceu: 25 anos de espera.", "ref": "Gn 12:4; 21:5"}, {"selo": "biblia", "t": "O riso muda de sentido: Sara tinha rido por não acreditar, e agora diz que Deus a fez rir de alegria.", "ref": "Gn 18:12; 21:6"}, {"selo": "biblia", "t": "Abraão repete com Abimeleque a mesma mentira que tinha contado no Egito.", "ref": "Gn 12:13; 20:2"}, {"selo": "liga", "t": "Hebreus diz que foi pela fé que Sara recebeu força para ter um filho, porque considerou fiel quem tinha prometido.", "ref": "Gn 21:2; Hb 11:11"}],
+    conversa: "Deus cumpriu a promessa a Abraão, mas também cuidou de Agar e Ismael no deserto (Gn 21:1; 21:17-19). O que isso mostra sobre quem Deus é? \"Ainda não sei\" também vale.",
+    fazer: "Sara lembrou com alegria o que Deus tinha feito (Gn 21:6). Escreva numa folha três promessas ou orações que Deus já respondeu na sua vida ou na sua família, e leia para alguém da casa até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio e lembre de algo que Deus já fez por você. Depois ore: \"Senhor, o Senhor fez com Sara como tinha dito. Obrigado pelas promessas que o Senhor já cumpriu na minha vida. Me ajuda a esperar com fé as que ainda faltam.\" Continue com as suas palavras.",
     contexto: 'Abraão repete a mentira sobre Sara, agora com Abimeleque. Deus cumpre a promessa: Isaque nasce. Agar e Ismael são despedidos, mas Deus cuida deles.',
     notas: [
       ['20:2', 'O mesmo medo do Egito volta: Abraão diz que Sara é sua irmã.'],
@@ -200,6 +269,12 @@ export const SESSOES = [
 
   { id: 'gn-12', livro: 'gn', caps: [22, 22], titulo: 'O Senhor proverá',
     cenario: 'A terra de Moriá (Gn 22:2).',
+    gancho: "Deus pede a Abraão a coisa mais difícil que alguém poderia pedir. Três dias de caminhada, uma lenha, um fogo, uma faca. E uma pergunta do filho no caminho. Hoje você descobre a resposta de Abraão.",
+    repare: [{"t": "O que o texto avisa logo no primeiro versículo?", "ref": "Gn 22:1"}, {"t": "Que pergunta Isaque faz ao pai no caminho, e o que Abraão responde?", "ref": "Gn 22:7-8"}, {"t": "Que nome Abraão dá ao lugar?", "ref": "Gn 22:14"}],
+    portras: [{"selo": "liga", "t": "Séculos depois, Salomão constrói o templo no monte Moriá, em Jerusalém.", "ref": "Gn 22:2; 2Cr 3:1"}, {"selo": "liga", "t": "Hebreus diz que Abraão considerou que Deus era poderoso até para ressuscitar Isaque.", "ref": "Gn 22:5; Hb 11:17-19"}, {"selo": "biblia", "t": "Abraão diz aos servos: \"voltaremos\". Ele fala no plural.", "ref": "Gn 22:5"}, {"selo": "liga", "t": "Tiago usa esta cena para mostrar que a fé de Abraão apareceu nas obras.", "ref": "Gn 22:9-12; Tg 2:21-22"}],
+    conversa: "Abraão disse ao filho: \"Deus proverá\" (Gn 22:8). O que você acha que se passava no coração de Abraão naquela caminhada de três dias? \"Ainda não sei\" também vale.",
+    fazer: "Abraão não segurou o que mais amava (Gn 22:2-10). Escolha uma coisa de que você gosta muito (um tempo de jogo, um doce, um programa) e abra mão dela por 3 dias, usando esse tempo para orar ou ler com a família.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor proveu o carneiro no lugar de Isaque. Tudo o que eu tenho veio do Senhor. Me ajuda a não segurar nada com mais força do que seguro a sua mão.\" Continue com as suas palavras.",
     contexto: 'Deus prova Abraão pedindo Isaque em sacrifício. No último instante, o anjo o impede e Deus provê um carneiro.',
     notas: [
       ['22:1', 'O texto diz logo de início que se trata de uma prova.'],
@@ -214,6 +289,12 @@ export const SESSOES = [
 
   { id: 'gn-13', livro: 'gn', caps: [23, 24], titulo: 'Uma esposa para Isaque',
     cenario: 'Hebrom; depois, a cidade de Naor, na Mesopotâmia.',
+    gancho: "Sara morre, e Abraão precisa de um lugar para sepultá-la, numa terra que ainda não é dele. Depois, um servo parte numa viagem longa com uma missão delicada: achar uma esposa para Isaque. Hoje você descobre como ele soube quem era.",
+    repare: [{"t": "Quanto Abraão paga pelo campo de Macpela?", "ref": "Gn 23:16"}, {"t": "Que sinal o servo pede a Deus junto ao poço?", "ref": "Gn 24:12-14"}, {"t": "Rebeca chega antes ou depois de o servo terminar a oração?", "ref": "Gn 24:15"}],
+    portras: [{"selo": "biblia", "t": "O primeiro pedaço de Canaã que Abraão possui de verdade é um túmulo.", "ref": "Gn 23:17-20"}, {"selo": "liga", "t": "Na caverna de Macpela também seriam sepultados Abraão, Isaque, Rebeca, Lia e Jacó.", "ref": "Gn 25:9; 49:29-31; 50:13"}, {"selo": "conta", "t": "Isaque tinha 40 anos quando se casou com Rebeca.", "ref": "Gn 25:20"}, {"selo": "biblia", "t": "Depois que tudo dá certo, a primeira coisa que o servo faz é se curvar e adorar ao Senhor.", "ref": "Gn 24:26-27"}],
+    conversa: "O servo orou antes de escolher e, quando a resposta veio, parou para agradecer (Gn 24:12; 24:26-27). Por que você acha que ele não confiou só no próprio olho para decidir? \"Ainda não sei\" também vale.",
+    fazer: "O servo de Abraão orou antes de decidir (Gn 24:12). Escolha uma decisão que você precisa tomar esta semana. Ore por ela antes, peça conselho a alguém da família e só então decida.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor guiou o servo de Abraão no caminho. Eu também preciso da sua direção. Me mostra o que fazer e me ajuda a agradecer quando a resposta vier.\" Continue com as suas palavras.",
     contexto: 'Sara morre e Abraão compra o primeiro pedaço de terra em Canaã: um túmulo. Depois, envia seu servo à sua parentela para buscar uma esposa para Isaque.',
     notas: [
       ['23:1-2', 'Sara morre aos 127 anos, em Hebrom.'],
@@ -228,6 +309,12 @@ export const SESSOES = [
 
   { id: 'gn-14', livro: 'gn', caps: [25, 26], titulo: 'Esaú e Jacó',
     cenario: 'Canaã: Beer-Laai-Roi e Gerar.',
+    gancho: "Gêmeos brigam antes mesmo de nascer. Um sai segurando o calcanhar do outro. Anos depois, um prato de comida decide algo que não tem preço. Hoje você descobre o que Esaú trocou.",
+    repare: [{"t": "O que Deus diz a Rebeca sobre os dois filhos antes de nascerem?", "ref": "Gn 25:23"}, {"t": "O que Esaú recebe em troca da primogenitura?", "ref": "Gn 25:34"}, {"t": "Que erro de Abraão Isaque repete em Gerar?", "ref": "Gn 26:7"}],
+    portras: [{"selo": "conta", "t": "Isaque tinha 40 anos quando se casou e 60 quando os gêmeos nasceram. Foram 20 anos esperando e orando.", "ref": "Gn 25:20-21; 25:26"}, {"selo": "biblia", "t": "O texto resume a troca numa frase: assim Esaú desprezou a primogenitura.", "ref": "Gn 25:34"}, {"selo": "liga", "t": "Hebreus usa Esaú como aviso: por uma refeição vendeu o direito de primogênito.", "ref": "Gn 25:33; Hb 12:16-17"}, {"selo": "liga", "t": "Paulo cita a palavra dada a Rebeca: o mais velho servirá ao mais novo.", "ref": "Gn 25:23; Rm 9:10-12"}],
+    conversa: "Esaú estava com fome e trocou algo valioso por um prato de comida (Gn 25:30-34). Por que você acha que uma vontade de agora pode fazer a gente esquecer o que vale mais? \"Ainda não sei\" também vale.",
+    fazer: "Esaú não conseguiu esperar e perdeu algo valioso (Gn 25:34). Por 3 dias, escolha uma vontade imediata que você costuma atender na hora (doce, tela, compra, reclamação) e diga \"não\" a ela todos os dias. Use esse momento para fazer uma oração curta.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, eu não quero trocar o que é eterno por algo que passa. Me dá domínio próprio quando eu quiser tudo na hora. Me ajuda a dar valor ao que o Senhor me deu.\" Continue com as suas palavras.",
     contexto: 'Abraão morre. Isaque e Rebeca têm gêmeos: Esaú e Jacó. Esaú despreza a primogenitura. Isaque recebe as mesmas promessas do pai e repete o mesmo erro do pai.',
     notas: [
       ['25:7-9', 'Abraão morre aos 175 anos; Isaque e Ismael o sepultam em Macpela.'],
@@ -242,6 +329,12 @@ export const SESSOES = [
 
   { id: 'gn-15', livro: 'gn', caps: [27, 28], titulo: 'A bênção e a escada',
     cenario: 'Berseba; depois, Betel, a caminho de Harã.',
+    gancho: "Um pai cego, um filho disfarçado com pele de cabrito e uma bênção que não volta atrás. Depois, um fugitivo dorme no chão com uma pedra de travesseiro. Hoje você descobre o que Jacó viu naquela noite.",
+    repare: [{"t": "O que Jacó usa para enganar o pai?", "ref": "Gn 27:15-16"}, {"t": "O que Jacó vê no sonho?", "ref": "Gn 28:12"}, {"t": "Que nome Jacó dá ao lugar, e qual era o nome antigo da cidade?", "ref": "Gn 28:19"}],
+    portras: [{"selo": "biblia", "t": "Antes de fugir, Jacó não tem nada. Deus aparece justamente ali e promete: \"Estou com você e o guardarei por onde for\".", "ref": "Gn 28:15"}, {"selo": "biblia", "t": "Betel quer dizer \"casa de Deus\". Antes, a cidade se chamava Luz.", "ref": "Gn 28:19"}, {"selo": "liga", "t": "Jesus fala de anjos subindo e descendo sobre o Filho do Homem, a mesma imagem do sonho de Jacó.", "ref": "Gn 28:12; Jo 1:51"}, {"selo": "biblia", "t": "Esaú decide matar Jacó assim que o pai morrer. A mentira dividiu a família.", "ref": "Gn 27:41"}],
+    conversa: "Jacó tinha enganado o pai e estava fugindo, e foi justo aí que Deus apareceu e prometeu estar com ele (Gn 28:15). Por que você acha que Deus não esperou Jacó ficar perfeito para falar com ele? \"Ainda não sei\" também vale.",
+    fazer: "Deus disse a Jacó: \"Estou com você\" (Gn 28:15). Escreva esse versículo num papel, guarde na carteira ou na mochila e decore até o \"como foi?\". Diga de memória para alguém da família.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor encontrou Jacó no meio da fuga. Obrigado porque o Senhor está comigo por onde eu for. Me perdoa pelas vezes que eu enganei alguém e me ajuda a viver com a verdade.\" Continue com as suas palavras.",
     contexto: 'Rebeca e Jacó enganam Isaque para obter a bênção. Jacó foge de Esaú e, em Betel, Deus lhe aparece em sonho e confirma a promessa.',
     notas: [
       ['27:16', 'Peles de cabrito nas mãos e no pescoço para parecer Esaú.'],
@@ -256,6 +349,12 @@ export const SESSOES = [
 
   { id: 'gn-16', livro: 'gn', caps: [29, 30], titulo: 'Raquel, Lia e os filhos de Jacó',
     cenario: 'Harã, na casa de Labão.',
+    gancho: "Jacó trabalha sete anos por amor a Raquel, e os anos passam como poucos dias. Mas na manhã depois do casamento ele leva um susto. O enganador foi enganado. Hoje você descobre como Deus olhou para quem ficou de lado.",
+    repare: [{"t": "Como os sete anos pareceram para Jacó, e por quê?", "ref": "Gn 29:20"}, {"t": "Quem Labão entrega a Jacó no lugar de Raquel?", "ref": "Gn 29:23-25"}, {"t": "O que o Senhor vê a respeito de Lia?", "ref": "Gn 29:31"}],
+    portras: [{"selo": "conta", "t": "Jacó trabalhou 14 anos pelas duas esposas e mais 6 pelo rebanho: 20 anos na casa de Labão.", "ref": "Gn 29:20; 29:27; 31:41"}, {"selo": "biblia", "t": "Lia dá a cada filho um nome ligado ao que sente. No quarto, Judá, ela diz apenas: \"Esta vez louvarei ao Senhor\".", "ref": "Gn 29:32-35"}, {"selo": "liga", "t": "Os nomes dos filhos de Jacó viram os nomes das tribos de Israel, e aparecem até nas portas da cidade santa no Apocalipse.", "ref": "Gn 29:32-30:24; Ap 21:12"}, {"selo": "biblia", "t": "Deus se lembra de Raquel, e nasce José.", "ref": "Gn 30:22-24"}],
+    conversa: "Lia se sentia menos amada, e Deus viu isso (Gn 29:31). No quarto filho, ela parou de falar do marido e só louvou a Deus (Gn 29:35). O que você acha que mudou no coração dela? \"Ainda não sei\" também vale.",
+    fazer: "Deus viu Lia quando ela era deixada de lado (Gn 29:31). Até o \"como foi?\", escolha alguém que costuma ser esquecido e faça algo concreto para ele: um convite, um bilhete, uma ligação ou uma ajuda.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor viu Lia quando ninguém a valorizava. Obrigado porque o seu amor não depende de eu ser o preferido. Abre os meus olhos para quem está sendo deixado de lado perto de mim.\" Continue com as suas palavras.",
     contexto: 'O enganador é enganado: Jacó trabalha por Raquel e recebe Lia. A rivalidade entre as irmãs marca o nascimento dos filhos que darão nome às tribos de Israel.',
     notas: [
       ['29:20', 'Sete anos de trabalho por Raquel parecem poucos dias, pelo amor que tinha por ela.'],
@@ -269,6 +368,12 @@ export const SESSOES = [
 
   { id: 'gn-17', livro: 'gn', caps: [31, 32], titulo: 'Jacó se torna Israel',
     cenario: 'Saída de Harã; Galeede; Peniel, junto ao vau do Jaboque.',
+    gancho: "Depois de 20 anos longe, Jacó volta para casa. Do outro lado, Esaú vem ao seu encontro com 400 homens. Jacó fica com muito medo e ora. Naquela noite, alguém luta com ele até o amanhecer. Hoje você descobre quem era.",
+    repare: [{"t": "O que Jacó reconhece sobre si mesmo na oração?", "ref": "Gn 32:10"}, {"t": "O que Jacó pede antes de soltar o homem com quem lutou?", "ref": "Gn 32:26"}, {"t": "Que nome novo ele recebe, e que nome ele dá ao lugar?", "ref": "Gn 32:28-30"}],
+    portras: [{"selo": "biblia", "t": "Na oração, Jacó lembra que atravessou o Jordão só com um cajado e agora volta com dois bandos.", "ref": "Gn 32:10"}, {"selo": "biblia", "t": "Jacó sai da luta mancando, e o texto diz que por isso os israelitas não comem o tendão da coxa.", "ref": "Gn 32:31-32"}, {"selo": "liga", "t": "O profeta Oseias relembra a cena: Jacó lutou com o anjo, chorou e pediu a bênção.", "ref": "Gn 32:24-26; Os 12:3-4"}, {"selo": "biblia", "t": "Raquel leva escondidos os ídolos do pai.", "ref": "Gn 31:19"}],
+    conversa: "Jacó estava com medo e, em vez de fugir de novo, orou e depois não soltou o homem até ser abençoado (Gn 32:9-12; 32:26). Por que você acha que Deus deixou Jacó mancando depois daquela noite? \"Ainda não sei\" também vale.",
+    fazer: "Jacó não soltou até receber a bênção (Gn 32:26). Escolha um assunto difícil (uma pessoa, um problema, uma decisão) e ore por ele todos os dias, no mesmo horário, até o \"como foi?\". Anote o pedido para lembrar.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, eu sou menor que todo o bem que o Senhor já fez por mim, como disse Jacó. Eu não vou desistir de orar. Me abençoa e muda o que precisa ser mudado em mim.\" Continue com as suas palavras.",
     contexto: 'Deus manda Jacó voltar. Ele foge de Labão, faz as pazes com ele e, com medo de Esaú, ora. À noite, luta com um homem até o amanhecer e recebe um novo nome.',
     notas: [
       ['31:3', 'Deus manda voltar e promete estar com ele.'],
@@ -283,6 +388,12 @@ export const SESSOES = [
 
   { id: 'gn-18', livro: 'gn', caps: [33, 34], titulo: 'O reencontro e Siquém',
     cenario: 'O caminho de volta; Siquém.',
+    gancho: "Jacó se curva sete vezes enquanto se aproxima do irmão que um dia quis matá-lo. Ninguém sabe o que vai acontecer. Hoje você descobre como Esaú reagiu, e o que veio depois em Siquém.",
+    repare: [{"t": "O que Esaú faz quando vê Jacó?", "ref": "Gn 33:4"}, {"t": "Que nome Jacó dá ao altar que levanta?", "ref": "Gn 33:20"}, {"t": "Como Jacó reage ao que Simeão e Levi fizeram?", "ref": "Gn 34:30"}],
+    portras: [{"selo": "liga", "t": "Na parábola do filho pródigo, o pai corre, abraça e beija o filho, os mesmos gestos de Esaú com Jacó.", "ref": "Gn 33:4; Lc 15:20"}, {"selo": "biblia", "t": "Jacó diz a Esaú que ver o rosto dele é como ver o rosto de Deus.", "ref": "Gn 33:10"}, {"selo": "liga", "t": "No fim da vida, Jacó volta a reprovar a violência de Simeão e Levi.", "ref": "Gn 34:25; 49:5-7"}, {"selo": "biblia", "t": "Em Siquém, a família sofre um mal grave contra Diná, e dois irmãos respondem com vingança. O texto narra e não aprova.", "ref": "Gn 34:1-31"}],
+    conversa: "Esaú tinha motivo para guardar mágoa, mas correu e abraçou o irmão (Gn 33:4). Simeão e Levi, ao contrário, se vingaram (Gn 34:25). O que você acha que faz uma pessoa escolher o abraço em vez da vingança? \"Ainda não sei\" também vale.",
+    fazer: "Esaú correu e abraçou o irmão (Gn 33:4). Até o \"como foi?\", procure alguém com quem você está afastado ou chateado e dê o primeiro passo: uma ligação, uma mensagem, um abraço ou um pedido de desculpas.",
+    oracao: "Fique um minuto em silêncio e pense em alguém de quem você está afastado. Depois ore: \"Senhor, obrigado pelo abraço de Esaú e Jacó. Tira de mim a vontade de me vingar. Me dá coragem para correr ao encontro de quem eu preciso perdoar.\" Continue com as suas palavras.",
     contexto: 'Esaú recebe Jacó com um abraço. Em Siquém, Diná é violentada, e Simeão e Levi respondem com uma vingança sangrenta que Jacó reprova.',
     notas: [
       ['33:4', 'Esaú corre, abraça e beija Jacó; os dois choram.'],
@@ -296,6 +407,12 @@ export const SESSOES = [
 
   { id: 'gn-19', livro: 'gn', caps: [35, 36], titulo: 'De volta a Betel',
     cenario: 'Betel; caminho de Efrata (Belém); Hebrom.',
+    gancho: "Deus chama Jacó de volta ao lugar onde tudo começou: Betel. Mas antes de ir, a família precisa se livrar de algumas coisas. No caminho, vai ter alegria e choro ao mesmo tempo. Hoje você descobre o que aconteceu.",
+    repare: [{"t": "O que Jacó manda a família fazer antes de subir a Betel?", "ref": "Gn 35:2"}, {"t": "Onde Jacó enterra os ídolos?", "ref": "Gn 35:4"}, {"t": "Que nome Raquel dá ao filho, e que nome Jacó dá?", "ref": "Gn 35:18"}],
+    portras: [{"selo": "biblia", "t": "Raquel é sepultada no caminho de Efrata, que o texto explica ser Belém.", "ref": "Gn 35:19"}, {"selo": "liga", "t": "Belém volta na profecia de Miqueias e é onde Jesus nasce.", "ref": "Gn 35:19; Mq 5:2; Mt 2:1"}, {"selo": "liga", "t": "Jeremias fala de Raquel chorando por seus filhos, e Mateus retoma essa imagem.", "ref": "Gn 35:19; Jr 31:15; Mt 2:18"}, {"selo": "conta", "t": "Pelas idades do próprio texto, Isaque viveu 180 anos, Abraão 175, Jacó 147 e José 110.", "ref": "Gn 35:28; 25:7; 47:28; 50:26"}],
+    conversa: "Antes de voltar a Betel, Jacó mandou tirar os ídolos e trocar de roupa (Gn 35:2). Por que você acha que era preciso deixar algumas coisas para trás antes de ir encontrar Deus? \"Ainda não sei\" também vale.",
+    fazer: "Jacó enterrou os ídolos antes de ir a Betel (Gn 35:2-4). Identifique uma coisa que está tomando o lugar de Deus na sua rotina (um jogo, um aplicativo, uma série) e tire ela do caminho por 3 dias. Use esse tempo para orar ou ler a Bíblia.",
+    oracao: "Fique um minuto em silêncio e pergunte a Deus o que está ocupando o lugar dele. Depois ore: \"Senhor, eu quero voltar ao meu Betel, ao lugar onde eu encontro o Senhor. Me ajuda a tirar da frente o que está atrapalhando. O Senhor é o primeiro.\" Continue com as suas palavras.",
     contexto: 'Jacó purifica a casa e volta a Betel, onde Deus confirma o nome Israel. Raquel morre ao dar à luz Benjamim, e Isaque morre. O capítulo 36 registra os descendentes de Esaú, que é Edom.',
     notas: [
       ['35:2', 'Jacó manda tirar os deuses estranhos e se purificar.'],
@@ -310,6 +427,12 @@ export const SESSOES = [
 
   { id: 'gn-20', livro: 'gn', caps: [37, 37], titulo: 'José é vendido',
     cenario: 'Canaã: Hebrom, Siquém e Dotã.',
+    gancho: "Um rapaz de 17 anos ganha uma túnica especial e tem dois sonhos estranhos. Quando conta para os irmãos, a inveja deles cresce. Um dia, longe de casa, eles o veem chegando. Hoje você descobre o que fizeram com José.",
+    repare: [{"t": "Que idade José tinha?", "ref": "Gn 37:2"}, {"t": "O que acontece nos dois sonhos de José?", "ref": "Gn 37:7-9"}, {"t": "Quem tenta salvar José, e quem propõe vendê-lo?", "ref": "Gn 37:21-22; 37:26-27"}],
+    portras: [{"selo": "biblia", "t": "José é vendido por 20 peças de prata a mercadores a caminho do Egito.", "ref": "Gn 37:28"}, {"selo": "liga", "t": "Na lei dada a Moisés, 20 siclos é o valor fixado para um rapaz entre 5 e 20 anos.", "ref": "Gn 37:28; Lv 27:5"}, {"selo": "liga", "t": "Estêvão resume a história: os patriarcas, por inveja, venderam José para o Egito, mas Deus estava com ele.", "ref": "Gn 37:11; At 7:9"}, {"selo": "biblia", "t": "Os irmãos mergulham a túnica em sangue de cabrito para enganar o pai. Jacó, que enganou o próprio pai com um cabrito, agora é enganado.", "ref": "Gn 27:9; 37:31-33"}],
+    conversa: "A inveja dos irmãos começou com uma túnica e uns sonhos e terminou numa venda (Gn 37:4; 37:11; 37:28). Por que você acha que a inveja cresce tão rápido quando a gente não cuida dela? \"Ainda não sei\" também vale.",
+    fazer: "Os irmãos de José deixaram a inveja crescer (Gn 37:11). Até o \"como foi?\", sempre que sentir inveja de alguém, faça o contrário: elogie essa pessoa em voz alta para ela ou para outra pessoa.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor estava com José até quando ele foi vendido. Tira do meu coração a inveja. Me ensina a me alegrar com o que o Senhor dá aos outros.\" Continue com as suas palavras.",
     contexto: 'Começa a última grande história de Gênesis. José, o filho preferido, conta seus sonhos, desperta o ódio dos irmãos e é vendido como escravo.',
     notas: [
       ['37:2-3', 'José tem 17 anos; Jacó o ama mais e lhe dá uma túnica especial.'],
@@ -324,6 +447,12 @@ export const SESSOES = [
 
   { id: 'gn-21', livro: 'gn', caps: [38, 39], titulo: 'Judá e Tamar; José na casa de Potifar',
     cenario: 'Canaã (cap. 38) e o Egito (cap. 39).',
+    gancho: "Duas histórias lado a lado. Em Canaã, Judá falha com Tamar. No Egito, José, longe de todos, enfrenta uma tentação forte. Os dois vão ser testados. Hoje você descobre quem foi fiel.",
+    repare: [{"t": "Que frase o capítulo 39 repete sobre José?", "ref": "Gn 39:2-3; 39:21; 39:23"}, {"t": "O que Judá reconhece sobre Tamar?", "ref": "Gn 38:26"}, {"t": "Que motivo José dá para recusar a mulher de Potifar?", "ref": "Gn 39:9"}],
+    portras: [{"selo": "biblia", "t": "José foi preso injustamente, e o texto repete: o Senhor estava com ele.", "ref": "Gn 39:20-21"}, {"selo": "biblia", "t": "José não vê a tentação só como um erro contra Potifar, mas como pecado contra Deus.", "ref": "Gn 39:9"}, {"selo": "liga", "t": "Tamar, Perez e Zera aparecem na genealogia de Jesus, em Mateus.", "ref": "Gn 38:29-30; Mt 1:3"}, {"selo": "liga", "t": "Paulo orienta: fujam da imoralidade. José fez isso ao pé da letra, deixando a capa para trás.", "ref": "Gn 39:12; 1Co 6:18"}],
+    conversa: "José estava sozinho num país estranho e ninguém da família ia saber o que ele fazia, mas mesmo assim disse não (Gn 39:9). Por que você acha que ele foi fiel quando ninguém estava olhando? \"Ainda não sei\" também vale.",
+    fazer: "José fugiu da tentação e deixou até a capa para trás (Gn 39:12). Identifique uma situação em que você costuma ceder ao que é errado e combine um plano de fuga: o que você vai fazer, para onde vai e para quem vai contar. Use o plano até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor estava com José na casa de Potifar e na prisão. Me dá força para dizer não ao que é errado, mesmo quando ninguém está vendo. Eu quero ser fiel ao Senhor.\" Continue com as suas palavras.",
     contexto: 'A história de José é interrompida para mostrar Judá falhando com Tamar. Em contraste, José, no Egito, permanece fiel diante da tentação e acaba preso injustamente.',
     notas: [
       ['38:26', 'Judá reconhece: Tamar é mais justa do que ele.'],
@@ -338,6 +467,12 @@ export const SESSOES = [
 
   { id: 'gn-22', livro: 'gn', caps: [40, 41], titulo: 'De prisioneiro a governador',
     cenario: 'A prisão e o palácio de Faraó.',
+    gancho: "Na prisão, dois funcionários de Faraó têm sonhos que não entendem. José explica os dois. Um deles promete lembrar de José. Hoje você descobre quanto tempo levou para ele cumprir a promessa.",
+    repare: [{"t": "A quem José diz que pertencem as interpretações?", "ref": "Gn 40:8; 41:16"}, {"t": "O que o copeiro faz depois de solto?", "ref": "Gn 40:23"}, {"t": "Que nomes José dá aos filhos, e o que significam?", "ref": "Gn 41:51-52"}],
+    portras: [{"selo": "conta", "t": "José tinha 17 anos quando foi vendido e 30 quando ficou diante de Faraó: 13 anos entre escravidão e prisão.", "ref": "Gn 37:2; 41:46"}, {"selo": "biblia", "t": "Depois de ser esquecido, José ainda espera mais dois anos inteiros na prisão.", "ref": "Gn 40:23; 41:1"}, {"selo": "liga", "t": "O Salmo 105 reconta a história: os pés de José foram presos com correntes até que a palavra de Deus se cumprisse.", "ref": "Gn 39:20; Sl 105:17-22"}, {"selo": "biblia", "t": "Diante do rei mais poderoso da terra, a primeira frase de José é: \"Não está em mim; Deus dará a resposta\".", "ref": "Gn 41:16"}],
+    conversa: "José ficou dois anos esquecido na prisão, mas, quando chegou a hora, não usou a chance para se gabar e disse que a resposta vinha de Deus (Gn 41:16). Por que você acha que ele não ficou amargo com a espera? \"Ainda não sei\" também vale.",
+    fazer: "José deu a Deus o crédito diante de Faraó (Gn 41:16). Até o \"como foi?\", sempre que alguém elogiar algo que você fez, agradeça e conte em voz alta como Deus te ajudou. Se você está esperando alguma coisa, ore por ela todo dia sem reclamar.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor não esqueceu José na prisão. Quando eu tiver que esperar, me ajuda a confiar sem ficar amargo. E quando as coisas derem certo, que eu lembre que tudo vem do Senhor.\" Continue com as suas palavras.",
     contexto: 'José interpreta os sonhos do copeiro e do padeiro, mas é esquecido. Dois anos depois, interpreta os sonhos de Faraó e é colocado sobre todo o Egito.',
     notas: [
       ['40:8', 'José afirma que as interpretações pertencem a Deus.'],
@@ -352,6 +487,12 @@ export const SESSOES = [
 
   { id: 'gn-23', livro: 'gn', caps: [42, 43], titulo: 'Os irmãos no Egito',
     cenario: 'O Egito, durante a fome.',
+    gancho: "A fome aperta, e dez irmãos descem ao Egito para comprar comida. O governador que os recebe fala duro com eles. Eles não sabem quem ele é, mas ele sabe muito bem quem são eles. Hoje você descobre o que José fez.",
+    repare: [{"t": "O que os irmãos fazem diante de José quando chegam?", "ref": "Gn 42:6"}, {"t": "O que os irmãos dizem uns aos outros sobre o que fizeram com José?", "ref": "Gn 42:21"}, {"t": "Quem se oferece como garantia de que Benjamim voltará?", "ref": "Gn 43:8-9"}],
+    portras: [{"selo": "liga", "t": "Os irmãos se curvam diante de José, como no sonho dos feixes, anos antes.", "ref": "Gn 37:7; 42:6"}, {"selo": "biblia", "t": "José entende tudo o que os irmãos falam, porque usava um intérprete para falar com eles.", "ref": "Gn 42:23"}, {"selo": "biblia", "t": "José se afasta para chorar duas vezes nestes capítulos, sem que os irmãos percebam.", "ref": "Gn 42:24; 43:30"}, {"selo": "liga", "t": "Judá, que propôs vender José, agora se compromete a proteger Benjamim.", "ref": "Gn 37:26-27; 43:9"}],
+    conversa: "Muitos anos depois, os irmãos ainda lembravam do que tinham feito com José (Gn 42:21). Por que você acha que um erro escondido continua pesando no coração? \"Ainda não sei\" também vale.",
+    fazer: "Os irmãos de José carregaram a culpa por anos (Gn 42:21). Lembre de alguém que você magoou e ainda não pediu perdão. Até o \"como foi?\", vá até essa pessoa, peça perdão e, se der, conserte o que foi estragado.",
+    oracao: "Fique um minuto em silêncio e deixe Deus trazer à memória algo que você precisa acertar. Depois ore: \"Senhor, eu não quero carregar culpa escondida. Me perdoa pelo que eu fiz. Me dá coragem para pedir perdão e consertar o que eu puder.\" Continue com as suas palavras.",
     contexto: 'A fome leva os irmãos ao Egito. José os reconhece; eles não o reconhecem. Ele os testa e exige que tragam Benjamim.',
     notas: [
       ['42:8', 'José reconhece os irmãos, mas eles não o reconhecem.'],
@@ -366,6 +507,12 @@ export const SESSOES = [
 
   { id: 'gn-24', livro: 'gn', caps: [44, 45], titulo: 'José se revela',
     cenario: 'O Egito.',
+    gancho: "Uma taça de prata aparece escondida no saco de Benjamim. O caçula vai virar escravo no Egito. Os irmãos podem ir embora e deixá-lo, como fizeram um dia com José. Hoje você descobre o que eles escolheram.",
+    repare: [{"t": "O que Judá pede ao governador?", "ref": "Gn 44:33"}, {"t": "Como os irmãos reagem quando José diz quem é?", "ref": "Gn 45:3"}, {"t": "Quem José diz que o enviou ao Egito?", "ref": "Gn 45:5-8"}],
+    portras: [{"selo": "conta", "t": "José tinha 17 anos quando foi vendido (37:2), 30 quando subiu ao poder (41:46); depois vieram 7 anos de fartura (41:53) e 2 de fome (45:6). Ele estava com 39 anos: 22 anos longe da família.", "ref": "Gn 37:2; 41:46; 41:53; 45:6"}, {"selo": "liga", "t": "Judá, o irmão que propôs vender José, agora se oferece para ser escravo no lugar de Benjamim.", "ref": "Gn 37:26-27; 44:33"}, {"selo": "biblia", "t": "José repete três vezes que foi Deus quem o enviou.", "ref": "Gn 45:5; 45:7; 45:8"}, {"selo": "biblia", "t": "José beija todos os irmãos e chora abraçado a eles. Só depois disso eles conseguem conversar.", "ref": "Gn 45:14-15"}],
+    conversa: "José tinha poder para se vingar, mas chorou, abraçou e disse que Deus estava por trás de tudo (Gn 45:5-15). O que você acha que ajudou José a perdoar? \"Ainda não sei\" também vale.",
+    fazer: "José perdoou e abraçou os irmãos (Gn 45:14-15). Pense em alguém que magoou você. Até o \"como foi?\", ore por essa pessoa todos os dias e faça um gesto concreto de perdão: uma palavra gentil, uma ajuda ou uma mensagem.",
+    oracao: "Fique um minuto em silêncio e pense em quem magoou você. Depois ore: \"Senhor, José perdoou os irmãos porque viu a sua mão na história. Eu escolho perdoar essa pessoa. Abençoa ela e cura o que doeu em mim.\" Continue com as suas palavras.",
     contexto: 'O teste final: a taça na bagagem de Benjamim. Judá, o mesmo que propôs vender José, agora se oferece no lugar do irmão. José não se contém e se revela.',
     notas: [
       ['44:33', 'Judá pede para ficar como escravo no lugar de Benjamim.'],
@@ -379,6 +526,12 @@ export const SESSOES = [
 
   { id: 'gn-25', livro: 'gn', caps: [46, 48], titulo: 'Israel desce ao Egito',
     cenario: 'De Berseba para Gósen, no Egito.',
+    gancho: "Jacó, já velho, recebe a notícia que não esperava: José está vivo e governa o Egito. Mas descer ao Egito é deixar a terra prometida. Antes de ir, Deus fala com ele de noite. Hoje você descobre o que Deus disse.",
+    repare: [{"t": "O que Deus diz a Jacó em Berseba?", "ref": "Gn 46:2-4"}, {"t": "O que Jacó diz a Faraó sobre os anos da sua vida?", "ref": "Gn 47:9"}, {"t": "Como Jacó coloca as mãos sobre os filhos de José?", "ref": "Gn 48:14"}],
+    portras: [{"selo": "conta", "t": "A família de Jacó entra no Egito com 70 pessoas. Na saída, séculos depois, são cerca de 600 mil homens a pé, sem contar mulheres e crianças.", "ref": "Gn 46:27; Êx 12:37"}, {"selo": "liga", "t": "Êxodo começa lembrando: os filhos de Israel se multiplicaram muito e encheram a terra.", "ref": "Gn 46:3; Êx 1:7"}, {"selo": "biblia", "t": "Jacó cruza as mãos e põe a direita sobre Efraim, o mais novo.", "ref": "Gn 48:14; 48:19"}, {"selo": "liga", "t": "Hebreus lembra este momento: pela fé, Jacó abençoou os filhos de José.", "ref": "Gn 48:15-20; Hb 11:21"}],
+    conversa: "Deus disse a Jacó: \"Não tenha medo de descer ao Egito, eu irei com você\" (Gn 46:3-4). Por que você acha que Jacó precisava ouvir isso antes de ir? \"Ainda não sei\" também vale.",
+    fazer: "Jacó abençoou os filhos de José antes de morrer (Gn 48:15-16). Até o \"como foi?\", abençoe alguém da sua família em voz alta: coloque a mão no ombro dessa pessoa e ore por ela na frente dela.",
+    oracao: "Fique um minuto em silêncio e lembre de uma mudança que te dá medo. Depois ore: \"Senhor, o Senhor disse a Jacó: não tenha medo, eu irei com você. Eu entrego ao Senhor essa mudança. Vai comigo e me ajuda a ser bênção para a minha família.\" Continue com as suas palavras.",
     contexto: 'Deus autoriza Jacó a descer ao Egito e promete fazer dele uma grande nação ali. A família se instala em Gósen. Jacó abençoa os filhos de José.',
     notas: [
       ['46:3-4', 'Deus diz a Jacó que não tenha medo de descer ao Egito: ele irá junto e o fará voltar.'],
@@ -394,6 +547,12 @@ export const SESSOES = [
 
   { id: 'gn-26', livro: 'gn', caps: [49, 50], titulo: 'As bênçãos de Jacó e a morte de José',
     cenario: 'O Egito; o sepultamento em Canaã.',
+    gancho: "Jacó reúne os doze filhos para as últimas palavras. Depois que ele morre, os irmãos de José ficam com medo de que agora venha a vingança. Hoje você descobre a frase de José que fecha o livro de Gênesis.",
+    repare: [{"t": "O que Jacó diz sobre Judá e o cetro?", "ref": "Gn 49:10"}, {"t": "Que frase José diz aos irmãos com medo?", "ref": "Gn 50:19-20"}, {"t": "O que José pede antes de morrer?", "ref": "Gn 50:24-25"}],
+    portras: [{"selo": "liga", "t": "Sobre Judá, Jacó fala do cetro e de um leão. O Apocalipse chama Jesus de Leão da tribo de Judá.", "ref": "Gn 49:9-10; Ap 5:5"}, {"selo": "liga", "t": "José pediu que levassem os seus ossos. Moisés os leva na saída do Egito, e eles são sepultados em Siquém.", "ref": "Gn 50:25; Êx 13:19; Js 24:32"}, {"selo": "liga", "t": "Hebreus cita esse pedido como um ato de fé: José falou da saída de Israel antes de ela acontecer.", "ref": "Gn 50:24-25; Hb 11:22"}, {"selo": "biblia", "t": "Gênesis começa com vida no jardim e termina com José num caixão no Egito, esperando a promessa.", "ref": "Gn 2:8; 50:26"}],
+    conversa: "José disse: \"Vocês planejaram o mal contra mim, mas Deus o transformou em bem\" (Gn 50:20). Olhando a história inteira de José, onde você vê Deus agindo mesmo nos piores momentos? \"Ainda não sei\" também vale.",
+    fazer: "José viu Deus transformar o mal em bem (Gn 50:20). Escreva uma coisa difícil que aconteceu com você ou com sua família e, embaixo, o que de bom Deus já tirou dela (ou peça a Deus que tire). Compartilhe com alguém da casa até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio e lembre de algo difícil da sua história. Depois ore: \"Senhor, o Senhor transformou em bem o mal que fizeram a José. Eu entrego a minha história nas suas mãos. Tira o bem do que me feriu e me ajuda a confiar no Senhor.\" Continue com as suas palavras.",
     contexto: 'Jacó abençoa os doze filhos e morre; é sepultado em Macpela. Os irmãos temem vingança, e José responde com uma das frases centrais do livro. Gênesis termina com José morrendo no Egito.',
     notas: [
       ['49:10', 'Sobre Judá: o cetro não se afastará dele.'],
@@ -410,6 +569,12 @@ export const SESSOES = [
   // ───────────── JÓ ─────────────
   { id: 'jo-01', livro: 'jo', caps: [1, 2], titulo: 'O teste de Jó',
     cenario: 'A terra de Uz; e uma cena no céu.',
+    gancho: "Jó é o homem mais respeitado do Oriente: rico, íntegro e cuidadoso com a família. Mas, num lugar que ele não vê, alguém levanta uma pergunta sobre ele. Num só dia, tudo começa a desabar. Hoje você descobre como Jó reagiu.",
+    repare: [{"t": "Que quatro coisas o primeiro versículo diz sobre Jó?", "ref": "Jó 1:1"}, {"t": "Que pergunta Satanás faz sobre a fé de Jó?", "ref": "Jó 1:9"}, {"t": "O que os três amigos fazem durante os primeiros sete dias?", "ref": "Jó 2:13"}],
+    portras: [{"selo": "biblia", "t": "Jó oferecia sacrifícios pelos filhos, caso eles tivessem pecado no coração.", "ref": "Jó 1:5"}, {"selo": "biblia", "t": "Depois de perder tudo, Jó se prostra e adora: o Senhor deu, o Senhor tomou, bendito seja o nome do Senhor.", "ref": "Jó 1:20-21"}, {"selo": "liga", "t": "Tiago lembra a paciência de Jó e diz que o Senhor é cheio de compaixão e misericórdia.", "ref": "Jó 1:21-22; Tg 5:11"}, {"selo": "liga", "t": "Os amigos começaram bem: ficaram sete dias em silêncio ao lado dele. Paulo ensina a chorar com os que choram.", "ref": "Jó 2:13; Rm 12:15"}],
+    conversa: "Satanás disse que Jó só temia a Deus por causa do que recebia (Jó 1:9-11). Jó perdeu quase tudo e continuou adorando (Jó 1:20-21). O que você acha que fazia Jó continuar confiando? \"Ainda não sei\" também vale.",
+    fazer: "Os amigos de Jó vieram e ficaram ao lado dele em silêncio (Jó 2:11-13). Até o \"como foi?\", visite ou ligue para alguém que está passando por um momento difícil. Vá para ouvir e estar junto, não para dar conselho.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor deu, o Senhor pode tomar, bendito seja o seu nome. Eu quero te amar pelo que o Senhor é, e não só pelo que o Senhor me dá. Consola quem está sofrendo perto de mim.\" Continue com as suas palavras.",
     contexto: 'Jó é íntegro e próspero. Numa cena no céu, Satanás acusa que Jó só teme a Deus por interesse. Jó perde bens, filhos e saúde, mas não peca com os lábios.',
     notas: [
       ['1:1', 'Jó: íntegro, reto, temente a Deus e afastado do mal.'],
@@ -424,6 +589,12 @@ export const SESSOES = [
 
   { id: 'jo-02', livro: 'jo', caps: [3, 7], titulo: 'O lamento de Jó e Elifaz',
     cenario: 'Jó sentado em meio à cinza (Jó 2:8).',
+    gancho: "Depois de sete dias de silêncio, Jó finalmente abre a boca. O que sai é um desabafo forte, sem disfarce. Então o primeiro amigo responde. Hoje você descobre o que Elifaz achou que explicava o sofrimento de Jó.",
+    repare: [{"t": "O que Jó amaldiçoa: a Deus ou o dia em que nasceu?", "ref": "Jó 3:1-3"}, {"t": "Qual é a ideia de Elifaz sobre quem sofre?", "ref": "Jó 4:7-8"}, {"t": "O que Jó decide fazer em vez de se calar?", "ref": "Jó 7:11"}],
+    portras: [{"selo": "biblia", "t": "Jó reclama da vida, mas fala com Deus. Ele não para de se dirigir a ele.", "ref": "Jó 7:11-21"}, {"selo": "liga", "t": "Paulo cita uma frase de Elifaz em 1 Coríntios: Deus apanha os sábios na própria astúcia deles.", "ref": "Jó 5:13; 1Co 3:19"}, {"selo": "liga", "t": "Muitos salmos também são lamentos honestos levados a Deus, como o Salmo 13: \"Até quando, Senhor?\".", "ref": "Jó 3:11; Sl 13:1-2"}, {"selo": "biblia", "t": "Elifaz diz frases verdadeiras, mas tira delas uma conclusão errada sobre Jó. No fim do livro, Deus vai dizer isso.", "ref": "Jó 4:7; 42:7"}],
+    conversa: "Elifaz achou que Jó sofria porque tinha feito algo errado (Jó 4:7-8). Por que você acha que é tão comum pensar assim quando alguém está sofrendo? \"Ainda não sei\" também vale.",
+    fazer: "Jó levou a Deus a dor dele, sem fingir (Jó 7:11). Escreva numa folha uma oração honesta sobre algo que está pesado para você: o que dói, o que você não entende, o que você pede. Ore com essas palavras todos os dias até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, eu posso ser sincero com o Senhor, como Jó foi. Isto está pesado para mim: (fale com as suas palavras). Eu não entendo tudo, mas eu continuo falando com o Senhor.\" Continue com as suas palavras.",
     contexto: 'O silêncio acaba: Jó lamenta ter nascido. Elifaz responde com a ideia que vai dominar os amigos: quem sofre colhe o que plantou.',
     notas: [
       ['3:1-3', 'Jó amaldiçoa o dia em que nasceu — mas não amaldiçoa a Deus.'],
@@ -437,6 +608,12 @@ export const SESSOES = [
 
   { id: 'jo-03', livro: 'jo', caps: [8, 14], titulo: 'Bildade, Zofar e o desejo de um árbitro',
     cenario: 'O primeiro ciclo de diálogos continua.',
+    gancho: "Agora os outros dois amigos falam, e cada um é mais duro que o anterior. Jó continua dizendo que é inocente e faz uma pergunta difícil: como alguém pode ficar de pé diante de Deus? Hoje você descobre o que Jó desejou ter.",
+    repare: [{"t": "O que Bildade diz sobre os filhos de Jó?", "ref": "Jó 8:4"}, {"t": "Que pessoa Jó gostaria que existisse entre ele e Deus?", "ref": "Jó 9:33"}, {"t": "Que pergunta Jó faz sobre a morte?", "ref": "Jó 14:14"}],
+    portras: [{"selo": "biblia", "t": "Jó lamenta não haver um árbitro que pusesse a mão sobre os dois, ele e Deus.", "ref": "Jó 9:33"}, {"selo": "liga", "t": "Paulo escreve que há um só mediador entre Deus e os homens: Cristo Jesus.", "ref": "Jó 9:33; 1Tm 2:5"}, {"selo": "liga", "t": "Jó pergunta se o homem volta a viver depois de morrer. Jesus diz: \"Eu sou a ressurreição e a vida\".", "ref": "Jó 14:14; Jo 11:25"}, {"selo": "biblia", "t": "Jó chama os amigos de médicos que não servem para nada.", "ref": "Jó 13:4"}],
+    conversa: "Os amigos tinham respostas prontas para tudo, e Jó disse que eles não estavam ajudando (Jó 13:4-5). Por que você acha que às vezes uma resposta certinha machuca mais do que ajuda? \"Ainda não sei\" também vale.",
+    fazer: "Jó pediu que os amigos se calassem e escutassem (Jó 13:5; 13:17). Até o \"como foi?\", quando alguém contar um problema para você, escute até o fim sem interromper e sem dar conselho. Depois pergunte: \"Quer que eu ore por você agora?\".",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, Jó desejou alguém entre ele e o Senhor, e o Senhor nos deu Jesus. Obrigado porque eu posso me aproximar do Senhor por ele. Me ensina a escutar quem sofre, antes de falar.\" Continue com as suas palavras.",
     contexto: 'Bildade e Zofar repetem a lógica de Elifaz com mais dureza. Jó insiste que é inocente e expressa o desejo de alguém que fique entre ele e Deus.',
     notas: [
       ['8:3-4', 'Bildade: Deus não perverte o direito; se seus filhos morreram, foi pelo pecado deles.'],
@@ -451,6 +628,12 @@ export const SESSOES = [
 
   { id: 'jo-04', livro: 'jo', caps: [15, 21], titulo: '"Eu sei que o meu Redentor vive"',
     cenario: 'O segundo ciclo de diálogos.',
+    gancho: "Os amigos ficam cada vez mais duros. Jó se sente abandonado por todos, até pela família. É exatamente no ponto mais baixo que ele diz uma das frases mais fortes de toda a Bíblia. Hoje você descobre qual é.",
+    repare: [{"t": "Como Jó chama os amigos?", "ref": "Jó 16:2"}, {"t": "Onde Jó gostaria que as suas palavras ficassem gravadas?", "ref": "Jó 19:23-24"}, {"t": "O que Jó afirma saber, mesmo sofrendo?", "ref": "Jó 19:25-27"}],
+    portras: [{"selo": "biblia", "t": "Mesmo achando que Deus está contra ele, Jó diz que tem uma testemunha nos céus.", "ref": "Jó 16:19"}, {"selo": "biblia", "t": "Jó deseja que suas palavras fossem gravadas com ferro e chumbo numa rocha, para sempre.", "ref": "Jó 19:23-24"}, {"selo": "biblia", "t": "A frase \"o meu Redentor vive\" vem logo depois de Jó dizer que até os parentes e amigos o abandonaram.", "ref": "Jó 19:13-19; 19:25"}, {"selo": "liga", "t": "Jó discorda dos amigos: na vida real, muitas vezes os maus prosperam. O Salmo 73 traz a mesma inquietação.", "ref": "Jó 21:7; Sl 73:3"}],
+    conversa: "Jó estava sem saúde, sem família e sem apoio dos amigos, e mesmo assim disse: \"Eu sei que o meu Redentor vive\" (Jó 19:25). Como você acha que alguém consegue ter esperança no meio de tanta dor? \"Ainda não sei\" também vale.",
+    fazer: "Jó quis que suas palavras de esperança ficassem gravadas para sempre (Jó 19:23-25). Escreva \"Eu sei que o meu Redentor vive\" (Jó 19:25) em um cartão, decore e dê uma cópia para alguém que está passando por um momento difícil até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, mesmo quando tudo parece contra mim, eu sei que o meu Redentor vive. Eu coloco a minha esperança no Senhor. Sustenta quem está sem forças hoje.\" Continue com as suas palavras.",
     contexto: 'Os amigos endurecem e falam do destino terrível do ímpio. No fundo do poço, Jó faz uma das maiores declarações de esperança da Bíblia.',
     notas: [
       ['16:2', 'Jó chama os amigos de consoladores que só trazem sofrimento.'],
@@ -464,6 +647,12 @@ export const SESSOES = [
 
   { id: 'jo-05', livro: 'jo', caps: [22, 28], titulo: 'Onde se acha a sabedoria?',
     cenario: 'O terceiro e último ciclo de diálogos.',
+    gancho: "Elifaz chega ao ponto de inventar pecados para Jó. Jó procura a Deus para todo lado e não o encontra. No meio disso, aparece um poema sobre mineiros cavando a terra atrás de prata e ouro. Hoje você descobre o que eles não conseguem encontrar lá embaixo.",
+    repare: [{"t": "Que tipo de pecados Elifaz atribui a Jó?", "ref": "Jó 22:5-9"}, {"t": "Com que metal Jó compara a si mesmo depois da prova?", "ref": "Jó 23:10"}, {"t": "No fim do poema, o que é a sabedoria e o que é o entendimento?", "ref": "Jó 28:28"}],
+    portras: [{"selo": "biblia", "t": "O poema descreve mineiros abrindo poços longe das pessoas para tirar prata, ouro, ferro e cobre.", "ref": "Jó 28:1-4"}, {"selo": "biblia", "t": "A sabedoria não se compra com ouro, nem com pedras preciosas.", "ref": "Jó 28:15-19"}, {"selo": "liga", "t": "Provérbios diz quase o mesmo: o temor do Senhor é o princípio da sabedoria.", "ref": "Jó 28:28; Pv 9:10"}, {"selo": "biblia", "t": "Jó não encontra Deus para lado nenhum, mas diz: ele conhece o caminho por onde eu ando.", "ref": "Jó 23:8-10"}],
+    conversa: "Jó não conseguia sentir Deus por perto, mas disse que Deus conhecia o caminho dele (Jó 23:8-10). Por que você acha que a fé continua mesmo quando a gente não sente Deus? \"Ainda não sei\" também vale.",
+    fazer: "A Bíblia diz que entendimento é afastar-se do mal (Jó 28:28). Escolha um mal concreto que você costuma praticar (uma mentira, uma fofoca, um palavrão, um conteúdo que não convém) e afaste-se dele por 3 dias. Peça para alguém da família te ajudar a lembrar.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, mesmo quando eu não te sinto, o Senhor conhece o meu caminho. Eu quero te temer e me afastar do mal. Me dá a sabedoria que o ouro não compra.\" Continue com as suas palavras.",
     contexto: 'Elifaz chega a acusar Jó de pecados que ele não cometeu. Jó busca a Deus sem encontrá-lo, mas confia que sairá da prova como ouro. O capítulo 28 é um poema sobre onde encontrar a sabedoria.',
     notas: [
       ['22:5-9', 'Elifaz lista pecados que atribui a Jó, sem prova.'],
@@ -477,6 +666,12 @@ export const SESSOES = [
 
   { id: 'jo-06', livro: 'jo', caps: [29, 31], titulo: 'A defesa final de Jó',
     cenario: 'Jó encerra a sua fala.',
+    gancho: "Jó faz a sua última fala. Ele lembra da vida que tinha, descreve como está agora e, por fim, passa a própria vida a limpo, área por área, diante de Deus. Hoje você descobre que tipo de homem Jó era quando ninguém estava olhando.",
+    repare: [{"t": "Por quem Jó diz que trabalhava quando era respeitado?", "ref": "Jó 29:12-16"}, {"t": "Que pacto Jó diz ter feito com os próprios olhos?", "ref": "Jó 31:1"}, {"t": "Que frase marca o fim das falas de Jó?", "ref": "Jó 31:40"}],
+    portras: [{"selo": "biblia", "t": "Jó diz que era olhos para o cego e pés para o coxo, e pai dos necessitados.", "ref": "Jó 29:15-16"}, {"selo": "liga", "t": "Jó fez um pacto com os olhos. Jesus fala que o pecado começa no olhar e no coração.", "ref": "Jó 31:1; Mt 5:28"}, {"selo": "biblia", "t": "Jó lembra que não deixava o estrangeiro dormir na rua: abria a porta para o viajante.", "ref": "Jó 31:32"}, {"selo": "biblia", "t": "Jó revisa a vida em várias áreas: olhos, trabalho, casamento, servos, pobres, dinheiro e inimigos.", "ref": "Jó 31:1-40"}],
+    conversa: "Jó cuidava do cego, do pobre e do estrangeiro quando estava bem (Jó 29:15-16; 31:32). Por que você acha que ele cuidava de quem não podia retribuir? \"Ainda não sei\" também vale.",
+    fazer: "Jó era \"pés para o coxo\" (Jó 29:15). Até o \"como foi?\", encontre alguém que não consegue fazer algo sozinho (um idoso, um vizinho, um colega) e faça isso por ele: uma compra, uma carona, uma tarefa, um conserto.",
+    oracao: "Fique um minuto em silêncio e pense em quem precisa de ajuda perto de você. Depois ore: \"Senhor, Jó foi olhos para o cego e pés para o coxo. Me faz ser assim também. Mostra quem eu posso ajudar e examina a minha vida, área por área.\" Continue com as suas palavras.",
     contexto: 'Jó relembra a vida que tinha, descreve a humilhação atual e faz um juramento de inocência, área por área da sua vida.',
     notas: [
       ['29:12-16', 'Jó lembra como socorria pobres, órfãos e viúvas.'],
@@ -490,6 +685,12 @@ export const SESSOES = [
 
   { id: 'jo-07', livro: 'jo', caps: [32, 37], titulo: 'Eliú',
     cenario: 'Um quarto personagem, até então calado, toma a palavra.',
+    gancho: "Todos falaram, e ninguém convenceu ninguém. Até que um rapaz, que estava quieto o tempo todo, pede a palavra. Ele está irritado com Jó e com os três amigos. Hoje você descobre por que Eliú esperou tanto para falar.",
+    repare: [{"t": "Por que Eliú se irrita com Jó e com os três amigos?", "ref": "Jó 32:2-3"}, {"t": "Por que ele esperou para falar?", "ref": "Jó 32:6-7"}, {"t": "Para o que Eliú convida Jó a parar e olhar?", "ref": "Jó 37:14"}],
+    portras: [{"selo": "biblia", "t": "Eliú diz que a sabedoria não vem só da idade: é o espírito no homem, o sopro do Todo-Poderoso, que dá entendimento.", "ref": "Jó 32:8-9"}, {"selo": "biblia", "t": "Eliú diz que Deus fala de várias maneiras, até em sonhos, para desviar o homem do mal.", "ref": "Jó 33:14-18"}, {"selo": "biblia", "t": "Eliú descreve chuva, nuvens, relâmpagos e neve como obra das mãos de Deus.", "ref": "Jó 36:27-37:13"}, {"selo": "liga", "t": "Paulo pede a Timóteo que ninguém despreze a sua juventude. Eliú era o mais novo da roda.", "ref": "Jó 32:6; 1Tm 4:12"}],
+    conversa: "Eliú, o mais jovem, esperou todos falarem antes de abrir a boca (Jó 32:6-7). Por que você acha que esperar e ouvir antes de falar é tão difícil, e tão importante? \"Ainda não sei\" também vale.",
+    fazer: "Eliú convidou Jó a parar e considerar as maravilhas de Deus (Jó 37:14). Separe 15 minutos, sem celular, para ficar ao ar livre com alguém da família observando o céu, as nuvens ou as plantas. Depois, cada um conta uma coisa que viu e agradece a Deus.",
+    oracao: "Fique um minuto em silêncio, olhando pela janela ou para o céu. Depois ore: \"Senhor, as nuvens, a chuva e o vento obedecem ao Senhor. Me ensina a parar e ver as suas maravilhas. Me dá paciência para ouvir antes de falar.\" Continue com as suas palavras.",
     contexto: 'Eliú, o mais jovem, esperou todos falarem. Discorda de Jó e dos amigos e fala de Deus usando até o sofrimento para conduzir o ser humano, e da grandeza de Deus na criação.',
     notas: [
       ['32:2-3', 'Eliú se ira com Jó, por se justificar mais do que a Deus, e com os amigos, por condenarem Jó sem ter resposta.'],
@@ -503,6 +704,12 @@ export const SESSOES = [
 
   { id: 'jo-08', livro: 'jo', caps: [38, 39], titulo: 'Deus responde do meio da tempestade',
     cenario: 'O Senhor fala de dentro de um redemoinho (Jó 38:1).',
+    gancho: "Trinta e sete capítulos de conversa sobre Deus. Agora, de dentro de uma tempestade, o próprio Deus fala. Mas, em vez de dar respostas, ele começa a fazer perguntas a Jó. Hoje você descobre quais.",
+    repare: [{"t": "De onde o Senhor fala com Jó?", "ref": "Jó 38:1"}, {"t": "Qual é a primeira pergunta de Deus a Jó?", "ref": "Jó 38:4"}, {"t": "Quais estrelas e constelações Deus cita?", "ref": "Jó 38:31-32"}],
+    portras: [{"selo": "lugar", "t": "As Plêiades, citadas por Deus, existem de fato: são um aglomerado com mais de mil estrelas na constelação de Touro, a uns 440 anos-luz da Terra. A olho nu se veem só seis ou sete.", "ref": "Jó 38:31", "fonte": "Britannica, verbete \"Pleiades\""}, {"selo": "biblia", "t": "Deus fala dos animais que ninguém controla: a cabra montês, o jumento selvagem, o avestruz, o cavalo, o gavião e a águia.", "ref": "Jó 39:1-30"}, {"selo": "liga", "t": "Isaías também fala de Deus chamando cada estrela pelo nome.", "ref": "Jó 38:31-32; Is 40:26"}, {"selo": "biblia", "t": "Deus não explica a Jó o motivo do sofrimento. Ele mostra quem ele é.", "ref": "Jó 38:1-39:30"}],
+    conversa: "Deus não contou a Jó o porquê de tudo, mas mostrou a grandeza dele na criação (Jó 38:4; 38:31). Por que você acha que isso foi suficiente para Jó? \"Ainda não sei\" também vale.",
+    fazer: "Deus mostrou a Jó a sua grandeza na criação (Jó 38-39). Por 3 dias, comece a sua oração só louvando a Deus por quem ele é, sem pedir nada nos primeiros minutos. Use o que Deus fez como motivo: o céu, os animais, o mar.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, onde eu estava quando o Senhor fez a terra? O Senhor conhece cada estrela pelo nome. Eu não preciso entender tudo para confiar no Senhor. O Senhor é grande, e eu te louvo.\" Continue com as suas palavras.",
     contexto: 'Deus finalmente fala. Não explica o motivo do sofrimento: faz perguntas sobre a criação que mostram a Jó a grandeza e a sabedoria de quem governa tudo.',
     notas: [
       ['38:1', 'O Senhor responde do meio de um redemoinho.'],
@@ -516,6 +723,12 @@ export const SESSOES = [
 
   { id: 'jo-09', livro: 'jo', caps: [40, 42], titulo: 'Agora os meus olhos te veem',
     cenario: 'A resposta final e o epílogo.',
+    gancho: "Jó tinha muito a dizer a Deus. Agora, diante dele, coloca a mão sobre a boca. Deus ainda tem palavras para os três amigos. E o fim da história de Jó surpreende. Hoje você descobre o que mudou.",
+    repare: [{"t": "O que Jó faz com a mão quando Deus termina a primeira fala?", "ref": "Jó 40:4"}, {"t": "O que Jó diz sobre como conhecia Deus antes e agora?", "ref": "Jó 42:5"}, {"t": "Quando o Senhor restaura Jó?", "ref": "Jó 42:10"}],
+    portras: [{"selo": "conta", "t": "No começo Jó tinha 7 mil ovelhas, 3 mil camelos, 500 juntas de bois e 500 jumentas. No fim, 14 mil, 6 mil, mil e mil: o dobro exato. E de novo sete filhos e três filhas.", "ref": "Jó 1:2-3; 42:12-13"}, {"selo": "biblia", "t": "O Senhor restaura Jó quando ele ora pelos amigos que o tinham acusado.", "ref": "Jó 42:10"}, {"selo": "liga", "t": "Paulo cita uma frase de Deus a Jó: quem deu primeiro a Deus, para ser recompensado?", "ref": "Jó 41:11; Rm 11:35"}, {"selo": "liga", "t": "Tiago resume: vocês ouviram da paciência de Jó e viram o fim que o Senhor lhe deu.", "ref": "Jó 42:12; Tg 5:11"}],
+    conversa: "Jó disse que antes conhecia Deus só de ouvir falar, e agora os seus olhos o viam (Jó 42:5). O que você acha que é a diferença entre essas duas coisas? \"Ainda não sei\" também vale.",
+    fazer: "Jó orou pelos amigos que o tinham acusado (Jó 42:10). Até o \"como foi?\", ore todos os dias pelo nome de alguém que te magoou ou falou mal de você, pedindo a Deus que abençoe essa pessoa.",
+    oracao: "Fique um minuto em silêncio e pense em alguém que te magoou. Depois ore: \"Senhor, eu não quero te conhecer só de ouvir falar. Eu quero te ver. E, como Jó, eu oro por quem me feriu: abençoa essa pessoa.\" Continue com as suas palavras.",
     contexto: 'Jó se cala diante de Deus, que fala do beemote e do leviatã. Jó se arrepende e declara que agora vê a Deus. Deus repreende os amigos, Jó ora por eles e é restaurado.',
     notas: [
       ['40:4', 'Jó põe a mão sobre a boca.'],

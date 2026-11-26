@@ -68,6 +68,12 @@ export const SESSOES = [
   // ───────────── ÊXODO ─────────────
   { id: 'ex-01', livro: 'ex', caps: [1, 2], titulo: 'Escravos no Egito',
     cenario: 'O Egito, muitos anos depois da morte de José.',
+    gancho: "A família de Jacó virou um povo enorme no Egito, e um novo rei fica com medo. Ele dá uma ordem terrível contra os bebês hebreus. Duas parteiras precisam decidir a quem obedecer, e uma mãe esconde o filho num cesto no rio. Hoje você descobre o que aconteceu com esse menino.",
+    repare: [{"t": "Qual é o nome das duas parteiras, e por que elas não obedecem ao rei?", "ref": "Êx 1:15-17"}, {"t": "Quem fica de longe olhando o cesto no rio?", "ref": "Êx 2:4"}, {"t": "Por que a filha de Faraó dá ao menino o nome de Moisés?", "ref": "Êx 2:10"}],
+    portras: [{"selo": "lugar", "t": "O rio onde o cesto foi colocado é o Nilo, um dos maiores rios do mundo: cerca de 6.650 km do lago Vitória até o Mediterrâneo.", "ref": "Êx 2:3", "fonte": "Britannica, verbete \"Nile River\""}, {"selo": "biblia", "t": "A mãe de Moisés recebe o próprio filho de volta para amamentar, e ainda é paga para isso.", "ref": "Êx 2:7-9"}, {"selo": "liga", "t": "Hebreus diz que os pais de Moisés o esconderam pela fé e não tiveram medo da ordem do rei.", "ref": "Êx 2:2; Hb 11:23"}, {"selo": "biblia", "t": "O capítulo termina com quatro verbos: Deus ouviu, lembrou, viu e se importou.", "ref": "Êx 2:24-25"}],
+    conversa: "Sifrá e Puá desobedeceram ao rei mais poderoso da terra porque temiam a Deus (Êx 1:17). Por que você acha que elas tiveram tanta coragem? \"Ainda não sei\" também vale.",
+    fazer: "As parteiras protegeram quem não podia se defender (Êx 1:17). Até o \"como foi?\", defenda alguém que está sendo deixado de lado, zoado ou tratado com injustiça perto de você. Se não souber como, peça ajuda a um adulto.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor ouviu o clamor do seu povo no Egito. O Senhor também ouve o meu. Me dá a coragem de Sifrá e Puá para fazer o que é certo, mesmo quando é difícil.\" Continue com as suas palavras.",
     contexto: 'A família de Jacó cresce muito no Egito. Um novo rei, que não tinha conhecido José, escraviza Israel e manda matar os meninos hebreus. Nesse tempo nasce Moisés.',
     notas: [
       ['1:8', 'Um novo rei, que não conhecia José, passa a ver Israel como ameaça.'],
@@ -85,6 +91,12 @@ export const SESSOES = [
 
   { id: 'ex-02', livro: 'ex', caps: [3, 4], titulo: 'A sarça ardente',
     cenario: 'O monte de Deus, Horebe, no deserto.',
+    gancho: "Moisés tem 80 anos e está cuidando de ovelhas no deserto, longe do Egito. De repente, vê um arbusto pegando fogo que não se queima. Quando chega perto, alguém o chama pelo nome. Hoje você descobre quem era e o que pediu.",
+    repare: [{"t": "O que Moisés precisa tirar antes de chegar perto?", "ref": "Êx 3:5"}, {"t": "Quais verbos Deus usa para dizer o que fez pelo povo?", "ref": "Êx 3:7-8"}, {"t": "Quantas desculpas Moisés dá para não ir?", "ref": "Êx 3:11; 3:13; 4:1; 4:10; 4:13"}],
+    portras: [{"selo": "biblia", "t": "Deus revela o seu nome: EU SOU O QUE SOU.", "ref": "Êx 3:14"}, {"selo": "liga", "t": "Jesus diz: \"Antes que Abraão existisse, eu sou\".", "ref": "Êx 3:14; Jo 8:58"}, {"selo": "biblia", "t": "Moisés pergunta \"Quem sou eu?\", e Deus responde: \"Eu serei com você\".", "ref": "Êx 3:11-12"}, {"selo": "biblia", "t": "O que Moisés tinha na mão era só um cajado de pastor. Deus usa justamente ele.", "ref": "Êx 4:2-5; 4:17"}],
+    conversa: "Moisés deu uma desculpa atrás da outra, e Deus respondeu cada uma (Êx 3:11-4:13). Por que você acha que é tão fácil achar que a gente não serve para o que Deus pede? \"Ainda não sei\" também vale.",
+    fazer: "Deus perguntou a Moisés: \"O que você tem na mão?\" (Êx 4:2). Escolha uma coisa que você sabe fazer (cozinhar, desenhar, consertar, tocar, explicar) e use para servir alguém até o \"como foi?\", sem esperar nada em troca.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor é o EU SOU. Quando eu achar que não sou capaz, lembra que o Senhor está comigo. O que eu tenho na mão é seu; me usa.\" Continue com as suas palavras.",
     contexto: 'Moisés pastoreia o rebanho do sogro quando vê uma sarça que queima sem se consumir. Deus o chama para tirar Israel do Egito. Moisés levanta objeções, e Deus responde a cada uma.',
     notas: [
       ['3:2', 'A sarça arde no fogo, mas não se consome.'],
@@ -102,6 +114,12 @@ export const SESSOES = [
 
   { id: 'ex-03', livro: 'ex', caps: [5, 7], titulo: 'Deixe o meu povo ir',
     cenario: 'O palácio de Faraó.',
+    gancho: "Moisés e Arão entram no palácio e dizem a Faraó: \"Deixe o meu povo ir\". Faraó não só recusa, como torna a vida dos escravos ainda pior. O povo fica furioso com Moisés. Hoje você descobre o que Deus respondeu.",
+    repare: [{"t": "O que Faraó diz quando ouve o nome do Senhor?", "ref": "Êx 5:2"}, {"t": "Como o trabalho dos escravos piora?", "ref": "Êx 5:7-8"}, {"t": "Quantas promessas Deus faz ao povo em 6:6-8?", "ref": "Êx 6:6-8"}],
+    portras: [{"selo": "conta", "t": "Moisés tinha 80 anos e Arão 83 quando falaram com Faraó. Moisés ainda guiaria o povo por 40 anos e morreria com 120.", "ref": "Êx 7:7; Dt 34:7"}, {"selo": "biblia", "t": "Os escravos tinham de juntar a própria palha e entregar a mesma quantidade de tijolos.", "ref": "Êx 5:7-8"}, {"selo": "biblia", "t": "Deus promete: vou tirar, livrar, resgatar, tomar vocês como meu povo e ser o seu Deus.", "ref": "Êx 6:6-7"}, {"selo": "biblia", "t": "A primeira praga atinge o Nilo, o rio de que todo o Egito dependia.", "ref": "Êx 7:20-21"}],
+    conversa: "Moisés obedeceu, e mesmo assim as coisas pioraram (Êx 5:20-23). Por que você acha que às vezes obedecer a Deus não dá certo de imediato? \"Ainda não sei\" também vale.",
+    fazer: "Moisés não desistiu quando a situação piorou e levou a reclamação a Deus (Êx 5:22-6:1). Escolha uma coisa certa que você parou de fazer porque ficou difícil (um hábito, uma oração, uma tarefa) e retome por 3 dias seguidos.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, quando obedecer fica difícil, eu levo a minha queixa ao Senhor, como Moisés. Obrigado pelas suas promessas: o Senhor livra e resgata. Me dá perseverança.\" Continue com as suas palavras.",
     contexto: 'Moisés e Arão pedem a Faraó que deixe o povo ir. Faraó recusa e aumenta o trabalho dos escravos. Deus renova sua promessa, e começa a primeira praga: as águas viram sangue.',
     notas: [
       ['5:2', 'Faraó: quem é o Senhor, para que eu o obedeça? Não conheço o Senhor.'],
@@ -118,6 +136,12 @@ export const SESSOES = [
 
   { id: 'ex-04', livro: 'ex', caps: [8, 10], titulo: 'As pragas',
     cenario: 'O Egito sob as pragas.',
+    gancho: "Rãs por toda parte, piolhos, moscas, granizo, gafanhotos e, por fim, uma escuridão tão grossa que dá para sentir. A cada praga, Faraó promete deixar o povo ir. Hoje você descobre o que acontece quando a dor passa.",
+    repare: [{"t": "O que os magos do Egito dizem depois da praga dos piolhos?", "ref": "Êx 8:19"}, {"t": "O que acontece na terra de Gósen durante a praga das moscas?", "ref": "Êx 8:22-23"}, {"t": "O que havia nas casas dos israelitas durante as trevas?", "ref": "Êx 10:23"}],
+    portras: [{"selo": "biblia", "t": "Os próprios magos de Faraó reconhecem: \"Isto é o dedo de Deus\".", "ref": "Êx 8:19"}, {"selo": "biblia", "t": "Faraó pede oração a Moisés várias vezes e, quando a praga passa, volta atrás.", "ref": "Êx 8:8; 8:15; 9:27-28; 9:34"}, {"selo": "liga", "t": "Paulo cita o que Deus disse a Faraó: para que o meu nome seja anunciado em toda a terra.", "ref": "Êx 9:16; Rm 9:17"}, {"selo": "biblia", "t": "Três dias de trevas em todo o Egito, mas luz nas casas dos israelitas.", "ref": "Êx 10:22-23"}],
+    conversa: "Faraó prometia mudar quando a praga apertava e esquecia quando ela passava (Êx 9:27-35). Por que você acha que é tão fácil prometer coisas a Deus só na hora do aperto? \"Ainda não sei\" também vale.",
+    fazer: "Faraó fez promessas e não cumpriu (Êx 9:34). Lembre de uma promessa que você fez (a Deus ou a alguém) e ainda não cumpriu. Cumpra até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, eu não quero ter um coração duro como o de Faraó. Quando o Senhor me corrigir, que eu ouça. Me ajuda a cumprir o que eu prometo, mesmo depois que a dificuldade passa.\" Continue com as suas palavras.",
     contexto: 'Seguem as pragas: rãs, piolhos, moscas, peste nos animais, úlceras, granizo, gafanhotos e trevas. Faraó promete deixar o povo ir e volta atrás várias vezes.',
     notas: [
       ['8:19', 'Os magos do Egito reconhecem: isto é o dedo de Deus.'],
@@ -134,6 +158,12 @@ export const SESSOES = [
 
   { id: 'ex-05', livro: 'ex', caps: [11, 13], titulo: 'A Páscoa e a saída',
     cenario: 'A última noite no Egito.',
+    gancho: "É a última noite no Egito. Cada família de Israel prepara um cordeiro, passa o sangue nos batentes da porta e come de pé, pronta para sair. À meia-noite, tudo muda. Hoje você descobre o que aconteceu nas casas marcadas.",
+    repare: [{"t": "Como deve ser o cordeiro?", "ref": "Êx 12:5"}, {"t": "Como o povo deve comer a refeição: sentado ou pronto para sair?", "ref": "Êx 12:11"}, {"t": "O que acontece quando o Senhor vê o sangue na porta?", "ref": "Êx 12:13"}],
+    portras: [{"selo": "biblia", "t": "Nenhum osso do cordeiro da Páscoa podia ser quebrado.", "ref": "Êx 12:46"}, {"selo": "liga", "t": "João diz que nenhum osso de Jesus foi quebrado na cruz, para cumprir essa palavra.", "ref": "Êx 12:46; Jo 19:36"}, {"selo": "liga", "t": "Paulo escreve: Cristo, nosso Cordeiro pascal, foi sacrificado.", "ref": "Êx 12:21; 1Co 5:7"}, {"selo": "conta", "t": "O texto diz que Israel morou 430 anos no Egito e saiu no mesmo dia em que esses anos se completaram.", "ref": "Êx 12:40-41"}],
+    conversa: "Deus mandou que a Páscoa fosse lembrada todos os anos e que os pais explicassem aos filhos o que ela significava (Êx 12:14; 12:26-27). Por que você acha que Deus queria tanto que o povo não esquecesse? \"Ainda não sei\" também vale.",
+    fazer: "Os pais deviam contar aos filhos o que Deus fez (Êx 12:26-27). Até o \"como foi?\", conte para alguém da família, numa refeição, uma história real de algo que Deus fez por você ou pelos seus pais.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, obrigado pelo cordeiro da Páscoa e por Jesus, o Cordeiro que se deu por mim. Eu não quero esquecer o que o Senhor fez. Me ajuda a contar isso para as próximas gerações.\" Continue com as suas palavras.",
     contexto: 'Deus anuncia a última praga: a morte dos primogênitos. Cada família de Israel sacrifica um cordeiro, passa o sangue nos batentes da porta e come a refeição pronta para partir. Naquela noite, Israel sai do Egito.',
     notas: [
       ['12:5', 'O cordeiro: sem defeito, macho, de um ano.'],
@@ -150,6 +180,12 @@ export const SESSOES = [
 
   { id: 'ex-06', livro: 'ex', caps: [14, 15], titulo: 'O mar se abre',
     cenario: 'A margem do mar, com o exército egípcio atrás.',
+    gancho: "O povo acabou de sair do Egito quando olha para trás e vê o exército de Faraó chegando. Na frente, o mar. Não há para onde correr. Hoje você descobre o que Deus mandou Moisés fazer.",
+    repare: [{"t": "O que Moisés diz ao povo apavorado?", "ref": "Êx 14:13-14"}, {"t": "O que sopra a noite toda sobre o mar?", "ref": "Êx 14:21"}, {"t": "Quem pega o tamborim e lidera as mulheres na dança?", "ref": "Êx 15:20"}],
+    portras: [{"selo": "biblia", "t": "O Senhor lutará por vocês; vocês só precisam ficar calmos.", "ref": "Êx 14:14"}, {"selo": "biblia", "t": "A coluna de nuvem passa para trás do povo e fica entre Israel e o exército egípcio.", "ref": "Êx 14:19-20"}, {"selo": "liga", "t": "Paulo lembra que todos os israelitas passaram pelo meio do mar.", "ref": "Êx 14:22; 1Co 10:1"}, {"selo": "liga", "t": "No Apocalipse, os vencedores cantam \"o cântico de Moisés\".", "ref": "Êx 15:1; Ap 15:3"}],
+    conversa: "O povo estava encurralado entre o exército e o mar quando Moisés disse: \"O Senhor lutará por vocês\" (Êx 14:14). O que você acha que era mais difícil para eles: ficar calmos ou atravessar o mar? \"Ainda não sei\" também vale.",
+    fazer: "Do outro lado do mar, o povo cantou o que Deus tinha feito (Êx 15:1-21). Escolha uma música de louvor que conte o que Deus faz e cante com alguém da família todos os dias até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio e pense no que te deixa encurralado. Depois ore: \"Senhor, o Senhor abriu o mar para o seu povo. Eu entrego ao Senhor esta situação. Luta por mim e me ajuda a ficar em paz enquanto espero.\" Continue com as suas palavras.",
     contexto: 'Faraó se arrepende e persegue Israel. Encurralado entre o exército e o mar, o povo se desespera. Moisés estende a mão, o mar se abre e Israel passa a pé enxuto. Do outro lado, o povo canta.',
     notas: [
       ['14:13-14', 'Moisés: não tenham medo; fiquem firmes e vejam o livramento. O Senhor lutará por vocês.'],
@@ -166,6 +202,12 @@ export const SESSOES = [
 
   { id: 'ex-07', livro: 'ex', caps: [16, 18], titulo: 'Maná, água e conselho',
     cenario: 'O deserto entre o mar e o Sinai.',
+    gancho: "No deserto não tem mercado nem poço. O povo começa a reclamar de fome e sede. Na manhã seguinte, o chão amanhece coberto de uma coisa que ninguém conhecia. Hoje você descobre o que era e qual era a regra para juntar.",
+    repare: [{"t": "Quanto cada um podia juntar por dia?", "ref": "Êx 16:16-18"}, {"t": "O que acontecia com o maná guardado para o dia seguinte?", "ref": "Êx 16:20"}, {"t": "Quem segura as mãos de Moisés durante a batalha?", "ref": "Êx 17:12"}],
+    portras: [{"selo": "biblia", "t": "O maná parecia semente de coentro, era branco e tinha gosto de bolo de mel.", "ref": "Êx 16:31"}, {"selo": "liga", "t": "Jesus diz: \"Eu sou o pão da vida\" e lembra o maná que os pais comeram no deserto.", "ref": "Êx 16:15; Jo 6:31-35"}, {"selo": "liga", "t": "Paulo cita a regra do maná: quem juntou muito não teve demais, e quem juntou pouco não teve falta.", "ref": "Êx 16:18; 2Co 8:15"}, {"selo": "biblia", "t": "O sogro de Moisés, Jetro, avisa: \"Você vai se esgotar\". Moisés aprende a dividir o trabalho.", "ref": "Êx 18:17-24"}],
+    conversa: "Deus mandava maná só para cada dia, e o que era guardado estragava (Êx 16:19-20). Por que você acha que Deus quis que o povo dependesse dele um dia de cada vez? \"Ainda não sei\" também vale.",
+    fazer: "Arão e Hur seguraram os braços cansados de Moisés (Êx 17:12). Escolha alguém que está carregando muito peso (um pai, uma mãe, um professor, um líder) e ajude essa pessoa concretamente até o \"como foi?\": assuma uma tarefa dela.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor deu maná todas as manhãs. Me dá hoje o pão de cada dia e me ensina a confiar no Senhor um dia de cada vez. Me faz ser um Arão e um Hur para alguém.\" Continue com as suas palavras.",
     contexto: 'No deserto o povo reclama de fome e de sede. Deus manda o maná todas as manhãs e água da rocha. Israel vence Amaleque enquanto Moisés mantém as mãos levantadas, e Jetro aconselha Moisés a dividir o trabalho.',
     notas: [
       ['16:4', 'Deus manda pão do céu; cada um junta a porção de cada dia.'],
@@ -182,6 +224,12 @@ export const SESSOES = [
 
   { id: 'ex-08', livro: 'ex', caps: [19, 20], titulo: 'Os Dez Mandamentos',
     cenario: 'O deserto do Sinai, ao pé do monte.',
+    gancho: "O monte treme, solta fumaça e soa uma trombeta cada vez mais forte. O povo inteiro fica lá embaixo, com medo. Então Deus fala, e as palavras que ele diz vão ser lembradas por milhares de anos. Hoje você descobre como ele começa.",
+    repare: [{"t": "Com que imagem Deus descreve como trouxe o povo até ali?", "ref": "Êx 19:4"}, {"t": "O que Deus diz sobre si mesmo antes de dar o primeiro mandamento?", "ref": "Êx 20:2"}, {"t": "Por que Moisés diz ao povo que não tenha medo?", "ref": "Êx 20:20"}],
+    portras: [{"selo": "biblia", "t": "Antes de qualquer ordem, Deus lembra o que já fez: \"Eu sou o Senhor, que tirei você do Egito\".", "ref": "Êx 20:2"}, {"selo": "liga", "t": "Paulo lembra que \"Honre seu pai e sua mãe\" é o primeiro mandamento com promessa.", "ref": "Êx 20:12; Ef 6:2-3"}, {"selo": "liga", "t": "Jesus resume a Lei em dois mandamentos: amar a Deus e amar o próximo.", "ref": "Êx 20:3-17; Mt 22:37-40"}, {"selo": "liga", "t": "Pedro diz à igreja o que Deus disse a Israel no Sinai: vocês são sacerdócio real e nação santa.", "ref": "Êx 19:6; 1Pe 2:9"}],
+    conversa: "Os mandamentos começam com \"Eu sou o Senhor que tirou você da escravidão\" (Êx 20:2). Por que você acha que é diferente obedecer a alguém que já te salvou? \"Ainda não sei\" também vale.",
+    fazer: "Deus mandou honrar pai e mãe (Êx 20:12). Até o \"como foi?\", faça três coisas concretas para honrar seus pais (ou quem cuida de você): obedecer sem reclamar, ajudar sem ser pedido e agradecer em voz alta. Adultos: ligue ou visite seus pais.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor me tirou da escravidão do pecado. Por isso eu quero te obedecer. Não quero ter outro deus além do Senhor. Me ajuda a honrar os meus pais.\" Continue com as suas palavras.",
     contexto: 'No terceiro mês depois da saída do Egito, o povo chega ao Sinai. Deus desce ao monte com trovões, fogo e som de trombeta e fala os Dez Mandamentos.',
     notas: [
       ['19:4-6', 'Deus os carregou como sobre asas de águia; se obedecerem, serão propriedade dele, reino de sacerdotes e nação santa.'],
@@ -199,6 +247,12 @@ export const SESSOES = [
 
   { id: 'ex-09', livro: 'ex', caps: [21, 24], titulo: 'A aliança confirmada',
     cenario: 'Ao pé do Sinai.',
+    gancho: "Depois dos Dez Mandamentos, Deus dá leis para o dia a dia: como tratar o estrangeiro, o pobre, o animal perdido e até o inimigo. No fim, o povo inteiro faz uma promessa em voz alta. Hoje você descobre qual.",
+    repare: [{"t": "Por que Israel não devia maltratar o estrangeiro?", "ref": "Êx 22:21"}, {"t": "O que fazer com o boi ou o jumento perdido do inimigo?", "ref": "Êx 23:4-5"}, {"t": "O que o povo responde a uma só voz?", "ref": "Êx 24:3"}],
+    portras: [{"selo": "biblia", "t": "Até o animal de quem te odeia deveria ser ajudado e devolvido.", "ref": "Êx 23:4-5"}, {"selo": "liga", "t": "Jesus vai além: \"Amem os seus inimigos e orem por quem persegue vocês\".", "ref": "Êx 23:4-5; Mt 5:44"}, {"selo": "liga", "t": "Moisés chama de \"sangue da aliança\" o sangue aspergido no povo. Jesus usa as mesmas palavras na Ceia.", "ref": "Êx 24:8; Mt 26:28"}, {"selo": "biblia", "t": "Moisés fica 40 dias e 40 noites no monte.", "ref": "Êx 24:18"}],
+    conversa: "A lei mandava ajudar até o animal do inimigo (Êx 23:4-5). Por que você acha que Deus se importava com o jeito como tratamos quem não gosta da gente? \"Ainda não sei\" também vale.",
+    fazer: "A lei mandava devolver o jumento do inimigo (Êx 23:4). Até o \"como foi?\", faça um favor concreto para alguém com quem você não se dá bem: ajude numa tarefa, empreste algo, devolva algo, diga uma palavra boa.",
+    oracao: "Fique um minuto em silêncio e pense em alguém difícil para você. Depois ore: \"Senhor, o Senhor se importa até com o jumento do meu inimigo. Me ensina a fazer o bem para quem não gosta de mim. Abençoa essa pessoa.\" Continue com as suas palavras.",
     contexto: 'Deus dá leis para a vida do povo: servos, danos, justiça, cuidado com o pobre e o estrangeiro, festas. O povo promete obedecer e a aliança é confirmada com sangue. Moisés sobe ao monte e fica lá 40 dias.',
     notas: [
       ['22:21', 'Não maltratar o estrangeiro: vocês foram estrangeiros no Egito.'],
@@ -215,6 +269,12 @@ export const SESSOES = [
 
   { id: 'ex-10', livro: 'ex', caps: [25, 31], titulo: 'O modelo do tabernáculo',
     cenario: 'No alto do Sinai, Deus mostra o modelo a Moisés.',
+    gancho: "No alto do monte, Deus mostra a Moisés um projeto detalhado: uma tenda especial, com uma caixa coberta de ouro, um candelabro e um altar. Tudo tem medida certa. Hoje você descobre para que servia essa tenda.",
+    repare: [{"t": "Para que Deus manda fazer o santuário?", "ref": "Êx 25:8"}, {"t": "Onde Deus diz que vai se encontrar com Moisés?", "ref": "Êx 25:22"}, {"t": "De quem é o dedo que escreve as tábuas?", "ref": "Êx 31:18"}],
+    portras: [{"selo": "conta", "t": "A arca media 2,5 × 1,5 × 1,5 côvados. Com o côvado de uns 45,7 cm, ela teria cerca de 1,1 m de comprimento e uns 70 cm de largura e altura: do tamanho de um baú.", "ref": "Êx 25:10", "fonte": "Britannica, verbete \"cubit\""}, {"selo": "biblia", "t": "Bezalel é chamado pelo nome e cheio do Espírito de Deus para trabalhar com ouro, pedra e madeira.", "ref": "Êx 31:2-5"}, {"selo": "liga", "t": "Hebreus diz que o tabernáculo era cópia e sombra do que está no céu.", "ref": "Êx 25:40; Hb 8:5"}, {"selo": "biblia", "t": "Tudo devia ser feito exatamente conforme o modelo mostrado no monte.", "ref": "Êx 25:9; 25:40"}],
+    conversa: "Deus mandou fazer o santuário para habitar no meio do povo (Êx 25:8). O que você acha que significava para Israel saber que Deus morava no meio do acampamento? \"Ainda não sei\" também vale.",
+    fazer: "Bezalel usou as mãos e o talento para fazer o lugar de Deus (Êx 31:2-5). Até o \"como foi?\", prepare com as suas mãos um cantinho de oração em casa (uma cadeira, uma Bíblia, um papel com pedidos) e use esse lugar todos os dias.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor quis morar no meio do seu povo. Obrigado porque o Senhor está perto de mim. Tudo o que eu sei fazer é presente seu; me ajuda a usar para o Senhor.\" Continue com as suas palavras.",
     contexto: 'Deus dá as instruções para o tabernáculo, a tenda onde ele habitaria no meio do povo: a arca, a mesa, o candelabro, o altar, as roupas e a consagração dos sacerdotes. Bezalel recebe sabedoria para fazer a obra.',
     notas: [
       ['25:8', 'Façam um santuário, para que eu habite no meio deles.'],
@@ -232,6 +292,12 @@ export const SESSOES = [
 
   { id: 'ex-11', livro: 'ex', caps: [32, 34], titulo: 'O bezerro de ouro',
     cenario: 'O acampamento ao pé do monte, enquanto Moisés está no alto.',
+    gancho: "Moisés está há 40 dias no monte. Lá embaixo, o povo cansa de esperar e pede a Arão um deus que eles possam ver. Arão pede ouro. Hoje você descobre o que eles fizeram e como Moisés reagiu.",
+    repare: [{"t": "O que o povo pede a Arão?", "ref": "Êx 32:1"}, {"t": "O que Moisés faz com as tábuas quando vê o bezerro?", "ref": "Êx 32:19"}, {"t": "Que nomes Deus usa para dizer quem ele é?", "ref": "Êx 34:6-7"}],
+    portras: [{"selo": "biblia", "t": "O Senhor falava com Moisés face a face, como quem fala com um amigo.", "ref": "Êx 33:11"}, {"selo": "biblia", "t": "Arão tenta se explicar: jogou o ouro no fogo \"e saiu este bezerro\".", "ref": "Êx 32:24"}, {"selo": "liga", "t": "O Salmo 106 resume: trocaram a glória de Deus pela imagem de um boi que come capim.", "ref": "Êx 32:4; Sl 106:19-20"}, {"selo": "liga", "t": "Paulo lembra o rosto de Moisés brilhando e o véu que ele usava.", "ref": "Êx 34:29-35; 2Co 3:7; 3:13"}],
+    conversa: "O povo não aguentou esperar e fez um deus que pudesse ver e controlar (Êx 32:1). Por que você acha que a espera faz a gente correr atrás de outras coisas? \"Ainda não sei\" também vale.",
+    fazer: "Moisés intercedeu pelo povo que tinha errado (Êx 32:11-14; 32:31-32). Até o \"como foi?\", ore todos os dias por alguém que você sabe que está longe de Deus, pedindo misericórdia para essa pessoa, como Moisés pediu.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor é compassivo, misericordioso, lento para se irar e cheio de amor e fidelidade. Me perdoa pelas vezes que eu coloquei outra coisa no seu lugar. Eu quero te conhecer como Moisés conheceu.\" Continue com as suas palavras.",
     contexto: 'Cansado de esperar Moisés, o povo pede a Arão um deus e faz um bezerro de ouro. Moisés intercede pelo povo, quebra as tábuas e pede para ver a glória de Deus. Deus renova a aliança, e o rosto de Moisés passa a brilhar.',
     notas: [
       ['32:1', 'O povo vê que Moisés demora e pede a Arão deuses que fossem à frente deles.'],
@@ -249,6 +315,12 @@ export const SESSOES = [
 
   { id: 'ex-12', livro: 'ex', caps: [35, 40], titulo: 'A glória enche o tabernáculo',
     cenario: 'O acampamento no Sinai.',
+    gancho: "Moisés pede ofertas para construir o tabernáculo. O povo começa a trazer ouro, prata, tecidos e madeira. Tanto, que acontece algo raro. Hoje você descobre o que Moisés teve de pedir, e o que encheu a tenda no fim.",
+    repare: [{"t": "Quem trouxe ofertas, segundo o texto?", "ref": "Êx 35:21-22"}, {"t": "Por que Moisés manda o povo parar de trazer ofertas?", "ref": "Êx 36:5-7"}, {"t": "O que enche o tabernáculo quando ele fica pronto?", "ref": "Êx 40:34"}],
+    portras: [{"selo": "conta", "t": "O pátio do tabernáculo media 100 × 50 côvados. Com o côvado de uns 45,7 cm, dá cerca de 46 m de comprimento por 23 m de largura, um terço do comprimento da arca de Noé.", "ref": "Êx 27:18", "fonte": "Britannica, verbete \"cubit\""}, {"selo": "biblia", "t": "A frase \"como o Senhor tinha ordenado a Moisés\" se repete muitas vezes nos últimos capítulos.", "ref": "Êx 39:1-43; 40:16-32"}, {"selo": "liga", "t": "Paulo diz que Deus ama quem dá com alegria, sem tristeza e sem obrigação.", "ref": "Êx 35:21; 2Co 9:7"}, {"selo": "biblia", "t": "A nuvem guiava a viagem: quando subia, o povo partia; quando ficava, eles ficavam.", "ref": "Êx 40:36-38"}],
+    conversa: "O povo trouxe tanto que foi preciso mandar parar (Êx 36:5-7). O que você acha que faz uma pessoa dar com o coração, e não por obrigação? \"Ainda não sei\" também vale.",
+    fazer: "O povo trouxe ofertas porque o coração o moveu (Êx 35:21). Até o \"como foi?\", separe algo seu de valor (um dinheiro, um brinquedo bom, uma roupa, um tempo) e doe com alegria para alguém que precisa ou para a igreja.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, a sua glória encheu o tabernáculo. Enche também a minha vida e a minha casa. Me dá um coração disposto, que dá com alegria.\" Continue com as suas palavras.",
     contexto: 'O povo traz ofertas com o coração disposto, tanto que é preciso mandar parar. Bezalel e os artesãos fazem tudo conforme Deus ordenou. O tabernáculo é erguido, e a glória do Senhor o enche.',
     notas: [
       ['35:21', 'Trazem ofertas todos aqueles cujo coração os moveu.'],
@@ -267,6 +339,12 @@ export const SESSOES = [
   // ───────────── LEVÍTICO ─────────────
   { id: 'lv-01', livro: 'lv', caps: [1, 7], titulo: 'As ofertas',
     cenario: 'O tabernáculo recém-erguido, no Sinai.',
+    gancho: "Levítico começa com Deus chamando Moisés de dentro da tenda. Ele ensina como alguém que errou pode se aproximar de novo. Em cada oferta, existe um gesto que se repete. Hoje você descobre qual e o que ele mostra.",
+    repare: [{"t": "O que a pessoa faz com a mão antes de oferecer o animal?", "ref": "Lv 1:4"}, {"t": "O que não podia faltar em toda oferta de cereal?", "ref": "Lv 2:13"}, {"t": "O que a pessoa que pecou devia fazer antes da oferta?", "ref": "Lv 5:5"}],
+    portras: [{"selo": "biblia", "t": "A pessoa põe a mão sobre a cabeça do animal, e ele é aceito em favor dela.", "ref": "Lv 1:4"}, {"selo": "biblia", "t": "O fogo do altar devia arder sempre; nunca podia se apagar.", "ref": "Lv 6:13"}, {"selo": "liga", "t": "Hebreus diz que o sangue de animais não podia tirar pecados, mas Jesus se ofereceu uma vez por todas.", "ref": "Lv 4:20; Hb 10:4; 10:10-12"}, {"selo": "liga", "t": "Em 1 João, confessar os pecados também vem antes do perdão.", "ref": "Lv 5:5; 1Jo 1:9"}],
+    conversa: "Nas ofertas, um animal tomava o lugar de quem tinha errado (Lv 1:4). O que você acha que essas leis mostram sobre o preço do pecado e o desejo de Deus de perdoar? \"Ainda não sei\" também vale.",
+    fazer: "Antes da oferta, a pessoa devia confessar o que fez (Lv 5:5). Até o \"como foi?\", faça um momento de confissão: escreva num papel algo que você precisa confessar a Deus, ore pedindo perdão e depois rasgue o papel. Se envolveu alguém, peça perdão a essa pessoa também.",
+    oracao: "Fique um minuto em silêncio e deixe Deus trazer à memória o que precisa ser confessado. Depois ore: \"Senhor, eu confesso: (fale com as suas palavras). Obrigado porque Jesus se ofereceu no meu lugar. Eu recebo o seu perdão.\" Continue com as suas palavras.",
     contexto: 'Do tabernáculo, Deus ensina a Moisés como o povo deve se aproximar dele: holocaustos, ofertas de cereais, ofertas de paz, ofertas pelo pecado e pela culpa. São capítulos de instruções; leia buscando a ideia central: o pecado custa uma vida, e Deus providencia um caminho de volta.',
     notas: [
       ['1:1', 'Deus chama Moisés e fala com ele da tenda do encontro.'],
@@ -282,6 +360,12 @@ export const SESSOES = [
 
   { id: 'lv-02', livro: 'lv', caps: [8, 10], titulo: 'Os sacerdotes',
     cenario: 'A entrada da tenda do encontro.',
+    gancho: "Durante sete dias, Arão e os filhos não saem da porta da tenda: estão sendo separados como sacerdotes. No oitavo dia, um fogo vindo de Deus aparece diante de todo o povo. Mas logo depois, dois filhos de Arão fazem algo do jeito deles. Hoje você descobre o que aconteceu.",
+    repare: [{"t": "O que Moisés derrama sobre a cabeça de Arão?", "ref": "Lv 8:12"}, {"t": "Como o povo reage quando o fogo sai de diante do Senhor?", "ref": "Lv 9:24"}, {"t": "O que Nadabe e Abiú oferecem?", "ref": "Lv 10:1"}],
+    portras: [{"selo": "biblia", "t": "Nadabe e Abiú oferecem um fogo que Deus não tinha ordenado, e morrem diante do Senhor.", "ref": "Lv 10:1-2"}, {"selo": "biblia", "t": "Os sacerdotes deviam ensinar o povo a distinguir o santo do comum.", "ref": "Lv 10:10-11"}, {"selo": "liga", "t": "Pedro chama todos os que creem de sacerdócio real.", "ref": "Lv 8:12; 1Pe 2:9"}, {"selo": "liga", "t": "Hebreus diz que Jesus é um sumo sacerdote que não precisa oferecer sacrifícios todos os dias, porque se ofereceu uma vez.", "ref": "Lv 9:7; Hb 7:27"}],
+    conversa: "Nadabe e Abiú fizeram do jeito deles, e não do jeito que Deus tinha pedido (Lv 10:1). Por que você acha que o \"jeito de Deus\" importa tanto quando a gente se aproxima dele? \"Ainda não sei\" também vale.",
+    fazer: "Os sacerdotes deviam separar o santo do comum (Lv 10:10). Escolha um momento do seu dia (ao acordar, antes de dormir) e separe 10 minutos só para Deus durante 3 dias: sem celular, com a Bíblia e oração.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor é santo. Eu quero me aproximar do Senhor do seu jeito, e não do meu. Obrigado por Jesus, o sumo sacerdote que me leva até o Senhor.\" Continue com as suas palavras.",
     contexto: 'Moisés consagra Arão e seus filhos como sacerdotes, durante sete dias. No oitavo dia, a glória do Senhor aparece e um fogo vindo de Deus consome a oferta. Logo depois, Nadabe e Abiú oferecem um fogo que Deus não tinha ordenado.',
     notas: [
       ['8:12', 'Moisés derrama o azeite da unção sobre a cabeça de Arão.'],
@@ -298,6 +382,12 @@ export const SESSOES = [
 
   { id: 'lv-03', livro: 'lv', caps: [11, 15], titulo: 'Puro e impuro',
     cenario: 'O acampamento de Israel.',
+    gancho: "Que animais se podem comer? O que fazer com uma doença de pele, ou com mofo na parede de casa? Estes capítulos parecem um manual de regras. Mas uma frase aparece no meio deles e explica tudo. Hoje você descobre qual.",
+    repare: [{"t": "Que frase Deus repete como motivo das regras?", "ref": "Lv 11:44-45"}, {"t": "Onde vivia quem tinha uma doença de pele contagiosa?", "ref": "Lv 13:46"}, {"t": "Quem saía do acampamento para examinar a pessoa curada?", "ref": "Lv 14:2-3"}],
+    portras: [{"selo": "biblia", "t": "\"Sejam santos, porque eu sou santo.\"", "ref": "Lv 11:44-45"}, {"selo": "liga", "t": "Pedro cita essa frase de Levítico para a igreja.", "ref": "Lv 11:44; 1Pe 1:15-16"}, {"selo": "liga", "t": "Jesus toca um leproso, o cura e manda que ele se apresente ao sacerdote, como mandava Levítico.", "ref": "Lv 14:2-4; Mc 1:40-44"}, {"selo": "biblia", "t": "Havia regras até para o mofo nas paredes de uma casa.", "ref": "Lv 14:33-45"}],
+    conversa: "As regras de santidade chegavam à comida, à casa e ao corpo (Lv 11-15). Por que você acha que Deus se importava com coisas tão do dia a dia? \"Ainda não sei\" também vale.",
+    fazer: "Jesus tocou quem todos evitavam (Mc 1:41). Até o \"como foi?\", aproxime-se de alguém que costuma ser evitado (por estar doente, sozinho ou diferente): sente junto, visite, converse ou leve algo.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor é santo e me chama para ser santo. Entra em todas as áreas da minha vida: a comida, a casa, o corpo, os pensamentos. E me dá coragem para me aproximar de quem está de fora.\" Continue com as suas palavras.",
     contexto: 'Leis sobre animais que se podem comer, parto, doenças de pele, mofo nas casas e fluxos do corpo. O texto não explica cada regra; repete o motivo: Deus é santo, e o povo que vive perto dele deve ser santo também.',
     notas: [
       ['11:44-45', 'Sejam santos, porque eu sou santo. Eu sou o Senhor que os tirou do Egito para ser o seu Deus.'],
@@ -312,6 +402,12 @@ export const SESSOES = [
 
   { id: 'lv-04', livro: 'lv', caps: [16, 20], titulo: 'Expiação e amor ao próximo',
     cenario: 'O tabernáculo e a vida diária do povo.',
+    gancho: "Uma vez por ano, um único homem entra no lugar mais santo de todos. Depois, um bode é levado para o deserto e não volta mais. Logo em seguida, no meio de leis bem práticas, aparece um mandamento que Jesus vai chamar de um dos maiores. Hoje você descobre qual.",
+    repare: [{"t": "O que Arão faz com as mãos sobre o bode vivo?", "ref": "Lv 16:21"}, {"t": "O que o dono da plantação não podia colher, e para quem ficava?", "ref": "Lv 19:9-10"}, {"t": "Qual é o mandamento de 19:18?", "ref": "Lv 19:18"}],
+    portras: [{"selo": "biblia", "t": "O bode leva para o deserto todas as culpas que foram confessadas sobre ele.", "ref": "Lv 16:21-22"}, {"selo": "liga", "t": "Jesus cita \"Ame o seu próximo como a si mesmo\" como o segundo grande mandamento.", "ref": "Lv 19:18; Mt 22:39"}, {"selo": "liga", "t": "Em Rute, a lei dos cantos da lavoura aparece na prática: Rute colhe as sobras no campo de Boaz.", "ref": "Lv 19:9; Rt 2:2-3"}, {"selo": "liga", "t": "Hebreus diz que o sumo sacerdote entrava uma vez por ano, mas Cristo entrou uma vez por todas.", "ref": "Lv 16:34; Hb 9:7; 9:12"}],
+    conversa: "O mandamento \"Ame o seu próximo como a si mesmo\" aparece no meio de leis sobre plantação, salário e cuidado com o cego (Lv 19:9-18). Por que você acha que amar o próximo tem tanto a ver com coisas práticas? \"Ainda não sei\" também vale.",
+    fazer: "O dono da plantação deixava os cantos para o pobre (Lv 19:9-10). Até o \"como foi?\", deixe um \"canto\" seu para alguém: separe parte da sua comida, do seu dinheiro ou do seu tempo e entregue a quem precisa.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, obrigado porque o Senhor levou para longe as minhas culpas. Me ensina a amar o meu próximo como a mim mesmo, não só com palavras, mas com o que eu tenho nas mãos.\" Continue com as suas palavras.",
     contexto: 'Uma vez por ano, no Dia da Expiação, o sumo sacerdote entra no Lugar Santíssimo e os pecados do povo são levados por um bode para o deserto. Em seguida vêm leis de santidade para o dia a dia, incluindo o mandamento de amar o próximo.',
     notas: [
       ['16:21-22', 'Arão confessa os pecados do povo sobre o bode vivo, que é levado ao deserto carregando-os.'],
@@ -329,6 +425,12 @@ export const SESSOES = [
 
   { id: 'lv-05', livro: 'lv', caps: [21, 27], titulo: 'As festas e o jubileu',
     cenario: 'O calendário de Israel.',
+    gancho: "Deus monta um calendário para o seu povo, cheio de festas. Numa delas, todo mundo sai de casa e vai morar uma semana numa cabana. E a cada 50 anos acontece algo que muda a vida de quem tinha perdido tudo. Hoje você descobre o que era o jubileu.",
+    repare: [{"t": "Como Deus chama as festas?", "ref": "Lv 23:2; 23:4"}, {"t": "Por que o povo morava em tendas na Festa dos Tabernáculos?", "ref": "Lv 23:42-43"}, {"t": "O que acontecia no ano do jubileu?", "ref": "Lv 25:10"}],
+    portras: [{"selo": "conta", "t": "O sétimo ano era de descanso para a terra. Depois de sete vezes sete anos, o 50º era o jubileu.", "ref": "Lv 25:4; 25:8-10"}, {"selo": "biblia", "t": "No jubileu, cada um voltava para a sua terra e para a sua família.", "ref": "Lv 25:10"}, {"selo": "liga", "t": "Jesus abre o seu ministério lendo Isaías: anunciar liberdade aos presos e o ano aceitável do Senhor.", "ref": "Lv 25:10; Lc 4:18-19"}, {"selo": "biblia", "t": "Deus promete: andarei no meio de vocês, serei o seu Deus e vocês serão o meu povo.", "ref": "Lv 26:12"}],
+    conversa: "Deus marcou festas para o povo parar, lembrar e se alegrar (Lv 23:4; 23:40). Por que você acha que Deus colocou descanso e festa no calendário do seu povo? \"Ainda não sei\" também vale.",
+    fazer: "Na Festa dos Tabernáculos, a família se alegrava junta diante de Deus (Lv 23:40-43). Até o \"como foi?\", organize com a sua família um pequeno momento de festa e gratidão: uma refeição especial em que cada um conta algo que Deus fez no ano.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor marcou dias para o seu povo descansar e se alegrar. Obrigado pela liberdade que o Senhor dá. Me ensina a parar, a lembrar e a celebrar o que o Senhor fez.\" Continue com as suas palavras.",
     contexto: 'Deus estabelece as festas do ano: sábado, Páscoa, Pães sem Fermento, Primícias, Pentecostes, Trombetas, Dia da Expiação e Tabernáculos. Depois vêm o ano sabático e o jubileu, as bênçãos da obediência e as consequências da desobediência.',
     notas: [
       ['23:4', 'As festas são encontros santos marcados pelo Senhor, em datas definidas.'],
@@ -346,6 +448,12 @@ export const SESSOES = [
   // ───────────── NÚMEROS ─────────────
   { id: 'nm-01', livro: 'nm', caps: [1, 4], titulo: 'O povo contado',
     cenario: 'O deserto do Sinai, no segundo ano depois da saída.',
+    gancho: "Deus manda contar o povo, tribo por tribo, e organiza o acampamento como um grande quadrado com o tabernáculo bem no centro. Mas uma tribo fica de fora da contagem. Hoje você descobre qual e por quê.",
+    repare: [{"t": "Quem devia ser contado?", "ref": "Nm 1:2-3"}, {"t": "Qual foi o total de homens contados?", "ref": "Nm 1:46"}, {"t": "Onde cada tribo acampava?", "ref": "Nm 2:2"}],
+    portras: [{"selo": "conta", "t": "Foram contados 603.550 homens de 20 anos para cima, sem as mulheres, as crianças e os levitas.", "ref": "Nm 1:46-47"}, {"selo": "liga", "t": "Esse número cumpre o que Deus prometeu a Abraão: uma descendência como as estrelas do céu.", "ref": "Gn 15:5; Nm 1:46"}, {"selo": "biblia", "t": "O tabernáculo ficava no centro, e as doze tribos acampavam ao redor, cada uma com a sua bandeira.", "ref": "Nm 2:2"}, {"selo": "biblia", "t": "Deus toma os levitas para si no lugar dos primogênitos de Israel.", "ref": "Nm 3:12"}],
+    conversa: "O tabernáculo, onde Deus habitava, ficava bem no meio do acampamento (Nm 2:2). O que você acha que isso ensinava ao povo sobre o lugar de Deus na vida deles? \"Ainda não sei\" também vale.",
+    fazer: "Deus estava no centro do acampamento (Nm 2:2). Por 3 dias, coloque Deus no começo do dia: antes de qualquer outra coisa, leia um versículo e faça uma oração curta. Peça para alguém da família fazer junto.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor estava no centro do acampamento de Israel. Eu quero que o Senhor seja o centro da minha vida e da minha casa. Organiza o meu dia ao redor do Senhor.\" Continue com as suas palavras.",
     contexto: 'Deus manda contar os homens de 20 anos para cima, prontos para a guerra, tribo por tribo, e organiza o acampamento em volta do tabernáculo. Os levitas não entram nessa contagem: são separados para cuidar do tabernáculo.',
     notas: [
       ['1:1-3', 'No primeiro dia do segundo mês do segundo ano, Deus manda contar os homens de 20 anos para cima.'],
@@ -360,6 +468,12 @@ export const SESSOES = [
 
   { id: 'nm-02', livro: 'nm', caps: [5, 10], titulo: 'A bênção e a partida',
     cenario: 'O Sinai, pouco antes da partida.',
+    gancho: "O povo está quase saindo do Sinai. Antes, Deus ensina aos sacerdotes uma bênção com palavras exatas para dizer sobre o povo. E todos ficam de olho numa nuvem. Hoje você descobre a bênção e o sinal da partida.",
+    repare: [{"t": "Quais três coisas o nazireu não podia fazer?", "ref": "Nm 6:3-6"}, {"t": "Quais são as palavras da bênção dos sacerdotes?", "ref": "Nm 6:24-26"}, {"t": "O que indicava a hora de partir?", "ref": "Nm 9:17"}],
+    portras: [{"selo": "biblia", "t": "\"O Senhor te abençoe e te guarde; o Senhor faça resplandecer o rosto sobre ti e tenha misericórdia de ti; o Senhor sobre ti levante o rosto e te dê a paz.\"", "ref": "Nm 6:24-26"}, {"selo": "biblia", "t": "O povo não marcava a viagem por calendário: partia quando a nuvem subia e parava quando ela parava, fosse um dia ou um ano.", "ref": "Nm 9:17-22"}, {"selo": "liga", "t": "Sansão foi nazireu desde o nascimento.", "ref": "Nm 6:2-5; Jz 13:5"}, {"selo": "biblia", "t": "Duas trombetas de prata reuniam o povo e davam o sinal da partida.", "ref": "Nm 10:2"}],
+    conversa: "O povo só andava quando a nuvem andava, mesmo que tivesse de esperar muito (Nm 9:22). Por que você acha que é tão difícil esperar a direção de Deus antes de agir? \"Ainda não sei\" também vale.",
+    fazer: "Deus ensinou os sacerdotes a abençoar o povo com palavras (Nm 6:23-26). Até o \"como foi?\", diga a bênção de Números 6:24-26 em voz alta sobre alguém da sua família, todos os dias, com a mão no ombro da pessoa.",
+    oracao: "Fique um minuto em silêncio. Depois ore com as palavras da bênção, por você e pela sua família: \"O Senhor nos abençoe e nos guarde; o Senhor faça resplandecer o rosto sobre nós e tenha misericórdia de nós; o Senhor levante o rosto sobre nós e nos dê a paz.\" Continue com as suas palavras.",
     contexto: 'Leis sobre pureza no acampamento, o voto de nazireu e a bênção que os sacerdotes deviam dizer sobre o povo. As tribos trazem ofertas, a Páscoa é celebrada e, quando a nuvem se levanta, Israel parte do Sinai.',
     notas: [
       ['6:2-5', 'O voto de nazireu: não beber vinho, não cortar o cabelo, viver separado para o Senhor.'],
@@ -376,6 +490,12 @@ export const SESSOES = [
 
   { id: 'nm-03', livro: 'nm', caps: [11, 12], titulo: 'Queixas no deserto',
     cenario: 'O caminho do Sinai em direção a Canaã.',
+    gancho: "Faz pouco tempo que Deus abriu o mar e manda pão do céu todas as manhãs. Mesmo assim, o povo começa a chorar de saudade da comida do Egito. Moisés chega ao limite. Hoje você descobre o que Deus fez com o peso dele.",
+    repare: [{"t": "De que comidas do Egito o povo sentia saudade?", "ref": "Nm 11:5"}, {"t": "Que pergunta Deus faz a Moisés sobre a mão do Senhor?", "ref": "Nm 11:23"}, {"t": "Como o texto descreve Moisés?", "ref": "Nm 12:3"}],
+    portras: [{"selo": "biblia", "t": "O povo lembra do peixe, dos pepinos, dos melões, do alho e da cebola, e esquece que no Egito era escravo.", "ref": "Nm 11:5"}, {"selo": "biblia", "t": "Deus põe do seu Espírito em 70 anciãos para ajudarem Moisés a carregar o povo.", "ref": "Nm 11:16-17"}, {"selo": "biblia", "t": "Moisés deseja que todo o povo fosse profeta e recebesse o Espírito.", "ref": "Nm 11:29"}, {"selo": "liga", "t": "Paulo diz que essas coisas foram escritas para nos ensinar a não reclamar como eles reclamaram.", "ref": "Nm 11:1; 1Co 10:10-11"}],
+    conversa: "O povo tinha maná todos os dias, mas só falava do que tinha no Egito (Nm 11:4-6). Por que você acha que a reclamação faz a gente lembrar do passado melhor do que ele foi? \"Ainda não sei\" também vale.",
+    fazer: "O povo reclamou do maná que Deus dava (Nm 11:6). Por 3 dias, faça um \"jejum de reclamação\": toda vez que pegar a si mesmo reclamando, troque por um agradecimento em voz alta. Peça para a família te avisar.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, a sua mão não ficou curta. Me perdoa pelas vezes que eu reclamo do que o Senhor me dá. Me ensina a agradecer pelo maná de cada dia.\" Continue com as suas palavras.",
     contexto: 'O povo reclama do maná e chora com saudade da comida do Egito. Moisés, sobrecarregado, recebe 70 anciãos para dividir o peso. Depois, Miriã e Arão falam contra Moisés, e Deus defende o seu servo.',
     notas: [
       ['11:4-6', 'Saudade do Egito: lembramos do peixe, dos pepinos, dos melões… agora só vemos maná.'],
@@ -392,6 +512,12 @@ export const SESSOES = [
 
   { id: 'nm-04', livro: 'nm', caps: [13, 14], titulo: 'Os doze espias',
     cenario: 'Cades, na fronteira da terra prometida.',
+    gancho: "Doze homens entram escondidos na terra prometida e passam 40 dias explorando. Voltam carregando um cacho de uvas tão grande que precisa de dois homens. Todos concordam que a terra é boa. Mas não concordam no resto. Hoje você descobre quem confiou em Deus.",
+    repare: [{"t": "Como era o cacho de uvas que eles trouxeram?", "ref": "Nm 13:23"}, {"t": "O que Calebe diz ao povo?", "ref": "Nm 13:30"}, {"t": "Como os dez espias se viam diante dos moradores da terra?", "ref": "Nm 13:33"}],
+    portras: [{"selo": "conta", "t": "Os espias passaram 40 dias na terra. Deus decide: um ano para cada dia, 40 anos no deserto.", "ref": "Nm 13:25; 14:34"}, {"selo": "biblia", "t": "Os dez espias diziam que se sentiam como gafanhotos diante dos gigantes.", "ref": "Nm 13:33"}, {"selo": "biblia", "t": "Josué e Calebe dizem: não tenham medo, o Senhor está conosco.", "ref": "Nm 14:9"}, {"selo": "liga", "t": "Quarenta e cinco anos depois, Calebe, com 85 anos, pede para conquistar justamente a região dos gigantes.", "ref": "Nm 14:24; Js 14:10-12"}],
+    conversa: "Doze homens viram a mesma terra, mas dez voltaram com medo e dois voltaram com fé (Nm 13:30-33). Por que você acha que pessoas que veem a mesma coisa podem chegar a conclusões tão diferentes? \"Ainda não sei\" também vale.",
+    fazer: "Calebe disse \"vamos subir\" quando todos tinham medo (Nm 13:30). Escolha um \"gigante\" seu (uma prova, uma conversa difícil, uma tarefa que você vem fugindo), ore por ele e enfrente até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio e pense no seu gigante. Depois ore: \"Senhor, os gigantes eram grandes, mas o Senhor era maior. Me dá o outro espírito que Calebe tinha. Eu não quero viver como gafanhoto: o Senhor está comigo.\" Continue com as suas palavras.",
     contexto: 'Doze homens espionam Canaã por 40 dias. Todos confirmam que a terra é boa, mas dez dizem que é impossível conquistá-la. Só Calebe e Josué confiam em Deus. O povo se rebela, e Deus decide que aquela geração vagará 40 anos no deserto.',
     notas: [
       ['13:23', 'Trazem um cacho de uvas tão grande que dois homens o carregam numa vara.'],
@@ -409,6 +535,12 @@ export const SESSOES = [
 
   { id: 'nm-05', livro: 'nm', caps: [15, 19], titulo: 'Corá e a vara que floresceu',
     cenario: 'O acampamento no deserto.',
+    gancho: "Um grupo de líderes se junta contra Moisés e Arão, dizendo que eles se acham mais do que os outros. A disputa termina de um jeito que ninguém esperava. Depois, doze varas de madeira seca passam a noite na tenda. Hoje você descobre o que aconteceu com uma delas.",
+    repare: [{"t": "Para que serviam as franjas nas roupas?", "ref": "Nm 15:38-39"}, {"t": "Do que Corá acusa Moisés e Arão?", "ref": "Nm 16:3"}, {"t": "O que aconteceu com a vara de Arão em uma noite?", "ref": "Nm 17:8"}],
+    portras: [{"selo": "biblia", "t": "A vara seca de Arão brota, floresce e dá amêndoas em uma noite.", "ref": "Nm 17:8"}, {"selo": "biblia", "t": "Arão não teria terra como herança: o próprio Senhor seria a sua parte.", "ref": "Nm 18:20"}, {"selo": "liga", "t": "Hebreus conta que a vara de Arão era guardada dentro da arca da aliança.", "ref": "Nm 17:10; Hb 9:4"}, {"selo": "biblia", "t": "As franjas nas roupas serviam para lembrar os mandamentos cada vez que alguém olhasse para elas.", "ref": "Nm 15:39"}],
+    conversa: "Corá queria o lugar que Deus tinha dado a outro (Nm 16:3; 16:10). Por que você acha que a vontade de ter o lugar do outro faz tanto estrago? \"Ainda não sei\" também vale.",
+    fazer: "As franjas lembravam os mandamentos a cada olhada (Nm 15:39). Escreva um versículo que você quer lembrar num papel e cole onde você olha todo dia (espelho, porta, tela do celular). Leia em voz alta sempre que olhar, até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor faz florescer até uma vara seca. Me livra da inveja do lugar dos outros. O Senhor é a minha parte e a minha herança.\" Continue com as suas palavras.",
     contexto: 'Corá e outros líderes se revoltam contra Moisés e Arão. A terra se abre e os engole. Para encerrar as queixas sobre quem Deus escolheu, a vara de Arão floresce durante a noite.',
     notas: [
       ['15:38-39', 'Franjas nas roupas, para lembrar os mandamentos ao olhar para elas.'],
@@ -424,6 +556,12 @@ export const SESSOES = [
 
   { id: 'nm-06', livro: 'nm', caps: [20, 25], titulo: 'A rocha, a serpente e Balaão',
     cenario: 'De Cades até as planícies de Moabe.',
+    gancho: "Quarenta anos de deserto estão chegando ao fim, e duas perdas grandes acontecem. Depois, o próprio Moisés erra diante de uma rocha. E um rei contrata um homem para amaldiçoar Israel, mas uma jumenta atrapalha os planos. Hoje você descobre o que Balaão conseguiu dizer.",
+    repare: [{"t": "O que Deus mandou Moisés fazer com a rocha, e o que ele fez?", "ref": "Nm 20:8; 20:11"}, {"t": "O que acontecia com quem olhava para a serpente de bronze?", "ref": "Nm 21:9"}, {"t": "O que Balaão diz sobre Deus e as suas promessas?", "ref": "Nm 23:19"}],
+    portras: [{"selo": "biblia", "t": "Deus mandou falar à rocha. Moisés bateu nela duas vezes. A água saiu, mas Moisés e Arão não entrariam na terra.", "ref": "Nm 20:8-12"}, {"selo": "liga", "t": "Jesus diz: assim como Moisés levantou a serpente no deserto, o Filho do Homem precisa ser levantado.", "ref": "Nm 21:8-9; Jo 3:14-15"}, {"selo": "biblia", "t": "Deus não é homem para mentir. O que ele diz, ele faz.", "ref": "Nm 23:19"}, {"selo": "biblia", "t": "Balaão foi contratado para amaldiçoar e só conseguiu abençoar, três vezes.", "ref": "Nm 23:7-24:9"}],
+    conversa: "Moisés bateu na rocha com raiva em vez de falar com ela, como Deus mandou (Nm 20:10-12). Por que você acha que até alguém tão fiel quanto Moisés errou num momento de irritação? \"Ainda não sei\" também vale.",
+    fazer: "Moisés falou com raiva e se arrependeu (Nm 20:10-12). Por 3 dias, quando ficar irritado, espere e conte até dez antes de falar. Se falar algo com raiva, peça desculpas na hora.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor não é homem para mentir; o que o Senhor promete, cumpre. Obrigado por Jesus, levantado na cruz para que quem olha para ele viva. Guarda a minha boca quando eu estiver com raiva.\" Continue com as suas palavras.",
     contexto: 'Miriã morre. Moisés fere a rocha em vez de falar com ela, e por isso não entrará na terra. Arão morre no monte Hor. Mordidos por serpentes, os que olham para a serpente de bronze vivem. O rei de Moabe contrata Balaão para amaldiçoar Israel, mas ele só consegue abençoar.',
     notas: [
       ['20:1', 'Miriã morre e é sepultada em Cades.'],
@@ -441,6 +579,12 @@ export const SESSOES = [
 
   { id: 'nm-07', livro: 'nm', caps: [26, 30], titulo: 'A nova geração',
     cenario: 'As planícies de Moabe, junto ao Jordão.',
+    gancho: "Deus manda contar o povo de novo. Da geração que saiu do Egito, só sobraram dois homens. Então cinco irmãs fazem algo corajoso: vão até Moisés pedir o que nenhuma mulher tinha recebido. Hoje você descobre o que Deus respondeu.",
+    repare: [{"t": "Quem ainda estava vivo da geração contada no Sinai?", "ref": "Nm 26:64-65"}, {"t": "Quais são os nomes das filhas de Zelofeade?", "ref": "Nm 27:1"}, {"t": "Como Moisés passa a liderança a Josué?", "ref": "Nm 27:18-23"}],
+    portras: [{"selo": "biblia", "t": "Deus diz que as filhas de Zelofeade têm razão e manda dar a elas a herança do pai.", "ref": "Nm 27:7"}, {"selo": "biblia", "t": "Moisés não pede nada para si: pede a Deus um líder para que o povo não fique como ovelhas sem pastor.", "ref": "Nm 27:16-17"}, {"selo": "liga", "t": "Jesus vê as multidões como ovelhas sem pastor, a mesma imagem que Moisés usou.", "ref": "Nm 27:17; Mt 9:36"}, {"selo": "biblia", "t": "Quem fizesse um voto ao Senhor não podia quebrar a palavra: tinha de cumprir o que disse.", "ref": "Nm 30:2"}],
+    conversa: "As filhas de Zelofeade foram até Moisés pedir o que achavam justo, e Deus deu razão a elas (Nm 27:1-7). O que você acha que deu coragem a essas cinco irmãs? \"Ainda não sei\" também vale.",
+    fazer: "Moisés orou para que o povo não ficasse sem pastor (Nm 27:16-17). Até o \"como foi?\", ore todos os dias pelos líderes da sua vida (pastor, professores, pais, líderes do país) e mande uma mensagem de agradecimento para um deles.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, obrigado pelos líderes que o Senhor coloca na minha vida. Dá a eles sabedoria e o seu Espírito, como deu a Josué. E me ajuda a cumprir tudo o que eu prometo.\" Continue com as suas palavras.",
     contexto: 'Um novo recenseamento mostra que, da geração que saiu do Egito, só restam Calebe e Josué. As filhas de Zelofeade pedem a herança do pai, e Deus lhes dá razão. Josué é escolhido para suceder Moisés.',
     notas: [
       ['26:64-65', 'Dos contados no Sinai, ninguém restou, a não ser Calebe e Josué.'],
@@ -457,6 +601,12 @@ export const SESSOES = [
 
   { id: 'nm-08', livro: 'nm', caps: [31, 36], titulo: 'A terra dividida',
     cenario: 'As planícies de Moabe, diante de Jericó.',
+    gancho: "O povo está acampado bem em frente à terra prometida. Duas tribos e meia pedem para ficar do lado de cá do rio. Moisés registra cada parada dos 40 anos e Deus manda separar cidades especiais para quem precisa fugir. Hoje você descobre para que serviam.",
+    repare: [{"t": "O que Moisés diz que acontece com quem não cumpre o combinado?", "ref": "Nm 32:23"}, {"t": "Quem escreveu as etapas da viagem, e por ordem de quem?", "ref": "Nm 33:2"}, {"t": "Para quem eram as cidades de refúgio?", "ref": "Nm 35:11"}],
+    portras: [{"selo": "biblia", "t": "Moisés avisa: se não cumprirem a palavra, saibam que o pecado de vocês os alcançará.", "ref": "Nm 32:23"}, {"selo": "conta", "t": "Arão morreu no monte Hor no 40º ano depois da saída do Egito, com 123 anos.", "ref": "Nm 33:38-39"}, {"selo": "biblia", "t": "As cidades de refúgio protegiam quem tinha matado alguém sem querer, até o julgamento.", "ref": "Nm 35:11-12"}, {"selo": "liga", "t": "Hebreus fala dos que correm para se refugiar e se agarram à esperança que Deus deu.", "ref": "Nm 35:11; Hb 6:18"}],
+    conversa: "Rúben e Gade prometeram lutar ao lado dos irmãos antes de se acomodar na terra deles (Nm 32:16-27). Por que você acha que Moisés insistiu tanto que eles cumprissem a palavra? \"Ainda não sei\" também vale.",
+    fazer: "Moisés escreveu as etapas da viagem para não esquecer (Nm 33:2). Até o \"como foi?\", faça a sua linha do tempo com Deus: escreva cinco momentos da sua vida em que você viu Deus agir e mostre para alguém da família.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor esteve comigo em cada etapa do caminho. Obrigado porque o Senhor é o meu refúgio. Me ajuda a ser alguém que cumpre a palavra até o fim.\" Continue com as suas palavras.",
     contexto: 'Rúben, Gade e metade de Manassés pedem terra do lado leste do Jordão. Moisés registra as etapas da viagem, Deus define as fronteiras de Canaã e manda separar cidades de refúgio.',
     notas: [
       ['32:23', 'Moisés: se não cumprirem o combinado, estarão pecando, e o pecado de vocês os alcançará.'],
@@ -473,6 +623,12 @@ export const SESSOES = [
   // ───────────── DEUTERONÔMIO ─────────────
   { id: 'dt-01', livro: 'dt', caps: [1, 4], titulo: 'Lembrar o caminho',
     cenario: 'As planícies de Moabe, no 40º ano.',
+    gancho: "Quarenta anos depois da saída do Egito, Moisés reúne a nova geração. Muitos ali eram crianças, ou nem tinham nascido, quando tudo começou. Ele vai contar a história de novo. Hoje você descobre o que ele mais insiste para eles não esquecerem.",
+    repare: [{"t": "Com que imagem Moisés descreve como Deus carregou o povo?", "ref": "Dt 1:31"}, {"t": "O que faltou ao povo nesses 40 anos?", "ref": "Dt 2:7"}, {"t": "A quem eles deviam ensinar o que viram?", "ref": "Dt 4:9"}],
+    portras: [{"selo": "biblia", "t": "O Senhor carregou o povo no deserto como um pai carrega o filho.", "ref": "Dt 1:31"}, {"selo": "biblia", "t": "Em 40 anos, nada lhes faltou.", "ref": "Dt 2:7"}, {"selo": "biblia", "t": "Se buscarem o Senhor de todo o coração e de toda a alma, o encontrarão.", "ref": "Dt 4:29"}, {"selo": "liga", "t": "Jeremias repete a mesma promessa: vocês me buscarão e me acharão quando me buscarem de todo o coração.", "ref": "Dt 4:29; Jr 29:13"}],
+    conversa: "Moisés insistiu para o povo não esquecer o que viu e contar aos filhos e netos (Dt 4:9). Por que você acha que lembrar o que Deus fez é tão importante para a fé? \"Ainda não sei\" também vale.",
+    fazer: "Moisés mandou ensinar aos filhos e aos netos (Dt 4:9). Até o \"como foi?\", pergunte a um avô, avó ou pessoa mais velha da família como Deus agiu na vida dela, e escreva a história para guardar.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor carregou o seu povo como um pai carrega o filho. Obrigado porque nada me faltou. Eu quero te buscar de todo o coração e contar o que o Senhor fez.\" Continue com as suas palavras.",
     contexto: 'Diante da nova geração, Moisés relembra os 40 anos: o Sinai, a falta de fé em Cades, a caminhada pelo deserto e as primeiras vitórias. Ele insiste: não se esqueçam do que viram, e ensinem aos filhos.',
     notas: [
       ['1:3', 'No 40º ano, no primeiro dia do 11º mês, Moisés fala a Israel tudo o que o Senhor mandou.'],
@@ -489,6 +645,12 @@ export const SESSOES = [
 
   { id: 'dt-02', livro: 'dt', caps: [5, 7], titulo: 'Ouça, Israel',
     cenario: 'Moabe; Moisés repete a aliança.',
+    gancho: "Moisés repete os Dez Mandamentos para a nova geração. Depois diz uma frase tão importante que o povo a repete até hoje, todos os dias. Jesus a chamou de o maior mandamento. Hoje você descobre qual é.",
+    repare: [{"t": "Por onde Moisés começa a repetir os mandamentos?", "ref": "Dt 5:6"}, {"t": "Como os pais deviam ensinar essas palavras aos filhos?", "ref": "Dt 6:7"}, {"t": "Por que Deus escolheu Israel?", "ref": "Dt 7:7-8"}],
+    portras: [{"selo": "biblia", "t": "\"Ouça, Israel: o Senhor nosso Deus é o único Senhor. Ame o Senhor seu Deus de todo o coração, de toda a alma e de toda a força.\"", "ref": "Dt 6:4-5"}, {"selo": "liga", "t": "Jesus cita esse versículo como o primeiro e maior mandamento.", "ref": "Dt 6:5; Mt 22:37-38"}, {"selo": "liga", "t": "Quando é tentado no deserto, Jesus responde ao diabo três vezes com versículos de Deuteronômio.", "ref": "Dt 6:13; 6:16; 8:3; Mt 4:4-10"}, {"selo": "biblia", "t": "Deus não escolheu Israel por ser grande. Era o menor dos povos. Escolheu porque amou.", "ref": "Dt 7:7-8"}],
+    conversa: "Os pais deviam falar das palavras de Deus em casa, no caminho, ao deitar e ao levantar (Dt 6:7). Por que você acha que Deus queria a fé no meio da rotina da casa, e não só em dias especiais? \"Ainda não sei\" também vale.",
+    fazer: "Moisés mandou falar da palavra de Deus em casa, no caminho, ao deitar e ao levantar (Dt 6:7). Decore Deuteronômio 6:5 com a família e repitam juntos todos os dias, numa dessas quatro horas, até o \"como foi?\".",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor é o único Deus. Eu quero te amar de todo o meu coração, de toda a minha alma e de toda a minha força. Obrigado porque o Senhor me escolheu por amor.\" Continue com as suas palavras.",
     contexto: 'Moisés repete os Dez Mandamentos para a nova geração e resume tudo numa frase que os judeus recitam até hoje: o Senhor é um só; ame-o de todo o coração. Deus escolheu Israel não por ser grande, mas por amor.',
     notas: [
       ['5:6-7', 'Os mandamentos de novo, começando por quem Deus é: o que os tirou da escravidão.'],
@@ -504,6 +666,12 @@ export const SESSOES = [
 
   { id: 'dt-03', livro: 'dt', caps: [8, 11], titulo: 'Não se esqueça',
     cenario: 'Moabe, olhando para a terra prometida.',
+    gancho: "No deserto, o perigo era passar fome. Na terra boa, cheia de trigo, uvas e casas, o perigo vai ser outro, mais silencioso. Moisés avisa o povo antes de entrar. Hoje você descobre qual é esse perigo.",
+    repare: [{"t": "O que o deserto ensinou sobre o pão?", "ref": "Dt 8:3"}, {"t": "O que Moisés diz que o povo não deve falar quando enriquecer?", "ref": "Dt 8:17-18"}, {"t": "Quais cinco coisas o Senhor pede?", "ref": "Dt 10:12-13"}],
+    portras: [{"selo": "biblia", "t": "O ser humano não vive só de pão, mas de toda palavra que sai da boca do Senhor.", "ref": "Dt 8:3"}, {"selo": "biblia", "t": "Em 40 anos, as roupas do povo não se gastaram e os pés não incharam.", "ref": "Dt 8:4"}, {"selo": "liga", "t": "Jesus responde ao diabo com Deuteronômio 8:3 depois de 40 dias sem comer.", "ref": "Dt 8:3; Mt 4:4"}, {"selo": "biblia", "t": "Deus defende o órfão e a viúva e ama o estrangeiro.", "ref": "Dt 10:18-19"}],
+    conversa: "Moisés avisou que, na fartura, o povo poderia dizer: \"Foi a minha força que me deu isso\" (Dt 8:17). Por que você acha que é mais fácil esquecer de Deus quando tudo vai bem? \"Ainda não sei\" também vale.",
+    fazer: "Moisés mandou lembrar que é Deus quem dá a força para conquistar (Dt 8:18). Por 3 dias, antes de cada refeição, agradeça a Deus em voz alta por um motivo diferente: a comida, o trabalho dos pais, a saúde, a casa.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, eu não vivo só de pão, mas da sua palavra. Tudo o que eu tenho veio do Senhor. Não me deixa esquecer de ti quando estiver tudo bem.\" Continue com as suas palavras.",
     contexto: 'Moisés avisa: o perigo do deserto era a fome; o perigo da terra boa será esquecer de Deus na fartura. Ele lembra o bezerro de ouro e resume o que Deus pede: temer, andar nos seus caminhos, amar e servir.',
     notas: [
       ['8:2-3', 'O deserto ensinou que o ser humano não vive só de pão, mas de tudo o que sai da boca do Senhor.'],
@@ -519,6 +687,12 @@ export const SESSOES = [
 
   { id: 'dt-04', livro: 'dt', caps: [12, 18], titulo: 'A vida na terra',
     cenario: 'Moabe; leis para quando chegarem a Canaã.',
+    gancho: "Moisés começa a explicar como seria a vida na terra prometida: onde adorar, o que fazer com o dízimo, como tratar quem está devendo e até o que um futuro rei deveria fazer todos os dias. Hoje você descobre o dever diário do rei.",
+    repare: [{"t": "O que fazer quando houver um irmão pobre perto?", "ref": "Dt 15:7-8; 15:11"}, {"t": "Como os homens deviam se apresentar a Deus nas três festas?", "ref": "Dt 16:16"}, {"t": "O que o rei devia fazer com a lei?", "ref": "Dt 17:18-19"}],
+    portras: [{"selo": "biblia", "t": "O rei devia copiar a lei de próprio punho e lê-la todos os dias da vida.", "ref": "Dt 17:18-19"}, {"selo": "conta", "t": "A cada sete anos, as dívidas entre irmãos eram perdoadas.", "ref": "Dt 15:1-2"}, {"selo": "liga", "t": "Deus promete levantar um profeta como Moisés. Pedro, em Atos, aplica essa promessa a Jesus.", "ref": "Dt 18:15; At 3:22"}, {"selo": "biblia", "t": "Ninguém devia se apresentar ao Senhor de mãos vazias.", "ref": "Dt 16:16-17"}],
+    conversa: "O rei, a pessoa mais importante do povo, tinha de ler a palavra de Deus todos os dias (Dt 17:19). Por que você acha que quem tem mais poder precisa ainda mais da palavra de Deus? \"Ainda não sei\" também vale.",
+    fazer: "O rei devia copiar a lei com a própria mão (Dt 17:18). Até o \"como foi?\", copie à mão um capítulo curto da Bíblia (por exemplo, o Salmo 1 ou o Salmo 23), um pedaço por dia, e leia o que escreveu antes de dormir.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, eu quero que a sua palavra esteja comigo todos os dias, como o Senhor pediu ao rei. Abre a minha mão para quem precisa. Eu não quero chegar diante do Senhor de mãos vazias.\" Continue com as suas palavras.",
     contexto: 'Leis para a vida na terra: um só lugar escolhido por Deus para os sacrifícios, o dízimo, o cuidado com o pobre, o perdão das dívidas, as três festas anuais, juízes justos, o rei e o profeta.',
     notas: [
       ['12:5', 'Adorar no lugar que o Senhor escolher para pôr ali o seu nome.'],
@@ -534,6 +708,12 @@ export const SESSOES = [
 
   { id: 'dt-05', livro: 'dt', caps: [19, 26], titulo: 'Justiça e cuidado',
     cenario: 'Moabe; leis do dia a dia.',
+    gancho: "Leis sobre casas, colheitas, empréstimos e até sobre um ninho de passarinho no caminho. Parece tudo muito pequeno. Mas no meio delas aparece quem Deus mais quer proteger. Hoje você descobre quem são.",
+    repare: [{"t": "Por que fazer um parapeito no terraço de uma casa nova?", "ref": "Dt 22:8"}, {"t": "Para quem ficava o feixe esquecido no campo?", "ref": "Dt 24:19"}, {"t": "O que o israelita dizia ao entregar as primícias?", "ref": "Dt 26:5-9"}],
+    portras: [{"selo": "biblia", "t": "O estrangeiro, o órfão e a viúva aparecem muitas vezes nessas leis: o feixe, as azeitonas e as uvas que sobravam eram deles.", "ref": "Dt 24:19-21"}, {"selo": "biblia", "t": "O trabalhador pobre devia receber o pagamento no mesmo dia, antes do pôr do sol.", "ref": "Dt 24:14-15"}, {"selo": "liga", "t": "Tiago chama de religião pura cuidar dos órfãos e das viúvas nas suas dificuldades.", "ref": "Dt 24:19; Tg 1:27"}, {"selo": "biblia", "t": "Diante de um exército maior, não tenham medo: o Senhor que os tirou do Egito está com vocês.", "ref": "Dt 20:1"}],
+    conversa: "Deus deu leis para proteger quem não tinha quem o defendesse: o estrangeiro, o órfão e a viúva (Dt 24:17-22). Por que você acha que Deus se importa tanto com quem é mais fraco? \"Ainda não sei\" também vale.",
+    fazer: "A lei mandava deixar o feixe esquecido para o órfão e a viúva (Dt 24:19). Até o \"como foi?\", faça algo concreto por uma viúva, um idoso sozinho ou uma criança sem um dos pais que você conhece: uma visita, uma comida, uma ajuda.",
+    oracao: "Fique um minuto em silêncio e pense em alguém que está sozinho. Depois ore: \"Senhor, o Senhor defende o órfão e a viúva e ama o estrangeiro. Abre os meus olhos para quem não tem ninguém. Me usa para cuidar dessas pessoas.\" Continue com as suas palavras.",
     contexto: 'Leis sobre cidades de refúgio, testemunhas, guerra, família, trabalho, empréstimos e colheita. Muitas protegem os mais frágeis: o estrangeiro, o órfão e a viúva. O bloco termina com a oferta das primícias e uma confissão de fé.',
     notas: [
       ['20:1', 'Na guerra, diante de um exército maior, não tenham medo: o Senhor que os tirou do Egito está com vocês.'],
@@ -548,6 +728,12 @@ export const SESSOES = [
 
   { id: 'dt-06', livro: 'dt', caps: [27, 30], titulo: 'Escolha a vida',
     cenario: 'Moabe; a renovação da aliança.',
+    gancho: "Moisés coloca duas estradas diante do povo: uma leva à bênção, a outra à maldição. Ele diz que a palavra de Deus não está longe nem escondida. No fim, faz um pedido direto. Hoje você descobre o que ele pediu que escolhessem.",
+    repare: [{"t": "Onde deviam ser escritas as palavras da lei?", "ref": "Dt 27:2-3"}, {"t": "O que pertence a Deus e o que pertence a nós?", "ref": "Dt 29:29"}, {"t": "Onde está a palavra, segundo Moisés?", "ref": "Dt 30:14"}],
+    portras: [{"selo": "biblia", "t": "As coisas escondidas pertencem a Deus; as reveladas pertencem a nós e aos nossos filhos, para cumprirmos.", "ref": "Dt 29:29"}, {"selo": "biblia", "t": "Moisés diz: escolham a vida, amando o Senhor, ouvindo a sua voz e apegando-se a ele.", "ref": "Dt 30:19-20"}, {"selo": "liga", "t": "Paulo cita Deuteronômio 30:14: a palavra está perto, na sua boca e no seu coração.", "ref": "Dt 30:14; Rm 10:8"}, {"selo": "biblia", "t": "A lei devia ser escrita em pedras grandes, pintadas de cal, ao atravessar o Jordão.", "ref": "Dt 27:2-3"}],
+    conversa: "Moisés disse que o mandamento de Deus não é difícil nem distante: está na boca e no coração (Dt 30:11-14). Por que você acha que às vezes a gente sente que obedecer a Deus é complicado demais? \"Ainda não sei\" também vale.",
+    fazer: "Moisés pediu: escolham a vida (Dt 30:19). Escolha uma decisão concreta de obediência que você vem adiando e tome hoje: comece, pare ou mude o que precisa. Conte para alguém da família o que escolheu.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, eu escolho a vida. Eu escolho te amar, ouvir a sua voz e me apegar ao Senhor. Obrigado porque a sua palavra está perto de mim.\" Continue com as suas palavras.",
     contexto: 'Moisés manda escrever a lei em pedras quando entrarem na terra e apresenta as bênçãos da obediência e as maldições da desobediência. A aliança é renovada, e Moisés coloca o povo diante de uma escolha.',
     notas: [
       ['27:2-3', 'Ao atravessar o Jordão, escrever as palavras da lei em pedras grandes caiadas.'],
@@ -564,6 +750,12 @@ export const SESSOES = [
 
   { id: 'dt-07', livro: 'dt', caps: [31, 34], titulo: 'A despedida de Moisés',
     cenario: 'O monte Nebo, de frente para Jericó.',
+    gancho: "Moisés tem 120 anos. Ele passa a liderança a Josué, ensina um cântico ao povo e sobe sozinho a um monte. Lá de cima, Deus mostra a ele toda a terra que ele não vai pisar. Hoje você descobre como termina a vida de Moisés.",
+    repare: [{"t": "Que palavras Moisés diz a Josué e ao povo?", "ref": "Dt 31:6-8"}, {"t": "O que está debaixo do povo, segundo a bênção de Moisés?", "ref": "Dt 33:27"}, {"t": "Como estavam os olhos e a força de Moisés quando morreu?", "ref": "Dt 34:7"}],
+    portras: [{"selo": "conta", "t": "A vida de Moisés se divide em três partes de 40 anos: no Egito, em Midiã e no deserto com o povo.", "ref": "At 7:23; 7:30; Dt 34:7"}, {"selo": "biblia", "t": "O Deus eterno é o seu refúgio, e por baixo estão os braços eternos.", "ref": "Dt 33:27"}, {"selo": "liga", "t": "\"Não te deixarei nem te abandonarei\" volta em Josué e em Hebreus.", "ref": "Dt 31:6; Js 1:5; Hb 13:5"}, {"selo": "liga", "t": "Séculos depois, Moisés aparece conversando com Jesus no monte da transfiguração, na terra prometida.", "ref": "Dt 34:4; Mt 17:3"}],
+    conversa: "Moisés viu a terra de longe e não entrou, mas o texto diz que nunca houve profeta como ele, que conheceu Deus face a face (Dt 34:4; 34:10). O que você acha que era mais importante para Moisés: a terra ou o Senhor? \"Ainda não sei\" também vale.",
+    fazer: "Moisés encorajou Josué antes de partir (Dt 31:7-8). Até o \"como foi?\", escolha alguém que está começando algo novo (um trabalho, uma escola, um ministério) e encoraje essa pessoa com uma mensagem ou visita, usando Deuteronômio 31:8.",
+    oracao: "Fique um minuto em silêncio. Depois ore: \"Senhor, o Senhor é o Deus eterno, e os seus braços eternos me sustentam. Obrigado porque o Senhor não me deixa nem me abandona. Eu quero te conhecer face a face, como Moisés.\" Continue com as suas palavras.",
     contexto: 'Moisés passa a liderança a Josué, entrega a lei escrita aos sacerdotes, ensina um cântico ao povo e abençoa as tribos. Do alto do monte Nebo, Deus lhe mostra a terra prometida. Moisés morre aos 120 anos.',
     notas: [
       ['31:6', 'Sejam fortes e corajosos; o Senhor vai com vocês, não os deixará nem os abandonará.'],

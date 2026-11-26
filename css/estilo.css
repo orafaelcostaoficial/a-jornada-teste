@@ -867,3 +867,26 @@ body.tema-natal { background: linear-gradient(#f6ece6, #f3efe6 420px); }
 
 /* v61: Álbum — bloco das cartas que ainda não apareceram */
 .album-faltam { margin-top: 22px; }
+
+/* v62: formato novo de estudo (gancho, repare, por trás do texto, tempo com Deus) */
+.gancho { font-size: 1.14rem !important; line-height: 1.5; margin: 6px 0 16px !important; }
+.repare { margin: 0; padding: 0; list-style: none; counter-reset: rep; }
+.repare li { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-top: 1px dashed var(--ln); counter-increment: rep; }
+.repare li:first-child { border-top: 0; }
+.repare li::before { content: counter(rep); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ouro-cl); color: var(--ouro-esc); font-weight: 800; font-size: .78rem; display: grid; place-items: center; margin-top: 3px; }
+.repare li span { flex: 1; }
+.repare li b { flex: none; font-size: .72rem; font-weight: 800; color: var(--tx-2); margin-top: 5px; white-space: nowrap; }
+.repare-lembrete { background: var(--sup); border-radius: 14px; padding: 10px 14px; margin-bottom: 12px; box-shadow: var(--sombra); }
+.repare-lembrete summary { cursor: pointer; font-weight: 800; font-size: .85rem; color: var(--ouro-esc); display: flex; align-items: center; gap: 6px; }
+.repare-lembrete .repare { margin-top: 6px; }
+.repare-lembrete .repare li span { font-size: .95rem; }
+.rot .ico { width: 15px; height: 15px; vertical-align: -2px; margin-right: 2px; }
+.pt-item { padding: 12px 0; border-top: 1px dashed var(--ln); }
+.pt-item:first-of-type { border-top: 0; padding-top: 4px; }
+.pt-selo { font-size: .78rem; font-weight: 800; color: var(--ouro-esc); margin-bottom: 4px; }
+.pt-item p { margin: 0 0 4px !important; }
+.pt-ref { color: var(--tx-2); font-size: .76rem; }
+.oracao { display: flex; gap: 12px; background: color-mix(in srgb, #8a5cb8 12%, var(--sup)); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+.oracao .ico { color: #8a5cb8; width: 24px; height: 24px; flex: none; margin-top: 2px; }
+.oracao p { margin: 4px 0 0; font-family: var(--display); font-size: 1.04rem; line-height: 1.5; }
+.fazer .pergunta { font-size: 1.12rem; }

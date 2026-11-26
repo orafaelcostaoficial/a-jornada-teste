@@ -27,8 +27,12 @@ O canal de teste usa dados locais separados (`ajornada.teste.v2`) e não sincron
 (a não ser com `?nuvem=1`), para nunca bagunçar os dados reais da família.
 
 ## Método
-Uma sessão por dia: Contexto (cenário e notas) → Leitura (Bíblia Livre dentro do app,
-NAA no site da SBB) → O que entendi → Aplicação. A aplicação volta em 3 dias ("como foi?").
+Uma sessão por dia: Antes de ler (cenário, gancho, repare) → Leitura (Bíblia Livre dentro do app,
+NAA no site da SBB) → Entendi (por trás do texto + o que entendi) → Viver (conversa, para fazer, tempo com Deus).
+O "para fazer" volta em 3 dias ("como foi?"), mostrando a pergunta, a resposta e o passo combinado.
+**Todo texto de sessão segue a skill `jornada-escrita`** (campos `gancho`, `repare`, `portras`, `conversa`, `fazer`,
+`oracao`). Sessões ainda sem `gancho` usam o formato antigo (`contexto`, `notas`, `pergunta`) e continuam funcionando.
+Desde a v62: as eras 1 a 3 inteiras (78 sessões) estão no formato novo. Validar referências com `node` lendo `data/biblia/blivre` (todas as refs de `repare`, `portras`, `conversa` e `fazer` devem existir).
 Revisão em quiz com repetição espaçada (Leitner). Meta semanal 5 de 7 dias (sem streak que zera).
 
 ## Regras de conteúdo — inegociáveis

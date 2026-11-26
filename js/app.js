@@ -438,7 +438,7 @@ function telaHoje() {
     { feito: feitaHoje, ico: 'book-open', txt: 'Fazer a sessão do dia', xp: `+${J.XP.sessao}–${J.XP.sessao + J.XP.aplicacao}`, href: prox ? `#/sessao/${prox.id}` : null },
     quiz.length ? { feito: false, ico: 'medal', txt: `Revisar ${quiz.length} pergunta${quiz.length > 1 ? 's' : ''}`, xp: `+${J.XP.acerto} cada`, href: '#/revisao' } : null,
     ...J.cartasDisponiveis(p).slice(0, 2).map((id) => ({ feito: false, ico: 'layers', txt: `Conquistar uma carta ${RARIDADE[(J.CARTAS[id] || [])[1] || 'comum'].nome.toLowerCase()}`, xp: `+${J.XP.carta}`, href: `#/conquistar/${id}` })),
-    ...aplic.map((s) => ({ feito: false, ico: 'heart', txt: `Como foi: “${p.sessoes[s.id].aplicacao}”`, xp: `+${J.XP.revisao}`, href: `#/aplicacao/${s.id}` })),
+    ...aplic.map((s) => ({ feito: false, ico: 'heart', txt: `Como foi o desafio de ${s.titulo}? (${J.refSessao(s)})`, xp: `+${J.XP.revisao}`, href: `#/aplicacao/${s.id}` })),
   ].filter(Boolean);
 
   return `${topo()}
@@ -567,6 +567,15 @@ function cabSessao(s, sub) {
     <div><small>${esc(sub || J.refSessao(s))}</small><h2>${esc(s.titulo)}</h2></div></header>`;
 }
 
+// v62: formato novo de estudo (skill jornada-escrita): gancho, repare, por trás do texto, conversa, para fazer e
+// tempo com Deus. Sessões ainda no formato antigo (contexto/notas/pergunta) seguem como antes.
+const novoFormato = (s) => !!s.gancho;
+const SELO_PT = { biblia: ['📖', 'A Bíblia diz'], liga: ['🔗', 'A Bíblia explica a Bíblia'], conta: ['🔎', 'Fazendo as contas'], lugar: ['🗺️', 'Lugar e mundo'] };
+const listaRepare = (s) => `<ul class="repare">${s.repare.map((x) => `<li><span>${esc(x.t)}</span><b>${esc(x.ref)}</b></li>`).join('')}</ul>`;
+const porTras = (s) => `<section class="folha portras"><div class="rot">Por trás do texto</div>
+  ${s.portras.map((x) => { const [e, nome] = SELO_PT[x.selo] || ['📖', '']; return `<div class="pt-item"><div class="pt-selo">${e} ${nome}</div><p>${esc(x.t)}</p><small class="pt-ref">${esc(x.ref)}${x.fonte ? ` · Fonte: ${esc(x.fonte)}` : ''}</small></div>`; }).join('')}</section>`;
+const tempoComDeus = (s) => `<section class="oracao">${ico('heart')}<div><b>Tempo com Deus</b><p>${esc(s.oracao)}</p></div></section>`;
+
 function telaSessao(id, passo = 0) {
   const s = J.sessaoPorId(id); const p = P();
   if (!s) return telaHoje();
@@ -577,11 +586,22 @@ function telaSessao(id, passo = 0) {
   const crianca = p.tipo === 'crianca';
   const temCriancas = perfis().some((x) => x.tipo === 'crianca');
   const primeiraDoLivro = J.SESSOES.find((x) => x.livro === s.livro).id === s.id;
-  const passos = ['Contexto', 'Leitura', 'Entendi', 'Aplicação'];
+  const novo = novoFormato(s);
+  const passos = novo ? ['Antes de ler', 'Leitura', 'Entendi', 'Viver'] : ['Contexto', 'Leitura', 'Entendi', 'Aplicação'];
   const barra = `<div class="passos">${passos.map((t, i) => `<span class="${i < passo ? 'ok' : ''} ${i === passo ? 'atual' : ''}"><i>${i < passo ? ico('check') : i + 1}</i>${t}</span>`).join('')}</div>`;
   let corpo = '';
 
-  if (passo === 0) {
+  if (passo === 0 && novo) {
+    corpo = `
+    ${primeiraDoLivro ? `<a class="aviso" href="#/livro/${s.livro}">${ico('book-open-text')}<span>Primeira sessão de ${esc(livro.nome)}. Veja a <b>introdução do livro</b>.</span>${ico('chevron-right')}</a>` : ''}
+    <section class="folha">
+      <div class="rot">Cenário</div><p class="cenario">${ico('map')} ${esc(s.cenario)}</p>
+      <p class="gancho">${esc(s.gancho)}</p>
+      <div class="rot">${ico('eye')} Repare na leitura</div>
+      ${listaRepare(s)}
+    </section>
+    <button class="btn grande" data-acao="passo" data-passo="1">Ir para a leitura ${ico('chevron-right')}</button>`;
+  } else if (passo === 0) {
     corpo = `
     ${primeiraDoLivro ? `<a class="aviso" href="#/livro/${s.livro}">${ico('book-open-text')}<span>Primeira sessão de ${esc(livro.nome)}. Veja a <b>introdução do livro</b>.</span>${ico('chevron-right')}</a>` : ''}
     <section class="folha">
@@ -590,13 +610,14 @@ function telaSessao(id, passo = 0) {
       <div class="rot">Notas</div>
       <ul class="notas">${s.notas.map(([ref, t]) => `<li><b>${esc(ref)}</b><span>${esc(t)}</span></li>`).join('')}</ul>
     </section>
-    ${(temCriancas || crianca) && J.CRIANCAS[s.id] ? `<section class="kids">${ico('users-round')}<div><b>Para as crianças</b><p>${esc(J.CRIANCAS[s.id])}</p></div></section>` : ''}
+    ${!novo && (temCriancas || crianca) && J.CRIANCAS[s.id] ? `<section class="kids">${ico('users-round')}<div><b>Para as crianças</b><p>${esc(J.CRIANCAS[s.id])}</p></div></section>` : ''}
     <button class="btn grande" data-acao="passo" data-passo="1">Ir para a leitura ${ico('chevron-right')}</button>`;
   } else if (passo === 1) {
     const caps = []; for (let c = s.caps[0]; c <= s.caps[1]; c++) caps.push(c);
     const capAtual = r.cap && caps.includes(r.cap) ? r.cap : caps[0];
     const url = linkNAA(livro, capAtual);
     corpo = `
+    ${novo ? `<details class="repare-lembrete"><summary>${ico('eye')} Repare na leitura</summary>${listaRepare(s)}</details>` : ''}
     ${caps.length > 1 ? `<div class="abas-cap">${caps.map((c) => `<button class="${c === capAtual ? 'on' : ''} ${r.lidos?.includes(c) ? 'lido' : ''}" data-acao="cap" data-c="${c}">${esc(livro.nome)} ${c}</button>`).join('')}</div>` : ''}
     <section class="leitor" id="leitor" data-livro="${s.livro}" data-cap="${capAtual}"><h3>${esc(livro.nome)} ${capAtual}</h3><div class="versos"><p class="dica">Carregando o texto…</p></div></section>
     <div class="leitor-acoes">
@@ -607,6 +628,7 @@ function telaSessao(id, passo = 0) {
     <button class="btn grande" data-acao="passo" data-passo="2" id="btn-li" ${r.li ? '' : 'disabled'}>Continuar ${ico('chevron-right')}</button>`;
   } else if (passo === 2) {
     corpo = `
+    ${novo ? porTras(s) : ''}
     <section class="bloco">
       <label class="rot" for="entendi">${crianca ? 'O que eu aprendi' : 'O que eu entendi'}</label>
       <textarea id="entendi" rows="4" placeholder="Uma frase já basta.">${esc(r.entendi || '')}</textarea>
@@ -615,7 +637,18 @@ function telaSessao(id, passo = 0) {
     <button class="btn grande" data-acao="passo" data-passo="3" id="btn-entendi" ${r.entendi?.trim() ? '' : 'disabled'}>Continuar ${ico('chevron-right')}</button>`;
   } else {
     const outros = perfis().filter((x) => x.id !== p.id);
-    corpo = `
+    const xpA = J.concluida(p, s.id) ? J.XP.aplicacao : J.xpRitmo(J.XP.aplicacao, J.fatorProxima(p));
+    corpo = novo ? `
+    <section class="bloco">
+      <div class="rot">${ico('messages-square')} Para conversar</div><p class="pergunta">${esc(s.conversa)}</p>
+      <label class="rot" for="conversa">Minha resposta <em>opcional</em></label>
+      <textarea id="conversa" rows="3" placeholder="Pode ser uma frase. &quot;Ainda não sei&quot; também vale.">${esc(r.conversa || '')}</textarea>
+    </section>
+    <section class="bloco fazer">
+      <div class="rot">${ico('footprints')} Para fazer</div><p class="pergunta">${esc(s.fazer)}</p>
+      <label class="rot" for="aplicacao">Meu passo <em>+${xpA} XP</em></label>
+      <textarea id="aplicacao" rows="3" placeholder="O que, quando e com quem. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.">${esc(r.aplicacao || '')}</textarea>
+    </section>` : `
     <section class="bloco">
       ${crianca && J.CRIANCAS_FAZER[s.id]
         ? `${J.CRIANCAS[s.id] ? `<div class="rot">Para conversar</div><p class="conversa">${esc(J.CRIANCAS[s.id])}</p>` : ''}
@@ -623,10 +656,12 @@ function telaSessao(id, passo = 0) {
         : `<div class="rot">Para pensar</div><p class="pergunta">${esc(crianca && J.CRIANCAS[s.id] ? J.CRIANCAS[s.id] : s.pergunta)}</p>`}
       <label class="rot" for="aplicacao">${crianca ? 'O que eu vou fazer' : 'Minha aplicação'} <em>+${J.concluida(p, s.id) ? J.XP.aplicacao : J.xpRitmo(J.XP.aplicacao, J.fatorProxima(p))} XP</em></label>
       <textarea id="aplicacao" rows="4" placeholder="${crianca ? `Escreva com as suas palavras. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.` : `Algo concreto. Em ${J.DIAS_PARA_REVISAR_APLICACAO} dias o app pergunta como foi.`}">${esc(r.aplicacao || '')}</textarea>
-    </section>
+    </section>`;
+    corpo += `
     ${outros.length && !J.concluida(p, s.id) ? `<section class="bloco"><div class="rot">Estudaram junto</div>
       <div class="juntos">${outros.map((o) => `<button class="junto ${r.juntos?.includes(o.id) ? 'on' : ''}" data-acao="junto" data-p="${o.id}">${avatarHTML(o.avatar, J.itensAte(J.nivel(o.xp).n), 30)}<span>${esc(nomePublico(o))}</span></button>`).join('')}</div>
       <small class="dica">Quem for marcado também conclui a sessão e ganha XP e cartas.</small></section>` : ''}
+    ${novo ? tempoComDeus(s) : ''}
     <button class="btn grande ouro" data-acao="concluir" data-id="${s.id}">${J.concluida(p, s.id) ? 'Salvar anotações' : 'Concluir sessão'}</button>`;
   }
   return cabSessao(s) + barra + `<div class="anima">${corpo}</div>`;
@@ -635,6 +670,19 @@ const EDITANDO = {};
 
 function telaSessaoFeita(s) {
   const r = P().sessoes[s.id];
+  if (novoFormato(s)) return `${cabSessao(s, `${J.refSessao(s)} · ${fmtData(r.data)}`)}
+  <section class="bloco"><div class="rot">O que entendi</div><p>${esc(r.entendi)}</p>
+    ${'conversa' in r ? `<div class="rot">Para conversar</div><p class="conversa">${esc(s.conversa)}</p>${r.conversa ? `<p>${esc(r.conversa)}</p>` : ''}
+    <div class="rot">Para fazer</div><p class="conversa">${esc(s.fazer)}</p>${r.aplicacao ? `<p><b>Meu passo:</b> ${esc(r.aplicacao)}</p>` : ''}`
+    : r.aplicacao ? `<div class="rot">A pergunta era</div><p class="conversa">${esc(s.pergunta)}</p><div class="rot">Aplicação</div><p>${esc(r.aplicacao)}</p>` : ''}
+    ${r.revisao ? `<div class="rot">Como foi · ${fmtData(r.revisao.data)}</div><p>${esc(r.revisao.texto)}</p>` : ''}
+  </section>
+  <section class="folha"><div class="rot">Cenário</div><p class="cenario">${ico('map')} ${esc(s.cenario)}</p><p class="gancho">${esc(s.gancho)}</p></section>
+  ${porTras(s)}
+  ${tempoComDeus(s)}
+  ${J.selosDaSessao(s.id).length ? `<section class="bloco"><div class="rot">Selo desta sessão</div><div class="grade-selos">${J.selosDaSessao(s.id).map((id) => selo(id)).join('')}</div></section>` : ''}
+  ${s.personagens.length ? `<section class="bloco"><div class="rot">Cartas desta sessão</div><div class="grade-cartas mini">${s.personagens.map((id) => carta(id)).join('')}</div></section>` : ''}
+  <button class="btn sec" data-acao="editar" data-id="${s.id}">Editar minhas anotações</button>`;
   return `${cabSessao(s, `${J.refSessao(s)} · ${fmtData(r.data)}`)}
   <section class="bloco"><div class="rot">O que entendi</div><p>${esc(r.entendi)}</p>
     ${r.aplicacao ? `<div class="rot">Aplicação</div><p>${esc(r.aplicacao)}</p>` : ''}
@@ -722,8 +770,17 @@ function celebrarNivel() {
 function telaAplicacao(id) {
   const s = J.sessaoPorId(id); const r = P().sessoes[id];
   if (!r) return telaHoje();
-  return `${cabSessao(s, `${J.refSessao(s)} · ${fmtData(r.data)}`)}
-  <section class="bloco"><div class="rot">Você se propôs</div><p class="pergunta">${esc(r.aplicacao)}</p>
+  const crianca = P().tipo === 'crianca';
+  // Registro feito no formato novo tem o campo `conversa`; os antigos mostram a pergunta que a pessoa viu na época.
+  const novoReg = novoFormato(s) && 'conversa' in r;
+  const tarefa = novoReg ? s.fazer : (crianca && J.CRIANCAS_FAZER[s.id]) || null;
+  const pergunta = novoReg ? s.conversa : (crianca && J.CRIANCAS[s.id]) || s.pergunta;
+  return `${cabSessao(s, `${J.refSessao(s)} · estudado em ${fmtData(r.data)}`)}
+  <section class="bloco">
+    ${tarefa ? `<div class="rot">O desafio era</div><p class="conversa">${esc(tarefa)}</p>` : ''}
+    ${!tarefa || r.conversa ? `<div class="rot">${tarefa ? 'Na conversa, a pergunta era' : 'A pergunta era'}</div><p class="conversa">${esc(pergunta)}</p>` : ''}
+    ${r.conversa ? `<div class="rot">Você respondeu</div><p>${esc(r.conversa)}</p>` : ''}
+    <div class="rot">${tarefa ? 'Seu passo' : 'Você escreveu'}</div><p class="pergunta">${esc(r.aplicacao)}</p>
     <label class="rot" for="como">Como foi na prática?</label>
     <textarea id="como" rows="4" placeholder="Deu certo? O que aprendeu? Se não deu, o que atrapalhou?"></textarea></section>
   <button class="btn grande ouro" data-acao="revisar" data-id="${id}">Registrar · +${J.XP.revisao} XP</button>`;
@@ -1216,7 +1273,7 @@ const RASC = {};
 function rascunho(id) { return (RASC[id] ||= { ...(P().sessoes[id] || {}), li: !!P().sessoes[id], juntos: [] }); }
 function capturar(id) {
   const r = rascunho(id);
-  for (const k of ['entendi', 'estudo', 'aplicacao']) { const el = document.getElementById(k); if (el) r[k] = el.value; }
+  for (const k of ['entendi', 'estudo', 'aplicacao', 'conversa']) { const el = document.getElementById(k); if (el) r[k] = el.value; }
   const li = document.getElementById('li'); if (li) r.li = li.checked;
   return r;
 }
@@ -1397,13 +1454,13 @@ Se o link não abrir no app, abra A Jornada, vá em Grupos e cole este convite e
 
   if (acao === 'concluir') {
     const r = capturar(id); const s = J.sessaoPorId(id); const p = P();
-    const dados = { entendi: r.entendi?.trim() || '', estudo: r.estudo?.trim() || '', aplicacao: r.aplicacao?.trim() || '' };
+    const dados = { entendi: r.entendi?.trim() || '', estudo: r.estudo?.trim() || '', aplicacao: r.aplicacao?.trim() || '', conversa: r.conversa?.trim() || '' };
     if (J.concluida(p, id)) { Object.assign(p.sessoes[id], dados); salvar(); delete RASC[id]; delete EDITANDO[id]; passoAtual = {}; toast('Anotações atualizadas'); render(); return; }
     ultimoResultado = J.concluirSessao(p, s, dados);
     const juntos = [];
     for (const pid of r.juntos || []) {
       const o = RAIZ.perfis[pid];
-      if (o && !J.concluida(o, id)) { J.concluirSessao(o, s, { entendi: dados.entendi, aplicacao: dados.aplicacao, familia: true }); juntos.push(nomePublico(o)); }
+      if (o && !J.concluida(o, id)) { J.concluirSessao(o, s, { entendi: dados.entendi, aplicacao: dados.aplicacao, conversa: dados.conversa, familia: true }); juntos.push(nomePublico(o)); }
     }
     ultimoResultado.juntos = juntos;
     salvar(); delete RASC[id]; passoAtual = {};
